@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel='stylesheet' href='<?php echo URL_CSS; ?>03a03bbe34da26df16eb239ba68ecc0a.css'>
+  <link rel='stylesheet' href='<?php echo URL_CSS; ?>estilogeneral.css'>
+  <script src="<?php echo URL_JS; ?>jquery-1.8.1.min.js"></script>
+  <script src="<?php echo URL_JS; ?>master.js"></script>
   <link href='http://fonts.googleapis.com/css?family=Roboto:100,300,400,700|Roboto+Condensed:300,400,700' rel='stylesheet' type='text/css'>
   <link href="<?php echo URL_IMG; ?>favicon.ico" rel="shortcut icon">
   <link href="<?php echo URL_IMG; ?>apple-touch-icon.png" rel="apple-touch-icon">
@@ -69,69 +72,49 @@
         </div>
         <a class="current logo hidden-xs" href="index-2.html"><i class="fa fa-rocket"></i></a>
         <a class="menu-toggler" href="#"><i class="fa fa-bars"></i></a>
-        <h1>Dashboard</h1>
+        <h1>Dashboard Encabezado</h1>
       </div>
-      <div class="side">
+    <div class="side">
         <div class="sidebar-wrapper">
-          <ul>
-            <li class='current'>
-              <a class='current' href="index-2.html" data-toggle="tooltip" data-placement="right" title="" data-original-title="Dashboard">
-                <i class="fa fa-home"></i>
-              </a>
-            </li>
-            <li>
-              <a href="forms.html" data-toggle="tooltip" data-placement="right" title="" data-original-title="Forms">
-                <i class="fa fa-file-text-o"></i>
-              </a>
-            </li>
-            <li>
-              <a href="elements.html" data-toggle="tooltip" data-placement="right" title="" data-original-title="UI Elements">
-                <span class="badge"></span>
-                <i class="fa fa-code-fork"></i>
-              </a>
-            </li>
-            <li>
-              <a href="charts.html" data-toggle="tooltip" data-placement="right" title="" data-original-title="Charts">
-                <i class="fa fa-bar-chart-o"></i>
-              </a>
-            </li>
-            <li>
-              <a href="table.html" data-toggle="tooltip" data-placement="right" title="" data-original-title="Tables">
-                <i class="fa fa-th"></i>
-              </a>
-            </li>
-            <li>
-              <a href="grid.html" data-toggle="tooltip" data-placement="right" title="" data-original-title="Layouts">
-                <i class="fa fa-font"></i>
-              </a>
-            </li>
-            <li>
-              <a href="calendar.html" data-toggle="tooltip" data-placement="right" title="" data-original-title="Calendar">
-                <span class="badge">5</span>
-                <i class="fa fa-calendar"></i>
-              </a>
-            </li>
-            <li>
-              <a href="maps.html" data-toggle="tooltip" data-placement="right" title="" data-original-title="Maps">
-                <i class="fa fa-map-marker"></i>
-              </a>
-            </li>
-            <li>
-              <a href="page_search.html" data-toggle="tooltip" data-placement="right" title="" data-original-title="Extra Pages">
-                <i class="fa fa-trophy"></i>
-              </a>
-            </li>
-          </ul>
+            <ul>
+                <?php
+                    $opciones = $this->loaders->get_menu();
+                    $count = count($opciones);
+                    for ($i = 0; $i < $count; $i++) {
+                        $active = ( $i==0 ?" class=\"current cabecera\"":" class=\"cabecera\"" );
+                        ?>
+                        <li <?php echo $opciones[$i]["ul"] ?>>
+                            <a <?php echo $active; ?> href="#<?php echo $opciones[$i]["papa"] ?>" data-toggle="tooltip" data-placement="right" title="" data-original-title="<?php echo $opciones[$i]["menu"];?>">
+                                <i class="fa <?php echo $opciones[$i]["icon"]; ?>"></i>
+                            </a>
+                        </li>
+                            <?php
+                    }
+                ?>                
+            </ul>
         </div>
-        <div class="sub-sidebar-wrapper">
-          <ul class="nav">
-            <li><a href="#widget_stats">Statistics</a></li>
-            <li><a href="#widget_profit_chart">Profit Charts</a></li>
-            <li><a href="#widget_tasks_list">Tasks List</a></li>
-            <li><a href="#widget_real_time_chart">Real Time Chart</a></li>
-            <li><a href="#widget_server_activity">Server Activity</a></li>
-            <li><a href="#widget_calendar">Calendar</a></li>
-            <li><a href="#widget_tabs">Tabs</a></li>
-          </ul>
+        <div class="sub-sidebar-wrapper" id="modulo_hijos">
+            <?php 
+            $count = count($opciones);
+            for ($i = 0; $i < $count; $i++) {
+                $active = ( $i==0 ?" class=\"current\"":"" );
+                ?>
+                <ul <?php echo $opciones[$i]["ul"] ?> id="<?php echo $opciones[$i]["papa"]?>">
+                    <?php
+                    $count2 = count($opciones[$i]["datos"]);
+                    for ($j = 0; $j < $count2; $j++) {
+                        ?>
+                        <li>
+                            <a href="<?php echo base_url().substr($opciones[$i]["datos"][$j]["url"], 3); ?>">
+                                <?php echo $opciones[$i]["datos"][$j]["value"]; ?>
+                            </a>
+                        </li>
+                    <?php
+                    }
+                    ?>
+                </ul>
+                <?php
+            }
+            ?>
         </div>
-      </div>
+    </div>

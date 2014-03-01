@@ -39,18 +39,18 @@
           <h3 class="text-center"><i class="fa fa-lock"></i> Login Example</h3>
       </div>
       <div class="widget-content">
-          <form id="loginform" action="login/validar" autentica="post" method="post" >
+          <form id="loginform" action="login/validar" autentica="post" method="post">
             <a href="#" class="facebook-connect">
               <i class="fa fa-facebook"></i>
               Connect Using Facebook
           </a>
           <div class="lined-separator">Or login using email</div>
           <div class="form-group relative-w">
-              <input type="text" id="username"  class="form-control" placeholder="Enter Username">
+              <input type="text" id="username" name="username"  class="form-control" placeholder="Enter Username">
               <i class="fa fa-user input-abs-icon"></i>
           </div>
           <div class="form-group relative-w">
-              <input type="password" id="password" class="form-control" placeholder="Password">
+              <input type="password" id="password" name="password" class="form-control" placeholder="Password">
               <i class="fa fa-lock input-abs-icon"></i>
           </div>
           <div class="form-group">
@@ -60,7 +60,7 @@
               </label>
           </div>
       </div>
-      <p class="animate6 bounceIn"><button id="btnLogin" class="btn btn-primary btn-rounded btn-iconed">Enviar</button><i class="fa fa-arrow-right"></i></p>
+      <p class="animate6 bounceIn"><button id="btnLogin" class="btn btn-primary btn-rounded btn-iconed">Enviar</button></p>
 <!--       <a href="index-2.html" class="btn btn-primary btn-rounded btn-iconed">
           <span>Log me in</span>
           <i class="fa fa-arrow-right"></i>

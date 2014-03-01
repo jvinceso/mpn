@@ -23,15 +23,12 @@ class login extends CI_Controller
             $this->session->set_userdata( 
             array(
                 'esta_logeado' => true
-                ,'IdUsuario' => $this->objUsuario->get_nUsuCodigo()
-                ,'cUsuNick' => $this->objUsuario->get_cUsuUsuario()
+                ,'nUsuId' => $this->objUsuario->get_nUsuId()
+                ,'cUsuNick' => $this->objUsuario->get_cUsuNick()
                 ,'IdPersona' => $this->objUsuario->get_nPerId()
-                ,'IDSucursal' => $this->objUsuario->get_nSucursalId()
-                ,'Nombres' => $this->objUsuario->get_cPerApellidos() . ', ' . $this->objUsuario->get_cUsuNombre()
-                ,'IdCargo' => $this->objUsuario->get_nPerCargoID()
-                ,'Cargo' => $this->objUsuario->get_cPerCarNombre()
+                ,'Nombres' => $this->objUsuario->get_cUsuNombre()
             ));
-            redirect('dashboard/index');
+            redirect('inicio/index');
         } else {
             redirect('login');
         }

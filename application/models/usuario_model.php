@@ -4,9 +4,9 @@
     class Usuario_model extends CI_Model
     {
         //Atributos de Clase
-        private $nUsuCodigo = '';
+        private $nUsuId = '';
         private $nPerId = '';
-        private $cUsuUsuario = '';
+        private $cUsuNick = '';
         private $cUsuNombre = '';
         private $cPerApellidos = '';
         private $nPerCargoID = '';
@@ -21,17 +21,17 @@
         }
 
         //FUNCIONES Set
-        function set_nUsuCodigo($nUsuCodigo)
+        function set_nUsuId($nUsuId)
         {
-            $this->nUsuCodigo = $nUsuCodigo;
+            $this->nUsuId = $nUsuId;
         }
         function set_nPerId($nPerId)
         {
             $this->nPerId = $nPerId;
         }
-        function set_cUsuUsuario($cUsuUsuario)
+        function set_cUsuNick($cUsuNick)
         {
-            $this->cUsuUsuario = $cUsuUsuario;
+            $this->cUsuNick = $cUsuNick;
         }
         function set_cUsuEstado($cUsuEstado)
         {
@@ -39,17 +39,17 @@
         }
 
         //FUNCIONES Get
-        function get_nUsuCodigo()
+        function get_nUsuId()
         {
-            return $this->nUsuCodigo;
+            return $this->nUsuId;
         }
         function get_nPerId()
         {
             return $this->nPerId;
         }
-        function get_cUsuUsuario()
+        function get_cUsuNick()
         {
-            return $this->cUsuUsuario;
+            return $this->cUsuNick;
         }
         function get_cUsuNombre()
         {
@@ -81,21 +81,19 @@
         {
             if ( $objUsuario ) {
                 //CREANDO EL OBJETO 
-                $this->set_nUsuCodigo( $objUsuario->nUsuId );
-                $this->set_nPerId( $objUsuario->nPersonaId );
-                $this->set_cUsuUsuario( $objUsuario->cUsuUsuario );
-                $this->cUsuNombre    = $objUsuario->cPerNombres ;
-                $this->cPerApellidos = $objUsuario->cPerApellidos ;
-                $this->nPerCargoID   = $objUsuario->nCargoID ;
-                $this->cPerCarNombre = $objUsuario->cCarNombre ;
+                $this->nUsuId      = $objUsuario->nUsuId;
+                $this->nPerId      = $objUsuario->nPerId;
+                $this->cUsuNick    = $objUsuario->cUsuNick ;
+                $this->cUsuNombre  = $objUsuario->nombre ;
+                // $this->cPerApellidos = $objUsuario->cPerApellidos ;
+                // $this->nPerCargoID   = $objUsuario->nCargoID ;
+                // $this->cPerCarNombre = $objUsuario->cCarNombre ;
             }
         }
 
         function autenticar($usuario, $clave)
         {
             $query = $this->db->query("CALL sp_s_iniciarsesion (?,?) ", array( trim($usuario), trim($clave) ));
-            // print_p($query->result_array());
-            // exit();
             if ( $query->num_rows() > 0) {
                 $row =  $query->row();
                 $this->get_ObjUsuario( $query->row() );

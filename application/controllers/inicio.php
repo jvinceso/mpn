@@ -13,7 +13,7 @@ class Inicio extends CI_Controller {
         // $data['categoria_menu'] = $this->inicio_model->cargarMenu();               
         // $data['categoria_submenu'] = $this->inicio_model->cargarSubMenu();
 		$data['main_content'] = 'inicio_view';
-		$data['titulo'] = 'Sistema Hotelero';
+		$data['titulo'] = 'Sistema Integrado Municipal MPN 2.0';
 		$this->load->view('plantilla/template', $data);
 	}
 }

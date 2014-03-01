@@ -3,21 +3,23 @@ class Loaders {
     //CREA MENU DE OPCIONES
     public function get_menu() {
         $CI = & get_instance();
-        $CI->load->model('menu_model', 'objMenu');
-        $url = '../'.$CI->uri->segment(1) . '/' . $CI->uri->segment(2);
+        $CI->load->model('objeto_model');
+        $url = '../'.$CI->uri->segment(1) . '/' . $CI->uri->segment(2).'.html';
         $CI->session->set_userdata( array('url' => $url) );
-        return $CI->objMenu->listaMenuOpciones();
+        return $CI->objeto_model->listaMenuOpciones();
     } 
 
     //VERIFICAR ACCESO DE USUARIO
     public function verificaAcceso() {
         $CI = & get_instance();
-        $iduser = $CI->session->userdata('IdUsuario');
+        $iduser = $CI->session->userdata('nUsuId');
         if($iduser){
             $url = '../'.$CI->uri->segment(1) . '/' . $CI->uri->segment(2); 
-            $query = $CI->db->query("SELECT per.*, men.* FROM permiso per 
-                INNER JOIN usuario usu ON usu.nUsuId = per.nUsuCodigo
-                INNER JOIN menu men ON men.nMenId = per.nMenId WHERE men.cMenUrl= ? AND usu.nUsuId=? ", array($url,$iduser));
+            $query = $CI->db->query("SELECT * FROM usuario_objeto uo
+                    INNER JOIN usuario u ON u.nUsuId = uo.nUsuId
+                    INNER JOIN objeto o ON o.nObjId = uo.nObjId
+                    INNER JOIN objeto_detalle od ON od.nObjId = o.nObjId
+                WHERE od.cOdetNombreArchivo = ? AND u.nUsuId = ?", array($url,$iduser));
 
             if ($query->num_rows() > 0) {
                 return true;

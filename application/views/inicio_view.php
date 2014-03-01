@@ -1,6 +1,6 @@
  <div class="main-content">
  	<ol class="breadcrumb">
- 		<li><a href="#">Home</a></li>
+ 		<li><a href="#">Casa</a></li>
  		<li><a href="#">Bread</a></li>
  		<li class="active">Example</li>
  	</ol>
@@ -8,6 +8,13 @@
  		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
  		<i class="fa fa-exclamation-circle"></i> <strong>Welcome!</strong> This is a dashboard of the powerful admin template.
  	</div>
+ 	<?php 
+
+ 	$opciones = $this->loaders->get_menu();
+ 	print_p( $opciones );
+ 	exit();
+
+ 	?>
  	<div class="row">
  		<div class="col-md-6">
  			<div class="widget widget-blue">

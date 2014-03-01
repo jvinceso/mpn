@@ -5,6 +5,7 @@
 
 
 <script src="<?php echo URL_JS; ?>jquery.min.js"></script>
+
 <script src="<?php echo URL_JS; ?>jquery-ui.min.js"></script>
 <script src='<?php echo URL_JS; ?>ad67372f4b8b70896e8a596720082ac6.js'></script>
 

@@ -17,25 +17,17 @@ define('FILE_READ_MODE', 0644);
 define('FILE_WRITE_MODE', 0666);
 define('DIR_READ_MODE', 0755);
 define('DIR_WRITE_MODE', 0777);
-// define('SERVER_AP', 'www.munitrujillo.gob.pe');
-// define('SERVER_DB', '172.20.1.2');
-// define('USSER_DB', 'oficina');
-// define('PASS_DB', 'entr@r@oficina');
-// define('URL_CSS', 'http://'.SERVER_AP.'/noticiasmpt/css/');
-// define('URL_JS', 'http://'.SERVER_AP.'/noticiasmpt/jscript/');
-// define('URL_IMG', 'http://'.SERVER_AP.'/noticiasmpt/images/'); 
-// define('URL_MAIN', 'http://'.SERVER_AP.'/noticiasmpt/'); 
-// define('KEY_ENCRIPT', 'sd$:%4sdfsd%:&$_/&(&/$&#[]??'); 
 
-define('SERVER_AP', 'localhost');
-define('SERVER_DB', 'localhost');
+define('SERVER_AP', '172.20.17.10');
+define('SERVER_DB', '172.20.17.10');
+define('PROJECT', 'mpn');
 // define('USSER_DB', 'sa');
 // define('PASS_DB', 'marvelvsc2');
-define('URL_CSS', 'http://'.SERVER_AP.'/hotel/statics/css/');
-define('URL_JS', 'http://'.SERVER_AP.'/hotel/statics/js/');
-define('URL_IMG', 'http://'.SERVER_AP.'/hotel/statics/images/'); 
-define('URL_FONTS', 'http://'.SERVER_AP.'/hotel/statics/fonts/'); 
-define('URL_MAIN', 'http://'.SERVER_AP.'/hotel/'); 
+define('URL_CSS', 'http://'.SERVER_AP.'/'.PROJECT.'/statics/css/');
+define('URL_JS', 'http://'.SERVER_AP.'/'.PROJECT.'/statics/js/');
+define('URL_IMG', 'http://'.SERVER_AP.'/'.PROJECT.'/statics/images/'); 
+define('URL_FONTS', 'http://'.SERVER_AP.'/'.PROJECT.'/statics/fonts/'); 
+define('URL_MAIN', 'http://'.SERVER_AP.'/'.PROJECT.'/'); 
 define('KEY_ENCRIPT', 'sd$:%4sdfsd%:&$_/&(&/$&#[]??'); 
 /*
 |--------------------------------------------------------------------------
