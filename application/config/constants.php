@@ -26,7 +26,7 @@ define('PROJECT', 'mpn');
 define('URL_CSS', 'http://'.SERVER_AP.'/'.PROJECT.'/statics/css/');
 define('URL_JS', 'http://'.SERVER_AP.'/'.PROJECT.'/statics/js/');
 define('URL_IMG', 'http://'.SERVER_AP.'/'.PROJECT.'/statics/images/'); 
-define('URL_FONTS', 'http://'.SERVER_AP.'/'.PROJECT.'/statics/fonts/'); 
+define('URL_FONTS', 'http://'.SERVER_AP.'/'.PROJECT.'/statics/font/'); 
 define('URL_MAIN', 'http://'.SERVER_AP.'/'.PROJECT.'/'); 
 define('KEY_ENCRIPT', 'sd$:%4sdfsd%:&$_/&(&/$&#[]??'); 
 /*

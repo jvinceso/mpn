@@ -1,937 +1,1145 @@
- <div class="main-content">
- 	<ol class="breadcrumb">
- 		<li><a href="#">Casa</a></li>
- 		<li><a href="#">Bread</a></li>
- 		<li class="active">Example</li>
- 	</ol>
- 	<div class="alert alert-warning alert-dismissable bottom-margin">
- 		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
- 		<i class="fa fa-exclamation-circle"></i> <strong>Welcome!</strong> This is a dashboard of the powerful admin template.
- 	</div>
- 	<?php 
 
- 	$opciones = $this->loaders->get_menu();
- 	print_p( $opciones );
- 	exit();
+					<div class="page-content">
+						<div class="page-header">
+							<h1>
+								Dashboard
+								<small>
+									<i class="icon-double-angle-right"></i>
+									overview &amp; stats
+								</small>
+							</h1>
+						</div><!-- /.page-header -->
 
- 	?>
- 	<div class="row">
- 		<div class="col-md-6">
- 			<div class="widget widget-blue">
- 				<span class="offset_anchor" id="widget_stats"></span>
- 				<div class="widget-title">
- 					<div class="widget-controls">
- 						<a href="#" class="widget-control widget-control-full-screen" data-toggle="tooltip" data-placement="top" title="" data-original-title="Full Screen"><i class="fa fa-expand"></i></a>
- 						<a href="#" class="widget-control widget-control-full-screen widget-control-show-when-full" data-toggle="tooltip" data-placement="left" title="" data-original-title="Exit Full Screen"><i class="fa fa-expand"></i></a>
- 						<a href="#" data-toggle="dropdown" class="widget-control widget-control-settings"><i class="fa fa-cog"></i></a>
- 						<div class="dropdown" data-toggle="tooltip" data-placement="top" title="" data-original-title="Settings">
- 							<ul class="dropdown-menu dropdown-menu-small" role="menu" aria-labelledby="dropdownMenu1">
- 								<li class="dropdown-header">Set Widget Color</li>
- 								<li><a data-widget-color="blue" class="set-widget-color" href="#">Blue</a></li>
- 								<li><a data-widget-color="red" class="set-widget-color" href="#">Red</a></li>
- 								<li><a data-widget-color="green" class="set-widget-color" href="#">Green</a></li>
- 								<li><a data-widget-color="orange" class="set-widget-color" href="#">Orange</a></li>
- 								<li><a data-widget-color="purple" class="set-widget-color" href="#">Purple</a></li>
- 							</ul>
- 						</div>
- 						<a href="#" class="widget-control widget-control-refresh" data-toggle="tooltip" data-placement="top" title="" data-original-title="Refresh"><i class="fa fa-refresh"></i></a>
- 						<a href="#" class="widget-control widget-control-minimize" data-toggle="tooltip" data-placement="top" title="" data-original-title="Minimize"><i class="fa fa-minus-circle"></i></a>
- 						<a href="#" class="widget-control widget-control-remove" data-toggle="tooltip" data-placement="top" title="" data-original-title="Remove"><i class="fa fa-times-circle"></i></a>
- 					</div>
- 					<h3><i class="fa fa-bar-chart-o"></i> Statistics</h3>
- 				</div>
- 				<div class="widget-content">
- 					<div class="shadowed-bottom">
- 						<div class="row">
- 							<div class="col-xs-6">
- 								<div class="white-block clearfix">
- 									<div class="value-block changed-up-border pull-left changed-up">
- 										<div class="value-self">910
- 											<span class="changed-icon"><i class="fa fa-caret-up"></i></span>
- 											<span class="changed-value">+2.00%</span>
- 										</div>
- 										<div class="value-sub value-sub-bigger">Products Sold</div>
- 									</div>
- 								</div>
- 							</div>
- 							<div class="col-xs-6">
- 								<div class="white-block clearfix">
- 									<div class="value-block changed-down-border pull-left changed-down">
- 										<div class="value-self">320
- 											<span class="changed-icon"><i class="fa fa-caret-down"></i></span>
- 											<span class="changed-value">+5.00%</span>
- 										</div>
- 										<div class="value-sub value-sub-bigger">New Users</div>
- 									</div>
- 								</div>
- 							</div>
- 						</div>
- 					</div>
- 					<div id="areachart-small" style="height: 150px;"></div>
- 				</div>
- 			</div>
- 			<div class="widget widget-red">
- 				<div class="widget-title">
- 					<div class="widget-controls">
- 						<a href="#" class="widget-control widget-control-full-screen" data-toggle="tooltip" data-placement="top" title="" data-original-title="Full Screen"><i class="fa fa-expand"></i></a>
- 						<a href="#" class="widget-control widget-control-full-screen widget-control-show-when-full" data-toggle="tooltip" data-placement="left" title="" data-original-title="Exit Full Screen"><i class="fa fa-expand"></i></a>
- 						<a href="#" data-toggle="dropdown" class="widget-control widget-control-settings"><i class="fa fa-cog"></i></a>
- 						<div class="dropdown" data-toggle="tooltip" data-placement="top" title="" data-original-title="Settings">
- 							<ul class="dropdown-menu dropdown-menu-small" role="menu" aria-labelledby="dropdownMenu1">
- 								<li class="dropdown-header">Set Widget Color</li>
- 								<li><a data-widget-color="blue" class="set-widget-color" href="#">Blue</a></li>
- 								<li><a data-widget-color="red" class="set-widget-color" href="#">Red</a></li>
- 								<li><a data-widget-color="green" class="set-widget-color" href="#">Green</a></li>
- 								<li><a data-widget-color="orange" class="set-widget-color" href="#">Orange</a></li>
- 								<li><a data-widget-color="purple" class="set-widget-color" href="#">Purple</a></li>
- 							</ul>
- 						</div>
- 						<a href="#" class="widget-control widget-control-refresh" data-toggle="tooltip" data-placement="top" title="" data-original-title="Refresh"><i class="fa fa-refresh"></i></a>
- 						<a href="#" class="widget-control widget-control-minimize" data-toggle="tooltip" data-placement="top" title="" data-original-title="Minimize"><i class="fa fa-minus-circle"></i></a>
- 						<a href="#" class="widget-control widget-control-remove" data-toggle="tooltip" data-placement="top" title="" data-original-title="Remove"><i class="fa fa-times-circle"></i></a>
- 					</div>
- 					<h3><i class="fa fa-dashboard"></i> Gauges</h3>
- 				</div>
- 				<div class="widget-content">
- 					<div class="row">
- 						<div class="col-sm-4"><div id="gauge-red" style="height:90px"></div></div>
- 						<div class="col-sm-4"><div id="gauge-green" style="height:90px"></div></div>
- 						<div class="col-sm-4"><div id="gauge-blue" style="height:90px"></div></div>
- 					</div>
- 				</div>
- 			</div>
- 		</div>
- 		<div class="col-md-6">
- 			<div class="widget widget-blue">
- 				<div class="widget-title">
- 					<div class="widget-controls">
- 						<a href="#" class="widget-control widget-control-full-screen" data-toggle="tooltip" data-placement="top" title="" data-original-title="Full Screen"><i class="fa fa-expand"></i></a>
- 						<a href="#" class="widget-control widget-control-full-screen widget-control-show-when-full" data-toggle="tooltip" data-placement="left" title="" data-original-title="Exit Full Screen"><i class="fa fa-expand"></i></a>
- 						<a href="#" data-toggle="dropdown" class="widget-control widget-control-settings"><i class="fa fa-cog"></i></a>
- 						<div class="dropdown" data-toggle="tooltip" data-placement="top" title="" data-original-title="Settings">
- 							<ul class="dropdown-menu dropdown-menu-small" role="menu" aria-labelledby="dropdownMenu1">
- 								<li class="dropdown-header">Set Widget Color</li>
- 								<li><a data-widget-color="blue" class="set-widget-color" href="#">Blue</a></li>
- 								<li><a data-widget-color="red" class="set-widget-color" href="#">Red</a></li>
- 								<li><a data-widget-color="green" class="set-widget-color" href="#">Green</a></li>
- 								<li><a data-widget-color="orange" class="set-widget-color" href="#">Orange</a></li>
- 								<li><a data-widget-color="purple" class="set-widget-color" href="#">Purple</a></li>
- 							</ul>
- 						</div>
- 						<a href="#" class="widget-control widget-control-refresh" data-toggle="tooltip" data-placement="top" title="" data-original-title="Refresh"><i class="fa fa-refresh"></i></a>
- 						<a href="#" class="widget-control widget-control-minimize" data-toggle="tooltip" data-placement="top" title="" data-original-title="Minimize"><i class="fa fa-minus-circle"></i></a>
- 						<a href="#" class="widget-control widget-control-remove" data-toggle="tooltip" data-placement="top" title="" data-original-title="Remove"><i class="fa fa-times-circle"></i></a>
- 					</div>
- 					<h3><i class="fa fa-bar-chart-o"></i> Bar Chart</h3>
- 				</div>
- 				<div class="widget-content">
+						<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
 
- 					<div class="shadowed-bottom">
- 						<div class="row">
- 							<div class="col-sm-4 bordered">
- 								<div class="value-block text-center">
- 									<div class="value-self">1,120</div>
- 									<div class="value-sub">Total Visitors</div>
- 								</div>
- 							</div>
- 							<div class="col-sm-8">
- 								<form class="form-inline form-period-selector">
- 									<label class="control-label">Time Period:</label><br>
- 									<input type="text" placeholder="01/12/2011" class="form-control input-sm input-datepicker">
- 									<input type="text" placeholder="01/12/2011" class="form-control input-sm input-datepicker">
- 								</form>
- 							</div>
- 						</div>
- 					</div>
- 					<div class="padded">
- 						<div id="users_barchart" style="height: 330px;"></div>
- 					</div>
- 				</div>
- 			</div>
- 		</div>
- 	</div>
- 	<div class="widget widget-green">
- 		<span class="offset_anchor" id="widget_profit_chart"></span>
- 		<div class="widget-title">
- 			<div class="widget-controls">
- 				<a href="#" class="widget-control widget-control-full-screen" data-toggle="tooltip" data-placement="top" title="" data-original-title="Full Screen"><i class="fa fa-expand"></i></a>
- 				<a href="#" class="widget-control widget-control-full-screen widget-control-show-when-full" data-toggle="tooltip" data-placement="left" title="" data-original-title="Exit Full Screen"><i class="fa fa-expand"></i></a>
- 				<a href="#" data-toggle="dropdown" class="widget-control widget-control-settings"><i class="fa fa-cog"></i></a>
- 				<div class="dropdown" data-toggle="tooltip" data-placement="top" title="" data-original-title="Settings">
- 					<ul class="dropdown-menu dropdown-menu-small" role="menu" aria-labelledby="dropdownMenu1">
- 						<li class="dropdown-header">Set Widget Color</li>
- 						<li><a data-widget-color="blue" class="set-widget-color" href="#">Blue</a></li>
- 						<li><a data-widget-color="red" class="set-widget-color" href="#">Red</a></li>
- 						<li><a data-widget-color="green" class="set-widget-color" href="#">Green</a></li>
- 						<li><a data-widget-color="orange" class="set-widget-color" href="#">Orange</a></li>
- 						<li><a data-widget-color="purple" class="set-widget-color" href="#">Purple</a></li>
- 					</ul>
- 				</div>
- 				<a href="#" class="widget-control widget-control-refresh" data-toggle="tooltip" data-placement="top" title="" data-original-title="Refresh"><i class="fa fa-refresh"></i></a>
- 				<a href="#" class="widget-control widget-control-minimize" data-toggle="tooltip" data-placement="top" title="" data-original-title="Minimize"><i class="fa fa-minus-circle"></i></a>
- 				<a href="#" class="widget-control widget-control-remove" data-toggle="tooltip" data-placement="top" title="" data-original-title="Remove"><i class="fa fa-times-circle"></i></a>
- 			</div>
- 			<h3><i class="fa fa-bar-chart-o"></i> Profit Chart</h3>
- 		</div>
- 		<div class="widget-content">
- 			<ul class="nav nav-pills">
- 				<li class="active"><a href="#">Hour</a></li>
- 				<li><a href="#">Day</a></li>
- 				<li><a href="#">Month</a></li>
- 				<li class="hidden-xs"><a href="#">Year</a></li>
- 			</ul>
- 			<div class="widget-content-tp">
- 				<div class="padded-no-sides">
- 					<div id="areachart" style="height: 250px;"></div>
- 				</div>
+								<div class="alert alert-block alert-success">
+									<button type="button" class="close" data-dismiss="alert">
+										<i class="icon-remove"></i>
+									</button>
 
- 				<div class="shadowed-top top-margin">
- 					<div class="row">
- 						<div class="col-lg-4 col-md-5 col-sm-6 bordered">
- 							<div class="value-block value-bigger changed-up some-left-padding changed-up-border">
- 								<div class="value-self">
- 									$5,450
- 									<span class="changed-icon"><i class="fa fa-caret-up"></i></span>
- 									<span class="changed-value">+5.00%</span>
- 								</div>
- 								<div class="value-sub">Average of $450.35 Per Day</div>
- 							</div>
- 						</div>
- 						<div class="col-lg-2 col-md-3 visible-md visible-lg bordered">
- 							<div class="value-block text-center">
- 								<div class="value-self">520</div>
- 								<div class="value-sub">Total Sales</div>
- 							</div>
- 						</div>
- 						<div class="col-lg-2 bordered visible-lg">
- 							<div class="value-block text-center">
- 								<div class="value-self">1,120</div>
- 								<div class="value-sub">Total Visitors</div>
- 							</div>
- 						</div>
- 						<div class="col-lg-4 col-md-4 col-sm-6">
- 							<form class="form-inline form-period-selector">
- 								<label class="control-label">Time Period:</label><br>
- 								<input type="text" placeholder="01/12/2011" class="form-control input-sm input-datepicker">
- 								<input type="text" placeholder="01/12/2011" class="form-control input-sm input-datepicker">
- 							</form>
- 						</div>
- 					</div>
- 				</div>
- 			</div>
- 		</div>
- 	</div>
- 	<div class="row">
- 		<div class="col-md-6">
- 			<div class="widget widget-blue">
- 				<div class="widget-title">
- 					<div class="widget-controls">
- 						<a href="#" class="widget-control widget-control-full-screen" data-toggle="tooltip" data-placement="top" title="" data-original-title="Full Screen"><i class="fa fa-expand"></i></a>
- 						<a href="#" class="widget-control widget-control-full-screen widget-control-show-when-full" data-toggle="tooltip" data-placement="left" title="" data-original-title="Exit Full Screen"><i class="fa fa-expand"></i></a>
- 						<a href="#" data-toggle="dropdown" class="widget-control widget-control-settings"><i class="fa fa-cog"></i></a>
- 						<div class="dropdown" data-toggle="tooltip" data-placement="top" title="" data-original-title="Settings">
- 							<ul class="dropdown-menu dropdown-menu-small" role="menu" aria-labelledby="dropdownMenu1">
- 								<li class="dropdown-header">Set Widget Color</li>
- 								<li><a data-widget-color="blue" class="set-widget-color" href="#">Blue</a></li>
- 								<li><a data-widget-color="red" class="set-widget-color" href="#">Red</a></li>
- 								<li><a data-widget-color="green" class="set-widget-color" href="#">Green</a></li>
- 								<li><a data-widget-color="orange" class="set-widget-color" href="#">Orange</a></li>
- 								<li><a data-widget-color="purple" class="set-widget-color" href="#">Purple</a></li>
- 							</ul>
- 						</div>
- 						<a href="#" class="widget-control widget-control-refresh" data-toggle="tooltip" data-placement="top" title="" data-original-title="Refresh"><i class="fa fa-refresh"></i></a>
- 						<a href="#" class="widget-control widget-control-minimize" data-toggle="tooltip" data-placement="top" title="" data-original-title="Minimize"><i class="fa fa-minus-circle"></i></a>
- 						<a href="#" class="widget-control widget-control-remove" data-toggle="tooltip" data-placement="top" title="" data-original-title="Remove"><i class="fa fa-times-circle"></i></a>
- 					</div>
- 					<h3><i class="fa fa-user"></i> Users List</h3>
- 				</div>
- 				<div class="widget-content">
- 					<ul class="users-list">
- 						<li>
- 							<div class="row">
- 								<div class="col-xs-2">
- 									<div class="avatar">
- 										<img src="assets/images/avatar-small.jpg" alt="">
- 									</div>
- 								</div>
- 								<div class="col-xs-10">
- 									<span class="label label-success pull-right">Active</span>
- 									<h4>John Mayers</h4>
- 									<p>Chief Executive Officer</p>
- 								</div>
- 							</div>
- 						</li>
- 						<li>
- 							<div class="row">
- 								<div class="col-xs-2">
- 									<div class="avatar">
- 										<img src="assets/images/avatar-small.jpg" alt="">
- 									</div>
- 								</div>
- 								<div class="col-xs-10">
- 									<span class="label label-warning pull-right">Deactivated</span>
- 									<h4>John Mayers</h4>
- 									<p>Chief Executive Officer</p>
- 								</div>
- 							</div>
- 						</li>
- 						<li>
- 							<div class="row">
- 								<div class="col-xs-2">
- 									<div class="avatar">
- 										<img src="assets/images/avatar-small.jpg" alt="">
- 									</div>
- 								</div>
- 								<div class="col-xs-10">
- 									<span class="label label-success pull-right">Active</span>
- 									<h4>John Mayers</h4>
- 									<p>Chief Executive Officer</p>
- 								</div>
- 							</div>
- 						</li>
- 						<li>
- 							<div class="row">
- 								<div class="col-xs-2">
- 									<div class="avatar">
- 										<img src="assets/images/avatar-small.jpg" alt="">
- 									</div>
- 								</div>
- 								<div class="col-xs-10">
- 									<span class="label label-success pull-right">Active</span>
- 									<h4>John Mayers</h4>
- 									<p>Chief Executive Officer</p>
- 								</div>
- 							</div>
- 						</li>
- 						<li>
- 							<div class="row">
- 								<div class="col-xs-2">
- 									<div class="avatar">
- 										<img src="assets/images/avatar-small.jpg" alt="">
- 									</div>
- 								</div>
- 								<div class="col-xs-10">
- 									<span class="label label-success pull-right">Active</span>
- 									<h4>John Mayers</h4>
- 									<p>Chief Executive Officer</p>
- 								</div>
- 							</div>
- 						</li>
- 					</ul>
- 				</div>
- 			</div>
- 		</div>
- 		<div class="col-md-6">
- 			<div class="widget widget-red">
- 				<span class="offset_anchor" id="widget_tasks_list"></span>
- 				<div class="widget-title">
- 					<div class="widget-controls">
- 						<a href="#" class="widget-control widget-control-full-screen" data-toggle="tooltip" data-placement="top" title="" data-original-title="Full Screen"><i class="fa fa-expand"></i></a>
- 						<a href="#" class="widget-control widget-control-full-screen widget-control-show-when-full" data-toggle="tooltip" data-placement="left" title="" data-original-title="Exit Full Screen"><i class="fa fa-expand"></i></a>
- 						<a href="#" data-toggle="dropdown" class="widget-control widget-control-settings"><i class="fa fa-cog"></i></a>
- 						<div class="dropdown" data-toggle="tooltip" data-placement="top" title="" data-original-title="Settings">
- 							<ul class="dropdown-menu dropdown-menu-small" role="menu" aria-labelledby="dropdownMenu1">
- 								<li class="dropdown-header">Set Widget Color</li>
- 								<li><a data-widget-color="blue" class="set-widget-color" href="#">Blue</a></li>
- 								<li><a data-widget-color="red" class="set-widget-color" href="#">Red</a></li>
- 								<li><a data-widget-color="green" class="set-widget-color" href="#">Green</a></li>
- 								<li><a data-widget-color="orange" class="set-widget-color" href="#">Orange</a></li>
- 								<li><a data-widget-color="purple" class="set-widget-color" href="#">Purple</a></li>
- 							</ul>
- 						</div>
- 						<a href="#" class="widget-control widget-control-refresh" data-toggle="tooltip" data-placement="top" title="" data-original-title="Refresh"><i class="fa fa-refresh"></i></a>
- 						<a href="#" class="widget-control widget-control-minimize" data-toggle="tooltip" data-placement="top" title="" data-original-title="Minimize"><i class="fa fa-minus-circle"></i></a>
- 						<a href="#" class="widget-control widget-control-remove" data-toggle="tooltip" data-placement="top" title="" data-original-title="Remove"><i class="fa fa-times-circle"></i></a>
- 					</div>
- 					<h3><i class="fa fa-tasks"></i> Tasks List</h3>
- 				</div>
- 				<div class="widget-content">
- 					<ul class="tasks-list">
- 						<li>
- 							<div class="label label-warning">Nov 2</div>
- 							<div class="checkbox">
- 								<label>
- 									<input type="checkbox"> Do some clean up for the party
- 								</label>
- 							</div>
- 						</li>
- 						<li>
- 							<div class="label label-danger">Oct 12</div>
- 							<div class="checkbox">
- 								<label>
- 									<input type="checkbox"> Wrap presents for Christmas
- 								</label>
- 							</div>
- 						</li>
- 						<li>
- 							<div class="label label-danger">Dec 15</div>
- 							<div class="checkbox">
- 								<label>
- 									<input type="checkbox"> Finish the coding for the upcoming project
- 								</label>
- 							</div>
- 						</li>
- 						<li>
- 							<div class="label label-danger">Jul 2</div>
- 							<div class="checkbox">
- 								<label>
- 									<input type="checkbox"> Buy milk and cookies for breakfast tomorrow
- 								</label>
- 							</div>
- 						</li>
- 						<li class="task-done">
- 							<div class="label label-warning">Oct 22</div>
- 							<div class="checkbox">
- 								<label>
- 									<input type="checkbox" checked> Send the stroller back to amazon because it's broken
- 								</label>
- 							</div>
- 						</li>
- 						<li class="task-done">
- 							<div class="label label-warning">Aug 3</div>
- 							<div class="checkbox">
- 								<label>
- 									<input type="checkbox" checked> Update the code for the version that was broken
- 								</label>
- 							</div>
- 						</li>
- 						<li>
- 							<div class="label label-danger">Feb 24</div>
- 							<div class="checkbox">
- 								<label>
- 									<input type="checkbox"> Water the plant before I go to vacation
- 								</label>
- 							</div>
- 						</li>
- 					</ul>
- 				</div>
- 			</div>
- 		</div>
- 	</div>
- 	<div class="row">
- 		<div class="col-md-12">
- 			<div class="widget widget-blue">
- 				<span class="offset_anchor" id="widget_real_time_chart"></span>
- 				<div class="widget-title">
- 					<div class="widget-controls">
- 						<a href="#" class="widget-control widget-control-full-screen" data-toggle="tooltip" data-placement="top" title="" data-original-title="Full Screen"><i class="fa fa-expand"></i></a>
- 						<a href="#" class="widget-control widget-control-full-screen widget-control-show-when-full" data-toggle="tooltip" data-placement="left" title="" data-original-title="Exit Full Screen"><i class="fa fa-expand"></i></a>
- 						<a href="#" data-toggle="dropdown" class="widget-control widget-control-settings"><i class="fa fa-cog"></i></a>
- 						<div class="dropdown" data-toggle="tooltip" data-placement="top" title="" data-original-title="Settings">
- 							<ul class="dropdown-menu dropdown-menu-small" role="menu" aria-labelledby="dropdownMenu1">
- 								<li class="dropdown-header">Set Widget Color</li>
- 								<li><a data-widget-color="blue" class="set-widget-color" href="#">Blue</a></li>
- 								<li><a data-widget-color="red" class="set-widget-color" href="#">Red</a></li>
- 								<li><a data-widget-color="green" class="set-widget-color" href="#">Green</a></li>
- 								<li><a data-widget-color="orange" class="set-widget-color" href="#">Orange</a></li>
- 								<li><a data-widget-color="purple" class="set-widget-color" href="#">Purple</a></li>
- 							</ul>
- 						</div>
- 						<a href="#" class="widget-control widget-control-refresh" data-toggle="tooltip" data-placement="top" title="" data-original-title="Refresh"><i class="fa fa-refresh"></i></a>
- 						<a href="#" class="widget-control widget-control-minimize" data-toggle="tooltip" data-placement="top" title="" data-original-title="Minimize"><i class="fa fa-minus-circle"></i></a>
- 						<a href="#" class="widget-control widget-control-remove" data-toggle="tooltip" data-placement="top" title="" data-original-title="Remove"><i class="fa fa-times-circle"></i></a>
- 					</div>
- 					<h3><i class="fa fa-signal"></i> Real Time Chart</h3>
- 				</div>
- 				<div class="widget-content">
- 					<div class="row">
- 						<div class="col-md-4">
- 							<div class="big-legend-w shadow-right">
- 								<div class="legend-label">Pageviews</div>
- 								<div class="legend-value" id="plot-chart-value">15</div>
- 								<div class="stacked-bar">
- 									<div class="bar-value bar-value-color-red visible-tooltip" style="width: 35%" data-toggle="tooltip" data-placement="top" data-original-title="Safari"></div>
- 									<div class="bar-value bar-value-color-orange" style="width: 10%" data-toggle="tooltip" data-placement="top" data-original-title="Opera"></div>
- 									<div class="bar-value bar-value-color-green" style="width: 30%" data-toggle="tooltip" data-placement="top" data-original-title="Firefox"></div>
- 									<div class="bar-value bar-value-color-blue" style="width: 25%" data-toggle="tooltip" data-placement="top" data-original-title="Chrome"></div>
- 								</div>
- 								<div class="legend-sub-label">Total number of pageviews</div>
- 							</div>
- 						</div>
- 						<div class="col-md-8">
- 							<div id="placeholder" style="height: 250px;"></div>
- 						</div>
- 					</div>
- 				</div>
- 			</div>
- 		</div>
- 	</div>
- 	<div class="row">
- 		<div class="col-md-6">
- 			<div class="widget widget-green">
- 				<span class="offset_anchor" id="widget_server_activity"></span>
- 				<div class="widget-title">
- 					<div class="widget-controls">
- 						<a href="#" class="widget-control widget-control-full-screen" data-toggle="tooltip" data-placement="top" title="" data-original-title="Full Screen"><i class="fa fa-expand"></i></a>
- 						<a href="#" class="widget-control widget-control-full-screen widget-control-show-when-full" data-toggle="tooltip" data-placement="left" title="" data-original-title="Exit Full Screen"><i class="fa fa-expand"></i></a>
- 						<a href="#" data-toggle="dropdown" class="widget-control widget-control-settings"><i class="fa fa-cog"></i></a>
- 						<div class="dropdown" data-toggle="tooltip" data-placement="top" title="" data-original-title="Settings">
- 							<ul class="dropdown-menu dropdown-menu-small" role="menu" aria-labelledby="dropdownMenu1">
- 								<li class="dropdown-header">Set Widget Color</li>
- 								<li><a data-widget-color="blue" class="set-widget-color" href="#">Blue</a></li>
- 								<li><a data-widget-color="red" class="set-widget-color" href="#">Red</a></li>
- 								<li><a data-widget-color="green" class="set-widget-color" href="#">Green</a></li>
- 								<li><a data-widget-color="orange" class="set-widget-color" href="#">Orange</a></li>
- 								<li><a data-widget-color="purple" class="set-widget-color" href="#">Purple</a></li>
- 							</ul>
- 						</div>
- 						<a href="#" class="widget-control widget-control-refresh" data-toggle="tooltip" data-placement="top" title="" data-original-title="Refresh"><i class="fa fa-refresh"></i></a>
- 						<a href="#" class="widget-control widget-control-minimize" data-toggle="tooltip" data-placement="top" title="" data-original-title="Minimize"><i class="fa fa-minus-circle"></i></a>
- 						<a href="#" class="widget-control widget-control-remove" data-toggle="tooltip" data-placement="top" title="" data-original-title="Remove"><i class="fa fa-times-circle"></i></a>
- 					</div>
- 					<h3><i class="fa fa-warning"></i> Server Activity</h3>
- 				</div>
- 				<div class="widget-content">
- 					<ul class="activity-list">
- 						<li>
- 							<div class="row">
- 								<div class="col-xs-9"><p><i class="fa fa-bell activity-image"></i> You have 5 pending alerts for account</p></div>
- 								<div class="col-xs-3 text-right"><span class="activity-time">5 min</span></div>
- 							</div>
- 						</li>
- 						<li>
- 							<div class="row">
- 								<div class="col-xs-9"><p><i class="fa fa-fire activity-image"></i> Server crash happened <span class="label label-danger">warning</span></p></div>
- 								<div class="col-xs-3 text-right"><span class="activity-time">8 min</span></div>
- 							</div>
- 						</li>
- 						<li>
- 							<div class="row">
- 								<div class="col-xs-9"><p><i class="fa fa-flag-o activity-image"></i> You have 5 pending alerts for account</p></div>
- 								<div class="col-xs-3 text-right"><span class="activity-time">12 min</span></div>
- 							</div>
- 						</li>
- 						<li>
- 							<div class="row">
- 								<div class="col-xs-9"><p><i class="fa fa-smile-o activity-image"></i> New user registration <span class="label label-success">great</span></p></div>
- 								<div class="col-xs-3 text-right"><span class="activity-time">15 min</span></div>
- 							</div>
- 						</li>
- 						<li>
- 							<div class="row">
- 								<div class="col-xs-9"><p><i class="fa fa-bell activity-image"></i> You have 5 pending alerts for account</p></div>
- 								<div class="col-xs-3 text-right"><span class="activity-time">25 min</span></div>
- 							</div>
- 						</li>
- 					</ul>
- 				</div>
- 			</div>
- 		</div>
+									<i class="icon-ok green"></i>
 
- 		<div class="col-md-6">
- 			<div class="widget widget-blue">
- 				<div class="widget-title">
- 					<div class="widget-controls">
- 						<a href="#" class="widget-control widget-control-full-screen" data-toggle="tooltip" data-placement="top" title="" data-original-title="Full Screen"><i class="fa fa-expand"></i></a>
- 						<a href="#" class="widget-control widget-control-full-screen widget-control-show-when-full" data-toggle="tooltip" data-placement="left" title="" data-original-title="Exit Full Screen"><i class="fa fa-expand"></i></a>
- 						<a href="#" data-toggle="dropdown" class="widget-control widget-control-settings"><i class="fa fa-cog"></i></a>
- 						<div class="dropdown" data-toggle="tooltip" data-placement="top" title="" data-original-title="Settings">
- 							<ul class="dropdown-menu dropdown-menu-small" role="menu" aria-labelledby="dropdownMenu1">
- 								<li class="dropdown-header">Set Widget Color</li>
- 								<li><a data-widget-color="blue" class="set-widget-color" href="#">Blue</a></li>
- 								<li><a data-widget-color="red" class="set-widget-color" href="#">Red</a></li>
- 								<li><a data-widget-color="green" class="set-widget-color" href="#">Green</a></li>
- 								<li><a data-widget-color="orange" class="set-widget-color" href="#">Orange</a></li>
- 								<li><a data-widget-color="purple" class="set-widget-color" href="#">Purple</a></li>
- 							</ul>
- 						</div>
- 						<a href="#" class="widget-control widget-control-refresh" data-toggle="tooltip" data-placement="top" title="" data-original-title="Refresh"><i class="fa fa-refresh"></i></a>
- 						<a href="#" class="widget-control widget-control-minimize" data-toggle="tooltip" data-placement="top" title="" data-original-title="Minimize"><i class="fa fa-minus-circle"></i></a>
- 						<a href="#" class="widget-control widget-control-remove" data-toggle="tooltip" data-placement="top" title="" data-original-title="Remove"><i class="fa fa-times-circle"></i></a>
- 					</div>
- 					<h3><i class="fa fa-comments"></i> User Chat</h3>
- 				</div>
- 				<div class="widget-content">
- 					<ul class="chat-messages-list">
- 						<li>
- 							<div class="row">
- 								<div class="col-xs-2">
- 									<div class="avatar">
- 										<img src="assets/images/avatar-small.jpg" alt="">
- 									</div>
- 								</div>
- 								<div class="col-xs-10">
- 									<div class="chat-bubble chat-bubble-right">
- 										<div class="bubble-arrow"></div>
- 										<div class="meta-info"><a href="#">Andres Iniesta</a> on Jun 25</div>
- 										<p>Collaboratively administrate empowered markets via plug-and-play networks.</p>
- 									</div>
- 								</div>
- 							</div>
- 						</li>
- 						<li>
- 							<div class="row">
- 								<div class="col-xs-10">
- 									<div class="chat-bubble chat-bubble-left">
- 										<div class="bubble-arrow"></div>
- 										<div class="meta-info"><a href="#">Andres Iniesta</a> on Jun 25</div>
- 										<p>Collaboratively administrate empowered markets via plug-and-play networks.</p>
- 									</div>
- 								</div>
- 								<div class="col-xs-2">
- 									<div class="avatar">
- 										<img src="assets/images/avatar-small.jpg" alt="">
- 									</div>
- 								</div>
- 							</div>
- 						</li>
- 						<li>
- 							<div class="row">
- 								<div class="col-xs-2">
- 									<div class="avatar">
- 										<img src="assets/images/avatar-small.jpg" alt="">
- 									</div>
- 								</div>
- 								<div class="col-xs-10">
- 									<div class="chat-bubble chat-bubble-right">
- 										<div class="bubble-arrow"></div>
- 										<div class="meta-info"><a href="#">Andres Iniesta</a> on Jun 25</div>
- 										<p>Collaboratively administrate empowered markets via plug-and-play networks.</p>
- 									</div>
- 								</div>
- 							</div>
- 						</li>
- 					</ul>
- 					<div class="widget-foot">
- 						<div class="create-chat-message-w">
- 							<div class="input-group">
- 								<input type="text" class="form-control" placeholder="Your message here...">
- 								<span class="input-group-btn">
- 									<button class="btn btn-primary" type="button">Send</button>
- 								</span>
- 							</div>
- 						</div>
- 					</div>
- 				</div>
- 			</div>
- 		</div>
- 	</div>
- 	<div class="widget widget-green">
- 		<span class="offset_anchor" id="stat_charts_anchor"></span>
- 		<div class="widget-title">
- 			<div class="widget-controls">
- 				<a href="#" class="widget-control widget-control-full-screen" data-toggle="tooltip" data-placement="top" title="" data-original-title="Full Screen"><i class="fa fa-expand"></i></a>
- 				<a href="#" class="widget-control widget-control-full-screen widget-control-show-when-full" data-toggle="tooltip" data-placement="left" title="" data-original-title="Exit Full Screen"><i class="fa fa-expand"></i></a>
- 				<a href="#" data-toggle="dropdown" class="widget-control widget-control-settings"><i class="fa fa-cog"></i></a>
- 				<div class="dropdown" data-toggle="tooltip" data-placement="top" title="" data-original-title="Settings">
- 					<ul class="dropdown-menu dropdown-menu-small" role="menu" aria-labelledby="dropdownMenu1">
- 						<li class="dropdown-header">Set Widget Color</li>
- 						<li><a data-widget-color="blue" class="set-widget-color" href="#">Blue</a></li>
- 						<li><a data-widget-color="red" class="set-widget-color" href="#">Red</a></li>
- 						<li><a data-widget-color="green" class="set-widget-color" href="#">Green</a></li>
- 						<li><a data-widget-color="orange" class="set-widget-color" href="#">Orange</a></li>
- 						<li><a data-widget-color="purple" class="set-widget-color" href="#">Purple</a></li>
- 					</ul>
- 				</div>
- 				<a href="#" class="widget-control widget-control-refresh" data-toggle="tooltip" data-placement="top" title="" data-original-title="Refresh"><i class="fa fa-refresh"></i></a>
- 				<a href="#" class="widget-control widget-control-minimize" data-toggle="tooltip" data-placement="top" title="" data-original-title="Minimize"><i class="fa fa-minus-circle"></i></a>
- 				<a href="#" class="widget-control widget-control-remove" data-toggle="tooltip" data-placement="top" title="" data-original-title="Remove"><i class="fa fa-times-circle"></i></a>
- 			</div>
- 			<h3><i class="fa fa-bar-chart-o"></i> Statistics</h3>
- 		</div>
- 		<div class="widget-content">
- 			<div class="row">
- 				<div class="col-lg-3 col-md-4 col-sm-6 text-center">
- 					<div class="widget-content-blue-wrapper changed-up">
- 						<div class="widget-content-blue-inner padded">
- 							<div class="pre-value-block"><i class="fa fa-dashboard"></i> Total Visits</div>
- 							<div class="value-block">
- 								<div class="value-self">10,520</div>
- 								<div class="value-sub">This Week</div>
- 							</div>
- 							<span class="dynamicsparkline">Loading..</span>
- 						</div>
- 					</div>
- 				</div>
- 				<div class="col-lg-3 col-md-4 col-sm-6 text-center">
- 					<div class="widget-content-blue-wrapper changed-up">
- 						<div class="widget-content-blue-inner padded">
- 							<div class="pre-value-block"><i class="fa fa-user"></i> New Users</div>
- 							<div class="value-block">
- 								<div class="value-self">1,120</div>
- 								<div class="value-sub">This Month</div>
- 							</div>
- 							<span class="dynamicsparkline">Loading..</span>
- 						</div>
- 					</div>
- 				</div>
- 				<div class="col-lg-3 col-md-4 col-sm-6 text-center hidden-md">
- 					<div class="widget-content-blue-wrapper changed-up">
- 						<div class="widget-content-blue-inner padded">
- 							<div class="pre-value-block"><i class="fa fa-sign-in"></i> Sold Items</div>
- 							<div class="value-block">
- 								<div class="value-self">275</div>
- 								<div class="value-sub">This Week</div>
- 							</div>
- 							<span class="dynamicsparkline">Loading..</span>
- 						</div>
- 					</div>
- 				</div>
- 				<div class="col-lg-3 col-md-4 col-sm-6 text-center">
- 					<div class="widget-content-blue-wrapper changed-up">
- 						<div class="widget-content-blue-inner padded">
- 							<div class="pre-value-block"><i class="fa fa-money"></i> Net Profit</div>
- 							<div class="value-block">
- 								<div class="value-self">$9,240</div>
- 								<div class="value-sub">Yesterday</div>
- 							</div>
- 							<span class="dynamicbars">Loading..</span>
- 						</div>
- 					</div>
- 				</div>
- 			</div>
- 		</div>
- 	</div>
- 	<div class="row">
- 		<div class="col-md-8">
- 			<div class="widget widget-blue">
- 				<span class="offset_anchor" id="widget_calendar"></span>
- 				<div class="widget-title">
- 					<div class="widget-controls">
- 						<a href="#" class="widget-control widget-control-full-screen" data-toggle="tooltip" data-placement="top" title="" data-original-title="Full Screen"><i class="fa fa-expand"></i></a>
- 						<a href="#" class="widget-control widget-control-full-screen widget-control-show-when-full" data-toggle="tooltip" data-placement="left" title="" data-original-title="Exit Full Screen"><i class="fa fa-expand"></i></a>
- 						<a href="#" data-toggle="dropdown" class="widget-control widget-control-settings"><i class="fa fa-cog"></i></a>
- 						<div class="dropdown" data-toggle="tooltip" data-placement="top" title="" data-original-title="Settings">
- 							<ul class="dropdown-menu dropdown-menu-small" role="menu" aria-labelledby="dropdownMenu1">
- 								<li class="dropdown-header">Set Widget Color</li>
- 								<li><a data-widget-color="blue" class="set-widget-color" href="#">Blue</a></li>
- 								<li><a data-widget-color="red" class="set-widget-color" href="#">Red</a></li>
- 								<li><a data-widget-color="green" class="set-widget-color" href="#">Green</a></li>
- 								<li><a data-widget-color="orange" class="set-widget-color" href="#">Orange</a></li>
- 								<li><a data-widget-color="purple" class="set-widget-color" href="#">Purple</a></li>
- 							</ul>
- 						</div>
- 						<a href="#" class="widget-control widget-control-refresh" data-toggle="tooltip" data-placement="top" title="" data-original-title="Refresh"><i class="fa fa-refresh"></i></a>
- 						<a href="#" class="widget-control widget-control-minimize" data-toggle="tooltip" data-placement="top" title="" data-original-title="Minimize"><i class="fa fa-minus-circle"></i></a>
- 						<a href="#" class="widget-control widget-control-remove" data-toggle="tooltip" data-placement="top" title="" data-original-title="Remove"><i class="fa fa-times-circle"></i></a>
- 					</div>
- 					<h3><i class="fa fa-calendar"></i> Calendar</h3>
- 				</div>
- 				<div class="widget-content">
- 					<div id="calendar"></div>
- 				</div>
- 			</div>
- 		</div>
- 		<div class="col-md-4">
- 			<div class="widget widget-red">
- 				<div class="widget-title">
- 					<div class="widget-controls">
- 						<a href="#" class="widget-control widget-control-full-screen" data-toggle="tooltip" data-placement="top" title="" data-original-title="Full Screen"><i class="fa fa-expand"></i></a>
- 						<a href="#" class="widget-control widget-control-full-screen widget-control-show-when-full" data-toggle="tooltip" data-placement="left" title="" data-original-title="Exit Full Screen"><i class="fa fa-expand"></i></a>
- 						<a href="#" data-toggle="dropdown" class="widget-control widget-control-settings"><i class="fa fa-cog"></i></a>
- 						<div class="dropdown" data-toggle="tooltip" data-placement="top" title="" data-original-title="Settings">
- 							<ul class="dropdown-menu dropdown-menu-small" role="menu" aria-labelledby="dropdownMenu1">
- 								<li class="dropdown-header">Set Widget Color</li>
- 								<li><a data-widget-color="blue" class="set-widget-color" href="#">Blue</a></li>
- 								<li><a data-widget-color="red" class="set-widget-color" href="#">Red</a></li>
- 								<li><a data-widget-color="green" class="set-widget-color" href="#">Green</a></li>
- 								<li><a data-widget-color="orange" class="set-widget-color" href="#">Orange</a></li>
- 								<li><a data-widget-color="purple" class="set-widget-color" href="#">Purple</a></li>
- 							</ul>
- 						</div>
- 						<a href="#" class="widget-control widget-control-refresh" data-toggle="tooltip" data-placement="top" title="" data-original-title="Refresh"><i class="fa fa-refresh"></i></a>
- 						<a href="#" class="widget-control widget-control-minimize" data-toggle="tooltip" data-placement="top" title="" data-original-title="Minimize"><i class="fa fa-minus-circle"></i></a>
- 						<a href="#" class="widget-control widget-control-remove" data-toggle="tooltip" data-placement="top" title="" data-original-title="Remove"><i class="fa fa-times-circle"></i></a>
- 					</div>
- 					<h3><i class="fa fa-bullseye"></i> Pie Chart</h3>
- 				</div>
- 				<div class="widget-content">
- 					<div id="piechart" style=""></div>
- 					<table class="table table-bordered" id="topsellers_table">
- 						<thead>
- 							<tr>
- 								<th>Product</th>
- 								<th>Qty</th>
- 								<th>Price</th>
- 							</tr>
- 						</thead>
- 						<tbody>
- 							<tr>
- 								<td>Floor Lamp</td>
- 								<td>2</td>
- 								<td>3</td>
- 							</tr>
- 							<tr>
- 								<td>Coffee Mug</td>
- 								<td>4</td>
- 								<td>7</td>
- 							</tr>
- 						</tbody>
- 					</table>
- 				</div>
- 			</div>
- 		</div>
- 	</div>
- 	<div class="widget widget-bordered">
- 		<div class="widget-title bottom-margin">
- 			<div class="widget-controls">
- 				<a href="#" class="widget-control widget-control-full-screen" data-toggle="tooltip" data-placement="top" title="" data-original-title="Full Screen"><i class="fa fa-expand"></i></a>
- 				<a href="#" class="widget-control widget-control-full-screen widget-control-show-when-full" data-toggle="tooltip" data-placement="left" title="" data-original-title="Exit Full Screen"><i class="fa fa-expand"></i></a>
- 				<a href="#" data-toggle="dropdown" class="widget-control widget-control-settings"><i class="fa fa-cog"></i></a>
- 				<div class="dropdown" data-toggle="tooltip" data-placement="top" title="" data-original-title="Settings">
- 					<ul class="dropdown-menu dropdown-menu-small" role="menu" aria-labelledby="dropdownMenu1">
- 						<li class="dropdown-header">Set Widget Color</li>
- 						<li><a data-widget-color="blue" class="set-widget-color" href="#">Blue</a></li>
- 						<li><a data-widget-color="red" class="set-widget-color" href="#">Red</a></li>
- 						<li><a data-widget-color="green" class="set-widget-color" href="#">Green</a></li>
- 						<li><a data-widget-color="orange" class="set-widget-color" href="#">Orange</a></li>
- 						<li><a data-widget-color="purple" class="set-widget-color" href="#">Purple</a></li>
- 					</ul>
- 				</div>
- 				<a href="#" class="widget-control widget-control-refresh" data-toggle="tooltip" data-placement="top" title="" data-original-title="Refresh"><i class="fa fa-refresh"></i></a>
- 				<a href="#" class="widget-control widget-control-minimize" data-toggle="tooltip" data-placement="top" title="" data-original-title="Minimize"><i class="fa fa-minus-circle"></i></a>
- 				<a href="#" class="widget-control widget-control-remove" data-toggle="tooltip" data-placement="top" title="" data-original-title="Remove"><i class="fa fa-times-circle"></i></a>
- 			</div>
- 			<h3><i class="fa fa-bullseye"></i> Circular Charts</h3>
- 		</div>
- 		<div class="widget-content">
- 			<div class="row bottom-margin">
- 				<div class="col-lg-3 col-md-4 col-sm-6 text-center">
- 					<input type="text" value="75" class="knob" data-fgColor="#df6064" data-linecap="round" data-width="150">
- 				</div>
- 				<div class="col-lg-3 hidden-md col-sm-6 text-center">
- 					<input type="text" value="65" class="knob" data-fgColor="#8963ac" data-linecap="round" data-width="150">
- 				</div>
- 				<div class="col-lg-3 col-md-4 col-sm-6 text-center">
- 					<input type="text" value="85" class="knob" data-fgColor="#61a9dc" data-linecap="round" data-width="150">
- 				</div>
- 				<div class="col-lg-3 col-md-4 col-sm-6 text-center">
- 					<input type="text" value="68" class="knob" data-fgColor="#71c280" data-linecap="round" data-width="150">
- 				</div>
- 			</div>
- 		</div>
- 	</div>
- 	<div class="row">
- 		<div class="col-md-12">
- 			<span class="offset_anchor" id="widget_tabs"></span>
- 			<ul class="nav nav-tabs">
- 				<li class="active"><a href="#tab_pie_chart" data-toggle="tab"><i class="fa fa-bullseye"></i> Pie Chart</a></li>
- 				<li><a href="#tab_bar_chart" data-toggle="tab"><i class="fa fa-bar-chart-o"></i> Bar Alert</a></li>
- 				<li class="hidden-md hidden-xs"><a href="#tab_table" data-toggle="tab"><i class="fa fa-th"></i> Table</a></li>
- 			</ul>
- 			<div class="tab-content bottom-margin">
- 				<div class="tab-pane active" id="tab_pie_chart">
- 					<div class="shadowed-bottom">
- 						<div class="row">
- 							<div class="col-lg-3 col-md-4 col-sm-3 bordered">
- 								<div class="value-block padded-left text-center">
- 									<div class="value-self">520</div>
- 									<div class="value-sub">Total Sales</div>
- 								</div>
- 							</div>
- 							<div class="col-lg-3 col-sm-3 bordered hidden-md">
- 								<div class="value-block text-center">
- 									<div class="value-self">1,120</div>
- 									<div class="value-sub">Total Visitors</div>
- 								</div>
- 							</div>
- 							<div class="col-lg-6 col-md-8 col-sm-6">
- 								<form class="form-inline form-period-selector">
- 									<label class="control-label">Time Period:</label><br>
- 									<input type="text" placeholder="01/12/2011" class="form-control input-sm input-datepicker">
- 									<input type="text" placeholder="01/12/2011" class="form-control input-sm input-datepicker">
- 								</form>
- 							</div>
- 						</div>
- 					</div>
- 					<div class="padded">
- 						<div id="topsellers_barchart"></div>
- 					</div>
- 				</div>
- 				<div class="tab-pane" id="tab_bar_chart">
- 					<div class="shadowed-bottom">
- 						<div class="row">
- 							<div class="col-md-3 bordered">
- 								<div class="value-block padded-left text-center">
- 									<div class="value-self">256</div>
- 									<div class="value-sub">Total Sales</div>
- 								</div>
- 							</div>
- 							<div class="col-lg-3 bordered hidden-md">
- 								<div class="value-block text-center">
- 									<div class="value-self">3,420</div>
- 									<div class="value-sub">Total Visitors</div>
- 								</div>
- 							</div>
- 							<div class="col-lg-6 col-md-9">
- 								<form class="form-inline form-period-selector">
- 									<label class="control-label">Time Period:</label><br>
- 									<input type="text" placeholder="01/12/2011" class="form-control input-sm input-datepicker">
- 									<input type="text" placeholder="01/12/2011" class="form-control input-sm input-datepicker">
- 								</form>
- 							</div>
- 						</div>
- 					</div>
- 					<div class="padded">
- 						<div class="alert alert-warning">
- 							<i class="fa fa-exclamation-circle"></i> <strong>Message example!</strong> This is an example of how to handle a case when there is no data to load for a chart.
- 						</div>
- 					</div>
- 				</div>
- 				<div class="tab-pane" id="tab_table">
- 					<div class="shadowed-bottom">
- 						<div class="row">
- 							<div class="col-md-3 bordered">
- 								<div class="value-block padded-left text-center">
- 									<div class="value-self">112</div>
- 									<div class="value-sub">Total Sales</div>
- 								</div>
- 							</div>
- 							<div class="col-lg-3 bordered hidden-md">
- 								<div class="value-block text-center">
- 									<div class="value-self">2,340</div>
- 									<div class="value-sub">Total Visitors</div>
- 								</div>
- 							</div>
- 							<div class="col-lg-6 col-md-9">
- 								<form class="form-inline form-period-selector">
- 									<label class="control-label">Time Period:</label><br>
- 									<input type="text" placeholder="01/12/2011" class="form-control input-sm input-datepicker">
- 									<input type="text" placeholder="01/12/2011" class="form-control input-sm input-datepicker">
- 								</form>
- 							</div>
- 						</div>
- 					</div>
- 					<div class="padded">
- 						<table class="table table-bordered">
- 							<thead>
- 								<tr>
- 									<th>Product</th>
- 									<th>Qty</th>
- 									<th>Price</th>
- 								</tr>
- 							</thead>
- 							<tbody>
- 								<tr>
- 									<td>Floor Lamp</td>
- 									<td>2</td>
- 									<td>3</td>
- 								</tr>
- 								<tr>
- 									<td>Coffee Mug</td>
- 									<td>4</td>
- 									<td>7</td>
- 								</tr>
- 								<tr>
- 									<td>Television</td>
- 									<td>1</td>
- 									<td>3</td>
- 								</tr>
- 								<tr>
- 									<td>Red Carpet</td>
- 									<td>6</td>
- 									<td>5</td>
- 								</tr>
- 								<tr>
- 									<td>Laptop</td>
- 									<td>3</td>
- 									<td>6</td>
- 								</tr>
- 							</tbody>
- 						</table>
- 					</div>
- 				</div>
- 			</div>
- 		</div>
- 	</div>
- </div>
+									Welcome to
+									<strong class="green">
+										Ace
+										<small>(v1.2)</small>
+									</strong>
+									,
+	the lightweight, feature-rich and easy to use admin template.
+								</div>
+
+								<div class="row">
+									<div class="space-6"></div>
+
+									<div class="col-sm-7 infobox-container">
+										<div class="infobox infobox-green  ">
+											<div class="infobox-icon">
+												<i class="icon-comments"></i>
+											</div>
+
+											<div class="infobox-data">
+												<span class="infobox-data-number">32</span>
+												<div class="infobox-content">comments + 2 reviews</div>
+											</div>
+											<div class="stat stat-success">8%</div>
+										</div>
+
+										<div class="infobox infobox-blue  ">
+											<div class="infobox-icon">
+												<i class="icon-twitter"></i>
+											</div>
+
+											<div class="infobox-data">
+												<span class="infobox-data-number">11</span>
+												<div class="infobox-content">new followers</div>
+											</div>
+
+											<div class="badge badge-success">
+												+32%
+												<i class="icon-arrow-up"></i>
+											</div>
+										</div>
+
+										<div class="infobox infobox-pink  ">
+											<div class="infobox-icon">
+												<i class="icon-shopping-cart"></i>
+											</div>
+
+											<div class="infobox-data">
+												<span class="infobox-data-number">8</span>
+												<div class="infobox-content">new orders</div>
+											</div>
+											<div class="stat stat-important">4%</div>
+										</div>
+
+										<div class="infobox infobox-red  ">
+											<div class="infobox-icon">
+												<i class="icon-beaker"></i>
+											</div>
+
+											<div class="infobox-data">
+												<span class="infobox-data-number">7</span>
+												<div class="infobox-content">experiments</div>
+											</div>
+										</div>
+
+										<div class="infobox infobox-orange2  ">
+											<div class="infobox-chart">
+												<span class="sparkline" data-values="196,128,202,177,154,94,100,170,224"></span>
+											</div>
+
+											<div class="infobox-data">
+												<span class="infobox-data-number">6,251</span>
+												<div class="infobox-content">pageviews</div>
+											</div>
+
+											<div class="badge badge-success">
+												7.2%
+												<i class="icon-arrow-up"></i>
+											</div>
+										</div>
+
+										<div class="infobox infobox-blue2  ">
+											<div class="infobox-progress">
+												<div class="easy-pie-chart percentage" data-percent="42" data-size="46">
+													<span class="percent">42</span>%
+												</div>
+											</div>
+
+											<div class="infobox-data">
+												<span class="infobox-text">traffic used</span>
+
+												<div class="infobox-content">
+													<span class="bigger-110">~</span>
+													58GB remaining
+												</div>
+											</div>
+										</div>
+
+										<div class="space-6"></div>
+
+										<div class="infobox infobox-green infobox-small infobox-dark">
+											<div class="infobox-progress">
+												<div class="easy-pie-chart percentage" data-percent="61" data-size="39">
+													<span class="percent">61</span>%
+												</div>
+											</div>
+
+											<div class="infobox-data">
+												<div class="infobox-content">Task</div>
+												<div class="infobox-content">Completion</div>
+											</div>
+										</div>
+
+										<div class="infobox infobox-blue infobox-small infobox-dark">
+											<div class="infobox-chart">
+												<span class="sparkline" data-values="3,4,2,3,4,4,2,2"></span>
+											</div>
+
+											<div class="infobox-data">
+												<div class="infobox-content">Earnings</div>
+												<div class="infobox-content">$32,000</div>
+											</div>
+										</div>
+
+										<div class="infobox infobox-grey infobox-small infobox-dark">
+											<div class="infobox-icon">
+												<i class="icon-download-alt"></i>
+											</div>
+
+											<div class="infobox-data">
+												<div class="infobox-content">Downloads</div>
+												<div class="infobox-content">1,205</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="vspace-sm"></div>
+
+									<div class="col-sm-5">
+										<div class="widget-box">
+											<div class="widget-header widget-header-flat widget-header-small">
+												<h5>
+													<i class="icon-signal"></i>
+													Traffic Sources
+												</h5>
+
+												<div class="widget-toolbar no-border">
+													<button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown">
+														This Week
+														<i class="icon-angle-down icon-on-right bigger-110"></i>
+													</button>
+
+													<ul class="dropdown-menu pull-right dropdown-125 dropdown-lighter dropdown-caret">
+														<li class="active">
+															<a href="#" class="blue">
+																<i class="icon-caret-right bigger-110">&nbsp;</i>
+																This Week
+															</a>
+														</li>
+
+														<li>
+															<a href="#">
+																<i class="icon-caret-right bigger-110 invisible">&nbsp;</i>
+																Last Week
+															</a>
+														</li>
+
+														<li>
+															<a href="#">
+																<i class="icon-caret-right bigger-110 invisible">&nbsp;</i>
+																This Month
+															</a>
+														</li>
+
+														<li>
+															<a href="#">
+																<i class="icon-caret-right bigger-110 invisible">&nbsp;</i>
+																Last Month
+															</a>
+														</li>
+													</ul>
+												</div>
+											</div>
+
+											<div class="widget-body">
+												<div class="widget-main">
+													<div id="piechart-placeholder"></div>
+
+													<div class="hr hr8 hr-double"></div>
+
+													<div class="clearfix">
+														<div class="grid3">
+															<span class="grey">
+																<i class="icon-facebook-sign icon-2x blue"></i>
+																&nbsp; likes
+															</span>
+															<h4 class="bigger pull-right">1,255</h4>
+														</div>
+
+														<div class="grid3">
+															<span class="grey">
+																<i class="icon-twitter-sign icon-2x purple"></i>
+																&nbsp; tweets
+															</span>
+															<h4 class="bigger pull-right">941</h4>
+														</div>
+
+														<div class="grid3">
+															<span class="grey">
+																<i class="icon-pinterest-sign icon-2x red"></i>
+																&nbsp; pins
+															</span>
+															<h4 class="bigger pull-right">1,050</h4>
+														</div>
+													</div>
+												</div><!-- /widget-main -->
+											</div><!-- /widget-body -->
+										</div><!-- /widget-box -->
+									</div><!-- /span -->
+								</div><!-- /row -->
+
+								<div class="hr hr32 hr-dotted"></div>
+
+								<div class="row">
+									<div class="col-sm-5">
+										<div class="widget-box transparent">
+											<div class="widget-header widget-header-flat">
+												<h4 class="lighter">
+													<i class="icon-star orange"></i>
+													Popular Domains
+												</h4>
+
+												<div class="widget-toolbar">
+													<a href="#" data-action="collapse">
+														<i class="icon-chevron-up"></i>
+													</a>
+												</div>
+											</div>
+
+											<div class="widget-body">
+												<div class="widget-main no-padding">
+													<table class="table table-bordered table-striped">
+														<thead class="thin-border-bottom">
+															<tr>
+																<th>
+																	<i class="icon-caret-right blue"></i>
+																	name
+																</th>
+
+																<th>
+																	<i class="icon-caret-right blue"></i>
+																	price
+																</th>
+
+																<th class="hidden-480">
+																	<i class="icon-caret-right blue"></i>
+																	status
+																</th>
+															</tr>
+														</thead>
+
+														<tbody>
+															<tr>
+																<td>internet.com</td>
+
+																<td>
+																	<small>
+																		<s class="red">$29.99</s>
+																	</small>
+																	<b class="green">$19.99</b>
+																</td>
+
+																<td class="hidden-480">
+																	<span class="label label-info arrowed-right arrowed-in">on sale</span>
+																</td>
+															</tr>
+
+															<tr>
+																<td>online.com</td>
+
+																<td>
+																	<small>
+																		<s class="red"></s>
+																	</small>
+																	<b class="green">$16.45</b>
+																</td>
+
+																<td class="hidden-480">
+																	<span class="label label-success arrowed-in arrowed-in-right">approved</span>
+																</td>
+															</tr>
+
+															<tr>
+																<td>newnet.com</td>
+
+																<td>
+																	<small>
+																		<s class="red"></s>
+																	</small>
+																	<b class="green">$15.00</b>
+																</td>
+
+																<td class="hidden-480">
+																	<span class="label label-danger arrowed">pending</span>
+																</td>
+															</tr>
+
+															<tr>
+																<td>web.com</td>
+
+																<td>
+																	<small>
+																		<s class="red">$24.99</s>
+																	</small>
+																	<b class="green">$19.95</b>
+																</td>
+
+																<td class="hidden-480">
+																	<span class="label arrowed">
+																		<s>out of stock</s>
+																	</span>
+																</td>
+															</tr>
+
+															<tr>
+																<td>domain.com</td>
+
+																<td>
+																	<small>
+																		<s class="red"></s>
+																	</small>
+																	<b class="green">$12.00</b>
+																</td>
+
+																<td class="hidden-480">
+																	<span class="label label-warning arrowed arrowed-right">SOLD</span>
+																</td>
+															</tr>
+														</tbody>
+													</table>
+												</div><!-- /widget-main -->
+											</div><!-- /widget-body -->
+										</div><!-- /widget-box -->
+									</div>
+
+									<div class="col-sm-7">
+										<div class="widget-box transparent">
+											<div class="widget-header widget-header-flat">
+												<h4 class="lighter">
+													<i class="icon-signal"></i>
+													Sale Stats
+												</h4>
+
+												<div class="widget-toolbar">
+													<a href="#" data-action="collapse">
+														<i class="icon-chevron-up"></i>
+													</a>
+												</div>
+											</div>
+
+											<div class="widget-body">
+												<div class="widget-main padding-4">
+													<div id="sales-charts"></div>
+												</div><!-- /widget-main -->
+											</div><!-- /widget-body -->
+										</div><!-- /widget-box -->
+									</div>
+								</div>
+
+								<div class="hr hr32 hr-dotted"></div>
+
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="widget-box transparent" id="recent-box">
+											<div class="widget-header">
+												<h4 class="lighter smaller">
+													<i class="icon-rss orange"></i>
+													RECENT
+												</h4>
+
+												<div class="widget-toolbar no-border">
+													<ul class="nav nav-tabs" id="recent-tab">
+														<li class="active">
+															<a data-toggle="tab" href="#task-tab">Tasks</a>
+														</li>
+
+														<li>
+															<a data-toggle="tab" href="#member-tab">Members</a>
+														</li>
+
+														<li>
+															<a data-toggle="tab" href="#comment-tab">Comments</a>
+														</li>
+													</ul>
+												</div>
+											</div>
+
+											<div class="widget-body">
+												<div class="widget-main padding-4">
+													<div class="tab-content padding-8 overflow-visible">
+														<div id="task-tab" class="tab-pane active">
+															<h4 class="smaller lighter green">
+																<i class="icon-list"></i>
+																Sortable Lists
+															</h4>
+
+															<ul id="tasks" class="item-list">
+																<li class="item-orange clearfix">
+																	<label class="inline">
+																		<input type="checkbox" class="ace" />
+																		<span class="lbl"> Answering customer questions</span>
+																	</label>
+
+																	<div class="pull-right easy-pie-chart percentage" data-size="30" data-color="#ECCB71" data-percent="42">
+																		<span class="percent">42</span>%
+																	</div>
+																</li>
+
+																<li class="item-red clearfix">
+																	<label class="inline">
+																		<input type="checkbox" class="ace" />
+																		<span class="lbl"> Fixing bugs</span>
+																	</label>
+
+																	<div class="pull-right action-buttons">
+																		<a href="#" class="blue">
+																			<i class="icon-pencil bigger-130"></i>
+																		</a>
+
+																		<span class="vbar"></span>
+
+																		<a href="#" class="red">
+																			<i class="icon-trash bigger-130"></i>
+																		</a>
+
+																		<span class="vbar"></span>
+
+																		<a href="#" class="green">
+																			<i class="icon-flag bigger-130"></i>
+																		</a>
+																	</div>
+																</li>
+
+																<li class="item-default clearfix">
+																	<label class="inline">
+																		<input type="checkbox" class="ace" />
+																		<span class="lbl"> Adding new features</span>
+																	</label>
+
+																	<div class="inline pull-right position-relative dropdown-hover">
+																		<button class="btn btn-minier bigger btn-primary">
+																			<i class="icon-cog icon-only bigger-120"></i>
+																		</button>
+
+																		<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-caret dropdown-close pull-right">
+																			<li>
+																				<a href="#" class="tooltip-success" data-rel="tooltip" title="Mark&nbsp;as&nbsp;done">
+																					<span class="green">
+																						<i class="icon-ok bigger-110"></i>
+																					</span>
+																				</a>
+																			</li>
+
+																			<li>
+																				<a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
+																					<span class="red">
+																						<i class="icon-trash bigger-110"></i>
+																					</span>
+																				</a>
+																			</li>
+																		</ul>
+																	</div>
+																</li>
+
+																<li class="item-blue clearfix">
+																	<label class="inline">
+																		<input type="checkbox" class="ace" />
+																		<span class="lbl"> Upgrading scripts used in template</span>
+																	</label>
+																</li>
+
+																<li class="item-grey clearfix">
+																	<label class="inline">
+																		<input type="checkbox" class="ace" />
+																		<span class="lbl"> Adding new skins</span>
+																	</label>
+																</li>
+
+																<li class="item-green clearfix">
+																	<label class="inline">
+																		<input type="checkbox" class="ace" />
+																		<span class="lbl"> Updating server software up</span>
+																	</label>
+																</li>
+
+																<li class="item-pink clearfix">
+																	<label class="inline">
+																		<input type="checkbox" class="ace" />
+																		<span class="lbl"> Cleaning up</span>
+																	</label>
+																</li>
+															</ul>
+														</div>
+
+														<div id="member-tab" class="tab-pane">
+															<div class="clearfix">
+																<div class="itemdiv memberdiv">
+																	<div class="user">
+																		<img alt="Bob Doe's avatar" src="<?php echo URL_IMG; ?>user.jpg" />
+																	</div>
+
+																	<div class="body">
+																		<div class="name">
+																			<a href="#">Bob Doe</a>
+																		</div>
+
+																		<div class="time">
+																			<i class="icon-time"></i>
+																			<span class="green">20 min</span>
+																		</div>
+
+																		<div>
+																			<span class="label label-warning label-sm">pending</span>
+
+																			<div class="inline position-relative">
+																				<button class="btn btn-minier bigger btn-yellow btn-no-border dropdown-toggle" data-toggle="dropdown">
+																					<i class="icon-angle-down icon-only bigger-120"></i>
+																				</button>
+
+																				<ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close">
+																					<li>
+																						<a href="#" class="tooltip-success" data-rel="tooltip" title="Approve">
+																							<span class="green">
+																								<i class="icon-ok bigger-110"></i>
+																							</span>
+																						</a>
+																					</li>
+
+																					<li>
+																						<a href="#" class="tooltip-warning" data-rel="tooltip" title="Reject">
+																							<span class="orange">
+																								<i class="icon-remove bigger-110"></i>
+																							</span>
+																						</a>
+																					</li>
+
+																					<li>
+																						<a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
+																							<span class="red">
+																								<i class="icon-trash bigger-110"></i>
+																							</span>
+																						</a>
+																					</li>
+																				</ul>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+
+																<div class="itemdiv memberdiv">
+																	<div class="user">
+																		<img alt="Joe Doe's avatar" src="<?php echo URL_IMG; ?>avatar2.png" />
+																	</div>
+
+																	<div class="body">
+																		<div class="name">
+																			<a href="#">Joe Doe</a>
+																		</div>
+
+																		<div class="time">
+																			<i class="icon-time"></i>
+																			<span class="green">1 hour</span>
+																		</div>
+
+																		<div>
+																			<span class="label label-warning label-sm">pending</span>
+
+																			<div class="inline position-relative">
+																				<button class="btn btn-minier bigger btn-yellow btn-no-border dropdown-toggle" data-toggle="dropdown">
+																					<i class="icon-angle-down icon-only bigger-120"></i>
+																				</button>
+
+																				<ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close">
+																					<li>
+																						<a href="#" class="tooltip-success" data-rel="tooltip" title="Approve">
+																							<span class="green">
+																								<i class="icon-ok bigger-110"></i>
+																							</span>
+																						</a>
+																					</li>
+
+																					<li>
+																						<a href="#" class="tooltip-warning" data-rel="tooltip" title="Reject">
+																							<span class="orange">
+																								<i class="icon-remove bigger-110"></i>
+																							</span>
+																						</a>
+																					</li>
+
+																					<li>
+																						<a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
+																							<span class="red">
+																								<i class="icon-trash bigger-110"></i>
+																							</span>
+																						</a>
+																					</li>
+																				</ul>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+
+																<div class="itemdiv memberdiv">
+																	<div class="user">
+																		<img alt="Jim Doe's avatar" src="<?php echo URL_IMG; ?>avatar.png" />
+																	</div>
+
+																	<div class="body">
+																		<div class="name">
+																			<a href="#">Jim Doe</a>
+																		</div>
+
+																		<div class="time">
+																			<i class="icon-time"></i>
+																			<span class="green">2 hour</span>
+																		</div>
+
+																		<div>
+																			<span class="label label-warning label-sm">pending</span>
+
+																			<div class="inline position-relative">
+																				<button class="btn btn-minier bigger btn-yellow btn-no-border dropdown-toggle" data-toggle="dropdown">
+																					<i class="icon-angle-down icon-only bigger-120"></i>
+																				</button>
+
+																				<ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close">
+																					<li>
+																						<a href="#" class="tooltip-success" data-rel="tooltip" title="Approve">
+																							<span class="green">
+																								<i class="icon-ok bigger-110"></i>
+																							</span>
+																						</a>
+																					</li>
+
+																					<li>
+																						<a href="#" class="tooltip-warning" data-rel="tooltip" title="Reject">
+																							<span class="orange">
+																								<i class="icon-remove bigger-110"></i>
+																							</span>
+																						</a>
+																					</li>
+
+																					<li>
+																						<a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
+																							<span class="red">
+																								<i class="icon-trash bigger-110"></i>
+																							</span>
+																						</a>
+																					</li>
+																				</ul>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+
+																<div class="itemdiv memberdiv">
+																	<div class="user">
+																		<img alt="Alex Doe's avatar" src="<?php echo URL_IMG; ?>avatar5.png" />
+																	</div>
+
+																	<div class="body">
+																		<div class="name">
+																			<a href="#">Alex Doe</a>
+																		</div>
+
+																		<div class="time">
+																			<i class="icon-time"></i>
+																			<span class="green">3 hour</span>
+																		</div>
+
+																		<div>
+																			<span class="label label-danger label-sm">blocked</span>
+																		</div>
+																	</div>
+																</div>
+
+																<div class="itemdiv memberdiv">
+																	<div class="user">
+																		<img alt="Bob Doe's avatar" src="<?php echo URL_IMG; ?>avatar2.png" />
+																	</div>
+
+																	<div class="body">
+																		<div class="name">
+																			<a href="#">Bob Doe</a>
+																		</div>
+
+																		<div class="time">
+																			<i class="icon-time"></i>
+																			<span class="green">6 hour</span>
+																		</div>
+
+																		<div>
+																			<span class="label label-success label-sm arrowed-in">approved</span>
+																		</div>
+																	</div>
+																</div>
+
+																<div class="itemdiv memberdiv">
+																	<div class="user">
+																		<img alt="Susan's avatar" src="<?php echo URL_IMG; ?>avatar3.png" />
+																	</div>
+
+																	<div class="body">
+																		<div class="name">
+																			<a href="#">Susan</a>
+																		</div>
+
+																		<div class="time">
+																			<i class="icon-time"></i>
+																			<span class="green">yesterday</span>
+																		</div>
+
+																		<div>
+																			<span class="label label-success label-sm arrowed-in">approved</span>
+																		</div>
+																	</div>
+																</div>
+
+																<div class="itemdiv memberdiv">
+																	<div class="user">
+																		<img alt="Phil Doe's avatar" src="<?php echo URL_IMG; ?>avatar4.png" />
+																	</div>
+
+																	<div class="body">
+																		<div class="name">
+																			<a href="#">Phil Doe</a>
+																		</div>
+
+																		<div class="time">
+																			<i class="icon-time"></i>
+																			<span class="green">2 days ago</span>
+																		</div>
+
+																		<div>
+																			<span class="label label-info label-sm arrowed-in arrowed-in-right">online</span>
+																		</div>
+																	</div>
+																</div>
+
+																<div class="itemdiv memberdiv">
+																	<div class="user">
+																		<img alt="Alexa Doe's avatar" src="<?php echo URL_IMG; ?>avatar1.png" />
+																	</div>
+
+																	<div class="body">
+																		<div class="name">
+																			<a href="#">Alexa Doe</a>
+																		</div>
+
+																		<div class="time">
+																			<i class="icon-time"></i>
+																			<span class="green">3 days ago</span>
+																		</div>
+
+																		<div>
+																			<span class="label label-success label-sm arrowed-in">approved</span>
+																		</div>
+																	</div>
+																</div>
+															</div>
+
+															<div class="center">
+																<i class="icon-group icon-2x green"></i>
+
+																&nbsp;
+																<a href="#">
+																	See all members &nbsp;
+																	<i class="icon-arrow-right"></i>
+																</a>
+															</div>
+
+															<div class="hr hr-double hr8"></div>
+														</div><!-- member-tab -->
+
+														<div id="comment-tab" class="tab-pane">
+															<div class="comments">
+																<div class="itemdiv commentdiv">
+																	<div class="user">
+																		<img alt="Bob Doe's Avatar" src="<?php echo URL_IMG; ?>avatar.png" />
+																	</div>
+
+																	<div class="body">
+																		<div class="name">
+																			<a href="#">Bob Doe</a>
+																		</div>
+
+																		<div class="time">
+																			<i class="icon-time"></i>
+																			<span class="green">6 min</span>
+																		</div>
+
+																		<div class="text">
+																			<i class="icon-quote-left"></i>
+																			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque commodo massa sed ipsum porttitor facilisis &hellip;
+																		</div>
+																	</div>
+
+																	<div class="tools">
+																		<div class="inline position-relative">
+																			<button class="btn btn-minier bigger btn-yellow dropdown-toggle" data-toggle="dropdown">
+																				<i class="icon-angle-down icon-only bigger-120"></i>
+																			</button>
+
+																			<ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close">
+																				<li>
+																					<a href="#" class="tooltip-success" data-rel="tooltip" title="Approve">
+																						<span class="green">
+																							<i class="icon-ok bigger-110"></i>
+																						</span>
+																					</a>
+																				</li>
+
+																				<li>
+																					<a href="#" class="tooltip-warning" data-rel="tooltip" title="Reject">
+																						<span class="orange">
+																							<i class="icon-remove bigger-110"></i>
+																						</span>
+																					</a>
+																				</li>
+
+																				<li>
+																					<a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
+																						<span class="red">
+																							<i class="icon-trash bigger-110"></i>
+																						</span>
+																					</a>
+																				</li>
+																			</ul>
+																		</div>
+																	</div>
+																</div>
+
+																<div class="itemdiv commentdiv">
+																	<div class="user">
+																		<img alt="Jennifer's Avatar" src="<?php echo URL_IMG; ?>avatar1.png" />
+																	</div>
+
+																	<div class="body">
+																		<div class="name">
+																			<a href="#">Jennifer</a>
+																		</div>
+
+																		<div class="time">
+																			<i class="icon-time"></i>
+																			<span class="blue">15 min</span>
+																		</div>
+
+																		<div class="text">
+																			<i class="icon-quote-left"></i>
+																			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque commodo massa sed ipsum porttitor facilisis &hellip;
+																		</div>
+																	</div>
+
+																	<div class="tools">
+																		<div class="action-buttons bigger-125">
+																			<a href="#">
+																				<i class="icon-pencil blue"></i>
+																			</a>
+
+																			<a href="#">
+																				<i class="icon-trash red"></i>
+																			</a>
+																		</div>
+																	</div>
+																</div>
+
+																<div class="itemdiv commentdiv">
+																	<div class="user">
+																		<img alt="Joe's Avatar" src="<?php echo URL_IMG; ?>avatar2.png" />
+																	</div>
+
+																	<div class="body">
+																		<div class="name">
+																			<a href="#">Joe</a>
+																		</div>
+
+																		<div class="time">
+																			<i class="icon-time"></i>
+																			<span class="orange">22 min</span>
+																		</div>
+
+																		<div class="text">
+																			<i class="icon-quote-left"></i>
+																			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque commodo massa sed ipsum porttitor facilisis &hellip;
+																		</div>
+																	</div>
+
+																	<div class="tools">
+																		<div class="action-buttons bigger-125">
+																			<a href="#">
+																				<i class="icon-pencil blue"></i>
+																			</a>
+
+																			<a href="#">
+																				<i class="icon-trash red"></i>
+																			</a>
+																		</div>
+																	</div>
+																</div>
+
+																<div class="itemdiv commentdiv">
+																	<div class="user">
+																		<img alt="Rita's Avatar" src="<?php echo URL_IMG; ?>avatar3.png" />
+																	</div>
+
+																	<div class="body">
+																		<div class="name">
+																			<a href="#">Rita</a>
+																		</div>
+
+																		<div class="time">
+																			<i class="icon-time"></i>
+																			<span class="red">50 min</span>
+																		</div>
+
+																		<div class="text">
+																			<i class="icon-quote-left"></i>
+																			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque commodo massa sed ipsum porttitor facilisis &hellip;
+																		</div>
+																	</div>
+
+																	<div class="tools">
+																		<div class="action-buttons bigger-125">
+																			<a href="#">
+																				<i class="icon-pencil blue"></i>
+																			</a>
+
+																			<a href="#">
+																				<i class="icon-trash red"></i>
+																			</a>
+																		</div>
+																	</div>
+																</div>
+															</div>
+
+															<div class="hr hr8"></div>
+
+															<div class="center">
+																<i class="icon-comments-alt icon-2x green"></i>
+
+																&nbsp;
+																<a href="#">
+																	See all comments &nbsp;
+																	<i class="icon-arrow-right"></i>
+																</a>
+															</div>
+
+															<div class="hr hr-double hr8"></div>
+														</div>
+													</div>
+												</div><!-- /widget-main -->
+											</div><!-- /widget-body -->
+										</div><!-- /widget-box -->
+									</div><!-- /span -->
+
+									<div class="col-sm-6">
+										<div class="widget-box ">
+											<div class="widget-header">
+												<h4 class="lighter smaller">
+													<i class="icon-comment blue"></i>
+													Conversation
+												</h4>
+											</div>
+
+											<div class="widget-body">
+												<div class="widget-main no-padding">
+													<div class="dialogs">
+														<div class="itemdiv dialogdiv">
+															<div class="user">
+																<img alt="Alexa's Avatar" src="<?php echo URL_IMG; ?>avatar1.png" />
+															</div>
+
+															<div class="body">
+																<div class="time">
+																	<i class="icon-time"></i>
+																	<span class="green">4 sec</span>
+																</div>
+
+																<div class="name">
+																	<a href="#">Alexa</a>
+																</div>
+																<div class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque commodo massa sed ipsum porttitor facilisis.</div>
+
+																<div class="tools">
+																	<a href="#" class="btn btn-minier btn-info">
+																		<i class="icon-only icon-share-alt"></i>
+																	</a>
+																</div>
+															</div>
+														</div>
+
+														<div class="itemdiv dialogdiv">
+															<div class="user">
+																<img alt="John's Avatar" src="<?php echo URL_IMG; ?>avatar.png" />
+															</div>
+
+															<div class="body">
+																<div class="time">
+																	<i class="icon-time"></i>
+																	<span class="blue">38 sec</span>
+																</div>
+
+																<div class="name">
+																	<a href="#">John</a>
+																</div>
+																<div class="text">Raw denim you probably haven&#39;t heard of them jean shorts Austin.</div>
+
+																<div class="tools">
+																	<a href="#" class="btn btn-minier btn-info">
+																		<i class="icon-only icon-share-alt"></i>
+																	</a>
+																</div>
+															</div>
+														</div>
+
+														<div class="itemdiv dialogdiv">
+															<div class="user">
+																<img alt="Bob's Avatar" src="<?php echo URL_IMG; ?>user.jpg" />
+															</div>
+
+															<div class="body">
+																<div class="time">
+																	<i class="icon-time"></i>
+																	<span class="orange">2 min</span>
+																</div>
+
+																<div class="name">
+																	<a href="#">Bob</a>
+																	<span class="label label-info arrowed arrowed-in-right">admin</span>
+																</div>
+																<div class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque commodo massa sed ipsum porttitor facilisis.</div>
+
+																<div class="tools">
+																	<a href="#" class="btn btn-minier btn-info">
+																		<i class="icon-only icon-share-alt"></i>
+																	</a>
+																</div>
+															</div>
+														</div>
+
+														<div class="itemdiv dialogdiv">
+															<div class="user">
+																<img alt="Jim's Avatar" src="<?php echo URL_IMG; ?>avatar4.png" />
+															</div>
+
+															<div class="body">
+																<div class="time">
+																	<i class="icon-time"></i>
+																	<span class="grey">3 min</span>
+																</div>
+
+																<div class="name">
+																	<a href="#">Jim</a>
+																</div>
+																<div class="text">Raw denim you probably haven&#39;t heard of them jean shorts Austin.</div>
+
+																<div class="tools">
+																	<a href="#" class="btn btn-minier btn-info">
+																		<i class="icon-only icon-share-alt"></i>
+																	</a>
+																</div>
+															</div>
+														</div>
+
+														<div class="itemdiv dialogdiv">
+															<div class="user">
+																<img alt="Alexa's Avatar" src="<?php echo URL_IMG; ?>avatar1.png" />
+															</div>
+
+															<div class="body">
+																<div class="time">
+																	<i class="icon-time"></i>
+																	<span class="green">4 min</span>
+																</div>
+
+																<div class="name">
+																	<a href="#">Alexa</a>
+																</div>
+																<div class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+
+																<div class="tools">
+																	<a href="#" class="btn btn-minier btn-info">
+																		<i class="icon-only icon-share-alt"></i>
+																	</a>
+																</div>
+															</div>
+														</div>
+													</div>
+
+													<form>
+														<div class="form-actions">
+															<div class="input-group">
+																<input placeholder="Type your message here ..." type="text" class="form-control" name="message" />
+																<span class="input-group-btn">
+																	<button class="btn btn-sm btn-info no-radius" type="button">
+																		<i class="icon-share-alt"></i>
+																		Send
+																	</button>
+																</span>
+															</div>
+														</div>
+													</form>
+												</div><!-- /widget-main -->
+											</div><!-- /widget-body -->
+										</div><!-- /widget-box -->
+									</div><!-- /span -->
+								</div><!-- /row -->
+
+								<!-- PAGE CONTENT ENDS -->
+							</div><!-- /.col -->
+						</div><!-- /.row -->
+					</div><!-- /.page-content -->
+				

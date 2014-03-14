@@ -49,8 +49,8 @@ $active_group = 'default';
 $active_record = TRUE;
 
 $db['default']['hostname'] = '172.20.17.10';
-$db['default']['username'] = 'dba';
-$db['default']['password'] = '@123';
+$db['default']['username'] = 'root';
+$db['default']['password'] = '';
 $db['default']['database'] = 'bdmpnintegrado';
 $db['default']['dbdriver'] = 'mysqli';
 $db['default']['dbprefix'] = '';

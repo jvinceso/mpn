@@ -29,20 +29,17 @@
 					$array = array();
 					foreach ($opt->result() as $opcion){
 						if($url){
-							// var_dump($url);
-							// echo "desde BD";
-							// var_dump($opcion->cOdetNombreArchivo);
-							if($opcion->cOdetNombreArchivo==$url){
-								$active = " class=\"current\"";
-								$ul='class="current"';
-							}
-							else{
-								$active = "class=\"ocultar\"";
-							}
+						   if ($opcion->cOdetNombreArchivo == $url) {
+                                $active = "class=\"active open\"";
+                                $ul = 'style="display:block"';
+                                $opciones = 'class="active"';
+                            } else {
+                                $opciones = '';
+                            }	
 						}  
 						$array[] = array(
 							"value" => $opcion->cObjNombre,
-							"active" => $active,
+							"active" => $opciones,
 							"url" => $opcion->cOdetNombreArchivo
 						);
 					}

@@ -28,7 +28,7 @@ class login extends CI_Controller
                 ,'IdPersona' => $this->objUsuario->get_nPerId()
                 ,'Nombres' => $this->objUsuario->get_cUsuNombre()
             ));
-            redirect('inicio/index');
+            redirect('inicio');
         } else {
             redirect('login');
         }

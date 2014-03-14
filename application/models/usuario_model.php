@@ -72,35 +72,26 @@
         {
             return $this->nSucursalId;
         }
-
         public function getUsuarioSesion(){
             return $this->session->userdata( 'IdUsuario' );
         }
-        //Obtener Objeto USUARIO
         function get_ObjUsuario( $objUsuario )
         {
             if ( $objUsuario ) {
-                //CREANDO EL OBJETO 
                 $this->nUsuId      = $objUsuario->nUsuId;
                 $this->nPerId      = $objUsuario->nPerId;
                 $this->cUsuNick    = $objUsuario->cUsuNick ;
                 $this->cUsuNombre  = $objUsuario->nombre ;
-                // $this->cPerApellidos = $objUsuario->cPerApellidos ;
-                // $this->nPerCargoID   = $objUsuario->nCargoID ;
-                // $this->cPerCarNombre = $objUsuario->cCarNombre ;
             }
         }
-
         function autenticar($usuario, $clave)
         {
             $query = $this->db->query("CALL sp_s_iniciarsesion (?,?) ", array( trim($usuario), trim($clave) ));
             if ( $query->num_rows() > 0) {
-                $row =  $query->row();
                 $this->get_ObjUsuario( $query->row() );
+                $query->free_result();
                 return true;
             }
-
             return false;
         }
-
     }
