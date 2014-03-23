@@ -76,6 +76,32 @@ $(function(){
         }
     }));
 });
+/*Funciones para manejo de botones*/
+function msgLoadSaveMsg(obj,btn,msg){ //preload al costado del boton
+    var host = window.location.host;
+    $(btn).attr("disabled", "true");
+    if (msg==undefined) {
+        msg = "Procesando... por favor espere.";
+    };
+    msgLoading(obj,msg);
+}
+function msgLoadSaveRemove(btn){
+    $("#msg_loading").remove()
+    $(btn).removeAttr("disabled");
+}
+
+function MostrarOcultarCapas(ObjOcultar,ObjMostrar,fnOcultar,fnMostrar){
+    $(ObjOcultar).hide('slide',100,function(){
+        // $(".tooltip").removeClass("in");
+        // $(".tooltip").addClass("out");        
+        eval(fnOcultar);
+    });
+    $(ObjMostrar).show('slide',1000,function(){
+        // $(".tooltip").removeClass("in");
+        // $(".tooltip").addClass("out");
+        eval(fnMostrar);
+    });        
+}
 
 /*Funciones Compartidas*/
 function set_popupJSON(url,title,ancho,alto,fila,func_close){
@@ -206,7 +232,7 @@ function msgLoading(obj,msg){
 
 function msjCargandoCustom(objId){
     var host = window.location.host;
-    $(objId).html('<center><div style="display: table-cell;vertical-align: middle;position: relative;"><center><br/><p><img src="http://'+host+'/oficinavirtual/img/dashboard/cargando.gif"/><h2 style="color:black;">Espere un Momento...</h2></p></center></div></center>');
+    $(objId).html('<center><div style="display: table-cell;vertical-align: middle;position: relative;"><center><br/><p><img src="http://'+host+'/mpn/statics/images/cargando.gif"/><h2 style="color:black;">Espere un Momento...</h2></p></center></div></center>');
     $(objId).css("opacity","0.6");  
     $(objId).css("background","white");  
     $(objId).css("visibility","visible");

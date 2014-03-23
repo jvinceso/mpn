@@ -42,7 +42,7 @@
 					<p>				
 						<form class="form-horizontal" >
 							<div class="row">
-								<div class="col-xs-12 col-sm-5">
+								<div id="pnl_frm_busqueda" class="col-xs-12 col-sm-5">
 									<div class="input-group">
 										<input type="text" class="form-control search-query" placeholder="Ingrese el nombre del módulo" />
 										<span class="input-group-btn">
@@ -58,7 +58,15 @@
 					</p>
 					<p>
 						<div id="tabla_modulos" class="table-responsive"></div>
+						<!-- <div id="pnlAsignarObjetos" class="ocultar">ererter</div> -->
+
 					</p>
+					<div id="c_frm_modulo" class="switchs disnone w860" >
+					    <a href="#" id="anc_back_modulo" class="ui-dialog-titlebar-close ui-corner-all" role="button">
+					        <span><img src="../statics/images/iconos_regresar.png"></span>
+					    </a>
+					    <div id="c_frm_procesos" class="w100Percent"></div>  
+					</div>
 				</div>
 			</div>
 		</div>
