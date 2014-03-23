@@ -1,24 +1,28 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Modulo extends CI_Controller {
+class Permisos extends CI_Controller {
 
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('utilitarios/modulo_model','objModulo');
+		$this->load->model('administrador/permisos_model','objModulo');
 		$this->load->library('table');
 	}
-	public function pruebas(){
-		
-		$data = array(
-			array('name', 'Color', 'Size'),
-			array('Fred', 'Blue', 'Small'),
-			array('Mary', 'Red', 'Large'),
-			array('John', 'Green', 'Medium')
-		);
-		
-		echo $this->table->generate($data);
+
+	public function index()
+	{
+		// $this->loaders->verificaAcceso();
+		$this->load->helper('tables_helper');
+		$data['main_content'] = 'administrador/permisos/panel_view';
+		$data['titulo'] = 'Gestor de Permisos';
+		$data['aplicacion'] = 'Administrador';
+		$data['objeto'] = 'Permisos';
+		// $data['tabla_data'] = $this->objModulo->qryAplicaciones();
+		// $tabla_data[] = array('Id','Nombre','Estado','Fecha Registro');
+		// $data['tabla'] = $this->table->generate( array_reverse( $tabla_data ));
+		$this->load->view('plantilla/template', $data);			
 	}
+
 	public function vistaGet($vista,$parametros = null) {
 		$data = array();
 		switch ($vista) {
@@ -33,52 +37,30 @@ class Modulo extends CI_Controller {
 		}
 		$this->load->view('utilitarios/modulo/' . $vista,$data);
 	}		
-	public function index()
-	{
-		// $this->loaders->verificaAcceso();
-		$this->load->helper('tables_helper');
-		$data['main_content'] = 'utilitarios/modulo/panel_view';
-		$data['titulo'] = 'Gestor Modulos';
-		$data['aplicacion'] = 'Utilitarios';
-		$data['objeto'] = 'Configurar Módulos';
-		// $data['tabla_data'] = $this->objModulo->qryAplicaciones();
-		// $tabla_data[] = array('Id','Nombre','Estado','Fecha Registro');
-		// $data['tabla'] = $this->table->generate( array_reverse( $tabla_data ));
-		$this->load->view('plantilla/template', $data);			
-	}
+
 	function loadDataGrid(){
 		$this->load->helper('tables_helper');
 		$opciones = array(
-			'Editar' => array(
+			'permisos' => array(
 				 'color'=>'green'
-				,'icono'=>'pencil'
+				,'icono'=>'user'
 				,'tooltip'=>'success'
 			),
-			'Eliminar' => array(
+			'clave' => array(
 				 'color'=>'red'
-				,'icono'=>'trash'
+				,'icono'=>'unlock'
 				,'tooltip'=>'success'
-			),
-			'Confirmar' => array(
-				 'color'=>'orange'
-				,'icono'=>'ok'
-				,'tooltip'=>'info'
-				),
-			'Configuracion' => array(
-				 'color'=>'blue'
-				,'icono'=>'cogs'
-				,'tooltip'=>'info'
 			)
 		);
-		$tabla_data = $this->objModulo->qryAplicaciones();
+		$tabla_data = $this->objModulo->qryUsuarios();
 		$funciones = array(
-			'initEvtUpdJson("../utilitarios/modulo/vistaGet/upd_view/","Pagina de Pruebas",450,250,"listarModulo()")',
+			'initEvPermisosJson()',
 			// 'initEvtUpdJson("../utilitarios/modulo/updModulo/","Pagina de Pruebas",450,250,"dataLocal(fila)")',
 			// 'initEvtUpd("../utilitarios/modulo/updModulo/","Pagina de Pruebas",450,250,"confirmarEdicion()")',
 			'initEvtDel("confirmarDelete")'
 			// ,'initE'
 		);
-		CrudGridMultipleJson($tabla_data,'idTabla','ID',$opciones,$funciones);		
+		CrudGridMultipleJson($tabla_data,'idTablaPermisos','ID',$opciones,$funciones);		
 	}
 	function delAplicacion(){
 		$this->objModulo->set_codigo( $this->input->post('codex') );

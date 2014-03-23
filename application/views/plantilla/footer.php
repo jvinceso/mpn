@@ -57,7 +57,7 @@
 		<!-- // <script src="<?php echo URL_JS; ?>flot/jquery.flot.pie.min.js"></script> -->
 		<!-- // <script src="<?php echo URL_JS; ?>flot/jquery.flot.resize.min.js"></script> -->
 		<!-- // <script src="<?php echo URL_JS; ?>ace-elements.min.js"></script> -->
-		<script src="<?php echo URL_JS; ?>ace.min.js"></script>
+		 <script src="<?php echo URL_JS; ?>ace.min.js"></script>
 
 		
 	</body>
