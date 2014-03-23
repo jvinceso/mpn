@@ -48,7 +48,6 @@ class Modulo extends CI_Controller {
 	}
 	function loadDataGrid($opcion=NULL){
 		$this->load->helper('tables_helper');
-<<<<<<< HEAD
 		$opcion = (is_null($opcion)) ? $this->input->post('x') : $opcion;
 		switch ($opcion) {
 			case 'objetos':
@@ -109,39 +108,6 @@ class Modulo extends CI_Controller {
 				break;
 		}
 		CrudGridMultipleJson($tabla_data,$nameTable,$pk,$opciones,$funciones);		
-=======
-		$opciones = array(
-			'Editar' => array(
-				 'color'=>'green'
-				,'icono'=>'pencil'
-				,'tooltip'=>'success'
-			),
-			'Eliminar' => array(
-				 'color'=>'red'
-				,'icono'=>'trash'
-				,'tooltip'=>'success'
-			),
-			'Confirmar' => array(
-				 'color'=>'orange'
-				,'icono'=>'ok'
-				,'tooltip'=>'info'
-				),
-			'Configuracion' => array(
-				 'color'=>'blue'
-				,'icono'=>'cogs'
-				,'tooltip'=>'info'
-			)
-		);
-		$tabla_data = $this->objModulo->qryAplicaciones();
-		$funciones = array(
-			'initEvtUpdJson("../utilitarios/modulo/vistaGet/upd_view/","Pagina de Pruebas",450,250,"listarModulo()")',
-			// 'initEvtUpdJson("../utilitarios/modulo/updModulo/","Pagina de Pruebas",450,250,"dataLocal(fila)")',
-			// 'initEvtUpd("../utilitarios/modulo/updModulo/","Pagina de Pruebas",450,250,"confirmarEdicion()")',
-			'initEvtDel("confirmarDelete")'
-			// ,'initE'
-		);
-		CrudGridMultipleJson($tabla_data,'idTabla','ID',$opciones,$funciones);		
->>>>>>> e8d2599ee9302977a48ce942076f1f86e897a4b4
 	}
 	function delAplicacion(){
 		$this->objModulo->set_codigo( $this->input->post('codex') );
