@@ -4,3 +4,31 @@
     height: 20px;
     float: left;
 }
+.mostrar{
+    display: block;
+}
+
+.oculto{
+    display: none;
+}
+
+/*Modulo*/
+#anc_back_modulo span{
+    margin-left: 880px;
+    margin-right: -50px;
+    z-index: 9999;
+    position: fixed;
+}
+.w400{
+    width:400px;
+}
+.w100Percent{
+    width: 100%;
+}
+.w860{
+    width: 950px;
+}
+.disnone{
+    display:none;
+}
+div.clear  { clear: both; }

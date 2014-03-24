@@ -1,24 +1,31 @@
-$(function(){    
+$(function(){
+
+    $(".list-unstyled li").bind({
+        click:function(evt){
+            evt.preventDefault();
+            var icono = $(this).text().trim();
+            $("input[name=txt_ins_mod_icono]").val(icono);
+            // console.log($(this).text().trim());
+        }
+    });
+
     $("#frm_ins_modulo").validate({
         submitHandler: function(form) { 
+            msgLoadSaveMsg('#pnlmensajeaviso','#btnRegistrar');
             $.ajax({
                 url:'modulo/insAplicacion',
                 cache:false,
                 type:'post',
                 data:$(form).serialize(),
                 success:function(data){
-                    alert(data)
-                    // switch (data) { 
-                    //     case "2":
-                    //     mensaje("Error al guardar la Sesión de Consejo!","a"); 
-                    //     break; 
-                    //     default:
-                    //     msgLoadSaveRemove("#btn_ins_cons");
-                    //     mensaje("Se guardo correctamente la Sesión de Consejo","e");
-                    //     get_page('crearSesionConsejo/vistaGet/insertar','c_tab_ins_sesionconsejo',{
-                    //         'txt_fnd_cons_titulo':$('#txt_fnd_cons_titulo').val()
-                    //     });
-                    // }
+                    switch (data) { 
+                        case "2":
+                        mensaje("Error al guardar el Modulo!","a"); 
+                        break; 
+                        default:
+                        msgLoadSaveRemove("#btnRegistrar");
+                        mensaje("Se Registro Correctamente el Modulo","e");
+                    }
                 },
                 error:function(error){
                 }
@@ -31,7 +38,7 @@ $(function(){
         },
         messages: {
             txt_ins_mod_nombre:{
-                // required:'Ingrese una pinga'
+                // required:'Ingrese una zapatos'
             }
         }
     });

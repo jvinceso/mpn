@@ -46,39 +46,68 @@ class Modulo extends CI_Controller {
 		// $data['tabla'] = $this->table->generate( array_reverse( $tabla_data ));
 		$this->load->view('plantilla/template', $data);			
 	}
-	function loadDataGrid(){
+	function loadDataGrid($opcion=NULL){
 		$this->load->helper('tables_helper');
-		$opciones = array(
-			'Editar' => array(
-				 'color'=>'green'
-				,'icono'=>'pencil'
-				,'tooltip'=>'success'
-			),
-			'Eliminar' => array(
-				 'color'=>'red'
-				,'icono'=>'trash'
-				,'tooltip'=>'success'
-			),
-			'Confirmar' => array(
-				 'color'=>'orange'
-				,'icono'=>'ok'
-				,'tooltip'=>'info'
-				),
-			'Configuracion' => array(
-				 'color'=>'blue'
-				,'icono'=>'cogs'
-				,'tooltip'=>'info'
-			)
-		);
-		$tabla_data = $this->objModulo->qryAplicaciones();
-		$funciones = array(
-			'initEvtUpdJson("../utilitarios/modulo/vistaGet/upd_view/","Pagina de Pruebas",450,250,"listarModulo()")',
-			// 'initEvtUpdJson("../utilitarios/modulo/updModulo/","Pagina de Pruebas",450,250,"dataLocal(fila)")',
-			// 'initEvtUpd("../utilitarios/modulo/updModulo/","Pagina de Pruebas",450,250,"confirmarEdicion()")',
-			'initEvtDel("confirmarDelete")'
-			// ,'initE'
-		);
-		CrudGridMultipleJson($tabla_data,'idTabla','ID',$opciones,$funciones);		
+		$opcion = (is_null($opcion)) ? $this->input->post('x') : $opcion;
+		switch ($opcion) {
+			case 'objetos':
+				/*Listar Hijos de la Aplicación*/
+				$opciones = array(
+					'Editar' => array(
+						 'color'=>'green'
+						,'icono'=>'edit'
+						,'tooltip'=>'success'
+					),
+					'Confirmar' => array(
+						 'color'=>'orange'
+						,'icono'=>'ok'
+						,'tooltip'=>'info'
+					)
+				);
+				$funciones = array(
+					'initEvtOpc("cogs","asignarObjetos(fila)")'
+				);				
+				$tabla_data = $this->objModulo->qryAplicaciones();
+			break;			
+			default:
+				$opciones = array(
+					'Editar' => array(
+						 'color'=>'green'
+						,'icono'=>'pencil'
+						,'tooltip'=>'success'
+					),
+					'Eliminar' => array(
+						 'color'=>'red'
+						,'icono'=>'trash'
+						,'tooltip'=>'success'
+					),
+					'Detalle' => array(
+						 'color'=>'blue'
+						,'icono'=>'zoom-in'
+						,'tooltip'=>'info'
+					),
+					'Confirmar' => array(
+						 'color'=>'orange'
+						,'icono'=>'ok'
+						,'tooltip'=>'info'
+						),
+					'Configuracion' => array(
+						 'color'=>'blue'
+						,'icono'=>'cogs'
+						,'tooltip'=>'info'
+					)
+				);
+				$tabla_data = $this->objModulo->qryAplicaciones();
+				$funciones = array(
+					'initEvtUpdJson("../utilitarios/modulo/vistaGet/upd_view/","Pagina de Pruebas",450,250,"listarModulo()")',
+					'initEvtOpc("cogs","asignarObjetos(fila)")',
+					'initEvtDel("confirmarDelete")'
+				);
+				$nameTable = 'idTabla';
+				$pk = 'ID';
+				break;
+		}
+		CrudGridMultipleJson($tabla_data,$nameTable,$pk,$opciones,$funciones);		
 	}
 	function delAplicacion(){
 		$this->objModulo->set_codigo( $this->input->post('codex') );
