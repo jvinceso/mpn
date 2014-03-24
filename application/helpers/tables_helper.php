@@ -7,7 +7,7 @@ function CrudGridMultipleJson($sql, $idtable = null, $primary_key,$opciones = ar
     $nroCamposSql = count( $nombre_Columnas );	//Cantidad de columnas a mostrar
     $idtable = ($idtable==null) ? 'tabla'.rand():$idtable;
     ?>
-    <table id="<?php print $idtable; ?>" class="table table-striped table-bordered table-hover">
+    <table id="<?php print $idtable; ?>" class="table table-stripped">
     	<thead>
     		<tr>
     			<?php

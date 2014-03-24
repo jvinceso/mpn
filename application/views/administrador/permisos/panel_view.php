@@ -1,3 +1,13 @@
+<style>
+	.highlight{
+		background-color: #6FAED9;
+		text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+		color: #FFF;
+	}
+	#idTablaPermisos tbody tr{
+		cursor: pointer;
+	}
+</style>
 <script type="text/javascript" src='<?php echo URL_JS; ?>sistema/administrador/permisos/permisos_panel.js'></script>
 <div class="page-header">
 	<h1>

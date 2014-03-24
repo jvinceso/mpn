@@ -1,9 +1,6 @@
-		$(function() {
-			listarUsuarios();
-
-
-
-		})
+$(function() {
+		listarUsuarios();		
+})
 
 	function listarUsuarios(){
 		msgLoading('#tabla_permisos',"Espere por favor!!!");					
@@ -14,6 +11,10 @@
 			            // data:{},
 			            success:function(data){
 			            	$(".table-responsive").html(data);
+			            	$("#idTablaPermisos tbody tr").click(function(){
+								// alert('dsdsd')
+								 $(this).removeClass("odd").removeClass("even").addClass('highlight').siblings().removeClass('highlight');
+							})
 			            },
 			            error:function(er){
 			            	console.log(er.statusText);
