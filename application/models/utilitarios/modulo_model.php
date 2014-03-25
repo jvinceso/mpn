@@ -65,6 +65,10 @@ class Modulo_model extends CI_Model {
 		$this->db->select('nAplId as ID,cAplNombre as Nombre,cAplEstado as Estado,dAplFechaRegistro as "Fecha Registro"');
 		return $this->db->where('cAplEstado',1)->get('aplicacion')->result_array();
 	}
+	public function getObjeto(){
+		$this->db->select('nObjId AS ID,cObjNombre as "Opcion", nObjOrden as "Orden"');
+		return $this->db->where(array('nAplId'=>$this->get_codigo(), 'cObjEstado'=>1))->get('objeto')->result_array();		
+	}
 	public function getAplicacion(){
 		$this->db->select('nAplId ,cAplNombre ,cAplEstado ,dAplFechaRegistro,cAplIcono');
 		return $this->db->where(array('cAplEstado'=>1,'nAplId'=>$this->get_codigo() ))->get('aplicacion')->result_array()[0];
