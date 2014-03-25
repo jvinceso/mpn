@@ -46,6 +46,24 @@ class Modulo extends CI_Controller {
 		// $data['tabla'] = $this->table->generate( array_reverse( $tabla_data ));
 		$this->load->view('plantilla/template', $data);			
 	}
+	public function lista(){
+		print_p(FCPATH);
+		$controladores = FCPATH.'\application\controllers';
+		$directorio = array_diff(scandir( $controladores,0 ), array('..', '.'));
+		$dir_final = array();
+		foreach ( $directorio as $indice => $recurso ){
+			if( is_dir($controladores.DIRECTORY_SEPARATOR.$recurso) ){
+				$path_modulos = $controladores.DIRECTORY_SEPARATOR.$recurso;
+				$ficheros = array_diff(scandir( $path_modulos ), array('..', '.'));
+				$dir_final[] = array($recurso=>$ficheros);
+			}else{
+				$dir_final[]= $recurso;
+			}
+		}
+		print_p($dir_final);
+		// echo json_encode($dir_final,JSON_PRETTY_PRINT);
+	}
+
 	function loadDataGrid($opcion=NULL){
 		$this->load->helper('tables_helper');
 		$opcion = (is_null($opcion)) ? $this->input->post('x') : $opcion;
@@ -65,9 +83,12 @@ class Modulo extends CI_Controller {
 					)
 				);
 				$funciones = array(
-					'initEvtOpc("cogs","asignarObjetos(fila)")'
-				);				
-				$tabla_data = $this->objModulo->qryAplicaciones();
+					'initEvtOpc("edit","saluda(fila)")'
+				);	
+				$nameTable = 'tblObjeto';
+				$pk = 'ID';
+				$this->objModulo->set_codigo( $this->input->post('cod') );
+				$tabla_data = $this->objModulo->getObjeto();
 			break;			
 			default:
 				$opciones = array(

@@ -50,7 +50,7 @@ $(function($) {
 			console.log(nDocId);
 			console.log(nombre);
 			console.log(fila);
-			$('#pnl_frm_busqueda').show();
+			$('#pnl_frm_busqueda').hide();
 			get_page('modulo/vistaGet/ins_objetos_view/','c_frm_procesos',{"docs":nDocId,"nombre":nombre});
 			// get_page('../utilitarios/modulo/vistaGet/upd_view/','pnlAsignarObjetos','');
 			MostrarOcultarCapas('#tabla_modulos','#c_frm_modulo','','');
