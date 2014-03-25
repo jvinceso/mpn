@@ -1,5 +1,18 @@
 $(function() {
-		listarUsuarios();		
+		listarUsuarios();
+		$("#next-permisos").bind({
+		    click:function(evt){
+		        evt.preventDefault();
+		        $('#idTablaPermisos tbody tr').each(function(){
+		        	fila =$(this).attr('class');
+		        	if(fila == 'highlight')
+		        	{
+		        		// alert(fila)
+		        		alert($('.'+fila).data('codx'))
+		        	}
+		        })            
+		    }
+		});
 })
 
 	function listarUsuarios(){
@@ -11,6 +24,7 @@ $(function() {
 			            // data:{},
 			            success:function(data){
 			            	$(".table-responsive").html(data);
+			            	// $("#idTablaPermisos tbody tr").removeClass("odd").removeClass("even").addClass('highlight').siblings().removeClass('highlight');
 			            	$("#idTablaPermisos tbody tr").click(function(){
 								// alert('dsdsd')
 								 $(this).removeClass("odd").removeClass("even").addClass('highlight').siblings().removeClass('highlight');

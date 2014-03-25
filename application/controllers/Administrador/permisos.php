@@ -41,23 +41,23 @@ class Permisos extends CI_Controller {
 	function loadDataGrid(){
 		$this->load->helper('tables_helper');
 		$opciones = array(
-			'permisos' => array(
-				 'color'=>'green'
-				,'icono'=>'user'
-				,'tooltip'=>'success'
-			),
-			'clave' => array(
-				 'color'=>'red'
-				,'icono'=>'unlock'
-				,'tooltip'=>'success'
-			)
+			// 'permisos' => array(
+			// 	 'color'=>'green'
+			// 	,'icono'=>'user'
+			// 	,'tooltip'=>'success'
+			// ),
+			// 'clave' => array(
+			// 	 'color'=>'red'
+			// 	,'icono'=>'unlock'
+			// 	,'tooltip'=>'success'
+			// )
 		);
 		$tabla_data = $this->objModulo->qryUsuarios();
 		$funciones = array(
-			'initEvPermisosJson()',
+			// 'initEvPermisosJson()',
 			// 'initEvtUpdJson("../utilitarios/modulo/updModulo/","Pagina de Pruebas",450,250,"dataLocal(fila)")',
 			// 'initEvtUpd("../utilitarios/modulo/updModulo/","Pagina de Pruebas",450,250,"confirmarEdicion()")',
-			'initEvtDel("confirmarDelete")'
+			// 'initEvtDel("confirmarDelete")'
 			// ,'initE'
 		);
 		CrudGridMultipleJson($tabla_data,'idTablaPermisos','ID',$opciones,$funciones);		

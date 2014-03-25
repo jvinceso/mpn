@@ -97,7 +97,7 @@
 															Prev
 														</button>
 
-														<button class="btn btn-success btn-next" data-last="Finish ">
+														<button id = "next-permisos" class="btn btn-success btn-next" data-last="Finish ">
 															Next
 															<i class="icon-arrow-right icon-on-right"></i>
 														</button>

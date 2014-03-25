@@ -37,17 +37,17 @@ function initEvtUpdJson(url,title,alto,ancho,func_close){
         })
     });
 }
-function initEvPermisosJson(){
-    $('.icon-user').each(function(){
-        var fila;
-        $("#"+this.id).click(function(e){
-            e.preventDefault();
-            fila =$(this).parents('tr');
-            var objJson = $(fila).data('json');
-            alert($(fila).data('codx'))
-        })
-    });
-}
+// function initEvPermisosJson(){
+//     $('.icon-user').each(function(){
+//         var fila;
+//         $("#"+this.id).click(function(e){
+//             e.preventDefault();
+//             fila =$(this).parents('tr');
+//             var objJson = $(fila).data('json');
+//             alert($(fila).data('codx'))
+//         })
+//     });
+// }
 
 function initEvtUpd(url,title,alto,ancho,func_close){
     $('.icon-pencil').each(function(){
