@@ -6,6 +6,7 @@ class Permisos extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('administrador/permisos_model','objModulo');
+		$this->load->model('utilitarios/modulo_model','objModulo1');
 		$this->load->library('table');
 	}
 
@@ -83,6 +84,19 @@ class Permisos extends CI_Controller {
 		} else {
 			echo "0";
 		}
+	}
+	function getpermisos(){
+			$aplicacion = $this->objModulo1->qryAplicaciones( );
+			$tree_data = array();
+			foreach ($aplicacion as $key => $fila) {
+				$tree_data[$fila['ID']] = array('name'=>$fila['Nombre'],'type'=>'folder');
+				// 'for-sale' : {name: 'For Sale', type: 'folder'}
+				// [ID] => 2
+				// [Nombre] => Estadisticas
+			}
+			// print_p( json_encode($tree_data,JSON_PRETTY_PRINT ));
+			echo json_encode($tree_data);
+			// print_p($this->objModulo1->qryAplicaciones( ));
 	}
 }
 

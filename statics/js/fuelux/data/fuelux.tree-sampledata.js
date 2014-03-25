@@ -1,27 +1,33 @@
 var DataSourceTree = function(options) {
 	this._data 	= options.data;
 	this._delay = options.delay;
+	// this.url = options.url;
 }
-// alert(this._data)
+console.log(DataSourceTree)
+console.log(DataSourceTree.prototype.data)
 // alert(this._delay)
 DataSourceTree.prototype.data = function(options, callback) {
 	var self = this;
 	var $data = null;
 
+	var param = null;
+
+	// alert($data)
 	if(!("name" in options) && !("type" in options)){
 		$data = this._data;//the root tree
 		callback({ data: $data });
 		return;
+		// param = 0;
 	}
 	else if("type" in options && options.type == "folder") {
 		if("additionalParameters" in options && "children" in options.additionalParameters)
-			$data = options.additionalParameters["id"];
-			// $data = options.additionalParameters.children;
+			// param = options.additionalParameters["id"];
+			$data = options.additionalParameters.children;
 			else $data = {}//no data
 	}
-	// alert($data)
 	 if($data != null)//this setTimeout is only for mimicking some random delay
-	              // if ($data != null) {                    
+	              // if (param != null) { 
+	              // // alert(this.url)                   
                //      $.ajax({
                //          url: this.url,
                //          data: 'id=' + param,
@@ -42,9 +48,44 @@ DataSourceTree.prototype.data = function(options, callback) {
 	//but you can retrieve your data dynamically from a server using ajax call
 	//checkout examples/treeview.html and examples/treeview.js for more info
 };
+var tree_data = Object();
+$(function(){
+
+$.ajax({
+    url:'permisos/getpermisos',
+    type:'post',
+    dataType:'json',
+    cache:false,
+    data:{},
+    success:function(datax){
+    	console.log( datax );
+    	var treeDataSource = new DataSourceTree({data: datax});
+    	$('#tree1').ace_tree({
+    				// dataSource: new DataSourceTree({ url: '[PATH TO SERVICE]' }),
+    				dataSource: treeDataSource ,
+    				multiSelect:true,
+    				loadingHTML:'<div class="tree-loading"><i class="icon-refresh icon-spin blue"></i></div>',
+    				'open-icon' : 'icon-minus',
+    				'close-icon' : 'icon-plus',
+    				'selectable' : true,
+    				'selected-icon' : 'icon-ok',
+    				'unselected-icon' : 'icon-remove'
+    	});
+    },
+    error:function(er){
+    	console.log(er.statusText);
+        alert("Houston, tenemos un problema... Creo que has roto algo...");
+    }
+});
+
+})
+
+
+
 
 var tree_data = {
-	'for-sale' : {name: 'For Sale', type: 'folder'}	
+	'for-sale' : {name: 'For Sale', type: 'folder'}	,
+	'Agua' : {name: 'for-agua', type: 'folder'}	
 	// 'vehicles' : {name: 'Vehicles', type: 'folder'}	,
 	// 'rentals' : {name: 'Rentals', type: 'folder'}	,
 	// 'real-estate' : {name: 'Real Estate', type: 'folder'}	,
@@ -64,7 +105,21 @@ tree_data['for-sale']['additionalParameters'] = {
 		'sports-fitness' : {name: 'Sports & Fitness', type: 'item'}
 	}
 }
+console.log(tree_data);
 var treeDataSource = new DataSourceTree({data: tree_data});
+// var treeDataSource = new DataSourceTree({data: tree_data});
+
+// $('#tree1').ace_tree({
+// 			// dataSource: new DataSourceTree({ url: '[PATH TO SERVICE]' }),
+// 			dataSource: treeDataSource ,
+// 			multiSelect:true,
+// 			loadingHTML:'<div class="tree-loading"><i class="icon-refresh icon-spin blue"></i></div>',
+// 			'open-icon' : 'icon-minus',
+// 			'close-icon' : 'icon-plus',
+// 			'selectable' : true,
+// 			'selected-icon' : 'icon-ok',
+// 			'unselected-icon' : 'icon-remove'
+// });
 // tree_data['vehicles']['additionalParameters'] = {
 // 	'children' : {
 // 		// 'cars' : {name: 'Cars', type: 'folder'},

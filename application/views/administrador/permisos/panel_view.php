@@ -8,7 +8,7 @@
 		cursor: pointer;
 	}
 </style>
-<script type="text/javascript" src='<?php echo URL_JS; ?>sistema/administrador/permisos/permisos_panel.js'></script>
+
 <div class="page-header">
 	<h1>
 		<?php echo $aplicacion; ?>
@@ -116,12 +116,12 @@
 <script src="<?php echo URL_JS; ?>ace-elements.min.js"></script>
 <!-- // <script src="<?php echo URL_JS; ?>ace.min.js"></script> -->
 <script src="<?php echo URL_JS; ?>bootbox.min.js"></script>
-<script src="<?php echo URL_JS; ?>fuelux/data/fuelux.tree-sampledata.js"></script>
 <script src="<?php echo URL_JS; ?>fuelux/fuelux.tree.min.js"></script>
-
+<script src="<?php echo URL_JS; ?>fuelux/data/fuelux.tree-sampledata.js"></script>
+<script type="text/javascript" src='<?php echo URL_JS; ?>sistema/administrador/permisos/permisos_panel.js'></script>
 <script type="text/javascript">
 			jQuery(function($) {
-			$('#fuelux-wizard').ace_wizard()
+			// $('#fuelux-wizard').ace_wizard()
 				// var $validation = false;
 				// $('#fuelux-wizard').ace_wizard().on('change' , function(e, info){
 				// 	if(info.step == 1 && $validation) {
@@ -139,15 +139,15 @@
 				// 	});
 				// });	
 
-		$('#tree1').ace_tree({
-			dataSource: treeDataSource ,
-			multiSelect:true,
-			loadingHTML:'<div class="tree-loading"><i class="icon-refresh icon-spin blue"></i></div>',
-			'open-icon' : 'icon-minus',
-			'close-icon' : 'icon-plus',
-			'selectable' : true,
-			'selected-icon' : 'icon-ok',
-			'unselected-icon' : 'icon-remove'
-		});
+		// $('#tree1').ace_tree({
+		// 	dataSource: treeDataSource ,
+		// 	multiSelect:true,
+		// 	loadingHTML:'<div class="tree-loading"><i class="icon-refresh icon-spin blue"></i></div>',
+		// 	'open-icon' : 'icon-minus',
+		// 	'close-icon' : 'icon-plus',
+		// 	'selectable' : true,
+		// 	'selected-icon' : 'icon-ok',
+		// 	'unselected-icon' : 'icon-remove'
+		// });
 			})
 </script>

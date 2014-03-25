@@ -1,5 +1,6 @@
 $(function() {
 		listarUsuarios();
+		$('#fuelux-wizard').ace_wizard()
 		$("#next-permisos").bind({
 		    click:function(evt){
 		        evt.preventDefault();
