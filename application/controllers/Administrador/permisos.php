@@ -5,8 +5,8 @@ class Permisos extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('administrador/permisos_model','objModulo');
-		$this->load->model('utilitarios/modulo_model','objModulo1');
+		$this->load->model('administrador/permisos_model','objPermisos');
+		$this->load->model('utilitarios/modulo_model','objModulo');
 		$this->load->library('table');
 	}
 
@@ -18,7 +18,7 @@ class Permisos extends CI_Controller {
 		$data['titulo'] = 'Gestor de Permisos';
 		$data['aplicacion'] = 'Administrador';
 		$data['objeto'] = 'Permisos';
-		// $data['tabla_data'] = $this->objModulo->qryAplicaciones();
+		// $data['tabla_data'] = $this->objPermisos->qryAplicaciones();
 		// $tabla_data[] = array('Id','Nombre','Estado','Fecha Registro');
 		// $data['tabla'] = $this->table->generate( array_reverse( $tabla_data ));
 		$this->load->view('plantilla/template', $data);			
@@ -28,8 +28,8 @@ class Permisos extends CI_Controller {
 		$data = array();
 		switch ($vista) {
 			case 'upd_view':
-				$this->objModulo->set_codigo( $parametros );
-				$data = $this->objModulo->getAplicacion();
+				$this->objPermisos->set_codigo( $parametros );
+				$data = $this->objPermisos->getAplicacion();
 				// print_p($data);
 				// exit();
 				break;			
@@ -53,7 +53,7 @@ class Permisos extends CI_Controller {
 			// 	,'tooltip'=>'success'
 			// )
 		);
-		$tabla_data = $this->objModulo->qryUsuarios();
+		$tabla_data = $this->objPermisos->qryUsuarios();
 		$funciones = array(
 			// 'initEvPermisosJson()',
 			// 'initEvtUpdJson("../utilitarios/modulo/updModulo/","Pagina de Pruebas",450,250,"dataLocal(fila)")',
@@ -64,21 +64,21 @@ class Permisos extends CI_Controller {
 		CrudGridMultipleJson($tabla_data,'idTablaPermisos','ID',$opciones,$funciones);		
 	}
 	function delAplicacion(){
-		$this->objModulo->set_codigo( $this->input->post('codex') );
-		echo $this->objModulo->delAplicacion( );
+		$this->objPermisos->set_codigo( $this->input->post('codex') );
+		echo $this->objPermisos->delAplicacion( );
 
 	}
 	function updAplicacion(){
-		$this->objModulo->set_codigo( $this->input->post('txt_upd_mod_id') );
-		$this->objModulo->set_nombre( $this->input->post('txt_upd_mod_nombre') );
-		$this->objModulo->set_cAplIcono( $this->input->post('txt_upd_mod_icono') );
-		echo $this->objModulo->updAplicacion( );
+		$this->objPermisos->set_codigo( $this->input->post('txt_upd_mod_id') );
+		$this->objPermisos->set_nombre( $this->input->post('txt_upd_mod_nombre') );
+		$this->objPermisos->set_cAplIcono( $this->input->post('txt_upd_mod_icono') );
+		echo $this->objPermisos->updAplicacion( );
 	}
 
 	function insAplicacion(){
-		$this->objModulo->set_nombre( $this->input->post('txt_ins_mod_nombre') );
-		$this->objModulo->set_cAplIcono( $this->input->post('txt_ins_mod_icono') );	
-		$result = $this->objModulo->insAplicacion();
+		$this->objPermisos->set_nombre( $this->input->post('txt_ins_mod_nombre') );
+		$this->objPermisos->set_cAplIcono( $this->input->post('txt_ins_mod_icono') );	
+		$result = $this->objPermisos->insAplicacion();
 		if ($result) {
 			echo "1";
 		} else {
@@ -86,17 +86,25 @@ class Permisos extends CI_Controller {
 		}
 	}
 	function getpermisos(){
-			$aplicacion = $this->objModulo1->qryAplicaciones( );
+			$aplicacion = $this->objModulo->qryAplicaciones( );
 			$tree_data = array();
 			foreach ($aplicacion as $key => $fila) {
-				$tree_data[$fila['ID']] = array('name'=>$fila['Nombre'],'type'=>'folder');
-				// 'for-sale' : {name: 'For Sale', type: 'folder'}
-				// [ID] => 2
-				// [Nombre] => Estadisticas
+				$this->objModulo->set_codigo( $fila['ID'] );
+				$objetos = $this->objModulo->getObjeto();
+				if ( count($objetos)>=1 ) {
+					$tree_data[$fila['ID']] = array('name'=>$fila['Nombre'],'type'=>'folder');
+					$children = array();
+					foreach ($objetos as $indice => $registro) {
+						$children[ $registro['ID'] ] = array('name' => $registro['Opcion'], 'type'=>'item');
+					}
+					$tree_data[$fila['ID']]['additionalParameters'] = array( 'children' => $children );
+				}else{
+					$tree_data[$fila['ID']] = array('name'=>$fila['Nombre'],'type'=>'item','selectItem'=>'true');					
+				}
 			}
 			// print_p( json_encode($tree_data,JSON_PRETTY_PRINT ));
 			echo json_encode($tree_data);
-			// print_p($this->objModulo1->qryAplicaciones( ));
+			// print_p($this->objModulo->qryAplicaciones( ));
 	}
 }
 
