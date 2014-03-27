@@ -46,8 +46,7 @@ class Modulo extends CI_Controller {
 		// $data['tabla'] = $this->table->generate( array_reverse( $tabla_data ));
 		$this->load->view('plantilla/template', $data);			
 	}
-	public function lista(){
-		print_p(FCPATH);
+	public function qryControladores(){
 		$controladores = FCPATH.'\application\controllers';
 		$directorio = array_diff(scandir( $controladores,0 ), array('..', '.'));
 		$dir_final = array();
@@ -60,8 +59,30 @@ class Modulo extends CI_Controller {
 				$dir_final[]= $recurso;
 			}
 		}
-		print_p($dir_final);
+		/*
+		$temp = array();
+		foreach ($modulos as $key => $value) {
+		    $temp[$value['nModId']]['key'] = $value['nModId'];
+		    $temp[$value['nModId']]['title'] = $value['cModModulo'];
+		    $menu = $this->ObjMenu->getMenuxModulo( $value['nModId'] );
+		    $temp_menu = array();
+		    $i=0;
+		    foreach ($menu as $row) {
+		        if( search_in_array($row['nMenId'],$menusAsignados,'nMenId') ){
+		            $temp_menu[$i]['select'] = true;
+		        }
+		        $temp_menu[$i]['key'] = $row['nMenId'];
+		        $temp_menu[$i]['title'] = $row['cMenMenu'];
+		        $i++;
+		    }
+		    $temp[$value['nModId']]['isFolder'] = true;
+		    $temp[$value['nModId']]['children'] = $temp_menu;
+		}   
+		$data['permisos'] = $temp;		
+		*/
 		// echo json_encode($dir_final,JSON_PRETTY_PRINT);
+		$data['controladores'] = $dir_final;
+		$this->load->view('utilitarios/modulo/qry_controladores_view', $data);
 	}
 
 	function loadDataGrid($opcion=NULL){

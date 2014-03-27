@@ -1,18 +1,10 @@
 <?php 
-$parametros = $this->input->post('json');
-// print_p($parametros);
-/*
-nAplId
-cObjNombre
-bObjTipo
-nObjIdPadre
-nObjOrden
-*/
+	$parametros = $this->input->post('json');
 ?>
 <input type="hidden" id="txt_ins_apli_codigo" name = "txt_ins_apli_codigo" value="<?php print $parametros['docs'] ?>" />
 <form id="frm_ins_mod_objeto" class="form-horizontal" role="form">
 	<h3 class="header smaller lighter blue">
-		Registrar Sub Opciones para la Aplicación <?php print $parametros['nombre']; ?>
+		Registrar Opciones para la Aplicación <?php print $parametros['nombre']; ?>
 		<!-- // <small><?php print $parametros['nombre']; ?></small> -->
 	</h3>
 	<div class="form-group">

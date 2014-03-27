@@ -1,5 +1,11 @@
 $(function(){
 	listarOpcionesxAplicacion();
+	$("#btnBuscarController").bind({
+	    click:function(evt){
+	        evt.preventDefault();
+	        set_popup('../utilitarios/modulo/qryControladores/','pruebas de popup',500,500,'','');
+	    }
+	});
 /*
 *txt_ins_obj_nombre
 *txt_ins_obj_file
@@ -15,11 +21,12 @@ $(function(){
 	            success:function(data){
 	                switch (data) { 
 	                    case "2":
-	                    mensaje("Error al guardar el Modulo!","a"); 
-	                    break; 
+	                    	mensaje("Error al guardar el Modulo!","a"); 
+	                    break;
 	                    default:
-	                    msgLoadSaveRemove("#btnInsObjeto");
-	                    mensaje("Se Registro Correctamente el Modulo","e");
+	                    	msgLoadSaveRemove("#btnInsObjeto");
+	                    	mensaje("Se Registro Correctamente el Modulo","e");
+	                    break;
 	                }
 	            },
 	            error:function(error){
