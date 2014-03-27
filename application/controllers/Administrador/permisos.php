@@ -95,14 +95,14 @@ class Permisos extends CI_Controller {
 					$tree_data[$fila['ID']] = array('name'=>$fila['Nombre'],'type'=>'folder');
 					$children = array();
 					foreach ($objetos as $indice => $registro) {
-						$children[ $registro['ID'] ] = array('name' => $registro['Opcion'], 'type'=>'item');
+						$children[ $registro['ID'] ] = array('name' => $registro['Opcion'], 'type'=>'item','tree-item-name'=> true );
 					}
-					$tree_data[$fila['ID']]['additionalParameters'] = array( 'children' => $children );
+					$tree_data[$fila['ID']]['additionalParameters'] = array( 'children' => $children);
 				}else{
-					$tree_data[$fila['ID']] = array('name'=>$fila['Nombre'],'type'=>'item','selectItem'=>'true');					
+					$tree_data[$fila['ID']] = array('name'=>$fila['Nombre'],'type'=>'item');
 				}
 			}
-			// print_p( json_encode($tree_data,JSON_PRETTY_PRINT ));
+			// print_p( json_encode($tree_data,JSON_PRETTY_PRINT ));"itemSelected":false
 			echo json_encode($tree_data);
 			// print_p($this->objModulo->qryAplicaciones( ));
 	}

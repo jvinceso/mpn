@@ -22,12 +22,66 @@ DataSourceTree.prototype.data = function(options, callback) {
 		// param = 0;
 	}
 	else if("type" in options && options.type == "folder") {
-		if("additionalParameters" in options && "children" in options.additionalParameters)
+			// console.log(options);
+		if("additionalParameters" in options && "children" in options.additionalParameters){
 			// param = options.additionalParameters["id"];
 			$data = options.additionalParameters.children;
+			$.each($data, function(index, value) {
+					var $val = $(value);
+					console.log($val[0]['name']);
+					// alert($val[0]["tree-item-name"])
+					if($val[0]["tree-item-name"] == true){
+						console.log('div>.tree-item-name:contains("'+$val[0]['name']+'")');
+						var item = $('#tree1').find('div>.tree-item-name:contains("'+$val[0]['name'].trim()+'")');
+						var div = $(item).parent('div');
+						var i = $(div).children('i');
+						console.log(item );
+						console.log(div );
+						console.log( i );						
+						$(div).addClass('tree-selected');
+						$(i).removeClass('icon-remove').addClass('icon-ok');
+						// alert('si')
+						        // fila =$(this).parents('div');
+            		// 			var objJson = $(fila).data('json');
+							    // $(value).addClass('tree-selected');
+							    // console.log($(value))
+								// $this.find('i').removeClass('tree-dot').addClass('icon-ok');
+					}
+						console.log('hay vienen mas...' );
+					// if($val[0] !== $el[0]) {
+					// 	data.push( $(value).data() );
+					// }
+				});
+			// $el.addClass ('tree-selected');
+			// tree-item-name
+
+			// tree-item-name	true	
+			// name	"Trabajador"	
+			// type	"item"
+//    $('.icon-pencil').each(function(){
+    //     var fila;
+    //     $("#"+this.id).click(function(e){
+    //         e.preventDefault();
+    //         fila =$(this).parents('tr');
+    //         var objJson = $(fila).data('json');
+    //         console.log(this);
+    //         console.log(fila);
+    //         console.log(objJson);
+    //         console.log("Debug : initEvtUpdJson Loaded...");
+    //         // set_popupJSON(url+$(fila).data('codx'),title,alto,ancho,objJson,func_close);
+    //         set_popup(url+$(fila).data('codx'),title,alto,ancho,'',func_close);
+    //     })
+    // });
+			console.log($data);
+		}
 			else $data = {}//no data
 	}
-	console.log($data);
+	else if(options.type == "item") {
+		// if( "item-selected" in options){
+			console.log('sdsd')
+		 	// $data.addClass ('tree-selected');			
+		// }
+	}
 	 if($data != null)//this setTimeout is only for mimicking some random delay
 		setTimeout(function(){callback({ data: $data });} , parseInt(Math.random() * 500) + 200);
 
