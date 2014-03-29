@@ -52,8 +52,7 @@
 
           <script type="text/javascript">
             if("ontouchend" in document) document.write("<script src='<?php echo URL_JS; ?>jquery.mobile.custom.min.js'>"+"<"+"/script>");
-          </script>
-          <script src="<?php echo URL_JS; ?>bootstrap.min.js"></script>
+          </script>          
           <script src="<?php echo URL_JS; ?>typeahead-bs2.min.js"></script>
 
           <!-- page specific plugin scripts -->

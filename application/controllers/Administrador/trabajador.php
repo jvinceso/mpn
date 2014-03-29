@@ -5,7 +5,7 @@ class Trabajador extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		// $this->load->model('utilitarios/modulo_model','objModulo');
+		$this->load->model('utilitarios/modulo_model','objModulo');
 		// $this->load->library('table');
 	}
 	public function index()
@@ -18,7 +18,7 @@ class Trabajador extends CI_Controller {
 	function prueba(){
 		echo json_encode(array(1));
 	}
-	function insAplicacion(){
+	function insTrabajador(){
 		$this->objModulo->set_nombre( $this->input->post('txt_ins_mod_nombre') );
 		$this->objModulo->set_cAplIcono( $this->input->post('txt_ins_mod_icono') );	
 		$result = $this->objModulo->insAplicacion();

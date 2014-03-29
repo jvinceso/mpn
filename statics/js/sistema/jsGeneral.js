@@ -100,6 +100,12 @@ function msgLoadSaveRemove(btn){
     $("#msg_loading").remove()
     $(btn).removeAttr("disabled");
 }
+function DesabilitarBoton(btn){
+    $("#"+btn).button('loading');
+}
+function HabilitarBoton(btn){
+    $("#"+btn).button('reset')
+}
 
 function MostrarOcultarCapas(ObjOcultar,ObjMostrar,fnOcultar,fnMostrar){
     $(ObjOcultar).hide('slide',100,function(){
