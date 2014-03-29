@@ -3,12 +3,19 @@ $(function(){
 	$("#btnBuscarController").bind({
 	    click:function(evt){
 	        evt.preventDefault();
-	        set_popup('../utilitarios/modulo/qryControladores/','pruebas de popup',500,500,'','');
+	        set_popup('../utilitarios/modulo/qryControladores/','Controladores',350,400,'','');
 	    }
 	});
+
+	$(document).on('click', '.anc_controlador', function(evt){
+		evt.preventDefault();
+		var ruta  = $(this).data('path');
+		console.log(ruta);
+		$("#txt_ins_ruta").val(ruta);
+		$('.popedit').dialog('close');
+	})
 /*
-*txt_ins_obj_nombre
-*txt_ins_obj_file
+
 */
 	$("#frm_ins_mod_objeto").validate({
 	    submitHandler: function(form) { 
@@ -17,7 +24,12 @@ $(function(){
 	            url:'modulo/#',
 	            cache:false,
 	            type:'post',
-	            data:{},
+	            data:{
+	            	txt_ins_obj_nombre  : $('#txt_ins_obj_nombre').val(),
+	            	txt_ins_ruta        : $('#txt_ins_ruta').val(),
+	            	txt_ins_apli_codigo : $('#txt_ins_apli_codigo').val(),
+	            	txt_ins_obj_file    : $('#txt_ins_obj_file').val()
+	            },
 	            success:function(data){
 	                switch (data) { 
 	                    case "2":
@@ -26,6 +38,7 @@ $(function(){
 	                    default:
 	                    	msgLoadSaveRemove("#btnInsObjeto");
 	                    	mensaje("Se Registro Correctamente el Modulo","e");
+	                    	limpiarForm('#frm_ins_mod_objeto');
 	                    break;
 	                }
 	            },

@@ -1,17 +1,22 @@
-<link href="<?php echo URL_CSS ?>tree/ui.dynatree.css" rel="stylesheet" type="text/css">
-<script src="<?php echo URL_JS ?>tree/jquery.dynatree.js" type="text/javascript"></script>
-<script>
-var objController = <?php echo json_encode($controladores) ?>;
-var controlador=[];
-$.each( objController, function( key, value ) {
-	controlador.push(value);
-});
-console.log(controlador);
-$("#listPermisos").dynatree({
-	checkbox: true,
-	selectMode: 3,
-	children: controlador
-});
-
-</script>
-<div id="listPermisos"></div>
+<div id="listPermisos">
+	<ul>
+		<?php 
+		$lista = '';
+		foreach ($controladores as $key => $fila) {
+			print '<li>';
+			if (is_array($fila)){
+				// print_p($fila);exit();
+				print $key.'<ul>';
+				foreach ($fila as $indice => $registro) {
+					$ruta = '../'.$key.'/'.str_replace('.php', '.html',$registro);
+					print '<li><a href="#" class="anc_controlador" data-path="'.$ruta.'">'.substr($registro, 0, -4).'</a></li>';
+				}
+				print '</ul>';
+			}else{
+				print '<a href="#" class="anc_controlador" data-path="'.$fila.'">'.$fila.'</a>';
+			}
+			print '</li>';
+		}
+		?>
+	</ul>
+</div>
