@@ -160,6 +160,7 @@ function set_popup(url,title,ancho,alto,parametro,func_close){
         modal:true ,
         open: function(event,ui){
             get_page(url,this.id,parametro);
+
         },
         close: function(){      
             eval(func_close);

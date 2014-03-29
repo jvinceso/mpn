@@ -46,8 +46,7 @@ class Modulo extends CI_Controller {
 		// $data['tabla'] = $this->table->generate( array_reverse( $tabla_data ));
 		$this->load->view('plantilla/template', $data);			
 	}
-	public function lista(){
-		print_p(FCPATH);
+	public function qryControladores(){
 		$controladores = FCPATH.'\application\controllers';
 		$directorio = array_diff(scandir( $controladores,0 ), array('..', '.'));
 		$dir_final = array();
@@ -55,13 +54,14 @@ class Modulo extends CI_Controller {
 			if( is_dir($controladores.DIRECTORY_SEPARATOR.$recurso) ){
 				$path_modulos = $controladores.DIRECTORY_SEPARATOR.$recurso;
 				$ficheros = array_diff(scandir( $path_modulos ), array('..', '.'));
-				$dir_final[] = array($recurso=>$ficheros);
+				$dir_final[$recurso] = $ficheros;
 			}else{
 				$dir_final[]= $recurso;
 			}
 		}
-		print_p($dir_final);
-		// echo json_encode($dir_final,JSON_PRETTY_PRINT);
+		array_multisort($dir_final, SORT_DESC );
+		$data['controladores'] = $dir_final;
+		$this->load->view('utilitarios/modulo/qry_controladores_view', $data);
 	}
 
 	function loadDataGrid($opcion=NULL){
