@@ -257,16 +257,16 @@
 			"file": "/C/xampp/htdocs/vasoleche/application/views/usuario/permisos_view.php",
 			"settings":
 			{
-				"buffer_size": 547,
-				"line_ending": "Unix"
+				"buffer_size": 0,
+				"line_ending": "Windows"
 			}
 		},
 		{
 			"file": "/C/xampp/htdocs/vasoleche/application/controllers/Usuario.php",
 			"settings":
 			{
-				"buffer_size": 8171,
-				"line_ending": "Unix"
+				"buffer_size": 0,
+				"line_ending": "Windows"
 			}
 		},
 		{
@@ -281,7 +281,7 @@
 			"file": "/C/xampp/htdocs/oficinavirtual/js/jsGeneral.js",
 			"settings":
 			{
-				"buffer_size": 56581,
+				"buffer_size": 56440,
 				"line_ending": "Windows"
 			}
 		},
@@ -299,6 +299,14 @@
 			{
 				"buffer_size": 2408,
 				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "application/config/constants.php",
+			"settings":
+			{
+				"buffer_size": 2109,
+				"line_ending": "Unix"
 			}
 		}
 	],
@@ -1393,15 +1401,15 @@
 					"file": "/C/xampp/htdocs/vasoleche/application/views/usuario/permisos_view.php",
 					"settings":
 					{
-						"buffer_size": 547,
+						"buffer_size": 0,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								547,
-								180
+								0,
+								0
 							]
 						],
 						"settings":
@@ -1509,15 +1517,15 @@
 					"file": "/C/xampp/htdocs/vasoleche/application/controllers/Usuario.php",
 					"settings":
 					{
-						"buffer_size": 8171,
+						"buffer_size": 0,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								5464,
-								4630
+								0,
+								0
 							]
 						],
 						"settings":
@@ -1744,7 +1752,7 @@
 					"file": "/C/xampp/htdocs/oficinavirtual/js/jsGeneral.js",
 					"settings":
 					{
-						"buffer_size": 56581,
+						"buffer_size": 56440,
 						"regions":
 						{
 						},
@@ -2085,6 +2093,33 @@
 						},
 						"translation.x": 0.0,
 						"translation.y": 540.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 12,
+					"file": "application/config/constants.php",
+					"settings":
+					{
+						"buffer_size": 2109,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								781,
+								781
+							]
+						],
+						"settings":
+						{
+							"is_xml": false,
+							"syntax": "Packages/PHP/PHP.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 216.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
