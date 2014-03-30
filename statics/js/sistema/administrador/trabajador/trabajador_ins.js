@@ -1,10 +1,4 @@
-$(function(){    
-  // $('#btn_ins_trab_registrar').click(function () {
-  // 	// alert('WERWE')
-  //   var btn = $(this)
-  //   btn.button('loading')
-
-  // });
+$(function(){
 	$('.date-picker').datepicker({autoclose:true}).next().on(ace.click_event, function(){
 		$(this).prev().focus();
 	});
@@ -138,33 +132,34 @@ $(function(){
                 data: $(form).serialize(),
                 success: function(msg){
                     HabilitarBoton('btn_ins_trab_registrar')
-                    if(msg.trim()==1){ 
-                        $("#gracias_usuario").html($("#txt_ins_per_nombres").val()+" "+$("#txt_ins_per_apepat").val()+" "+$("#txt_ins_per_apemat").val())
-                        $("#c_div_registro_exito_datos").modal({
-                            show:true,
-                            backdrop: "static",
-                            keyboard: false
-                        });                
-                        $(".modal ").css({
-                            'margin-left': '-350px',
-                            'margin-top': '-190px'
-                        });
-                        $(".modal-header ").css({
-                            'background-color': '#2968A0', 
-                            'color':'#FFF'
-                        });
-                        cleanForm(form);
-                    }
-                    else if(msg.trim()==3){
-                        mensaje("Ya existe este DNI","a");             
-                    }
-                    else if(msg.trim()==4){
-                        mensaje("Sus datos fueron guardados correctamente. Lamentablemente por razones técnicas no se ha podido enviar el Email.","a");             
-                    }
-                    else{
-                        mensaje("Error Inesperando registrando la persona!, vuelva a intentarlo","r");
-                        setInterval(tologin, 8000);                         
-                    } 
+                    alert(msg)
+                    // if(msg.trim()==1){ 
+                    //     $("#gracias_usuario").html($("#txt_ins_per_nombres").val()+" "+$("#txt_ins_per_apepat").val()+" "+$("#txt_ins_per_apemat").val())
+                    //     $("#c_div_registro_exito_datos").modal({
+                    //         show:true,
+                    //         backdrop: "static",
+                    //         keyboard: false
+                    //     });                
+                    //     $(".modal ").css({
+                    //         'margin-left': '-350px',
+                    //         'margin-top': '-190px'
+                    //     });
+                    //     $(".modal-header ").css({
+                    //         'background-color': '#2968A0', 
+                    //         'color':'#FFF'
+                    //     });
+                    //     cleanForm(form);
+                    // }
+                    // else if(msg.trim()==3){
+                    //     mensaje("Ya existe este DNI","a");             
+                    // }
+                    // else if(msg.trim()==4){
+                    //     mensaje("Sus datos fueron guardados correctamente. Lamentablemente por razones técnicas no se ha podido enviar el Email.","a");             
+                    // }
+                    // else{
+                    //     mensaje("Error Inesperando registrando la persona!, vuelva a intentarlo","r");
+                    //     setInterval(tologin, 8000);                         
+                    // } 
                 },
                 error: function(msg){                
                     mensaje("r","Error Inesperando registrando la persona!, vuelva a intentarlo");                        ;

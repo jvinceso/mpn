@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
-require_once('persona_model.php');
+// print_p(FCPATH);
+require_once('application/models/persona_model.php');
 class Trabajador_model extends Persona_model {
 	private $TmuId;
 	private $AreId;
