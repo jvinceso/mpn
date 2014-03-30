@@ -10,7 +10,7 @@
 	<div class="form-group">
 		<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nombre de Opción </label>
 		<div class="col-sm-9">
-			<input type="hidden" id="txt_ins_ruta" name = "txt_ins_ruta" />
+			<!-- <input type="hidden" id="txt_ins_ruta" name = "txt_ins_ruta" /> -->
 			<input type="text" id="txt_ins_obj_nombre" name = "txt_ins_obj_nombre" placeholder="Ingrese Nombre de la Opción" class="col-xs-10 col-sm-5" />
 		</div>
 	</div>
