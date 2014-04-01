@@ -1,5 +1,9 @@
 $(function(){
-	$('.date-picker').datepicker({autoclose:true}).next().on(ace.click_event, function(){
+	cboTipoEstadoCivil();
+    cboTipoArea();
+    cboTipoCargo()
+    $('.input-mask-phone').mask('(999) 999-999');
+    $('.date-picker').datepicker({autoclose:true}).next().on(ace.click_event, function(){
 		$(this).prev().focus();
 	});
 
@@ -53,8 +57,7 @@ $(function(){
                 maxlength:11
             }, 
             txt_ins_trab_celular: {
-                required: true,
-                maxlength:11
+                required: true
             },
             txt_ins_trab_email: {
                 required: true,
@@ -108,27 +111,27 @@ $(function(){
             // }
         },
         messages: {
-            // txt_ins_trab_dni:{
-            //     remote:"* Ya existe este documento de identidad <a href='recupera_clave.html' style='color: blue'>!Recupera tu clave Aquí¡</a>"
-            // },
-            // txt_ins_trab_email:{
-            //     required:"Ingrese su e-mail"
-            // },
-            // txt_ins_trab_contrasenia: {
-            // 	required:"Ingrese su contraseña",
-            //     minlength:" Ingrese de {0} caracteres a más"
-            // },
-            // txt_ins_per_usuario: {
-            // 	required:"Ingrese su usuario",
-            //     minlength:"Ingrese de {0} caracteres a más",
-            //     remote: "Este usuario ya existe"
-            // }
+            txt_ins_trab_dni:{
+                remote:"Ya existe este documento de identidad <a href='recupera_clave.html' style='color: blue'>!Recupera tu clave Aquí¡</a>"
+            },
+            txt_ins_trab_email:{
+                required:"Ingrese su e-mail"
+            },
+            txt_ins_trab_contrasenia: {
+            	required:"Ingrese su contraseña",
+                minlength:" Ingrese de {0} caracteres a más"
+            },
+            txt_ins_per_usuario: {
+            	required:"Ingrese su usuario",
+                minlength:"Ingrese de {0} caracteres a más",
+                remote: "Este usuario ya existe"
+            }
         },
         submitHandler: function(form){ 
         	DesabilitarBoton('btn_ins_trab_registrar')
             $.ajax({
                 type: "POST",
-                url:  "insTrabajador",
+                url:  "trabajador/insTrabajador",
                 data: $(form).serialize(),
                 success: function(msg){
                     HabilitarBoton('btn_ins_trab_registrar')
@@ -169,3 +172,51 @@ $(function(){
     });
 	
 })
+function cboTipoEstadoCivil(){  
+    // msgLoading("#c_cbo_ins_not_cat");    
+    $.ajax({
+        type: "POST",
+        url: "Trabajador/cboTipoEstadoCivil",
+        cache: false,
+        success: function(data) { 
+            $("#c_cbo_ins_trab_estcivil").html(data);     
+            // $(".chzn-select").chosen();
+        },
+        error: function() { 
+            alert("error")
+            // msgError("#c_cbo_ins_trab_estcivil");   
+        }              
+    });        
+}
+function cboTipoArea(){  
+    // msgLoading("#c_cbo_ins_not_cat");    
+    $.ajax({
+        type: "POST",
+        url: "Trabajador/cboTipoArea",
+        cache: false,
+        success: function(data) { 
+            $("#c_cbo_ins_trab_area").html(data);     
+            $(".chosen-select").chosen(); ;
+        },
+        error: function() { 
+            alert("error")
+            // msgError("#c_cbo_ins_trab_estcivil");   
+        }              
+    });        
+}
+function cboTipoCargo(){  
+    // msgLoading("#c_cbo_ins_not_cat");    
+    $.ajax({
+        type: "POST",
+        url: "Trabajador/cboTipoCargo",
+        cache: false,
+        success: function(data) { 
+            $("#c_cbo_ins_trab_cargo").html(data);     
+            $(".chosen-select").chosen(); ;
+        },
+        error: function() { 
+            alert("error")
+            // msgError("#c_cbo_ins_trab_estcivil");   
+        }              
+    });        
+}

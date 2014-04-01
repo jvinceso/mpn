@@ -18,28 +18,42 @@ class Trabajador extends CI_Controller {
 	function prueba(){
 		echo json_encode(array(1));
 	}
+
+	function cboTipoEstadoCivil() {
+        $result = $this->objTrabajador->cboTipoEstadoCivil();
+        echo $result;
+    }
+    function cboTipoArea() {
+        $result = $this->objTrabajador->cboTipoArea();
+        echo $result;
+    }
+    function cboTipoCargo() {
+        $result = $this->objTrabajador->cboTipoCargo();
+        echo $result;
+    }
+
 	function insTrabajador(){
 		$this->objTrabajador->set_AreId( $this->input->post('cbo_ins_trab_area') );
 		$this->objTrabajador->set_MulCargo( $this->input->post('cbo_ins_trab_cargo') );	
-		$this->objTrabajador->setPerApellidoPaterno( $this->input->post('txt_ins_mod_icono') );	
-		$this->objTrabajador->setPerApellidoMaterno( $this->input->post('txt_ins_mod_icono') );	
-		$this->objTrabajador->setPerNombres( $this->input->post('txt_ins_mod_icono') );	
-		$this->objTrabajador->setPerDNI( $this->input->post('txt_ins_mod_icono') );	
-		$this->objTrabajador->setPerSexo( $this->input->post('txt_ins_mod_icono') );	
-		$this->objTrabajador->setPerFechaNacimiento( $this->input->post('txt_ins_mod_icono') );	
-		$this->objTrabajador->setPerDireccion( $this->input->post('txt_ins_mod_icono') );	
-		$this->objTrabajador->setPerEmail( $this->input->post('txt_ins_mod_icono') );	
-		$this->objTrabajador->setPerTelefono( $this->input->post('txt_ins_mod_icono') );	
-		$this->objTrabajador->setPerCelular( $this->input->post('txt_ins_mod_icono') );	
-		$this->objTrabajador->setPerEstadoCivil( $this->input->post('txt_ins_mod_icono') );	
-		print_r(objTrabajador);
-		// $result = $this->objModulo->insAplicacion();
-		// if ($result) {
-		// 	$this->objModulo->insAplicacion($);
-		// 	echo "1";
-		// } else {
-		// 	echo "0";
-		// }
+		$this->objTrabajador->setPerApellidoPaterno( $this->input->post('txt_ins_trab_appaterno') );	
+		$this->objTrabajador->setPerApellidoMaterno( $this->input->post('txt_ins_trab_apmaterno') );	
+		$this->objTrabajador->setPerNombres( $this->input->post('txt_ins_trab_nombres') );	
+		$this->objTrabajador->setPerDNI( $this->input->post('txt_ins_trab_dni') );	
+		$this->objTrabajador->setPerSexo( $this->input->post('cbo_ins_trab_sexo') );	
+		$this->objTrabajador->setPerFechaNacimiento( $this->input->post('txt_ins_trab_nacimiento') );	
+		$this->objTrabajador->setPerDireccion( $this->input->post('txt_ins_trab_direccion') );	
+		$this->objTrabajador->setPerEmail( $this->input->post('txt_ins_trab_email') );	
+		$this->objTrabajador->setPerTelefono( $this->input->post('txt_ins_trab_telefono') );	
+		$this->objTrabajador->setPerCelular( $this->input->post('txt_ins_trab_celular') );	
+		$this->objTrabajador->setPerEstadoCivil( $this->input->post('cbo_ins_trab_estcivil') );	
+		// print_p($this->objTrabajador);
+		$result = $this->objTrabajador->insTrabajador();
+		if ($result) {
+			// $this->objModulo->insAplicacion($);
+			echo "1";
+		} else {
+			echo "0";
+		}
 	}
 }
 ?>
