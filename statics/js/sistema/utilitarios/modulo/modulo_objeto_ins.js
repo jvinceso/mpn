@@ -11,7 +11,7 @@ $(function(){
 		evt.preventDefault();
 		var ruta  = $(this).data('path');
 		console.log(ruta);
-		$("#txt_ins_ruta").val(ruta);
+		$("#txt_ins_obj_file").val(ruta);
 		$('.popedit').dialog('close');
 	})
 /*

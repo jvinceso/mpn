@@ -4,6 +4,18 @@
 		"selected_items":
 		[
 			[
+				"func_",
+				"func_apertura"
+			],
+			[
+				"contro",
+				"controladores"
+			],
+			[
+				"for",
+				"foreach	foreach …"
+			],
+			[
 				"name",
 				"nameTable"
 			],
@@ -207,7 +219,7 @@
 			"file": "application/controllers/utilitarios/modulo.php",
 			"settings":
 			{
-				"buffer_size": 5387,
+				"buffer_size": 4635,
 				"line_ending": "Windows"
 			}
 		},
@@ -215,16 +227,48 @@
 			"file": "application/views/utilitarios/modulo/ins_objetos_view.php",
 			"settings":
 			{
-				"buffer_size": 1836,
+				"buffer_size": 1915,
 				"line_ending": "Windows",
 				"name": "ins_objetos_view.php"
+			}
+		},
+		{
+			"file": "application/models/objeto_model.php",
+			"settings":
+			{
+				"buffer_size": 3703,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "application/models/utilitarios/modulo_model.php",
+			"settings":
+			{
+				"buffer_size": 2408,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/jvinces.SISMPT0/Downloads/mvc/usuarios/model.php",
+			"settings":
+			{
+				"buffer_size": 2920,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "result/objeto_detalle_model.php",
+			"settings":
+			{
+				"buffer_size": 1903,
+				"line_ending": "Unix"
 			}
 		},
 		{
 			"file": "application/views/utilitarios/modulo/qry_controladores_view.php",
 			"settings":
 			{
-				"buffer_size": 506,
+				"buffer_size": 588,
 				"line_ending": "Windows"
 			}
 		},
@@ -240,7 +284,7 @@
 			"file": "statics/js/sistema/utilitarios/modulo/modulo_ins.js",
 			"settings":
 			{
-				"buffer_size": 1357,
+				"buffer_size": 1413,
 				"line_ending": "Windows"
 			}
 		},
@@ -248,41 +292,17 @@
 			"file": "statics/js/sistema/utilitarios/modulo/modulo_objeto_ins.js",
 			"settings":
 			{
-				"buffer_size": 1931,
+				"buffer_size": 2442,
 				"line_ending": "Windows",
 				"name": "modulo_objeto_ins.js"
-			}
-		},
-		{
-			"file": "/C/xampp/htdocs/vasoleche/application/views/usuario/permisos_view.php",
-			"settings":
-			{
-				"buffer_size": 547,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/C/xampp/htdocs/vasoleche/application/controllers/Usuario.php",
-			"settings":
-			{
-				"buffer_size": 8171,
-				"line_ending": "Unix"
 			}
 		},
 		{
 			"file": "statics/js/sistema/jsGeneral.js",
 			"settings":
 			{
-				"buffer_size": 9006,
+				"buffer_size": 9550,
 				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/C/xampp/htdocs/oficinavirtual/js/jsGeneral.js",
-			"settings":
-			{
-				"buffer_size": 56581,
-				"line_ending": "Windows"
 			}
 		},
 		{
@@ -290,14 +310,6 @@
 			"settings":
 			{
 				"buffer_size": 1816,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "application/models/utilitarios/modulo_model.php",
-			"settings":
-			{
-				"buffer_size": 2408,
 				"line_ending": "Windows"
 			}
 		}
@@ -354,13 +366,29 @@
 	},
 	"file_history":
 	[
+		"/C/xampp/htdocs/mpn/result/objeto_model.php",
+		"/C/xampp/htdocs/mpn/application/models/usuario_model.php",
+		"/C/Users/jvinces.SISMPT0/Downloads/mvc/usuarios/model.php",
+		"/C/Users/jvinces.SISMPT0/Downloads/mvc/core/db_abstract_model.php",
+		"/C/Users/jvinces.SISMPT0/Downloads/mvc/usuarios/controller.php",
+		"/C/Users/jvinces.SISMPT0/Downloads/mvc/usuarios/view.php",
+		"/C/xampp/htdocs/vasoleche/application/controllers/Usuario.php",
+		"/C/xampp/htdocs/vasoleche/application/views/usuario/permisos_view.php",
+		"/C/xampp/htdocs/oficinavirtual/js/jsGeneral.js",
+		"/C/xampp/htdocs/clinica/application/controllers/login.php",
+		"/C/xampp/htdocs/mpn/application/controllers/login.php",
+		"/C/xampp/htdocs/mpn/application/models/mysql2php.php",
+		"/C/xampp/htdocs/mpn/.gitignore",
+		"/C/xampp/htdocs/clinica/application/controllers/ubigeo.php",
+		"/C/xampp/htdocs/mpn/statics/css/sistema/estilos.css",
+		"/C/xampp/htdocs/mpn/statics/css/ace.min.css",
+		"/C/xampp/htdocs/mpn-plantilla-v2.0/198.74.61.72/themes/preview/ace/nestable-list.html",
 		"/C/xampp/htdocs/mpn/application/views/utilitarios/modulo/qry_controladores_view",
 		"/C/xampp/htdocs/vasoleche/application/views/usuario/panel_view.php",
 		"/C/xampp/htdocs/vasoleche/application/views/usuario/qry_view.php",
 		"/C/xampp/htdocs/vasoleche/application/views/usuario/qry_personas_select.php",
 		"/C/xampp/htdocs/mpn/application/views/utilitarios/modulo/ins_view.php",
 		"/C/xampp/htdocs/oficinavirtual/js/sigma/jsBandejas.js",
-		"/C/xampp/htdocs/mpn/statics/css/sistema/estilos.css",
 		"/C/xampp/htdocs/oficinavirtual/application/controllers/libro_reclamaciones/multimedia.php",
 		"/C/xampp/htdocs/xampp/splash.php",
 		"/C/xampp/htdocs/xampp/index.php",
@@ -380,10 +408,8 @@
 		"/C/xampp/htdocs/oficinavirtual/application/views/dashboard/header.php",
 		"/C/Users/SERVER.CCR/AppData/Local/Temp/Temp1_mpn-11-03-14-08-00.zip/mpn/application/helpers/tables_helper.php",
 		"/C/xampp/htdocs/mpn/application/controllers/utilitarios/modulo.php",
-		"/C/xampp/htdocs/vasoleche/application/controllers/Usuario.php",
 		"/C/xampp/htdocs/mpn/application/views/login_view.php",
 		"/C/xampp/htdocs/trujillodigital/TupaMapro/class/service.php",
-		"/C/xampp/htdocs/oficinavirtual/js/jsGeneral.js",
 		"/C/xampp/htdocs/oficinavirtual/js/helpdesk/jsMultimedia.js",
 		"/C/xampp/htdocs/oficinavirtual/css/dashboard/style.css",
 		"/C/xampp/htdocs/mpn/application/views/utilitarios/modulo/panel_view.php",
@@ -430,7 +456,6 @@
 		"/C/Users/SERVER.CCR/Downloads/jquery-ui-1.10.3/ui.dialog.jquery.json",
 		"/G/ealiceistas/application/backend/models/informacionliceo/comunicados_model.php",
 		"/C/xampp/htdocs/mpn/application/controllers/prueba.php",
-		"/C/xampp/htdocs/clinica/application/controllers/login.php",
 		"/C/xampp/htdocs/portal2014/application/libraries/jqgridmpt.php",
 		"/C/xampp/htdocs/trujillodigital/TupaMapro/acotacion.php",
 		"/C/xampp/htdocs/trujillodigital/TupaMapro/class/crudGrid.php",
@@ -449,12 +474,10 @@
 		"/C/xampp/htdocs/mpn/application/views/utilitarios/modulo_view.php",
 		"/C/xampp/htdocs/mpn/application/views/inicio_view.php",
 		"/C/xampp/htdocs/mpn/application/libraries/loaders.php",
-		"/C/xampp/htdocs/mpn/application/models/usuario_model.php",
 		"/C/xampp/htdocs/clinica/application/views/layout/header.php",
 		"/C/xampp/htdocs/mpn/statics/js/master.js",
 		"/C/xampp/htdocs/mpn/modelado_bd/bd_01-03-14-05-50.sql",
 		"/C/xampp/htdocs/clinica/application/views/login/login_view.php",
-		"/C/xampp/htdocs/mpn/application/controllers/login.php",
 		"/E/Vinces/sistemas-pueblonuevo/24-02-14/MPN-plantilla/index.html",
 		"/C/xampp/htdocs/oficinavirtual/application/controllers/sistram/crearExpediente.php",
 		"/E/Vinces/sistemas-pueblonuevo/24-02-14/MPN-plantilla/forms.html",
@@ -470,18 +493,7 @@
 		"/C/xampp/htdocs/oficinavirtual/application/views/sigma/nuevoespectaculo/257_insPanel_view.php",
 		"/C/xampp/htdocs/oficinavirtual/application/controllers/sigma/tramite.php",
 		"/C/xampp/htdocs/oficinavirtual/application/views/sigma/nuevotramite/nuevo_tramite_view.php",
-		"/C/xampp/htdocs/oficinavirtual/application/models/sigma/acotacion_subsanacion_model.php",
-		"/C/xampp/htdocs/oficinavirtual/application/controllers/sigma/acotacion_subsanacion.php",
-		"/C/xampp/htdocs/oficinavirtual/js/sigma/nuevo_publicidad/jsResolucionGerencia.js",
-		"//172.20.11.12/portal/application/controllers/chat.php",
-		"/C/xampp/htdocs/oficinavirtual/js/sigma/etapasTramite/jsAcotacionSubsanacion.js",
-		"/C/xampp/htdocs/oficinavirtual/application/controllers/sigma/etapasTramite.php",
-		"/C/xampp/htdocs/oficinavirtual/application/views/sigma/etapaProcedimiento/registrarrequisitos_view.php",
-		"/C/xampp/htdocs/oficinavirtual/application/controllers/sigma/evaluacionrequisitos.php",
-		"/C/xampp/htdocs/oficinavirtual/application/views/sigma/nuevopublicidad/definir_ancho_alto_view.php",
-		"/C/xampp/htdocs/oficinavirtual/js/sigma/nuevo_publicidad/jsNuevoPublicidad.js",
-		"/C/xampp/htdocs/oficinavirtual/application/models/sigma/procesos_generales_model.php",
-		"/C/Users/SERVER.CCR/AppData/Roaming/Sublime Text 2/Packages/User/Default (Windows).sublime-keymap"
+		"/C/xampp/htdocs/oficinavirtual/application/models/sigma/acotacion_subsanacion_model.php"
 	],
 	"find":
 	{
@@ -489,9 +501,10 @@
 	},
 	"find_in_files":
 	{
-		"height": 0.0,
+		"height": 93.0,
 		"where_history":
 		[
+			"C:\\xampp\\htdocs\\mpn\\statics\\css",
 			"C:\\xampp\\htdocs\\oficinavirtual",
 			"C:\\xampp\\htdocs\\oficinavirtual\\css",
 			"C:\\xampp\\htdocs\\oficinavirtual\\js",
@@ -522,6 +535,14 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"id",
+			"(",
+			"limpiarForm",
+			"Controladores",
+			"txt_ins_ruta",
+			"txt_ins_apli_codigo",
+			"bigger-",
+			"ul",
 			"objPermisos",
 			"controlador",
 			"pop",
@@ -641,15 +662,7 @@
 			"nPerId",
 			"form",
 			"js/",
-			"js",
-			"assets",
-			"css/",
-			"`muni-pueblonuevo`",
-			"div",
-			"qry_lista_licencias_view",
-			"btn_confirm_resolucion",
-			"registramovimientoacotacion",
-			"Evaluacion de requisitos y registro de datos del expediente"
+			"js"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -670,7 +683,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 2,
 			"sheets":
 			[
 				{
@@ -678,15 +691,15 @@
 					"file": "application/controllers/utilitarios/modulo.php",
 					"settings":
 					{
-						"buffer_size": 5387,
+						"buffer_size": 4635,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3336,
-								3336
+								1935,
+								1935
 							]
 						],
 						"settings":
@@ -785,7 +798,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 606.0,
+						"translation.y": 855.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -795,15 +808,15 @@
 					"file": "application/views/utilitarios/modulo/ins_objetos_view.php",
 					"settings":
 					{
-						"buffer_size": 1836,
+						"buffer_size": 1915,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1130,
-								1149
+								1040,
+								1056
 							]
 						],
 						"settings":
@@ -903,25 +916,25 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 190.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "application/views/utilitarios/modulo/qry_controladores_view.php",
+					"file": "application/models/objeto_model.php",
 					"settings":
 					{
-						"buffer_size": 506,
+						"buffer_size": 3703,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								476,
-								476
+								1461,
+								1461
 							]
 						],
 						"settings":
@@ -1019,25 +1032,25 @@
 							"syntax": "Packages/PHP/PHP.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 285.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 3,
-					"file": "application/views/utilitarios/modulo/panel_view.php",
+					"file": "application/models/utilitarios/modulo_model.php",
 					"settings":
 					{
-						"buffer_size": 2142,
+						"buffer_size": 2408,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								952,
-								952
+								1054,
+								804
 							]
 						],
 						"settings":
@@ -1136,25 +1149,25 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 741.0,
+						"translation.y": 540.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 4,
-					"file": "statics/js/sistema/utilitarios/modulo/modulo_ins.js",
+					"file": "/C/Users/jvinces.SISMPT0/Downloads/mvc/usuarios/model.php",
 					"settings":
 					{
-						"buffer_size": 1357,
+						"buffer_size": 2920,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								323,
-								323
+								409,
+								333
 							]
 						],
 						"settings":
@@ -1206,6 +1219,7 @@
 							"gjslint_options":
 							[
 							],
+							"is_xml": false,
 							"javascript_linter": "jshint",
 							"jshint_options":
 							{
@@ -1248,43 +1262,30 @@
 								"Ruby on Rails": "ruby"
 							},
 							"sublimelinter_wrap_find": true,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"syntax": "Packages/PHP/PHP.tmLanguage",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 456.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 5,
-					"file": "statics/js/sistema/utilitarios/modulo/modulo_objeto_ins.js",
+					"file": "result/objeto_detalle_model.php",
 					"settings":
 					{
-						"buffer_size": 1931,
+						"buffer_size": 1903,
 						"regions":
 						{
-							"bookmarks":
-							{
-								"flags": 144,
-								"icon": "bookmark",
-								"regions":
-								[
-									[
-										1767,
-										1767
-									]
-								],
-								"scope": "bookmarks"
-							}
 						},
 						"selection":
 						[
 							[
-								193,
-								193
+								564,
+								564
 							]
 						],
 						"settings":
@@ -1295,7 +1296,6 @@
 								"README",
 								"FIXME"
 							],
-							"auto_name": "modulo_objeto_ins.js",
 							"csslint_options":
 							{
 								"adjoining-classes": "warning",
@@ -1337,6 +1337,7 @@
 							"gjslint_options":
 							[
 							],
+							"is_xml": false,
 							"javascript_linter": "jshint",
 							"jshint_options":
 							{
@@ -1379,7 +1380,7 @@
 								"Ruby on Rails": "ruby"
 							},
 							"sublimelinter_wrap_find": true,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"syntax": "Packages/PHP/PHP.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
@@ -1390,18 +1391,18 @@
 				},
 				{
 					"buffer": 6,
-					"file": "/C/xampp/htdocs/vasoleche/application/views/usuario/permisos_view.php",
+					"file": "application/views/utilitarios/modulo/qry_controladores_view.php",
 					"settings":
 					{
-						"buffer_size": 547,
+						"buffer_size": 588,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								547,
-								180
+								344,
+								359
 							]
 						],
 						"settings":
@@ -1506,18 +1507,18 @@
 				},
 				{
 					"buffer": 7,
-					"file": "/C/xampp/htdocs/vasoleche/application/controllers/Usuario.php",
+					"file": "application/views/utilitarios/modulo/panel_view.php",
 					"settings":
 					{
-						"buffer_size": 8171,
+						"buffer_size": 2142,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								5464,
-								4630
+								1386,
+								1392
 							]
 						],
 						"settings":
@@ -1613,8 +1614,7 @@
 							},
 							"sublimelinter_wrap_find": true,
 							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 513.0,
@@ -1624,18 +1624,18 @@
 				},
 				{
 					"buffer": 8,
-					"file": "statics/js/sistema/jsGeneral.js",
+					"file": "statics/js/sistema/utilitarios/modulo/modulo_ins.js",
 					"settings":
 					{
-						"buffer_size": 9006,
+						"buffer_size": 1413,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4613,
-								4665
+								1027,
+								1013
 							]
 						],
 						"settings":
@@ -1734,25 +1734,155 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 2492.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 9,
-					"file": "/C/xampp/htdocs/oficinavirtual/js/jsGeneral.js",
+					"file": "statics/js/sistema/utilitarios/modulo/modulo_objeto_ins.js",
 					"settings":
 					{
-						"buffer_size": 56581,
+						"buffer_size": 2442,
+						"regions":
+						{
+							"bookmarks":
+							{
+								"flags": 144,
+								"icon": "bookmark",
+								"regions":
+								[
+									[
+										2278,
+										2278
+									]
+								],
+								"scope": "bookmarks"
+							}
+						},
+						"selection":
+						[
+							[
+								1392,
+								1392
+							]
+						],
+						"settings":
+						{
+							"annotations":
+							[
+								"TODO",
+								"README",
+								"FIXME"
+							],
+							"auto_name": "modulo_objeto_ins.js",
+							"csslint_options":
+							{
+								"adjoining-classes": "warning",
+								"box-model": true,
+								"box-sizing": "warning",
+								"compatible-vendor-prefixes": "warning",
+								"display-property-grouping": true,
+								"duplicate-background-images": "warning",
+								"duplicate-properties": true,
+								"empty-rules": true,
+								"errors": true,
+								"fallback-colors": "warning",
+								"floats": "warning",
+								"font-faces": "warning",
+								"font-sizes": "warning",
+								"gradients": "warning",
+								"ids": "warning",
+								"import": "warning",
+								"important": "warning",
+								"known-properties": true,
+								"outline-none": "warning",
+								"overqualified-elements": "warning",
+								"qualified-headings": "warning",
+								"regex-selectors": "warning",
+								"rules-count": "warning",
+								"shorthand": "warning",
+								"star-property-hack": "warning",
+								"text-indent": "warning",
+								"underscore-property-hack": "warning",
+								"unique-headings": "warning",
+								"universal-selector": "warning",
+								"vendor-prefix": true,
+								"zero-units": "warning"
+							},
+							"gjslint_ignore":
+							[
+								110
+							],
+							"gjslint_options":
+							[
+							],
+							"javascript_linter": "jshint",
+							"jshint_options":
+							{
+								"browser": true,
+								"evil": true,
+								"regexdash": true,
+								"sub": true,
+								"trailing": true,
+								"wsh": true
+							},
+							"pep8": true,
+							"pep8_ignore":
+							[
+								"E501"
+							],
+							"perl_linter": "perlcritic",
+							"pyflakes_ignore":
+							[
+							],
+							"pyflakes_ignore_import_*": true,
+							"sublimelinter": true,
+							"sublimelinter_delay": 2,
+							"sublimelinter_disable":
+							[
+							],
+							"sublimelinter_executable_map":
+							{
+							},
+							"sublimelinter_fill_outlines": false,
+							"sublimelinter_gutter_marks": true,
+							"sublimelinter_gutter_marks_theme": "simple",
+							"sublimelinter_mark_style": "none",
+							"sublimelinter_notes": false,
+							"sublimelinter_objj_check_ascii": false,
+							"sublimelinter_popup_errors_on_save": false,
+							"sublimelinter_syntax_map":
+							{
+								"C++": "c",
+								"Python Django": "python",
+								"Ruby on Rails": "ruby"
+							},
+							"sublimelinter_wrap_find": true,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "statics/js/sistema/jsGeneral.js",
+					"settings":
+					{
+						"buffer_size": 9550,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								9044,
+								9055
 							]
 						],
 						"settings":
@@ -1851,13 +1981,13 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 15935.0,
+						"translation.y": 4369.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 10,
+					"buffer": 11,
 					"file": "statics/js/sistema/utilitarios/modulo/modulo_panel.js",
 					"settings":
 					{
@@ -1968,123 +2098,6 @@
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 11,
-					"file": "application/models/utilitarios/modulo_model.php",
-					"settings":
-					{
-						"buffer_size": 2408,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2005,
-								2005
-							]
-						],
-						"settings":
-						{
-							"annotations":
-							[
-								"TODO",
-								"README",
-								"FIXME"
-							],
-							"csslint_options":
-							{
-								"adjoining-classes": "warning",
-								"box-model": true,
-								"box-sizing": "warning",
-								"compatible-vendor-prefixes": "warning",
-								"display-property-grouping": true,
-								"duplicate-background-images": "warning",
-								"duplicate-properties": true,
-								"empty-rules": true,
-								"errors": true,
-								"fallback-colors": "warning",
-								"floats": "warning",
-								"font-faces": "warning",
-								"font-sizes": "warning",
-								"gradients": "warning",
-								"ids": "warning",
-								"import": "warning",
-								"important": "warning",
-								"known-properties": true,
-								"outline-none": "warning",
-								"overqualified-elements": "warning",
-								"qualified-headings": "warning",
-								"regex-selectors": "warning",
-								"rules-count": "warning",
-								"shorthand": "warning",
-								"star-property-hack": "warning",
-								"text-indent": "warning",
-								"underscore-property-hack": "warning",
-								"unique-headings": "warning",
-								"universal-selector": "warning",
-								"vendor-prefix": true,
-								"zero-units": "warning"
-							},
-							"gjslint_ignore":
-							[
-								110
-							],
-							"gjslint_options":
-							[
-							],
-							"is_xml": false,
-							"javascript_linter": "jshint",
-							"jshint_options":
-							{
-								"browser": true,
-								"evil": true,
-								"regexdash": true,
-								"sub": true,
-								"trailing": true,
-								"wsh": true
-							},
-							"pep8": true,
-							"pep8_ignore":
-							[
-								"E501"
-							],
-							"perl_linter": "perlcritic",
-							"pyflakes_ignore":
-							[
-							],
-							"pyflakes_ignore_import_*": true,
-							"sublimelinter": true,
-							"sublimelinter_delay": 2,
-							"sublimelinter_disable":
-							[
-							],
-							"sublimelinter_executable_map":
-							{
-							},
-							"sublimelinter_fill_outlines": false,
-							"sublimelinter_gutter_marks": true,
-							"sublimelinter_gutter_marks_theme": "simple",
-							"sublimelinter_mark_style": "none",
-							"sublimelinter_notes": false,
-							"sublimelinter_objj_check_ascii": false,
-							"sublimelinter_popup_errors_on_save": false,
-							"sublimelinter_syntax_map":
-							{
-								"C++": "c",
-								"Python Django": "python",
-								"Ruby on Rails": "ruby"
-							},
-							"sublimelinter_wrap_find": true,
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 540.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
