@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"nobj",
+				"nObjIdPadre"
+			],
+			[
 				"func_",
 				"func_apertura"
 			],
@@ -219,7 +223,7 @@
 			"file": "application/controllers/utilitarios/modulo.php",
 			"settings":
 			{
-				"buffer_size": 4635,
+				"buffer_size": 4793,
 				"line_ending": "Windows"
 			}
 		},
@@ -227,7 +231,7 @@
 			"file": "application/views/utilitarios/modulo/ins_objetos_view.php",
 			"settings":
 			{
-				"buffer_size": 1915,
+				"buffer_size": 1839,
 				"line_ending": "Unix",
 				"name": "ins_objetos_view.php"
 			}
@@ -236,7 +240,7 @@
 			"file": "application/models/objeto_model.php",
 			"settings":
 			{
-				"buffer_size": 3703,
+				"buffer_size": 3675,
 				"line_ending": "Unix"
 			}
 		},
@@ -249,14 +253,6 @@
 			}
 		},
 		{
-			"file": "/C/Users/jvinces.SISMPT0/Downloads/mvc/usuarios/model.php",
-			"settings":
-			{
-				"buffer_size": 2920,
-				"line_ending": "Unix"
-			}
-		},
-		{
 			"file": "result/objeto_detalle_model.php",
 			"settings":
 			{
@@ -265,10 +261,18 @@
 			}
 		},
 		{
+			"file": "application/models/aplicacion_model.php",
+			"settings":
+			{
+				"buffer_size": 1768,
+				"line_ending": "Unix"
+			}
+		},
+		{
 			"file": "application/views/utilitarios/modulo/qry_controladores_view.php",
 			"settings":
 			{
-				"buffer_size": 588,
+				"buffer_size": 558,
 				"line_ending": "Windows"
 			}
 		},
@@ -284,7 +288,7 @@
 			"file": "statics/js/sistema/utilitarios/modulo/modulo_ins.js",
 			"settings":
 			{
-				"buffer_size": 1413,
+				"buffer_size": 1464,
 				"line_ending": "Windows"
 			}
 		},
@@ -292,7 +296,7 @@
 			"file": "statics/js/sistema/utilitarios/modulo/modulo_objeto_ins.js",
 			"settings":
 			{
-				"buffer_size": 2442,
+				"buffer_size": 2388,
 				"line_ending": "Unix",
 				"name": "modulo_objeto_ins.js"
 			}
@@ -311,6 +315,14 @@
 			{
 				"buffer_size": 1816,
 				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "application/config/constants.php",
+			"settings":
+			{
+				"buffer_size": 2115,
+				"line_ending": "Unix"
 			}
 		}
 	],
@@ -366,11 +378,12 @@
 	},
 	"file_history":
 	[
+		"/C/Users/jvinces.SISMPT0/Downloads/mvc/usuarios/model.php",
+		"/C/xampp/htdocs/mpn/result/aplicacion_model.php",
+		"/C/Users/jvinces.SISMPT0/Downloads/mvc/usuarios/controller.php",
 		"/C/xampp/htdocs/mpn/result/objeto_model.php",
 		"/C/xampp/htdocs/mpn/application/models/usuario_model.php",
-		"/C/Users/jvinces.SISMPT0/Downloads/mvc/usuarios/model.php",
 		"/C/Users/jvinces.SISMPT0/Downloads/mvc/core/db_abstract_model.php",
-		"/C/Users/jvinces.SISMPT0/Downloads/mvc/usuarios/controller.php",
 		"/C/Users/jvinces.SISMPT0/Downloads/mvc/usuarios/view.php",
 		"/C/xampp/htdocs/vasoleche/application/controllers/Usuario.php",
 		"/C/xampp/htdocs/vasoleche/application/views/usuario/permisos_view.php",
@@ -492,8 +505,7 @@
 		"/C/xampp/htdocs/oficinavirtual/application/views/sigma/nuevotramite/panel_view.php",
 		"/C/xampp/htdocs/oficinavirtual/application/views/sigma/nuevoespectaculo/257_insPanel_view.php",
 		"/C/xampp/htdocs/oficinavirtual/application/controllers/sigma/tramite.php",
-		"/C/xampp/htdocs/oficinavirtual/application/views/sigma/nuevotramite/nuevo_tramite_view.php",
-		"/C/xampp/htdocs/oficinavirtual/application/models/sigma/acotacion_subsanacion_model.php"
+		"/C/xampp/htdocs/oficinavirtual/application/views/sigma/nuevotramite/nuevo_tramite_view.php"
 	],
 	"find":
 	{
@@ -535,6 +547,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"list-unstyled",
 			"id",
 			"(",
 			"limpiarForm",
@@ -661,8 +674,7 @@
 			"nUsuCodigo",
 			"nPerId",
 			"form",
-			"js/",
-			"js"
+			"js/"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -683,7 +695,7 @@
 	"groups":
 	[
 		{
-			"selected": 10,
+			"selected": 2,
 			"sheets":
 			[
 				{
@@ -691,15 +703,15 @@
 					"file": "application/controllers/utilitarios/modulo.php",
 					"settings":
 					{
-						"buffer_size": 4635,
+						"buffer_size": 4793,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1935,
-								1935
+								4690,
+								4690
 							]
 						],
 						"settings":
@@ -798,7 +810,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 855.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -808,15 +820,15 @@
 					"file": "application/views/utilitarios/modulo/ins_objetos_view.php",
 					"settings":
 					{
-						"buffer_size": 1915,
+						"buffer_size": 1839,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								427,
+								361
 							]
 						],
 						"settings":
@@ -926,15 +938,15 @@
 					"file": "application/models/objeto_model.php",
 					"settings":
 					{
-						"buffer_size": 3703,
+						"buffer_size": 3675,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								1327,
+								1327
 							]
 						],
 						"settings":
@@ -1032,7 +1044,7 @@
 							"syntax": "Packages/PHP/PHP.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 285.0,
+						"translation.y": 399.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -1156,124 +1168,6 @@
 				},
 				{
 					"buffer": 4,
-					"file": "/C/Users/jvinces.SISMPT0/Downloads/mvc/usuarios/model.php",
-					"settings":
-					{
-						"buffer_size": 2920,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								409,
-								333
-							]
-						],
-						"settings":
-						{
-							"annotations":
-							[
-								"TODO",
-								"README",
-								"FIXME"
-							],
-							"csslint_options":
-							{
-								"adjoining-classes": "warning",
-								"box-model": true,
-								"box-sizing": "warning",
-								"compatible-vendor-prefixes": "warning",
-								"display-property-grouping": true,
-								"duplicate-background-images": "warning",
-								"duplicate-properties": true,
-								"empty-rules": true,
-								"errors": true,
-								"fallback-colors": "warning",
-								"floats": "warning",
-								"font-faces": "warning",
-								"font-sizes": "warning",
-								"gradients": "warning",
-								"ids": "warning",
-								"import": "warning",
-								"important": "warning",
-								"known-properties": true,
-								"outline-none": "warning",
-								"overqualified-elements": "warning",
-								"qualified-headings": "warning",
-								"regex-selectors": "warning",
-								"rules-count": "warning",
-								"shorthand": "warning",
-								"star-property-hack": "warning",
-								"text-indent": "warning",
-								"underscore-property-hack": "warning",
-								"unique-headings": "warning",
-								"universal-selector": "warning",
-								"vendor-prefix": true,
-								"zero-units": "warning"
-							},
-							"gjslint_ignore":
-							[
-								110
-							],
-							"gjslint_options":
-							[
-							],
-							"is_xml": false,
-							"javascript_linter": "jshint",
-							"jshint_options":
-							{
-								"browser": true,
-								"evil": true,
-								"regexdash": true,
-								"sub": true,
-								"trailing": true,
-								"wsh": true
-							},
-							"pep8": true,
-							"pep8_ignore":
-							[
-								"E501"
-							],
-							"perl_linter": "perlcritic",
-							"pyflakes_ignore":
-							[
-							],
-							"pyflakes_ignore_import_*": true,
-							"sublimelinter": true,
-							"sublimelinter_delay": 2,
-							"sublimelinter_disable":
-							[
-							],
-							"sublimelinter_executable_map":
-							{
-							},
-							"sublimelinter_fill_outlines": false,
-							"sublimelinter_gutter_marks": true,
-							"sublimelinter_gutter_marks_theme": "simple",
-							"sublimelinter_mark_style": "none",
-							"sublimelinter_notes": false,
-							"sublimelinter_objj_check_ascii": false,
-							"sublimelinter_popup_errors_on_save": false,
-							"sublimelinter_syntax_map":
-							{
-								"C++": "c",
-								"Python Django": "python",
-								"Ruby on Rails": "ruby"
-							},
-							"sublimelinter_wrap_find": true,
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 456.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
 					"file": "result/objeto_detalle_model.php",
 					"settings":
 					{
@@ -1390,19 +1284,136 @@
 					"type": "text"
 				},
 				{
-					"buffer": 6,
-					"file": "application/views/utilitarios/modulo/qry_controladores_view.php",
+					"buffer": 5,
+					"file": "application/models/aplicacion_model.php",
 					"settings":
 					{
-						"buffer_size": 588,
+						"buffer_size": 1768,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								344,
-								359
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"annotations":
+							[
+								"TODO",
+								"README",
+								"FIXME"
+							],
+							"csslint_options":
+							{
+								"adjoining-classes": "warning",
+								"box-model": true,
+								"box-sizing": "warning",
+								"compatible-vendor-prefixes": "warning",
+								"display-property-grouping": true,
+								"duplicate-background-images": "warning",
+								"duplicate-properties": true,
+								"empty-rules": true,
+								"errors": true,
+								"fallback-colors": "warning",
+								"floats": "warning",
+								"font-faces": "warning",
+								"font-sizes": "warning",
+								"gradients": "warning",
+								"ids": "warning",
+								"import": "warning",
+								"important": "warning",
+								"known-properties": true,
+								"outline-none": "warning",
+								"overqualified-elements": "warning",
+								"qualified-headings": "warning",
+								"regex-selectors": "warning",
+								"rules-count": "warning",
+								"shorthand": "warning",
+								"star-property-hack": "warning",
+								"text-indent": "warning",
+								"underscore-property-hack": "warning",
+								"unique-headings": "warning",
+								"universal-selector": "warning",
+								"vendor-prefix": true,
+								"zero-units": "warning"
+							},
+							"gjslint_ignore":
+							[
+								110
+							],
+							"gjslint_options":
+							[
+							],
+							"is_xml": false,
+							"javascript_linter": "jshint",
+							"jshint_options":
+							{
+								"browser": true,
+								"evil": true,
+								"regexdash": true,
+								"sub": true,
+								"trailing": true,
+								"wsh": true
+							},
+							"pep8": true,
+							"pep8_ignore":
+							[
+								"E501"
+							],
+							"perl_linter": "perlcritic",
+							"pyflakes_ignore":
+							[
+							],
+							"pyflakes_ignore_import_*": true,
+							"sublimelinter": true,
+							"sublimelinter_delay": 2,
+							"sublimelinter_disable":
+							[
+							],
+							"sublimelinter_executable_map":
+							{
+							},
+							"sublimelinter_fill_outlines": false,
+							"sublimelinter_gutter_marks": true,
+							"sublimelinter_gutter_marks_theme": "simple",
+							"sublimelinter_mark_style": "none",
+							"sublimelinter_notes": false,
+							"sublimelinter_objj_check_ascii": false,
+							"sublimelinter_popup_errors_on_save": false,
+							"sublimelinter_syntax_map":
+							{
+								"C++": "c",
+								"Python Django": "python",
+								"Ruby on Rails": "ruby"
+							},
+							"sublimelinter_wrap_find": true,
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "application/views/utilitarios/modulo/qry_controladores_view.php",
+					"settings":
+					{
+						"buffer_size": 558,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								141,
+								141
 							]
 						],
 						"settings":
@@ -1628,15 +1639,15 @@
 					"file": "statics/js/sistema/utilitarios/modulo/modulo_ins.js",
 					"settings":
 					{
-						"buffer_size": 1413,
+						"buffer_size": 1464,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1027,
-								1013
+								65,
+								65
 							]
 						],
 						"settings":
@@ -1745,15 +1756,15 @@
 					"file": "statics/js/sistema/utilitarios/modulo/modulo_objeto_ins.js",
 					"settings":
 					{
-						"buffer_size": 2442,
+						"buffer_size": 2388,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								742,
+								760
 							]
 						],
 						"settings":
@@ -2083,6 +2094,122 @@
 							"sublimelinter_wrap_find": true,
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
 							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 12,
+					"file": "application/config/constants.php",
+					"settings":
+					{
+						"buffer_size": 2115,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								815,
+								815
+							]
+						],
+						"settings":
+						{
+							"annotations":
+							[
+								"TODO",
+								"README",
+								"FIXME"
+							],
+							"csslint_options":
+							{
+								"adjoining-classes": "warning",
+								"box-model": true,
+								"box-sizing": "warning",
+								"compatible-vendor-prefixes": "warning",
+								"display-property-grouping": true,
+								"duplicate-background-images": "warning",
+								"duplicate-properties": true,
+								"empty-rules": true,
+								"errors": true,
+								"fallback-colors": "warning",
+								"floats": "warning",
+								"font-faces": "warning",
+								"font-sizes": "warning",
+								"gradients": "warning",
+								"ids": "warning",
+								"import": "warning",
+								"important": "warning",
+								"known-properties": true,
+								"outline-none": "warning",
+								"overqualified-elements": "warning",
+								"qualified-headings": "warning",
+								"regex-selectors": "warning",
+								"rules-count": "warning",
+								"shorthand": "warning",
+								"star-property-hack": "warning",
+								"text-indent": "warning",
+								"underscore-property-hack": "warning",
+								"unique-headings": "warning",
+								"universal-selector": "warning",
+								"vendor-prefix": true,
+								"zero-units": "warning"
+							},
+							"gjslint_ignore":
+							[
+								110
+							],
+							"gjslint_options":
+							[
+							],
+							"is_xml": false,
+							"javascript_linter": "jshint",
+							"jshint_options":
+							{
+								"browser": true,
+								"evil": true,
+								"regexdash": true,
+								"sub": true,
+								"trailing": true,
+								"wsh": true
+							},
+							"pep8": true,
+							"pep8_ignore":
+							[
+								"E501"
+							],
+							"perl_linter": "perlcritic",
+							"pyflakes_ignore":
+							[
+							],
+							"pyflakes_ignore_import_*": true,
+							"sublimelinter": true,
+							"sublimelinter_delay": 2,
+							"sublimelinter_disable":
+							[
+							],
+							"sublimelinter_executable_map":
+							{
+							},
+							"sublimelinter_fill_outlines": false,
+							"sublimelinter_gutter_marks": true,
+							"sublimelinter_gutter_marks_theme": "simple",
+							"sublimelinter_mark_style": "none",
+							"sublimelinter_notes": false,
+							"sublimelinter_objj_check_ascii": false,
+							"sublimelinter_popup_errors_on_save": false,
+							"sublimelinter_syntax_map":
+							{
+								"C++": "c",
+								"Python Django": "python",
+								"Ruby on Rails": "ruby"
+							},
+							"sublimelinter_wrap_find": true,
+							"syntax": "Packages/PHP/PHP.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
