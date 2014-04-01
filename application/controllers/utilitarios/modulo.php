@@ -152,6 +152,12 @@ class Modulo extends CI_Controller {
 			echo "0";
 		}
 	}
+
+	function insObjeto(){
+		$this->input->post('txt_ins_obj_nombre');
+		$this->input->post('txt_ins_apli_codigo');
+		$this->input->post('txt_ins_obj_file');
+	}
 }
 
 /* End of file modulo.php */

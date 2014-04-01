@@ -1,5 +1,5 @@
 $(function(){
-
+    $(".list-unstyled li").css('cursor','pointer');
     $(".list-unstyled li").bind({
         click:function(evt){
             evt.preventDefault();

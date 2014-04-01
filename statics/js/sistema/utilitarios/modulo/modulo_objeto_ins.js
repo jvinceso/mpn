@@ -21,12 +21,11 @@ $(function(){
 	    submitHandler: function(form) { 
 	        msgLoadSaveMsg('#pnl_mensaje_objeto','#btnInsObjeto');
 	        $.ajax({
-	            url:'modulo/#',
+	            url:'modulo/insObjeto',
 	            cache:false,
 	            type:'post',
 	            data:{
 	            	txt_ins_obj_nombre  : $('#txt_ins_obj_nombre').val(),
-	            	txt_ins_ruta        : $('#txt_ins_ruta').val(),
 	            	txt_ins_apli_codigo : $('#txt_ins_apli_codigo').val(),
 	            	txt_ins_obj_file    : $('#txt_ins_obj_file').val()
 	            },

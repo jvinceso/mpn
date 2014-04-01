@@ -5,7 +5,6 @@
 		foreach ($controladores as $key => $fila) {
 			print '<li>';
 			if (is_array($fila)){
-				// print_p($fila);exit();
 				print $key.'<ul>';
 				foreach ($fila as $indice => $registro) {
 					$ruta = '../'.$key.'/'.str_replace('.php', '.html',$registro);

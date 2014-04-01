@@ -44,18 +44,17 @@ class Objeto_model extends CI_Model {
 		return $this->nObjId;
 	}
 	################################# MÉTODOS ##################################
-	public function insObjeto( $objDetalleObjeto ){
+	public function insObjeto( $nAplId ){
+
 		$data = array(
-			// nAplId
 			// cObjNombre
 			// bObjTipo
-			// nObjIdPadre
-			// nObjOrden
-			'cAplNombre' => $this->get_nombre(),
-			'nAplTipo'  =>  '1',
-			'cAplIcono' =>  $this->get_cAplIcono(),
-			'nAplOrden' =>  $this->getUltimoNroOrden()
-			);
+			'nAplId'      => $nAplId,
+			'cObjNombre'  => $this->cObjNombre,
+			'nObjIdPadre' => $this->nObjIdPadre,
+			'bObjTipo'    => $this->bObjTipo,
+			'nObjOrden'   => $this->nObjOrden
+		);
 		$this->db->insert('aplicacion', $data);
 		return $this->db->insert_id();		
 	}
