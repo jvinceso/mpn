@@ -1,6 +1,7 @@
 <script type="text/javascript" src='<?php echo URL_JS; ?>sistema/administrador/trabajador/trabajador_ins.js'></script>
 <script src="<?php echo URL_JS; ?>date-time/bootstrap-datepicker.min.js"></script>
 <link rel="stylesheet" href="<?php echo URL_CSS; ?>datepicker.css" />
+<link rel="stylesheet" href="<?php echo URL_CSS; ?>chosen.css" />
 
 <form id="frm_ins_trabajador" name = "frm_ins_trabajador" class="form-horizontal" role="form">
 	<h3 class="header smaller lighter blue">
@@ -63,18 +64,13 @@
 
 		<!-- <div class="col-sm-9"> -->
 		<span class="input-icon col-xs-2">
-			<select class="form-trabrol" id="cbo_ins_trab_ecivil" name = "cbo_ins_trab_ecivil">
-				<option value="">Soltero(a)</option>
-				<option value="AL">Casado(a)</option>
-				<option value="AK">Viudo(a)</option>
-				<option value="AZ">Divorciado(a)</option>
-			</select>			
+			<div id="c_cbo_ins_trab_estcivil"></div>	
 		</span>
 
 		<span class="input-icon col-xs-2">
 			<select class="form-control" id="cbo_ins_trab_sexo" name = "cbo_ins_trab_sexo">
-				<option value="">Masculino</option>
-				<option value="AL">Femenino</option>
+				<option value="26">Masculino</option>
+				<option value="27">Femenino</option>
 			</select>	
 		</span>
 		<!-- </div> -->
@@ -92,7 +88,7 @@
 		<!-- <div class="col-sm-9"> -->
 		<span class="input-icon col-xs-2">
 			<div class="input-group">
-				<input class="form-control input-mask-phone" type="text" id="txt_ins_trab_telefono" name = "txt_ins_trab_telefono" />	
+				<input class="form-control" type="text" id="txt_ins_trab_telefono" name = "txt_ins_trab_telefono" />	
 				<span class="input-group-addon">
 					<i class="icon-phone"></i>
 				</span>
@@ -126,22 +122,13 @@
 		<label class="col-sm-3 control-label no-padding-right">Area | Cargo</label>
 
 		<!-- <div class="col-sm-9"> -->
-		<span class="input-icon col-xs-2">
-			<select class="form-control" id="cbo_ins_trab_area" name = "cbo_ins_trab_area">
-				<option value="">Seleccionar Area</option>
-				<option value="AL">Casado(a)</option>
-				<option value="AK">Viudo(a)</option>
-				<option value="AZ">Divorciado(a)</option>
-			</select>			
+		<span class="input-icon col-xs-3">
+			<div id="c_cbo_ins_trab_area"></div>
 		</span>
 
 		<span class="input-icon col-xs-2">
-			<select class="form-control" id="cbo_ins_trab_cargo" name = "cbo_ins_trab_cargo">
-				<option value="">Seleccionar Cargo</option>
-				<option value="AL">Femenino</option>
-			</select>	
+			<div id="c_cbo_ins_trab_cargo"></div>
 		</span>
-		<!-- </div> -->
 	</div>		
 	<div class="space-4"></div>
 
@@ -163,17 +150,17 @@
 		<small>Datos para que el trabajador acceda al sistema</small>
 	</h3>
 	<div class="form-group">
-		<label class="col-sm-3 control-label no-padding-right">Usuario | trabraseña</label>
+		<label class="col-sm-3 control-label no-padding-right">Usuario | Contraseña</label>
 
 		<!-- <div class="col-sm-9"> -->
 		<span class="input-icon col-xs-2">
 			<div class="input-group">
-				<input id="txt_ins_trab_usuario" name = "txt_ins_trab_usuario" class="form-trabrol input-mask-phone" type="text"  />
+				<input id="txt_ins_trab_usuario" name = "txt_ins_trab_usuario" class="form-control" type="text"  />
 			</div>
 		</span>
 		<span class="input-icon col-xs-2">
 			<div class="input-group">
-				<input id="txt_ins_trab_contrasenia" name = "txt_ins_trab_contrasenia" class="form-control input-mask-phone" type="text"  />
+				<input id="txt_ins_trab_contrasenia" name = "txt_ins_trab_contrasenia" class="form-control" type="text"  />
 			</div>
 		</span>
 		<!-- </div> -->
@@ -192,4 +179,5 @@
 		</div>
 	</div>
 </form>
-<!-- // <script src="<?php echo URL_JS; ?>bootstrap.min.js"></script> -->
+<script src="<?php echo URL_JS; ?>jquery.maskedinput.min.js"></script>
+<script src="<?php echo URL_JS; ?>chosen.jquery.min.js"></script>

@@ -30,6 +30,95 @@ class Trabajador_model extends Persona_model {
 		return $this->MulCargo;
 	}
 
+
+
+	public function cboTipoEstadoCivil(){	
+        $query = $this->db->query("select nMulId,cMulDescripcion from multitabla where nMulIdPadre = 18");
+        if ($query) {
+            $data   = $query->result_array();
+            // print_p($data);exit();
+            $combo  = creaCombo($data);
+            $result = form_dropdown("cbo_ins_trab_estcivil", $combo,'', 'id="cbo_ins_trab_estcivil" class="chzn-select" style="width:160px"');
+            return $result;
+        } else {
+            return false;
+        }
+	}	
+	public function cboTipoArea(){		
+        $query = $this->db->query("select nMulId,cMulDescripcion from multitabla where nMulIdPadre = 28");
+        if ($query) {
+            $data   = $query->result_array();
+            // print_p($data);exit();
+            $combo  = creaCombo($data);
+            $result = form_dropdown("cbo_ins_trab_area", $combo,'', 'id="cbo_ins_trab_area" class="chosen-select"');
+            return $result;
+        } else {
+            return false;
+        }
+	}
+	public function cboTipoCargo(){		
+        $query = $this->db->query("select nMulId,cMulDescripcion from multitabla where nMulIdPadre = 37");
+        if ($query) {
+            $data   = $query->result_array();
+            // print_p($data);exit();
+            $combo  = creaCombo($data);
+            $result = form_dropdown("cbo_ins_trab_cargo", $combo,'', 'id="cbo_ins_trab_cargo" class="chosen-select"');
+            return $result;
+        } else {
+            return false;
+        }
+	}
+
+	public function insTrabajador(){
+		$persona = array(
+			'cPerApellidoPaterno'  =>  $this->getPerApellidoPaterno(),
+			'cPerApellidoMaterno'  =>  $this->getPerApellidoMaterno(),
+			'cPerNombres'          =>  $this->getPerNombres(),
+			'cPerRandom'           =>  '12345'
+			);
+		$this->db->insert('persona', $persona);
+        $nPerId = $this->db->insert_id();
+
+        $persona_detalle = array(
+			'cAplNombre' => $this->get_nombre(),
+			'nAplTipo'  =>  $nPerId,
+			'cAplIcono' =>  $this->get_cAplIcono(),
+			'nAplOrden' =>  $this->getUltimoNroOrden()
+			);
+		$this->db->insert('persona_detalle', $persona_cargo);  
+
+        $persona_natural = array(
+			'cAplNombre' => $this->get_nombre(),
+			'nAplTipo'  =>  $nPerId,
+			'cAplIcono' =>  $this->get_cAplIcono(),
+			'nAplOrden' =>  $this->getUltimoNroOrden()
+		);
+
+        $usuario = array(
+			'cAplNombre' => $this->get_nombre(),
+			'nAplTipo'  =>  $nPerId,
+			'cAplIcono' =>  $this->get_cAplIcono(),
+			'nAplOrden' =>  $this->getUltimoNroOrden()
+		);
+
+ 
+        
+
+		// return $this->db->insert_id();
+
+	}
+
+
+
+
+
+
+
+
+
+
+
+
 	public function insAplicacion(){
 		$data = array(
 			'cAplNombre' => $this->get_nombre(),
