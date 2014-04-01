@@ -54,33 +54,12 @@ class Modulo extends CI_Controller {
 			if( is_dir($controladores.DIRECTORY_SEPARATOR.$recurso) ){
 				$path_modulos = $controladores.DIRECTORY_SEPARATOR.$recurso;
 				$ficheros = array_diff(scandir( $path_modulos ), array('..', '.'));
-				$dir_final[] = array($recurso=>$ficheros);
+				$dir_final[$recurso] = $ficheros;
 			}else{
 				$dir_final[]= $recurso;
 			}
 		}
-		/*
-		$temp = array();
-		foreach ($modulos as $key => $value) {
-		    $temp[$value['nModId']]['key'] = $value['nModId'];
-		    $temp[$value['nModId']]['title'] = $value['cModModulo'];
-		    $menu = $this->ObjMenu->getMenuxModulo( $value['nModId'] );
-		    $temp_menu = array();
-		    $i=0;
-		    foreach ($menu as $row) {
-		        if( search_in_array($row['nMenId'],$menusAsignados,'nMenId') ){
-		            $temp_menu[$i]['select'] = true;
-		        }
-		        $temp_menu[$i]['key'] = $row['nMenId'];
-		        $temp_menu[$i]['title'] = $row['cMenMenu'];
-		        $i++;
-		    }
-		    $temp[$value['nModId']]['isFolder'] = true;
-		    $temp[$value['nModId']]['children'] = $temp_menu;
-		}   
-		$data['permisos'] = $temp;		
-		*/
-		// echo json_encode($dir_final,JSON_PRETTY_PRINT);
+		array_multisort($dir_final, SORT_DESC );
 		$data['controladores'] = $dir_final;
 		$this->load->view('utilitarios/modulo/qry_controladores_view', $data);
 	}
@@ -172,6 +151,12 @@ class Modulo extends CI_Controller {
 		} else {
 			echo "0";
 		}
+	}
+
+	function insObjeto(){
+		$this->input->post('txt_ins_obj_nombre');
+		$this->input->post('txt_ins_apli_codigo');
+		$this->input->post('txt_ins_obj_file');
 	}
 }
 

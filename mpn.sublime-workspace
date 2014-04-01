@@ -207,7 +207,7 @@
 			"file": "application/controllers/utilitarios/modulo.php",
 			"settings":
 			{
-				"buffer_size": 5387,
+				"buffer_size": 4793,
 				"line_ending": "Windows"
 			}
 		},
@@ -215,7 +215,7 @@
 			"file": "application/views/utilitarios/modulo/ins_objetos_view.php",
 			"settings":
 			{
-				"buffer_size": 1836,
+				"buffer_size": 1839,
 				"line_ending": "Windows",
 				"name": "ins_objetos_view.php"
 			}
@@ -224,7 +224,7 @@
 			"file": "application/views/utilitarios/modulo/qry_controladores_view.php",
 			"settings":
 			{
-				"buffer_size": 506,
+				"buffer_size": 558,
 				"line_ending": "Windows"
 			}
 		},
@@ -240,7 +240,7 @@
 			"file": "statics/js/sistema/utilitarios/modulo/modulo_ins.js",
 			"settings":
 			{
-				"buffer_size": 1357,
+				"buffer_size": 1464,
 				"line_ending": "Windows"
 			}
 		},
@@ -248,7 +248,7 @@
 			"file": "statics/js/sistema/utilitarios/modulo/modulo_objeto_ins.js",
 			"settings":
 			{
-				"buffer_size": 1931,
+				"buffer_size": 2388,
 				"line_ending": "Windows",
 				"name": "modulo_objeto_ins.js"
 			}
@@ -273,8 +273,8 @@
 			"file": "statics/js/sistema/jsGeneral.js",
 			"settings":
 			{
-				"buffer_size": 9006,
-				"line_ending": "Unix"
+				"buffer_size": 9681,
+				"line_ending": "Windows"
 			}
 		},
 		{
@@ -497,9 +497,10 @@
 	},
 	"find_in_files":
 	{
-		"height": 0.0,
+		"height": 90.0,
 		"where_history":
 		[
+			"C:\\xampp\\htdocs\\mpn",
 			"C:\\xampp\\htdocs\\oficinavirtual",
 			"C:\\xampp\\htdocs\\oficinavirtual\\css",
 			"C:\\xampp\\htdocs\\oficinavirtual\\js",
@@ -530,6 +531,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"HEAD",
 			"objPermisos",
 			"controlador",
 			"pop",
@@ -656,8 +658,7 @@
 			"div",
 			"qry_lista_licencias_view",
 			"btn_confirm_resolucion",
-			"registramovimientoacotacion",
-			"Evaluacion de requisitos y registro de datos del expediente"
+			"registramovimientoacotacion"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -686,15 +687,15 @@
 					"file": "application/controllers/utilitarios/modulo.php",
 					"settings":
 					{
-						"buffer_size": 5387,
+						"buffer_size": 4793,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3336,
-								3336
+								0,
+								0
 							]
 						],
 						"settings":
@@ -803,15 +804,15 @@
 					"file": "application/views/utilitarios/modulo/ins_objetos_view.php",
 					"settings":
 					{
-						"buffer_size": 1836,
+						"buffer_size": 1839,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1130,
-								1149
+								0,
+								0
 							]
 						],
 						"settings":
@@ -921,15 +922,15 @@
 					"file": "application/views/utilitarios/modulo/qry_controladores_view.php",
 					"settings":
 					{
-						"buffer_size": 506,
+						"buffer_size": 558,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								476,
-								476
+								0,
+								0
 							]
 						],
 						"settings":
@@ -1024,7 +1025,8 @@
 								"Ruby on Rails": "ruby"
 							},
 							"sublimelinter_wrap_find": true,
-							"syntax": "Packages/PHP/PHP.tmLanguage"
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -1154,15 +1156,15 @@
 					"file": "statics/js/sistema/utilitarios/modulo/modulo_ins.js",
 					"settings":
 					{
-						"buffer_size": 1357,
+						"buffer_size": 1464,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								323,
-								323
+								0,
+								0
 							]
 						],
 						"settings":
@@ -1271,28 +1273,15 @@
 					"file": "statics/js/sistema/utilitarios/modulo/modulo_objeto_ins.js",
 					"settings":
 					{
-						"buffer_size": 1931,
+						"buffer_size": 2388,
 						"regions":
 						{
-							"bookmarks":
-							{
-								"flags": 144,
-								"icon": "bookmark",
-								"regions":
-								[
-									[
-										1767,
-										1767
-									]
-								],
-								"scope": "bookmarks"
-							}
 						},
 						"selection":
 						[
 							[
-								193,
-								193
+								0,
+								0
 							]
 						],
 						"settings":
@@ -1635,15 +1624,15 @@
 					"file": "statics/js/sistema/jsGeneral.js",
 					"settings":
 					{
-						"buffer_size": 9006,
+						"buffer_size": 9681,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4613,
-								4665
+								0,
+								0
 							]
 						],
 						"settings":

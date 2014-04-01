@@ -40,12 +40,12 @@ class login extends CI_Controller
         redirect(base_url());
     }
 
-    // public function generador()
-    // {
-    //     $this->load->model('mysql2php', 'objmysqlphp');
-    //     $this->objmysqlphp->GenerarMultiplesClases('centromedico');
-    //     echo "Clases Generados";
-    // }
+    public function generador()
+    {
+        $this->load->model('mysql2php', 'objmysqlphp');
+        $this->objmysqlphp->GenerarMultiplesClases('bdmpnintegrado');
+        echo "Clases Generados";
+    }
 
 }
 

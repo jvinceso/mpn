@@ -100,6 +100,12 @@ function msgLoadSaveRemove(btn){
     $("#msg_loading").remove()
     $(btn).removeAttr("disabled");
 }
+function DesabilitarBoton(btn){
+    $("#"+btn).button('loading');
+}
+function HabilitarBoton(btn){
+    $("#"+btn).button('reset')
+}
 
 function MostrarOcultarCapas(ObjOcultar,ObjMostrar,fnOcultar,fnMostrar){
     $(ObjOcultar).hide('slide',100,function(){
@@ -154,6 +160,7 @@ function set_popup(url,title,ancho,alto,parametro,func_close){
         modal:true ,
         open: function(event,ui){
             get_page(url,this.id,parametro);
+
         },
         close: function(){      
             eval(func_close);
@@ -267,4 +274,18 @@ function mensaje(msg,tip){
             theme: 'malerta2'
         });
     }    
+}
+/* LIMPIA UN FORMULARIO */
+function limpiarForm(obj) {
+    // enaviar asi: limpiarForm('#miForm');
+    $(':input', $(obj)).each(function() {
+        var type = this.type;
+        var tag = this.tagName.toLowerCase();      
+        if (type == 'text' || type == 'password' || tag == 'textarea' || type == 'hidden' || type == 'file')
+            this.value = '';       
+        else if (type == 'checkbox' || type == 'radio')
+            this.checked = false;
+        else if (tag == 'select')
+            this.selectedIndex = 0; //-1
+    });
 }

@@ -21,7 +21,7 @@
 			<span class="input-group-btn">
 				<button id="btnBuscarController" type="button" class="btn btn-purple btn-sm">
 					Buscar
-					<i class="icon-ok bigger-110"></i>
+					<i class="icon-sitemap bigger-110"></i>
 				</button>
 			</span>	
 		</div>
@@ -32,7 +32,7 @@
 			<div class="col-sm-9">
 				<span class="input-group-btn">
 					<button id="btnInsObjeto" type="submit" class="btn btn-purple btn-sm">
-						Registrar
+						Agregar
 						<i class="icon-ok bigger-110"></i>
 					</button>
 				</span>	

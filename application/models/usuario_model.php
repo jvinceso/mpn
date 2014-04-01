@@ -8,10 +8,6 @@
         private $nPerId = '';
         private $cUsuNick = '';
         private $cUsuNombre = '';
-        private $cPerApellidos = '';
-        private $nPerCargoID = '';
-        private $cPerCarNombre = '';
-        private $nSucursalId = '';
         private $cUsuEstado = '';
 
         //Constructor de Clase

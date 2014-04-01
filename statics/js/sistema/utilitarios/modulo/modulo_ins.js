@@ -1,5 +1,5 @@
 $(function(){
-
+    $(".list-unstyled li").css('cursor','pointer');
     $(".list-unstyled li").bind({
         click:function(evt){
             evt.preventDefault();
@@ -25,6 +25,7 @@ $(function(){
                         default:
                         msgLoadSaveRemove("#btnRegistrar");
                         mensaje("Se Registro Correctamente el Modulo","e");
+                        limpiarForm('#frm_ins_modulo');
                     }
                 },
                 error:function(error){

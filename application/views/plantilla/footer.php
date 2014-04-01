@@ -59,6 +59,11 @@
 		<!-- // <script src="<?php echo URL_JS; ?>ace-elements.min.js"></script> -->
 		 <script src="<?php echo URL_JS; ?>ace.min.js"></script>
 
+
+          <script type="text/javascript">
+            if("ontouchend" in document) document.write("<script src='<?php echo URL_JS; ?>jquery.mobile.custom.min.js'>"+"<"+"/script>");
+          </script>
+          <script src="<?php echo URL_JS; ?>bootstrap.min.js"></script>
 		
 	</body>
 <!-- Mirrored from 198.74.61.72/themes/preview/ace/index.html by HTTrack Website Copier/3.x [XR&CO'2013], Sun, 02 Mar 2014 23:30:58 GMT -->
