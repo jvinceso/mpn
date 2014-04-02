@@ -216,7 +216,7 @@
 			"settings":
 			{
 				"buffer_size": 1839,
-				"line_ending": "Windows",
+				"line_ending": "Unix",
 				"name": "ins_objetos_view.php"
 			}
 		},
@@ -237,6 +237,7 @@
 			}
 		},
 		{
+
 			"file": "statics/js/sistema/utilitarios/modulo/modulo_ins.js",
 			"settings":
 			{
@@ -257,7 +258,6 @@
 			"file": "/C/xampp/htdocs/vasoleche/application/views/usuario/permisos_view.php",
 			"settings":
 			{
-				"buffer_size": 0,
 				"line_ending": "Windows"
 			}
 		},
@@ -281,8 +281,9 @@
 			"file": "/C/xampp/htdocs/oficinavirtual/js/jsGeneral.js",
 			"settings":
 			{
-				"buffer_size": 56440,
-				"line_ending": "Windows"
+				"buffer_size": 2388,
+				"line_ending": "Unix",
+				"name": "modulo_objeto_ins.js"
 			}
 		},
 		{
@@ -362,134 +363,6 @@
 	},
 	"file_history":
 	[
-		"/C/xampp/htdocs/mpn/application/views/utilitarios/modulo/qry_controladores_view",
-		"/C/xampp/htdocs/vasoleche/application/views/usuario/panel_view.php",
-		"/C/xampp/htdocs/vasoleche/application/views/usuario/qry_view.php",
-		"/C/xampp/htdocs/vasoleche/application/views/usuario/qry_personas_select.php",
-		"/C/xampp/htdocs/mpn/application/views/utilitarios/modulo/ins_view.php",
-		"/C/xampp/htdocs/oficinavirtual/js/sigma/jsBandejas.js",
-		"/C/xampp/htdocs/mpn/statics/css/sistema/estilos.css",
-		"/C/xampp/htdocs/oficinavirtual/application/controllers/libro_reclamaciones/multimedia.php",
-		"/C/xampp/htdocs/xampp/splash.php",
-		"/C/xampp/htdocs/xampp/index.php",
-		"/C/Users/jvinces.SISMPT0/AppData/Roaming/Sublime Text 2/Packages/User/Default (Windows).sublime-keymap",
-		"/C/Users/jvinces.SISMPT0/AppData/Roaming/Sublime Text 2/Packages/Default/Default (Windows).sublime-keymap",
-		"/C/Users/jvinces.SISMPT0/AppData/Roaming/Sublime Text 2/Packages/User/Preferences.sublime-settings",
-		"/C/xampp/htdocs/oficinavirtual/js/callcenter/jsBandeja.js",
-		"/C/xampp/htdocs/oficinavirtual/application/views/ejemplo/panel_view.php",
-		"/C/xampp/htdocs/oficinavirtual/application/views/callcenter/bandejas/qry_view.php",
-		"/C/xampp/htdocs/oficinavirtual/application/views/sigma/bandejas/qry_view.php",
-		"/C/xampp/htdocs/oficinavirtual/js/trabajador/capacitaciones/jsInformacion_Archivos.js",
-		"/C/xampp/htdocs/mpn/application/helpers/tables_helper.php",
-		"/C/xampp/htdocs/mpn/application/config/config.php",
-		"/C/xampp/htdocs/mpn/application/config/constants.php",
-		"/C/xampp/htdocs/mpn/application/config/database.php",
-		"/C/xampp/htdocs/mpn/application/config/routes.php",
-		"/C/xampp/htdocs/oficinavirtual/application/views/dashboard/header.php",
-		"/C/Users/SERVER.CCR/AppData/Local/Temp/Temp1_mpn-11-03-14-08-00.zip/mpn/application/helpers/tables_helper.php",
-		"/C/xampp/htdocs/mpn/application/controllers/utilitarios/modulo.php",
-		"/C/xampp/htdocs/vasoleche/application/controllers/Usuario.php",
-		"/C/xampp/htdocs/mpn/application/views/login_view.php",
-		"/C/xampp/htdocs/trujillodigital/TupaMapro/class/service.php",
-		"/C/xampp/htdocs/oficinavirtual/js/jsGeneral.js",
-		"/C/xampp/htdocs/oficinavirtual/js/helpdesk/jsMultimedia.js",
-		"/C/xampp/htdocs/oficinavirtual/css/dashboard/style.css",
-		"/C/xampp/htdocs/mpn/application/views/utilitarios/modulo/panel_view.php",
-		"/C/xampp/htdocs/oficinavirtual/application/views/helpdesk/bandeja_tecnico/qrytecnico_view.php",
-		"/C/xampp/htdocs/oficinavirtual/application/views/helpdesk/bandeja_tecnico/qrysolucionar_view.php",
-		"/C/xampp/htdocs/oficinavirtual/application/views/helpdesk/bandeja_tecnico/updcreado.php",
-		"/C/xampp/htdocs/oficinavirtual/application/views/helpdesk/bandeja_tecnico/todas_ocurrencias/qry_view.php",
-		"/C/xampp/htdocs/oficinavirtual/application/views/helpdesk/bandeja_tecnico/todas_incidencias/qry_view.php",
-		"/C/xampp/htdocs/oficinavirtual/application/views/helpdesk/bandeja_tecnico/todas_ocurrencias/qryhistorial_view.php",
-		"/C/xampp/htdocs/oficinavirtual/application/controllers/sigma/nuevotramite.php",
-		"/C/xampp/htdocs/oficinavirtual/application/config/constants.php",
-		"//172.20.11.12/portal/application/views/trujillosostenible_view.php",
-		"/E/Vinces/DBA/AdmintracionUsuarios.sql",
-		"/C/xampp/htdocs/oficinavirtual/application/models/sigma/sql/publicidad_to_production.sql",
-		"/C/xampp/htdocs/oficinavirtual/application/models/sigma/sql/schemas_sigma.sql",
-		"/C/xampp/htdocs/mpn/statics/js/sistema/utilitarios/modulo/modulo_panel.js",
-		"//172.20.11.12/oficinavirtual/application/models/callcenter/reportes_model.php",
-		"/C/xampp/htdocs/oficinavirtual/js/callcenter/reportes/jsPanel.js",
-		"//172.20.11.12/oficinavirtual/js/jsGeneral.js",
-		"//172.20.11.12/oficinavirtual/application/controllers/callcenter/reportes.php",
-		"//172.20.11.12/oficinavirtual/application/views/callcenter/reportes/qryCiudadanos_view.php",
-		"//172.20.11.12/oficinavirtual/application/views/callcenter/reportes/calificaciones_view.php",
-		"//172.20.11.12/oficinavirtual/js/callcenter/reportes/jsCalificaion.js",
-		"//172.20.11.12/oficinavirtual/js/callcenter/reportes/jsPanel.js",
-		"/C/xampp/apache/conf/httpd.conf",
-		"/C/xampp/apache/conf/extra/httpd-vhosts.conf",
-		"/C/xampp/apache/conf/extra/httpd-xampp.conf",
-		"/C/xampp/htdocs/oficinavirtual/js/callcenter/reportes/jsCalificaion.js",
-		"/C/xampp/htdocs/mpn/incapacidad.jpg",
-		"/C/xampp/htdocs/mpn/application/models/utilitarios/modulo_model.php",
-		"/C/xampp/htdocs/mpn/statics/js/sistema/jsGeneral.js",
-		"/C/xampp/htdocs/mpn/application/config/autoload.php",
-		"/C/xampp/htdocs/mpn/application/views/plantilla/header.php",
-		"/C/xampp/htdocs/mpn/statics/js/sistema/utilitarios/modulo/modulo_ins.js",
-		"//172.20.11.12/oficinavinces/js/jsGeneral.js",
-		"/C/xampp/htdocs/mpn-plantilla-v2.0/198.74.61.72/themes/preview/ace/jquery-ui.html",
-		"/C/xampp/htdocs/mpn/application/controllers/agua/contribuyente.php",
-		"/C/xampp/htdocs/mpn/application/views/plantilla/footer.php",
-		"/C/xampp/htdocs/mpn/statics/css/jquery.jgrowl.css",
-		"/C/xampp/htdocs/clinica/css/jquery.jgrowl.css",
-		"/C/xampp/htdocs/mpn/statics/js/jquery.jgrowl_minimized.js",
-		"/C/xampp/htdocs/mpn/statics/js/jquery-ui-1.10.3.custom.min.js",
-		"/C/xampp/htdocs/mpn/statics/js/jquery-ui-1.10.3.full.min.js",
-		"/C/Users/SERVER.CCR/Downloads/jquery-ui-1.10.3/ui.dialog.jquery.json",
-		"/G/ealiceistas/application/backend/models/informacionliceo/comunicados_model.php",
-		"/C/xampp/htdocs/mpn/application/controllers/prueba.php",
-		"/C/xampp/htdocs/clinica/application/controllers/login.php",
-		"/C/xampp/htdocs/portal2014/application/libraries/jqgridmpt.php",
-		"/C/xampp/htdocs/trujillodigital/TupaMapro/acotacion.php",
-		"/C/xampp/htdocs/trujillodigital/TupaMapro/class/crudGrid.php",
-		"/C/xampp/htdocs/trujillodigital/js/jsGeneral.js",
-		"/C/xampp/htdocs/mpn/system/libraries/Table.php",
-		"/C/xampp/htdocs/mpn/application/helpers/webservices_helper.php",
-		"/G/mpn/application/models/utilitarios/modulo_model.php",
-		"/C/xampp/htdocs/mpn - copia/application/models/utilitarios/modulo_model.php",
-		"/C/xampp/htdocs/clinica/application/models/per_natural_model.php",
-		"/C/Users/SERVER.CCR/AppData/Roaming/Sublime Text 2/Packages/User/Preferences.sublime-settings",
-		"/C/xampp/htdocs/mpn/statics/js/sistema/utilitarios/modulo_panel.js",
-		"/C/xampp/htdocs/mpn/statics/js/sistema/utilitarios/modulos_ins.js",
-		"/C/xampp/htdocs/mpn/application/controllers/utilitarios/backup.php",
-		"/C/xampp/htdocs/mpn/application/models/objeto_model.php",
-		"/C/xampp/htdocs/mpn/application/controllers/inicio.php",
-		"/C/xampp/htdocs/mpn/application/views/utilitarios/modulo_view.php",
-		"/C/xampp/htdocs/mpn/application/views/inicio_view.php",
-		"/C/xampp/htdocs/mpn/application/libraries/loaders.php",
-		"/C/xampp/htdocs/mpn/application/models/usuario_model.php",
-		"/C/xampp/htdocs/clinica/application/views/layout/header.php",
-		"/C/xampp/htdocs/mpn/statics/js/master.js",
-		"/C/xampp/htdocs/mpn/modelado_bd/bd_01-03-14-05-50.sql",
-		"/C/xampp/htdocs/clinica/application/views/login/login_view.php",
-		"/C/xampp/htdocs/mpn/application/controllers/login.php",
-		"/E/Vinces/sistemas-pueblonuevo/24-02-14/MPN-plantilla/index.html",
-		"/C/xampp/htdocs/oficinavirtual/application/controllers/sistram/crearExpediente.php",
-		"/E/Vinces/sistemas-pueblonuevo/24-02-14/MPN-plantilla/forms.html",
-		"/C/xampp/htdocs/mpn/statics/css/estilo_general.css",
-		"/C/xampp/htdocs/mpn/application/views/plantilla/template.php",
-		"/C/xampp/htdocs/clinica/application/models/permiso_model.php",
-		"/C/xampp/htdocs/clinica/application/models/menu_model.php",
-		"/C/xampp/htdocs/clinica/application/config/config.php",
-		"/C/xampp/htdocs/mpn/application/controllers/usuario_model.php",
-		"/C/xampp/htdocs/mpn/application/views/login/login_view.php",
-		"/C/xampp/htdocs/hotel/schema_basico.sql",
-		"/C/xampp/htdocs/oficinavirtual/application/views/sigma/nuevotramite/panel_view.php",
-		"/C/xampp/htdocs/oficinavirtual/application/views/sigma/nuevoespectaculo/257_insPanel_view.php",
-		"/C/xampp/htdocs/oficinavirtual/application/controllers/sigma/tramite.php",
-		"/C/xampp/htdocs/oficinavirtual/application/views/sigma/nuevotramite/nuevo_tramite_view.php",
-		"/C/xampp/htdocs/oficinavirtual/application/models/sigma/acotacion_subsanacion_model.php",
-		"/C/xampp/htdocs/oficinavirtual/application/controllers/sigma/acotacion_subsanacion.php",
-		"/C/xampp/htdocs/oficinavirtual/js/sigma/nuevo_publicidad/jsResolucionGerencia.js",
-		"//172.20.11.12/portal/application/controllers/chat.php",
-		"/C/xampp/htdocs/oficinavirtual/js/sigma/etapasTramite/jsAcotacionSubsanacion.js",
-		"/C/xampp/htdocs/oficinavirtual/application/controllers/sigma/etapasTramite.php",
-		"/C/xampp/htdocs/oficinavirtual/application/views/sigma/etapaProcedimiento/registrarrequisitos_view.php",
-		"/C/xampp/htdocs/oficinavirtual/application/controllers/sigma/evaluacionrequisitos.php",
-		"/C/xampp/htdocs/oficinavirtual/application/views/sigma/nuevopublicidad/definir_ancho_alto_view.php",
-		"/C/xampp/htdocs/oficinavirtual/js/sigma/nuevo_publicidad/jsNuevoPublicidad.js",
-		"/C/xampp/htdocs/oficinavirtual/application/models/sigma/procesos_generales_model.php",
-		"/C/Users/SERVER.CCR/AppData/Roaming/Sublime Text 2/Packages/User/Default (Windows).sublime-keymap"
 	],
 	"find":
 	{
@@ -531,7 +404,6 @@
 		"case_sensitive": false,
 		"find_history":
 		[
-			"HEAD",
 			"objPermisos",
 			"controlador",
 			"pop",
@@ -794,7 +666,6 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 606.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -811,8 +682,8 @@
 						"selection":
 						[
 							[
-								0,
-								0
+								427,
+								361
 							]
 						],
 						"settings":
@@ -922,15 +793,14 @@
 					"file": "application/views/utilitarios/modulo/qry_controladores_view.php",
 					"settings":
 					{
-						"buffer_size": 558,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								1327,
+								1327
 							]
 						],
 						"settings":
@@ -1029,7 +899,6 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -1153,6 +1022,10 @@
 				},
 				{
 					"buffer": 4,
+					"file": "result/objeto_detalle_model.php",
+					"settings":
+					{
+						"buffer_size": 1903,
 					"file": "statics/js/sistema/utilitarios/modulo/modulo_ins.js",
 					"settings":
 					{
@@ -1624,7 +1497,6 @@
 					"file": "statics/js/sistema/jsGeneral.js",
 					"settings":
 					{
-						"buffer_size": 9681,
 						"regions":
 						{
 						},
@@ -1741,15 +1613,14 @@
 					"file": "/C/xampp/htdocs/oficinavirtual/js/jsGeneral.js",
 					"settings":
 					{
-						"buffer_size": 56440,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								742,
+								760
 							]
 						],
 						"settings":
@@ -2109,6 +1980,122 @@
 						},
 						"translation.x": 0.0,
 						"translation.y": 216.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 12,
+					"file": "application/config/constants.php",
+					"settings":
+					{
+						"buffer_size": 2115,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								815,
+								815
+							]
+						],
+						"settings":
+						{
+							"annotations":
+							[
+								"TODO",
+								"README",
+								"FIXME"
+							],
+							"csslint_options":
+							{
+								"adjoining-classes": "warning",
+								"box-model": true,
+								"box-sizing": "warning",
+								"compatible-vendor-prefixes": "warning",
+								"display-property-grouping": true,
+								"duplicate-background-images": "warning",
+								"duplicate-properties": true,
+								"empty-rules": true,
+								"errors": true,
+								"fallback-colors": "warning",
+								"floats": "warning",
+								"font-faces": "warning",
+								"font-sizes": "warning",
+								"gradients": "warning",
+								"ids": "warning",
+								"import": "warning",
+								"important": "warning",
+								"known-properties": true,
+								"outline-none": "warning",
+								"overqualified-elements": "warning",
+								"qualified-headings": "warning",
+								"regex-selectors": "warning",
+								"rules-count": "warning",
+								"shorthand": "warning",
+								"star-property-hack": "warning",
+								"text-indent": "warning",
+								"underscore-property-hack": "warning",
+								"unique-headings": "warning",
+								"universal-selector": "warning",
+								"vendor-prefix": true,
+								"zero-units": "warning"
+							},
+							"gjslint_ignore":
+							[
+								110
+							],
+							"gjslint_options":
+							[
+							],
+							"is_xml": false,
+							"javascript_linter": "jshint",
+							"jshint_options":
+							{
+								"browser": true,
+								"evil": true,
+								"regexdash": true,
+								"sub": true,
+								"trailing": true,
+								"wsh": true
+							},
+							"pep8": true,
+							"pep8_ignore":
+							[
+								"E501"
+							],
+							"perl_linter": "perlcritic",
+							"pyflakes_ignore":
+							[
+							],
+							"pyflakes_ignore_import_*": true,
+							"sublimelinter": true,
+							"sublimelinter_delay": 2,
+							"sublimelinter_disable":
+							[
+							],
+							"sublimelinter_executable_map":
+							{
+							},
+							"sublimelinter_fill_outlines": false,
+							"sublimelinter_gutter_marks": true,
+							"sublimelinter_gutter_marks_theme": "simple",
+							"sublimelinter_mark_style": "none",
+							"sublimelinter_notes": false,
+							"sublimelinter_objj_check_ascii": false,
+							"sublimelinter_popup_errors_on_save": false,
+							"sublimelinter_syntax_map":
+							{
+								"C++": "c",
+								"Python Django": "python",
+								"Ruby on Rails": "ruby"
+							},
+							"sublimelinter_wrap_find": true,
+							"syntax": "Packages/PHP/PHP.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
