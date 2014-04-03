@@ -6,6 +6,8 @@ class Modulo extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('utilitarios/modulo_model','objModulo');
+		$this->load->model('objeto_model','objObjeto');
+		$this->load->model('objeto_detalle_model','objObjetoDetalle');
 		$this->load->library('table');
 	}
 	public function pruebas(){
@@ -25,9 +27,13 @@ class Modulo extends CI_Controller {
 			case 'upd_view':
 				$this->objModulo->set_codigo( $parametros );
 				$data = $this->objModulo->getAplicacion();
+			break;
+			case 'upd_obj_view':
+				$this->objObjeto->set_nObjId( $parametros );
+				$data = $this->objObjeto->getObjeto();
 				// print_p($data);
 				// exit();
-				break;			
+			break;
 			default:
 				break;
 		}
@@ -83,7 +89,7 @@ class Modulo extends CI_Controller {
 					)
 				);
 				$funciones = array(
-					'initEvtOpc("edit","saluda(fila)")'
+					'initEvtOpc("edit","editarObjeto(fila)")'
 				);	
 				$nameTable = 'tblObjeto';
 				$pk = 'ID';
@@ -141,6 +147,12 @@ class Modulo extends CI_Controller {
 		$this->objModulo->set_cAplIcono( $this->input->post('txt_upd_mod_icono') );
 		echo $this->objModulo->updAplicacion( );
 	}
+	function updObjeto(){
+		$this->objObjeto->set_nObjId( $this->input->post('txt_upd_obj_id') );
+		$this->objObjeto->set_cObjNombre( $this->input->post('txt_upd_obj_nombre') );
+		$this->objObjeto->set_nObjOrden( $this->input->post('txt_upd_obj_order') );
+		echo $this->objObjeto->updObjeto( );
+	}
 
 	function insAplicacion(){
 		$this->objModulo->set_nombre( $this->input->post('txt_ins_mod_nombre') );
@@ -155,8 +167,21 @@ class Modulo extends CI_Controller {
 
 	function insObjeto(){
 		$this->input->post('txt_ins_obj_nombre');
-		$this->input->post('txt_ins_apli_codigo');
-		$this->input->post('txt_ins_obj_file');
+		$this->objObjeto->set_nAplId( $this->input->post('txt_ins_apli_codigo') );
+		$this->objObjeto->set_cObjNombre( $this->input->post('txt_ins_obj_nombre') );
+		if ( $this->objObjeto->insObjeto() ) {
+			/*Objeto Detalle*/
+			$this->objObjetoDetalle->set_nObjId( $this->objObjeto->get_nObjId() );
+			$this->objObjetoDetalle->set_cOdetNombreArchivo( $this->input->post('txt_ins_obj_file') );			
+			$response = ( $this->objObjetoDetalle->insObjetoDetalle() ) ? 'succes_all' : 'err002';
+		}else{
+			$response = 'errObt';
+		}
+		echo $response;
+	}
+	function pruebaMetodo(){
+		$this->objObjeto->getNumeroOrden();
+		// echo 
 	}
 }
 

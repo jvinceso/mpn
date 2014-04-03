@@ -31,12 +31,17 @@ $(function(){
 	            },
 	            success:function(data){
 	                switch (data) { 
-	                    case "2":
-	                    	mensaje("Error al guardar el Modulo!","a"); 
+	                    case "errObt":
+	                    	mensaje("Error al guardar el Objeto!","a"); 
 	                    break;
-	                    default:
+	                    case "err002":
+	                    	mensaje("Error al guardar el Objeto Detalle!","a"); 
+	                    break;
+	                    case "succes_all":
+	                    // default:
 	                    	msgLoadSaveRemove("#btnInsObjeto");
-	                    	mensaje("Se Registro Correctamente el Modulo","e");
+	                    	mensaje("Se Registro Correctamente la opcion","e");
+	                    	listarOpcionesxAplicacion();
 	                    	limpiarForm('#frm_ins_mod_objeto');
 	                    break;
 	                }
@@ -65,8 +70,10 @@ $(function(){
 
 });
 
-function saluda(fila){
-	alert("HOla");
+function editarObjeto(fila){
+	var nObjId = $(fila).find("td:eq(0)").text().trim();
+	set_popup("../utilitarios/modulo/vistaGet/upd_obj_view/"+nObjId,'Actualizar Opcion',450,250,'','listarOpcionesxAplicacion()');
+	// alert("HOla");
 }
 function listarOpcionesxAplicacion(){
 	msgLoading('#c_frm_mod_aplicaciones',"Espere por favor!!!");
