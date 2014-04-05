@@ -4,7 +4,7 @@
 class Objeto_model extends CI_Model {
 	############################### PROPIEDADES/ATRIBUTOS ################################
 	protected $nObjId = '';
-	// protected $nAplId = '';
+	protected $nAplId = '';
 	public  $cObjNombre = '';
 	public  $bObjTipo = '';
 	private $nObjIdPadre = '';
@@ -14,6 +14,8 @@ class Objeto_model extends CI_Model {
 	//Constructor de Clase
 	function __construct(){
 		parent::__construct();
+		$this->set_bObjTipo(1);
+		$this->set_nObjIdPadre(0);
 	}
 
 	public function set_nObjId( $nObjId ){
@@ -44,19 +46,38 @@ class Objeto_model extends CI_Model {
 		return $this->nObjId;
 	}
 	################################# MÉTODOS ##################################
-	public function insObjeto( $nAplId ){
-
+	public function getObjeto(){
+		$this->db->select('nObjId,cObjNombre,nObjOrden');
+		return $this->db->where(array('cObjEstado'=>1,'nObjId'=>$this->get_nObjId() ))->get('objeto')->result_array()[0];
+	}
+	public function insObjeto(){
+		//Consultamos el Ultimo Numero de Orden registrado
+		$this->getNumeroOrden();
 		$data = array(
-			// cObjNombre
-			// bObjTipo
-			'nAplId'      => $nAplId,
+			'nAplId'      => $this->nAplId,
 			'cObjNombre'  => $this->cObjNombre,
 			'nObjIdPadre' => $this->nObjIdPadre,
 			'bObjTipo'    => $this->bObjTipo,
 			'nObjOrden'   => $this->nObjOrden
 		);
-		$this->db->insert('aplicacion', $data);
-		return $this->db->insert_id();		
+		$this->db->insert('objeto', $data);
+		$this->nObjId = $this->db->insert_id();
+		return ($this->db->affected_rows() != 1) ? false : true;
+		// return $this->db->insert_id();		
+	}
+	public function getNumeroOrden(){
+		//Contamos Los Objetos Registrados y sumamos +1
+		$this->db->select('nObjOrden')->from('objeto')->where('nAplId', $this->nAplId )->limit(0, 1);
+		$this->nObjOrden = $this->db->count_all_results() + 1;
+	}
+	public function updObjeto(){
+		$data = array(
+			'cObjNombre' => $this->cObjNombre,
+			'nObjOrden' => $this->nObjOrden
+		);
+		$this->db->where( 'nObjId', $this->get_nObjId() );
+		$this->db->update( 'objeto', $data );
+		return ($this->db->affected_rows() != 1) ? false : true;
 	}
 	//LISTA DE MENU + OPCIONES
     public function listaMenuOpciones(){
