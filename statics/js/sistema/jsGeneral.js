@@ -11,6 +11,7 @@ function tooltip_placement(context, source) {
 }
 
 function initEvtOpc(clase_icono,funcion){    
+    $(".icon-"+clase_icono).unbind('click');
     $(".icon-"+clase_icono).each(function(){
         var fila;
         $("#"+this.id).click(function(e){
@@ -22,6 +23,7 @@ function initEvtOpc(clase_icono,funcion){
 }
 // function initEvtUpd(){
 function initEvtUpdJson(url,title,alto,ancho,func_close){
+    $(".icon-pencil").unbind('click');
     $('.icon-pencil').each(function(){
         var fila;
         $("#"+this.id).click(function(e){
@@ -50,6 +52,7 @@ function initEvtUpdJson(url,title,alto,ancho,func_close){
 // }
 
 function initEvtUpd(url,title,alto,ancho,func_close){
+    $(".icon-pencil").unbind('click');
     $('.icon-pencil').each(function(){
         var fila;
         $("#"+this.id).click(function(e){
@@ -63,6 +66,7 @@ function initEvtUpd(url,title,alto,ancho,func_close){
     });
 }
 function initEvtDel(funcion){ 
+    $(".icon-trash").unbind('click');
     $(".icon-trash").on("click",function(e){
         e.preventDefault();
         var fila,fn;

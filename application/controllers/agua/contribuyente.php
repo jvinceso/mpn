@@ -5,10 +5,10 @@ class Contribuyente extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('persona_model','objPersona');
 		$this->load->model('persona_natural_model','objPersonaNatural');
 		$this->load->model('persona_detalle_model','objPersonaDetalle');
-		// $this->load->library('table');
+		$this->load->model('persona_model','objPersona');
+		$this->load->helper('tables_helper');
 	}
 	public function index()
 	{
@@ -24,6 +24,7 @@ class Contribuyente extends CI_Controller {
     }
 
     function insContribuyente(){
+
 		$datapd = 
 		   array(
 		      'dni'         =>  $this->input->post('txt_ins_cont_dni') ,
@@ -43,7 +44,7 @@ class Contribuyente extends CI_Controller {
 			$this->objPersonaNatural->set_nPerId( $this->getPerId() );
 			$this->objPersonaNatural->insPersonaNatural();
 			$this->objPersonaDetalle->instPersonaDetalle('contribuyente');
-				if ($query) {
+			if ($query) {
 					echo "1";
 				}else{
 					echo "2";
@@ -51,6 +52,34 @@ class Contribuyente extends CI_Controller {
 		} else {
 			echo "0";
 		}
+	}
+
+	function listarContribuyente(){
+		$opciones = array(
+			'Direccion' => array(
+				 'color'=>'green'
+				,'icono'=>'home'
+				,'tooltip'=>'success'
+			)
+			// 'Eliminar' => array(
+			// 	 'color'=>'red'
+			// 	,'icono'=>'trash'
+			// 	,'tooltip'=>'success'
+			// ),
+			// 'Configuracion' => array(
+			// 	 'color'=>'blue'
+			// 	,'icono'=>'cogs'
+			// 	,'tooltip'=>'info'
+			// )
+		);
+		$tabla_data = $this->objPersona->qryContribuyente();
+		$funciones = array(
+			// 'initEvtUpdJson("../utilitarios/modulo/vistaGet/upd_view/","Pagina de Pruebas",450,250,"listarModulo()")',
+			'initEvtOpc("cogs","asignaDireccion(fila)")',
+			// 'initEvtDel("confirmarDelete")'
+		);
+		$nameTable = 'tabla-contrib';
+		$pk = 'ID';
 	}
 
 }
