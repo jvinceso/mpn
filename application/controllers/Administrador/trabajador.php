@@ -6,6 +6,7 @@ class Trabajador extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('administrador/trabajador_model','objTrabajador');
+		$this->load->model('persona_natural_model','objPersonaNatural');
 		$this->load->model('usuario_model','objUsuario');
 	}
 	public function index()
@@ -39,18 +40,21 @@ class Trabajador extends CI_Controller {
 		$this->objTrabajador->setPerApellidoMaterno( $this->input->post('txt_ins_trab_apmaterno') );	
 		$this->objTrabajador->setPerNombres( $this->input->post('txt_ins_trab_nombres') );	
 		$this->objTrabajador->setPerDNI( $this->input->post('txt_ins_trab_dni') );	
-		$this->objTrabajador->setPerSexo( $this->input->post('cbo_ins_trab_sexo') );	
-		$this->objTrabajador->setPerFechaNacimiento( $this->input->post('txt_ins_trab_nacimiento') );	
+		$this->objPersonaNatural->set_cPnaSexo( $this->input->post('cbo_ins_trab_sexo') );	
+		$this->objPersonaNatural->set_dPnaFechaNacimiento( $this->input->post('txt_ins_trab_nacimiento') );	
 		$this->objTrabajador->setPerDireccion( $this->input->post('txt_ins_trab_direccion') );	
 		$this->objTrabajador->setPerEmail( $this->input->post('txt_ins_trab_email') );	
 		$this->objTrabajador->setPerTelefono( $this->input->post('txt_ins_trab_telefono') );	
 		$this->objTrabajador->setPerCelular( $this->input->post('txt_ins_trab_celular') );	
 		$this->objTrabajador->setPerEstadoCivil( $this->input->post('cbo_ins_trab_estcivil') );	
 		// print_p($this->objTrabajador);
-		$result = $this->objTrabajador->insTrabajador();
-		if ($result) {
-			// $this->objModulo->insAplicacion($);
-			echo "1";
+		if ( $this->objTrabajador->insTrabajador( $this->objPersonaNatural ) ) {
+			$query = $this->objUsuario->insUsuario($this->input->post('txt_ins_trab_dni'),$this->objTrabajador->getPerId());
+				if ($query) {
+					echo "1";
+				}else{
+					echo "2";
+				}			
 		} else {
 			echo "0";
 		}

@@ -51,7 +51,7 @@
 
 		<div class="col-sm-3">
 			<div class="input-group">
-				<input class="form-control date-picker" id="txt_ins_trab_nacimiento" name = "txt_ins_trab_nacimiento" type="text" data-date-format="dd-mm-yyyy" />
+				<input class="form-control date-picker" id="txt_ins_trab_nacimiento" name = "txt_ins_trab_nacimiento" type="text" data-date-format="yyyy-mm-dd" />
 				<span class="input-group-addon">
 					<i class="icon-calendar bigger-110"></i>
 				</span>

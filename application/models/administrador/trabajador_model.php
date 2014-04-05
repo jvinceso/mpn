@@ -69,43 +69,72 @@ class Trabajador_model extends Persona_model {
         }
 	}
 
-	public function insTrabajador(){
-		$persona = array(
-			'cPerApellidoPaterno'  =>  $this->getPerApellidoPaterno(),
-			'cPerApellidoMaterno'  =>  $this->getPerApellidoMaterno(),
-			'cPerNombres'          =>  $this->getPerNombres(),
-			'cPerRandom'           =>  '12345'
+	public function insTrabajador($objpn){
+		// $persona = array(
+		// 	'cPerApellidoPaterno'  =>  $this->getPerApellidoPaterno(),
+		// 	'cPerApellidoMaterno'  =>  $this->getPerApellidoMaterno(),
+		// 	'cPerNombres'          =>  $this->getPerNombres(),
+		// 	'cPerRandom'           =>  '12345'
+		// 	);
+		// $this->db->insert('persona', $persona);
+  //       // $nPerId = $this->db->insert_id();
+  //       $this->setPerId($this->db->insert_id());
+		$this->insPersona();
+		$objpn->set_nPerId( $this->getPerId() );
+		$objpn->insPersonaNatural();
+
+		$trabajador_municipal = array(
+			'nPerId'      =>  $this->getPerId(),
+			'nMulArea'    =>  $this->get_AreId(),
+			'nMulCargo'   =>  $this->get_MulCargo()
 			);
-		$this->db->insert('persona', $persona);
-        $nPerId = $this->db->insert_id();
+		$this->db->insert('Trabajador_Municipal', $trabajador_municipal);
+
+
+		// $persona_natural = array(
+		// 	'nPerId'               =>  $this->getPerId(),
+		// 	'cPnaSexo'             =>  $this->getPerSexo(),
+		// 	'dPnaFechaNacimiento'  =>  $this->getPerFechaNacimiento()
+		// 	);
+		// $this->db->insert('persona_natural', $persona_natural);
 
         $persona_detalle = array(
-			'cAplNombre' => $this->get_nombre(),
-			'nAplTipo'  =>  $nPerId,
-			'cAplIcono' =>  $this->get_cAplIcono(),
-			'nAplOrden' =>  $this->getUltimoNroOrden()
-			);
-		$this->db->insert('persona_detalle', $persona_cargo);  
+                '0' => array(
+                    'nPerId'    => $this->getPerId(),
+                    'nMulId'    => 16,
+                    'cPdeValor' => $this->getPerDNI()
+                ),
+                '1' => array(
+                    'nPerId'    => $this->getPerId(),
+                    'nMulId'    => 18,
+                    'cPdeValor' => $this->getPerEstadoCivil()
+                ),   
+                '2' => array(
+                    'nPerId'    => $this->getPerId(),
+                    'nMulId'    => 43,
+                    'cPdeValor' => $this->getPerTelefono()
+                ),
+                '3' => array(
+                    'nPerId'    => $this->getPerId(),
+                    'nMulId'    => 44,
+                    'cPdeValor' => $this->getPerCelular()
+                ),
+                '4' => array(
+                    'nPerId'    => $this->getPerId(),
+                    'nMulId'    => 45,
+                    'cPdeValor' => $this->getPerEmail()
+                ),             
+                '5' => array(
+                    'nPerId'    => $this->getPerId(),
+                    'nMulId'    => 46,
+                    'cPdeValor' => $this->getPerDireccion()
+                )
+        );
+        for ($y = 0; $y < count($persona_detalle); $y++) {
+            $this->db->insert('persona_detalle', $persona_detalle[$y]);
+        }
 
-        $persona_natural = array(
-			'cAplNombre' => $this->get_nombre(),
-			'nAplTipo'  =>  $nPerId,
-			'cAplIcono' =>  $this->get_cAplIcono(),
-			'nAplOrden' =>  $this->getUltimoNroOrden()
-		);
-
-        $usuario = array(
-			'cAplNombre' => $this->get_nombre(),
-			'nAplTipo'  =>  $nPerId,
-			'cAplIcono' =>  $this->get_cAplIcono(),
-			'nAplOrden' =>  $this->getUltimoNroOrden()
-		);
-
- 
-        
-
-		// return $this->db->insert_id();
-
+        return $this->db->insert_id();
 	}
 
 

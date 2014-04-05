@@ -1,16 +1,16 @@
 $(function(){
-	cboTipoEstadoCivil();
+    cboTipoEstadoCivil();
     cboTipoArea();
     cboTipoCargo()
     $('.input-mask-phone').mask('(999) 999-999');
-    $('.date-picker').datepicker({autoclose:true}).next().on(ace.click_event, function(){
-		$(this).prev().focus();
-	});
+    $('.date-picker').datepicker({
+        autoclose:true
+    });
 
-	    $("#frm_ins_trabajador").validate({
+        $("#frm_ins_trabajador").validate({
         rules: {
             txt_ins_trab_dni: {
-                required: true ,
+                // required: true ,
                 maxlength:8,
                 minlength:8,
                 digits:true
@@ -29,38 +29,38 @@ $(function(){
                 // }
             },
             txt_ins_trab_appaterno: {
-                required: true ,
+                // required: true ,
                 // lettersonly: true,
                 maxlength:80
             },
             txt_ins_trab_apmaterno: {
-                required: true ,
+                // required: true ,
                 // lettersonly: true,
                 maxlength:80
             },
             txt_ins_trab_nombres: {
-                required: true,
+                // required: true,
                 // lettersonly: true,
                 maxlength:200
             },
             txt_ins_trab_nacimiento: {
-                required: true
+                // required: true
             },
             cbo_ins_trab_sexo: {
-                required: true
+                // required: true
             },
             cbo_ins_trab_ecivil: {
-                required: true
+                // required: true
             },
             txt_ins_trab_telefono: {
-                required: true,
+                // required: true,
                 maxlength:11
             }, 
             txt_ins_trab_celular: {
-                required: true
+                // required: true
             },
             txt_ins_trab_email: {
-                required: true,
+                // required: true,
                 email: true,
                 // remote: {
                 //     url: "txtUsuarioGet",
@@ -75,17 +75,17 @@ $(function(){
                 maxlength:250
             },
             cbo_ins_trab_area: {
-                required: true
+                // required: true
             },
             cbo_ins_trab_cargo: {
-                required: true
+                // required: true
             },
             txt_ins_trab_direccion: {
-                required: true,
+                // required: true,
                 maxlength:250
             },
             txt_ins_trab_usuario: {
-                required: true,
+                // required: true,
                 minlength:6,
                 // ,remote: {
                 //     url: "txtUsuarioGet",
@@ -101,7 +101,7 @@ $(function(){
             },
             txt_ins_trab_contrasenia: {
                 minlength:6,
-                required: true,
+                // required: true,
                 maxlength:40
             }
             // txt_ins_per_repclave: {
@@ -118,59 +118,43 @@ $(function(){
                 required:"Ingrese su e-mail"
             },
             txt_ins_trab_contrasenia: {
-            	required:"Ingrese su contraseña",
+                required:"Ingrese su contraseña",
                 minlength:" Ingrese de {0} caracteres a más"
             },
             txt_ins_per_usuario: {
-            	required:"Ingrese su usuario",
+                required:"Ingrese su usuario",
                 minlength:"Ingrese de {0} caracteres a más",
                 remote: "Este usuario ya existe"
             }
         },
         submitHandler: function(form){ 
-        	DesabilitarBoton('btn_ins_trab_registrar')
+            DesabilitarBoton('btn_ins_trab_registrar')
             $.ajax({
                 type: "POST",
                 url:  "trabajador/insTrabajador",
                 data: $(form).serialize(),
-                success: function(msg){
-                    HabilitarBoton('btn_ins_trab_registrar')
-                    alert(msg)
-                    // if(msg.trim()==1){ 
-                    //     $("#gracias_usuario").html($("#txt_ins_per_nombres").val()+" "+$("#txt_ins_per_apepat").val()+" "+$("#txt_ins_per_apemat").val())
-                    //     $("#c_div_registro_exito_datos").modal({
-                    //         show:true,
-                    //         backdrop: "static",
-                    //         keyboard: false
-                    //     });                
-                    //     $(".modal ").css({
-                    //         'margin-left': '-350px',
-                    //         'margin-top': '-190px'
-                    //     });
-                    //     $(".modal-header ").css({
-                    //         'background-color': '#2968A0', 
-                    //         'color':'#FFF'
-                    //     });
-                    //     cleanForm(form);
-                    // }
-                    // else if(msg.trim()==3){
-                    //     mensaje("Ya existe este DNI","a");             
-                    // }
-                    // else if(msg.trim()==4){
-                    //     mensaje("Sus datos fueron guardados correctamente. Lamentablemente por razones técnicas no se ha podido enviar el Email.","a");             
-                    // }
-                    // else{
-                    //     mensaje("Error Inesperando registrando la persona!, vuelva a intentarlo","r");
-                    //     setInterval(tologin, 8000);                         
-                    // } 
+                success: function(data){                    
+                    switch (data) { 
+                        case "2":
+                        mensaje("Error al guardar el Usuario!","a"); 
+                        break; 
+                        case "0":
+                        mensaje("Error al guardar el Trabajador!","a");                         
+                        break;
+                        default:                        
+                        mensaje("Se Registro Correctamente el Trabajador","e");
+                        HabilitarBoton('btn_ins_trab_registrar');
+                        // limpiarForm('#frm_ins_trabajador');
+                    }
+
                 },
                 error: function(msg){                
-                    mensaje("r","Error Inesperando registrando la persona!, vuelva a intentarlo");                        ;
+                    mensaje("r","Error Inesperando registrando al Trabajador!, vuelva a intentarlo");                        ;
                 }
             });
         }
     });
-	
+    
 })
 function cboTipoEstadoCivil(){  
     // msgLoading("#c_cbo_ins_not_cat");    

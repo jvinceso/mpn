@@ -90,4 +90,14 @@
             }
             return false;
         }
+        function insUsuario($usuario,$nPerId)
+        {
+            $usuario = array(
+                'nPerId'    =>  $nPerId,
+                'cUsuNick'  =>  $usuario,
+                'cUsuClave' =>  md5('123456')
+                );
+            $this->db->insert('usuario', $usuario);
+            return $this->db->insert_id();
+        }
     }
