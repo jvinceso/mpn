@@ -40,6 +40,7 @@ class Contribuyente extends CI_Controller {
 		$this->objPersonaNatural->set_dPnaFechaNacimiento( $this->input->post('txt_ins_cont_nacimiento') );	
 		$this->objPersonaDetalle->set_cPdeValor( $datapd );
 		if ( $this->objPersona->insPersona() ) {
+			$this->objPersonaNatural->set_nPerId( $this->getPerId() );
 			$this->objPersonaNatural->insPersonaNatural();
 			$this->objPersonaDetalle->instPersonaDetalle('contribuyente');
 				if ($query) {
