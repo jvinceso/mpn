@@ -8,19 +8,11 @@ class Persona_model extends CI_Model {
     private $PerApellidoPaterno = '';
     private $PerApellidoMaterno = '';
     private $PerNombres = '';
-    private $PerDNI = '';
-    private $PerSexo = '';
-    private $PerFechaNacimiento = '';
-    private $PerDireccion = '';
-    private $PerEmail = '';
-    private $PerTelefono = '';
-    private $PerCelular = '';
-    private $PerEstadoCivil = '';
-    // private $PerUsuario = '';
-    // private $PerClave = '';
+    private $PerContribuyente = 'SI';
     //CONSTRUCTOR DE LA CLASE
     function __construct() {
         parent::__construct();
+        $this->PerContribuyente = 'SI';
     }
 
 
@@ -55,83 +47,27 @@ class Persona_model extends CI_Model {
 
     public function setPerNombres($PerNombres) {
         $this->PerNombres = $PerNombres;
+    } 
+
+    public function getPerContribuyente() {
+        return $this->PerContribuyente;
     }
 
-    public function getPerDNI() {
-        return $this->PerDNI;
+    public function setPerContribuyente($PerContribuyente) {
+        $this->PerContribuyente = $PerContribuyente;
     }
-
-    public function setPerDNI($PerDNI) {
-        $this->PerDNI = $PerDNI;
-    }
-
-    public function getPerSexo() {
-        return $this->PerSexo;
-    }
-
-    public function setPerSexo($PerSexo) {
-        $this->PerSexo = $PerSexo;
-    }
-
-    public function getPerFechaNacimiento() {
-        return $this->PerFechaNacimiento;
-    }
-
-    public function setPerFechaNacimiento($PerFechaNacimiento) {
-        $this->PerFechaNacimiento = $PerFechaNacimiento;
-    }
-
-    public function getPerDireccion() {
-        return $this->PerDireccion;
-    }
-
-    public function setPerDireccion($PerDireccion) {
-        $this->PerDireccion = $PerDireccion;
-    }
-
-    public function getPerEmail() {
-        return $this->PerEmail;
-    }
-
-    public function setPerEmail($PerEmail) {
-        $this->PerEmail = $PerEmail;
-    }
-
-    public function getPerTelefono() {
-        return $this->PerTelefono;
-    }
-
-    public function setPerTelefono($PerTelefono) {
-        $this->PerTelefono = $PerTelefono;
-    }
-
-    public function getPerCelular() {
-        return $this->PerCelular;
-    }
-
-    public function setPerCelular($PerCelular) {
-        $this->PerCelular = $PerCelular;
-    }
-
-    public function getPerEstadoCivil() {
-        return $this->PerEstadoCivil;
-    }
-
-    public function setPerEstadoCivil($PerEstadoCivil) {
-        $this->PerEstadoCivil = $PerEstadoCivil;
-    }
-
-
 
     public function insPersona(){
         $persona = array(
             'cPerApellidoPaterno'  =>  $this->getPerApellidoPaterno(),
             'cPerApellidoMaterno'  =>  $this->getPerApellidoMaterno(),
             'cPerNombres'          =>  $this->getPerNombres(),
-            'cPerRandom'           =>  '12345'
+            'cPerRandom'           =>  '12345',
+            'cPerContribuyente'    =>  $this->getPerContribuyente()
             );
-        $this->db->insert('persona', $persona);
+        $this->db->insert('persona', $persona);        
         $this->setPerId($this->db->insert_id());  
+        return $this->db->insert_id();
     }
 }
 

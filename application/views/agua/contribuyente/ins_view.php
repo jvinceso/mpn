@@ -1,6 +1,7 @@
 <script type="text/javascript" src='<?php echo URL_JS; ?>sistema/agua/contribuyente/contribuyente_ins.js'></script>
 <script src="<?php echo URL_JS; ?>date-time/bootstrap-datepicker.min.js"></script>
 <link rel="stylesheet" href="<?php echo URL_CSS; ?>datepicker.css" />
+<link rel="stylesheet" href="<?php echo URL_CSS; ?>chosen.css" />
 
 <form id="frm_ins_contribuyente" name = "frm_ins_contribuyente" class="form-horizontal" role="form">
 	<h3 class="header smaller lighter blue">
@@ -87,7 +88,7 @@
 		<!-- <div class="col-sm-9"> -->
 		<span class="input-icon col-xs-2">
 			<div class="input-group">
-				<input class="form-control input-mask-phone" type="text" id="form-field-mask-1" />	
+				<input class="form-control" type="text" id="txt_ins_cont_telefono" name = "txt_ins_cont_telefono" />	
 				<span class="input-group-addon">
 					<i class="icon-phone"></i>
 				</span>
@@ -97,7 +98,7 @@
 
 		<span class="input-icon col-xs-2">
 			<div class="input-group">
-				<input class="form-control input-mask-phone" type="text" id="form-field-mask-1" />	
+				<input class="form-control input-mask-phone" type="text" id="txt_ins_cont_celular" name = "txt_ins_cont_celular" />	
 				<span class="input-group-addon">
 					<i class="icon-building"></i>
 				</span>
@@ -114,11 +115,10 @@
 	<div class="space-4"></div>
 	<div class="clearfix form-actions">
 		<div class="col-md-offset-3 col-md-9">
-			<button class="btn btn-info" type="button">
+			<button id = "btn_ins_cont_registrar" class="btn btn-info" data-loading-text="Loading..." type="submit">
 				<i class="icon-ok bigger-110"></i>
 				Registrar
 			</button>
-
 			&nbsp; &nbsp; &nbsp;
 			<button class="btn" type="reset">
 				<i class="icon-undo bigger-110"></i>
@@ -127,3 +127,5 @@
 		</div>
 	</div>
 </form>
+<script src="<?php echo URL_JS; ?>jquery.maskedinput.min.js"></script>
+<script src="<?php echo URL_JS; ?>chosen.jquery.min.js"></script>

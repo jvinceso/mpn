@@ -44,110 +44,59 @@ $(function(){
             txt_ins_cont_nacimiento: {
                 // required: true
             },
-            cbo_ins_trab_sexo: {
+            cbo_ins_cont_sexo: {
                 // required: true
             },
-            cbo_ins_trab_ecivil: {
+            cbo_ins_cont_ecivil: {
                 // required: true
             },
-            txt_ins_trab_telefono: {
+            txt_ins_cont_telefono: {
                 // required: true,
                 maxlength:11
             }, 
-            txt_ins_trab_celular: {
+            txt_ins_cont_celular: {
                 // required: true
             },
-            txt_ins_trab_email: {
+            txt_ins_cont_email: {
                 // required: true,
                 email: true,
-                // remote: {
-                //     url: "txtUsuarioGet",
-                //     type: "post",
-                //     data: {
-                //         accion: "EmailRP",
-                //         email: function() {
-                //             return $("#txt_ins_per_email").val();
-                //         }
-                //     }
-                // },
                 maxlength:250
-            },
-            cbo_ins_trab_area: {
-                // required: true
-            },
-            cbo_ins_trab_cargo: {
-                // required: true
-            },
-            txt_ins_trab_direccion: {
-                // required: true,
-                maxlength:250
-            },
-            txt_ins_trab_usuario: {
-                // required: true,
-                minlength:6,
-                // ,remote: {
-                //     url: "txtUsuarioGet",
-                //     type: "post",
-                //     data: {
-                //         accion: "UserRP",
-                //         usuario: function() {
-                //             return $("#txt_ins_per_usuario").val();
-                //         }
-                //     }
-                // },
-                maxlength:100
-            },
-            txt_ins_trab_contrasenia: {
-                minlength:6,
-                // required: true,
-                maxlength:40
             }
-            // txt_ins_per_repclave: {
-            //     required: true,
-            //     equalTo: "#txt_ins_per_clave",
-            //     maxlength:40
-            // }
         },
         messages: {
-            txt_ins_trab_dni:{
+            txt_ins_cont_dni:{
                 remote:"Ya existe este documento de identidad <a href='recupera_clave.html' style='color: blue'>!Recupera tu clave Aquí¡</a>"
             },
-            txt_ins_trab_email:{
+            txt_ins_cont_email:{
                 required:"Ingrese su e-mail"
-            },
-            txt_ins_trab_contrasenia: {
-                required:"Ingrese su contraseña",
-                minlength:" Ingrese de {0} caracteres a más"
-            },
-            txt_ins_per_usuario: {
-                required:"Ingrese su usuario",
-                minlength:"Ingrese de {0} caracteres a más",
-                remote: "Este usuario ya existe"
             }
         },
         submitHandler: function(form){ 
-            DesabilitarBoton('btn_ins_trab_registrar')
+            DesabilitarBoton('btn_ins_cont_registrar')
             $.ajax({
                 type: "POST",
-                url:  "trabajador/insTrabajador",
+                url:  "contribuyente/insContribuyente",
                 data: $(form).serialize(),
                 success: function(data){                    
                     switch (data) { 
                         case "2":
-                        mensaje("Error al guardar el Usuario!","a"); 
+                        mensaje("Error al guardar el Contribuyente!","a"); 
+                        HabilitarBoton('btn_ins_cont_registrar');
                         break; 
                         case "0":
-                        mensaje("Error al guardar el Trabajador!","a");                         
+                        mensaje("Error al guardar el Contribuyente!","a"); 
+                        HabilitarBoton('btn_ins_cont_registrar');                        
                         break;
                         default:                        
-                        mensaje("Se Registro Correctamente el Trabajador","e");
-                        HabilitarBoton('btn_ins_trab_registrar');
+                        mensaje("Se Registro Correctamente el Contribuyente","e");
+                        HabilitarBoton('btn_ins_cont_registrar');
                         // limpiarForm('#frm_ins_trabajador');
                     }
 
                 },
                 error: function(msg){                
-                    mensaje("r","Error Inesperando registrando al Trabajador!, vuelva a intentarlo");                        ;
+                    mensaje("r","Error Inesperando registrando al Contribuyente!, vuelva a intentarlo"); 
+                    HabilitarBoton('btn_ins_cont_registrar');                       ;
                 }
             });
         }

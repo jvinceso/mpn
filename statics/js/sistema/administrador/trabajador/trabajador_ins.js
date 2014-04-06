@@ -136,10 +136,12 @@ $(function(){
                 success: function(data){                    
                     switch (data) { 
                         case "2":
-                        mensaje("Error al guardar el Usuario!","a"); 
+                        mensaje("Error al guardar el Trabajador!","a"); 
+                        HabilitarBoton('btn_ins_trab_registrar');
                         break; 
                         case "0":
-                        mensaje("Error al guardar el Trabajador!","a");                         
+                        mensaje("Error al guardar el Trabajador!","a");   
+                        HabilitarBoton('btn_ins_trab_registrar');                      
                         break;
                         default:                        
                         mensaje("Se Registro Correctamente el Trabajador","e");
@@ -149,7 +151,8 @@ $(function(){
 
                 },
                 error: function(msg){                
-                    mensaje("r","Error Inesperando registrando al Trabajador!, vuelva a intentarlo");                        ;
+                    mensaje("r","Error Inesperando registrando al Trabajador!, vuelva a intentarlo");   
+                    HabilitarBoton('btn_ins_trab_registrar');                     ;
                 }
             });
         }

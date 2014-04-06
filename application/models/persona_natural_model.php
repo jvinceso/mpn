@@ -52,6 +52,7 @@
 					'dPnaFechaNacimiento'  =>  $this->get_dPnaFechaNacimiento()
 					);
 				$this->db->insert('persona_natural', $persona_natural);
+				// return $this->db->insert_id();
 		}
 	}
 ?>

@@ -31,7 +31,7 @@ class Contribuyente extends CI_Controller {
 		      'email'       =>  $this->input->post('txt_ins_cont_email'),
 		      'telefono'    =>  $this->input->post('txt_ins_cont_telefono'),
 		      'celular'     =>  $this->input->post('txt_ins_cont_celular'),
-		      'estadocivil' =>  $this->input->post('cbo_ins_cont_estcivil')
+		      'estadocivil' =>  $this->input->post('cbo_ins_per_estcivil')
 		   );
 		$this->objPersona->setPerApellidoPaterno( $this->input->post('txt_ins_cont_appaterno') );	
 		$this->objPersona->setPerApellidoMaterno( $this->input->post('txt_ins_cont_apmaterno') );	
@@ -41,14 +41,11 @@ class Contribuyente extends CI_Controller {
 		$this->objPersonaNatural->set_dPnaFechaNacimiento( $this->input->post('txt_ins_cont_nacimiento') );	
 		$this->objPersonaDetalle->set_cPdeValor( $datapd );
 		if ( $this->objPersona->insPersona() ) {
-			$this->objPersonaNatural->set_nPerId( $this->getPerId() );
+			$this->objPersonaNatural->set_nPerId( $this->objPersona->getPerId() );
 			$this->objPersonaNatural->insPersonaNatural();
+			$this->objPersonaDetalle->set_nPerId( $this->objPersona->getPerId() );
 			$this->objPersonaDetalle->instPersonaDetalle('contribuyente');
-			if ($query) {
-					echo "1";
-				}else{
-					echo "2";
-				}			
+			echo "1";		
 		} else {
 			echo "0";
 		}

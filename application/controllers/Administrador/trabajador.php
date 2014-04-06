@@ -8,6 +8,7 @@ class Trabajador extends CI_Controller {
 		$this->load->model('administrador/trabajador_model','objTrabajador');
 		$this->load->model('persona_natural_model','objPersonaNatural');
 		$this->load->model('usuario_model','objUsuario');
+		$this->load->model('persona_detalle_model','objPersonaDetalle');
 	}
 	public function index()
 	{
@@ -21,7 +22,7 @@ class Trabajador extends CI_Controller {
 	}
 
 	function cboTipoEstadoCivil() {
-        $result = $this->objTrabajador->cboTipoEstadoCivil();
+        $result = $this->objPersonaDetalle->cboTipoEstadoCivil();
         echo $result;
     }
     function cboTipoArea() {
@@ -34,21 +35,25 @@ class Trabajador extends CI_Controller {
     }
 
 	function insTrabajador(){
+		$datapd = 
+		   array(
+		      'dni'         =>  $this->input->post('txt_ins_trab_dni') ,
+		      'direccion'   =>  $this->input->post('txt_ins_trab_direccion') ,
+		      'email'       =>  $this->input->post('txt_ins_trab_email'),
+		      'telefono'    =>  $this->input->post('txt_ins_trab_telefono'),
+		      'celular'     =>  $this->input->post('txt_ins_trab_celular'),
+		      'estadocivil' =>  $this->input->post('cbo_ins_per_estcivil')
+		   );
 		$this->objTrabajador->set_AreId( $this->input->post('cbo_ins_trab_area') );
 		$this->objTrabajador->set_MulCargo( $this->input->post('cbo_ins_trab_cargo') );	
 		$this->objTrabajador->setPerApellidoPaterno( $this->input->post('txt_ins_trab_appaterno') );	
 		$this->objTrabajador->setPerApellidoMaterno( $this->input->post('txt_ins_trab_apmaterno') );	
-		$this->objTrabajador->setPerNombres( $this->input->post('txt_ins_trab_nombres') );	
-		$this->objTrabajador->setPerDNI( $this->input->post('txt_ins_trab_dni') );	
+		$this->objTrabajador->setPerNombres( $this->input->post('txt_ins_trab_nombres') );			
+		$this->objTrabajador->setPerContribuyente( 'NO' );			
 		$this->objPersonaNatural->set_cPnaSexo( $this->input->post('cbo_ins_trab_sexo') );	
 		$this->objPersonaNatural->set_dPnaFechaNacimiento( $this->input->post('txt_ins_trab_nacimiento') );	
-		$this->objTrabajador->setPerDireccion( $this->input->post('txt_ins_trab_direccion') );	
-		$this->objTrabajador->setPerEmail( $this->input->post('txt_ins_trab_email') );	
-		$this->objTrabajador->setPerTelefono( $this->input->post('txt_ins_trab_telefono') );	
-		$this->objTrabajador->setPerCelular( $this->input->post('txt_ins_trab_celular') );	
-		$this->objTrabajador->setPerEstadoCivil( $this->input->post('cbo_ins_trab_estcivil') );	
-		// print_p($this->objTrabajador);
-		if ( $this->objTrabajador->insTrabajador( $this->objPersonaNatural ) ) {
+		$this->objPersonaDetalle->set_cPdeValor( $datapd );
+		if ( $this->objTrabajador->insTrabajador( $this->objPersonaNatural,$this->objPersonaDetalle ) ) {
 			$query = $this->objUsuario->insUsuario($this->input->post('txt_ins_trab_dni'),$this->objTrabajador->getPerId());
 				if ($query) {
 					echo "1";
