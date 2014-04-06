@@ -52,44 +52,93 @@
 			}
 		}
 
-		function instPersonaDetalle(){
-		 $persona_detalle = array(
-                '0' => array(
-                    'nPerId'    => $this->getPerId(),
-                    'nMulId'    => 16,
-                    'cPdeValor' => $this->getPerDNI()
-                ),
-                '1' => array(
-                    'nPerId'    => $this->getPerId(),
-                    'nMulId'    => 18,
-                    'cPdeValor' => $this->getPerEstadoCivil()
-                ),   
-                '2' => array(
-                    'nPerId'    => $this->getPerId(),
-                    'nMulId'    => 43,
-                    'cPdeValor' => $this->getPerTelefono()
-                ),
-                '3' => array(
-                    'nPerId'    => $this->getPerId(),
-                    'nMulId'    => 44,
-                    'cPdeValor' => $this->getPerCelular()
-                ),
-                '4' => array(
-                    'nPerId'    => $this->getPerId(),
-                    'nMulId'    => 45,
-                    'cPdeValor' => $this->getPerEmail()
-                ),             
-                '5' => array(
-                    'nPerId'    => $this->getPerId(),
-                    'nMulId'    => 46,
-                    'cPdeValor' => $this->getPerDireccion()
-                )
-        );
-        for ($y = 0; $y < count($persona_detalle); $y++) {
-            $this->db->insert('persona_detalle', $persona_detalle[$y]);
+	public function cboTipoEstadoCivil(){	
+        $query = $this->db->query("select nMulId,cMulDescripcion from multitabla where nMulIdPadre = 18");
+        if ($query) {
+            $data   = $query->result_array();
+            // print_p($data);exit();
+            $combo  = creaCombo($data);
+            $result = form_dropdown("cbo_ins_per_estcivil", $combo,'', 'id="cbo_ins_per_estcivil" class="chzn-select" style="width:160px"');
+            return $result;
+        } else {
+            return false;
         }
-        
-        return $this->db->insert_id();
-		}
 	}
+
+	public	function instPersonaDetalle($parametros){
+// print_p($this->cPdeValor);
+// extract($this->cPdeValor);
+// print_p($dni);
+// print_p($direccion);
+// exit();
+		switch ($parametros) {
+			case 'trabajador':
+				  $objPersonadetalle = array(
+					   array(
+					      'nPerId' => $this->nPerId ,
+					      'nMulId' => '16' ,
+					      'cPdeValor' => $this->cPdeValor['dni']
+					   ),
+					   array(
+					      'nPerId' => $this->nPerId ,
+					      'nMulId' => '45' ,
+					      'cPdeValor' => $this->cPdeValor['email']
+					   ),
+					   array(
+					      'nPerId' => $this->nPerId ,
+					      'nMulId' => '46' ,
+					      'cPdeValor' => $this->cPdeValor['direccion']
+					   ),
+					   array(
+					      'nPerId' => $this->nPerId ,
+					      'nMulId' => '43' ,
+					      'cPdeValor' => $this->cPdeValor['telefono']
+					   ),
+					   array(
+					      'nPerId' => $this->nPerId ,
+					      'nMulId' => '44' ,
+					      'cPdeValor' => $this->cPdeValor['celular']
+					   ),
+					   array(
+					      'nPerId' => $this->nPerId ,
+					      'nMulId' => '18' ,
+					      'cPdeValor' => $this->cPdeValor['estadocivil']
+					   )
+					);			
+				break;
+			
+			case 'contribuyente':
+				  $objPersonadetalle = array(
+					   array(
+					      'nPerId' => $this->nPerId ,
+					      'nMulId' => '16' ,
+					      'cPdeValor' => $this->cPdeValor['dni']
+					   ),
+					   array(
+					      'nPerId' => $this->nPerId ,
+					      'nMulId' => '45' ,
+					      'cPdeValor' => $this->cPdeValor['email']
+					   ),
+					   array(
+					      'nPerId' => $this->nPerId ,
+					      'nMulId' => '43' ,
+					      'cPdeValor' => $this->cPdeValor['telefono']
+					   ),
+					   array(
+					      'nPerId' => $this->nPerId ,
+					      'nMulId' => '44' ,
+					      'cPdeValor' => $this->cPdeValor['celular']
+					   ),
+					   array(
+					      'nPerId' => $this->nPerId ,
+					      'nMulId' => '18' ,
+					      'cPdeValor' => $this->cPdeValor['estadocivil']
+					   )
+					);
+			
+				break;
+		}
+		$this->db->insert_batch('persona_detalle', $objPersonadetalle); 
+	}
+}	
 ?>

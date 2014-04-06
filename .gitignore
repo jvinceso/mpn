@@ -5,3 +5,5 @@ application/config/constants.php
 application/logs/*mpn.sublime-workspace
 /mpn.sublime-project
 /mpn.sublime-workspace
+
+application/config/constants.php
