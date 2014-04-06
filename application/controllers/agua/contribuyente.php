@@ -12,6 +12,7 @@ class Contribuyente extends CI_Controller {
 	}
 	public function index()
 	{
+		$this->loaders->verificaAcceso();
 		$data['main_content'] = 'agua/contribuyente/panel_view';
 		$data['aplicacion'] = 'Agua';
 		$data['objeto'] = 'Contribuyentes';
@@ -80,6 +81,7 @@ class Contribuyente extends CI_Controller {
 		);
 		$nameTable = 'tabla-contrib';
 		$pk = 'ID';
+		CrudGridMultipleJson($tabla_data,$nameTable,$pk,$opciones,$funciones);
 	}
 
 }

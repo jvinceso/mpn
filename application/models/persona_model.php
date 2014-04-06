@@ -133,6 +133,11 @@ class Persona_model extends CI_Model {
         $this->db->insert('persona', $persona);
         $this->setPerId($this->db->insert_id());  
     }
+
+    public function qryContribuyente(){
+        $this->db->select('nPerId as ID,cPerNombres as Nombre,CONCAT( cPerApellidoPaterno , cPerApellidoMaterno ) as Apellidos');
+        return $this->db->where(array('cPerContribuyente'=>'SI','cPerEstado'=>1))->get('persona')->result_array();        
+    }
 }
 
 ?>
