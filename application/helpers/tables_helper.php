@@ -1,6 +1,7 @@
 <?php 
 function CrudGridMultipleJson($sql, $idtable = null, $primary_key,$opciones = array(), $funciones = null ) {
 
+if( count($sql)>0 ){
 	$nroopc = count($opciones);	//Nro de Opciones
     $nroCamposSql = count($sql);	//Nro de Campos de la Consula SQL
     $nombre_Columnas = array_keys( $sql[0]);
@@ -14,7 +15,7 @@ function CrudGridMultipleJson($sql, $idtable = null, $primary_key,$opciones = ar
     				for ($i = 0; $i < $nroCamposSql; $i++) {
         				?>
         				<th class="style=text-transform:uppercase">
-        					<?php print utf8_encode($nombre_Columnas[$i]) ?>
+        					<?php print $nombre_Columnas[$i] ?>
         					</th>
         			<?php
     				}
@@ -39,14 +40,13 @@ function CrudGridMultipleJson($sql, $idtable = null, $primary_key,$opciones = ar
 			        <tr data-codx="<?php print $fila[$primary_key] ?>" >
 			        <?php
 			        foreach ($fila as $key => $cell) {
-			        	$campo = utf8_encode($cell);
 			        	?>
 			        	<td>
 			        	<?php
-			        	if ($campo == null) {
+			        	if ($cell == null) {
 			        	    ?>&nbsp;<?php
 			        	} else {
-			        	    print $campo;
+			        	    print $cell;
 			        	}?>
 			        	</td>
 			        	<?php			        	
@@ -119,6 +119,8 @@ function CrudGridMultipleJson($sql, $idtable = null, $primary_key,$opciones = ar
     }
 	});$(\'[data-rel="tooltip"]\').tooltip({placement: tooltip_placement});});</script>';
 		print $js_tabla_open.$js_campos.$js_tabla_close;
+	}else{
+		echo "<center>no hay datos</center>";
 	}
-
+}
 ?>
