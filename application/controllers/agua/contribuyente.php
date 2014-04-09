@@ -54,27 +54,39 @@ class Contribuyente extends CI_Controller {
 
 	function listarContribuyente(){
 		$opciones = array(
+			'Pagos' => array(
+				 'color'=>'blue'
+				,'icono'=>'pagos'
+				,'tooltip'=>'success'
+			),
+			'Documentos' => array(
+				 'color'=>'blue'
+				,'icono'=>'documento'
+				,'tooltip'=>'success'
+			),
 			'Direccion' => array(
 				 'color'=>'green'
-				,'icono'=>'home'
+				,'icono'=>'direccion'
+				,'tooltip'=>'success'
+			),
+			'Telefono' => array(
+				 'color'=>'green'
+				,'icono'=>'telefono'
+				,'tooltip'=>'success'
+			),
+			'Eliminar' => array(
+				 'color'=>'red'
+				,'icono'=>'darbaja'
 				,'tooltip'=>'success'
 			)
-			// 'Eliminar' => array(
-			// 	 'color'=>'red'
-			// 	,'icono'=>'trash'
-			// 	,'tooltip'=>'success'
-			// ),
-			// 'Configuracion' => array(
-			// 	 'color'=>'blue'
-			// 	,'icono'=>'cogs'
-			// 	,'tooltip'=>'info'
-			// )
 		);
 		$tabla_data = $this->objPersona->qryContribuyente();
 		$funciones = array(
-			// 'initEvtUpdJson("../utilitarios/modulo/vistaGet/upd_view/","Pagina de Pruebas",450,250,"listarModulo()")',
-			'initEvtOpc("cogs","asignaDireccion(fila)")',
-			// 'initEvtDel("confirmarDelete")'
+			'initEvtOpc("pagos","asignaDetalle(fila,\'pago\')")',
+			'initEvtOpc("direccion","asignaDetalle(fila,\'dir\')")',
+			'initEvtOpc("documento","asignaDetalle(fila,\'docu\')")',
+			'initEvtOpc("telefono","asignaDetalle(fila,\'tele\')")',
+			'initEvtOpc("darbaja","asignaDetalle(fila,\'baja\')")',
 		);
 		$nameTable = 'tabla-contrib';
 		$pk = 'ID';
