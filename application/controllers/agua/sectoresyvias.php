@@ -5,7 +5,8 @@ class Sectoresyvias extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		// $this->load->model('utilitarios/modulo_model','objModulo');
+		$this->load->model('agua/sector_model','objSector');
+		$this->load->model('agua/via_model','objVia');
 		// $this->load->library('table');
 	}
 	public function index()
@@ -18,10 +19,18 @@ class Sectoresyvias extends CI_Controller {
 	function prueba(){
 		echo json_encode(array(1));
 	}
-	function insSectoresyvias(){
-		$this->objModulo->set_nombre( $this->input->post('txt_ins_mod_nombre') );
-		$this->objModulo->set_cAplIcono( $this->input->post('txt_ins_mod_icono') );	
-		$result = $this->objModulo->insAplicacion();
+	function insSector(){
+		$this->objSector->set_cSecNombre( $this->input->post('txt_ins_sec_nom') );
+		$result = $this->objSector->insSector();
+		if ($result) {
+			echo "1";
+		} else {
+			echo "0";
+		}
+	}
+	function insVia(){
+		$this->objVia->set_cViaNombre( $this->input->post('txt_ins_via_nom') );
+		$result = $this->objVia->insVia();
 		if ($result) {
 			echo "1";
 		} else {

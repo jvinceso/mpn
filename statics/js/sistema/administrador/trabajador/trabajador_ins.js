@@ -183,7 +183,7 @@ function cboTipoArea(){
         cache: false,
         success: function(data) { 
             $("#c_cbo_ins_trab_area").html(data);     
-            $(".chosen-select").chosen(); ;
+            $(".chosen-select").chosen();
         },
         error: function() { 
             alert("error")
@@ -199,7 +199,7 @@ function cboTipoCargo(){
         cache: false,
         success: function(data) { 
             $("#c_cbo_ins_trab_cargo").html(data);     
-            $(".chosen-select").chosen(); ;
+            $(".chosen-select").chosen();
         },
         error: function() { 
             alert("error")
