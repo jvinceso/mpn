@@ -61,16 +61,18 @@
 						<h2 class="header lighter blue">Listado Contribuyentes</h2>
 					</p>
 					<p>
-						<div id="tbl_contribuyentes_principal" class="table-responsive">
-						</div>
+						<div id="tbl_contribuyentes_principal" class="table-responsive"></div>
 					</p>
 				</div>
+				<div id="c_frm_contribuyente" class="switchs disnone w860" >
+					<a href="#" id="anc_back_contribuyente" class="ui-dialog-titlebar-close ui-corner-all" role="button">
+						<span><img src="../statics/images/iconos_regresar.png"></span>
+					</a>
+					<div id="c_frm_procesos_contribuyente" class="w100Percent"></div>  
+				</div>				
 			</div>
 		</div>
-
-
-
 		<!-- fin codigo propio del cuerpo -->
-	</div>			
+	</div>
 
 </div>

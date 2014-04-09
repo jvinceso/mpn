@@ -6,6 +6,12 @@ $(function(){
 			listarContribuyentes();
 		}
 	});
+	// Evento Regresar Pantalla Anterior
+	$("#anc_back_contribuyente").click(function(evt){
+	    evt.preventDefault();
+	    MostrarOcultarCapas('#c_frm_contribuyente','#tbl_contribuyentes_principal');
+	    // $('#pnl_frm_busqueda').show();
+	});		
 });
 
 function listarContribuyentes(){
@@ -25,8 +31,11 @@ function listarContribuyentes(){
 }
 function asignaDetalle(fila,option){
 	console.log(fila);
+	var url = "", title = "";
 	switch(option){
 		case 'dir':
+			title = 'Dirección';
+			url = 'contribuyente/get_agregar_direccion';
 			console.log(option);
 		break;
 		case 'docu':
@@ -42,5 +51,14 @@ function asignaDetalle(fila,option){
 			console.log(option);
 		break;		
 	}
-	alert("Il Mondo E Nostro");
+	set_popup(url,title,350,250,'','');
+	// alert("Il Mondo E Nostro");
+}
+function asignar_direccion(fila){
+	var nPerId   = $(fila).find("td:eq(0)").text().trim();
+	var nombre   = $(fila).find("td:eq(1)").text().trim();	
+	var apellido = $(fila).find("td:eq(2)").text().trim();	
+	console.log(fila);
+	get_page('contribuyente/get_agregar_direccion/','c_frm_procesos_contribuyente',{"nPerId":nPerId,"nombre":nombre,'apellido':apellido});
+	MostrarOcultarCapas('#tbl_contribuyentes_principal','#c_frm_contribuyente','','');
 }
