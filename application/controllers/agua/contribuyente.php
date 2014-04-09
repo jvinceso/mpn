@@ -7,6 +7,7 @@ class Contribuyente extends CI_Controller {
 		parent::__construct();
 		$this->load->model('persona_natural_model','objPersonaNatural');
 		$this->load->model('persona_detalle_model','objPersonaDetalle');
+		$this->load->model('agua/sector_model','objSector');
 		$this->load->model('persona_model','objPersona');
 		$this->load->helper('tables_helper');
 	}
@@ -98,7 +99,7 @@ class Contribuyente extends CI_Controller {
 		$this->objPersonaDetalle->set_nPerId( $json['nPerId'] );
 		$this->objPersonaDetalle->set_nMulId( 46 );
 		$data['persona'] = $json;
-		$data['sector'] = $this->objSector->listar();
+		$data['sector'] = $this->objSector->qrySector();
 		$data['objDireccion'] = $this->objPersonaDetalle->listaDetalle();
 		$this->load->view('agua/contribuyente/get_agregar_direccion', $data, FALSE);
 	}
