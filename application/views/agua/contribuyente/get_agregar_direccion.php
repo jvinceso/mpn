@@ -1,11 +1,14 @@
 <?php
 $atributosForm = array('id' => 'frm_reg_direccion_par', 'name' => 'frm_reg_direccion_par');
+$txt_hdn_persona = form_hidden(array('txt_hdn_nPerid'=> $persona['nPerId'] , 'txt_hdn_nMulId' => $persona['nMulId'] ));
 $txt_calle = form_input(array('name' => 'txt_ins_calle', 'id' => 'txt_ins_calle', 'required' => 'required', 'class' => 'input-medium input-square','maxlength' => '25'));
 $txt_direccion = form_textarea(array('name' => 'txt_valor_direccion', 'id' => 'txt_valor_direccion', 'type' => 'text', 'required' => 'required', 'class' => 'input-medium', 'maxlength' => '200', 'style' => 'margin-bottom:9px;resize:none;width:100%;',"rows"=>"2"));
-$btn_asignar_direccion = form_submit('btn_asignar_direccion', 'Registrar Dirección', 'id="btn_asignar_direccion" class="btn" pid ="' . 'sxyz' . '"');
-$cbo_sectores = form_dropdown("cbo_sector", creaCombo($sector),'', 'id="cbo_sector" class="chosen-select"');
+$btn_asignar_direccion = form_submit('btn_asignar_direccion', 'Registrar Dirección', 'id="btn_asignar_direccion" data-loading-text="Registrando..."  class="btn btn-purple btn-sm"');
+// print_p($sector);
+$cbo_sectores = form_dropdown("cbo_sector", creaCombo($sector),'', 'id="cbo_sector" class="chosen-select w360"');
+$cbo_calle = form_dropdown("cbo_calle", creaCombo(array(0=>array('nCalId'=>0,'cCalNombre' => 'Seleccione un Sector'))),'', 'id="cbo_calle" class="chosen-select w360"');
+echo $txt_hdn_persona;
 ?>
- 
 <script type="text/javascript" src="<?php echo URL_JS ?>sistema/agua/contribuyente/contribuyente_direccion_ins.js"></script>
 <center>
     <img src="<?php echo URL_IMG; ?>essen/16/business-contact.png" alt="">&nbsp;<b><?php echo strtoupper($persona['apellido'] . ", " . $persona['nombre']); ?></b>
@@ -24,7 +27,11 @@ $cbo_sectores = form_dropdown("cbo_sector", creaCombo($sector),'', 'id="cbo_sect
                 </tr>
                 <tr>
                     <td class="valign_top_label"><label>Calle:</label></td>
-                    <td class="valign_top_control"><?php echo $txt_calle; ?></td>
+                    <td class="valign_top_control">
+                        <div id="c_cbo_calles">
+                            <?php echo $cbo_calle; ?>                            
+                        </div>
+                    </td>
                 </tr>
                 <tr>
                     <td class="valign_top_label"><label>Dirección</label></td>

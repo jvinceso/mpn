@@ -43,13 +43,15 @@
 			return $this->nSecId;
 		}
 		//Obtener Objeto CALLE
-		function get_ObjCalle($CAMPO){
-			$query = $this->db->query("SELECT * FROM CALLE WHERE CAMPO=?", array($CAMPO));
+	public function get_ObjCalle(){
+		$query = $this->db->query("select c.nCalId,CONCAT(v.cViaNombre,' ',c.cCalNombre) as nombre from calle as c  
+				inner join via as v on c.nViaId = v.nViaId where c.nCalEstado = 1 and c.nSecId = ?", array( $this->nSecId ));
 			if ($query->num_rows() > 0){
-				$row = $query->row();
-				//CREANDO EL OBJETO
+				return $query->result_array();
+			}else{
+				return false;
 			}
-		}
+	}
 
 	public function cboTipoSector(){		
         $query = $this->db->query("select nSecId,cSecNombre from sector");
