@@ -1,3 +1,71 @@
 $(function(){
 	$(".chosen-select").chosen();
+	$("#frm_reg_direccion_par").validate({
+	    submitHandler: function(form) {
+	        DesabilitarBoton('btn_asignar_direccion');
+	        var direccion = $("#cbo_sector option:selected").text()+' '+$("#cbo_calle option:selected").text()+' '+$("#txt_valor_direccion").val();
+	        $.ajax({
+	            url:'contribuyente/insdireccion',
+	            cache:false,
+	            type:'post',
+	            data:{
+	            	cbo_calle:$("#cbo_calle option:selected").val(),
+	            	direc: direccion,
+	            	txt_hdn_nPerid:$("input[name='txt_hdn_nPerid']").val(),
+	            	txt_hdn_nMulId:$("input[name='txt_hdn_nMulId']").val(),
+	            	txt_direccion:$("#txt_valor_direccion").val()
+	            },
+	            success:function(data){
+	                switch (data) { 
+	                    case "2":
+	                    mensaje("Error al guardar la Dirección!","a"); 
+	                    break; 
+	                    default:
+	                    msgLoadSaveRemove("#btnRegistrar");
+	                    mensaje("Se Registro Correctamente la Dirección","e");
+	                    limpiarForm('#frm_ins_modulo');
+	                }
+	        		HabilitarBoton('btn_asignar_direccion');
+	            },
+	            error:function(error){
+	                alert("Houston, tenemos un problema... Creo que has roto algo...");
+	            }
+	        }) 
+	    },            
+	    rules: {
+	        txt_requeridos: { required: true }
+	    },
+	    messages: {
+	        txt_requeridos:{}
+	    }
+	});
+	$("#cbo_sector").bind({
+	    change:function(evt){
+	        evt.preventDefault();
+	    	cargar_cboCalles();
+	    }
+	});
+	cargar_cboCalles();
 });
+function cargar_cboCalles(){
+	msgLoading('#c_cbo_calles',"Buscando calles...");
+	var nSector = $("#cbo_sector option:selected").val();
+	$.ajax({
+	    url:'contribuyente/get_calles/',
+	    type:'post',
+	    cache:false,
+	    data:{"nSector":nSector},
+	    success:function(data){
+	    	if (data!="0") {
+	    		$("#c_cbo_calles").html(data);
+				$(".chosen-select").chosen();	            		
+	    	}else{
+	    		mensaje("No hemos encontrado calles que coincidan con el sector seleccionado, por favor vuelva a intentarlo... :(","a"); 
+	    	}
+	    },
+	    error:function(er){
+	    	console.log(er.statusText);
+	        alert("Houston, tenemos un problema... Creo que has roto algo...");
+	    }
+	});
+}

@@ -98,10 +98,30 @@ class Contribuyente extends CI_Controller {
 		$json = $this->input->post('json');
 		$this->objPersonaDetalle->set_nPerId( $json['nPerId'] );
 		$this->objPersonaDetalle->set_nMulId( 46 );
+		$json['nMulId'] = 46;
 		$data['persona'] = $json;
 		$data['sector'] = $this->objSector->qrySector();
 		$data['objDireccion'] = $this->objPersonaDetalle->listaDetalle();
 		$this->load->view('agua/contribuyente/get_agregar_direccion', $data, FALSE);
+	}
+	function get_calles(){
+		$this->load->model('agua/calle_model','objCalle');
+		$this->objCalle->set_nSecId(  $this->input->post('nSector') );
+		$calles = $this->objCalle->get_ObjCalle();
+		if ($calles) {
+            echo form_dropdown("cbo_calle", creaCombo($calles),'', 'id="cbo_calle" class="chosen-select w360"');
+		}else{
+			echo "0";
+		}
+	}
+	function insdireccion(){
+		// cbo_calle
+		// txt_hdn_nPerid
+		// txt_hdn_nMulId
+		// txt_direccion		
+		$this->objPersonaDetalle->set_nPerId( $this->input->post('txt_hdn_nPerid') );
+		$this->objPersonaDetalle->set_cPdeValor( $this->input->post('direc') );		
+		$this->objPersonaDetalle->set_nMulId( $this->input->post('txt_hdn_nMulId') );
 	}
 
 }
