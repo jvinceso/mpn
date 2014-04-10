@@ -17,7 +17,7 @@
 		</label>
 
 		<div class="col-sm-9">
-			<input type="text" name="tags" id="form-field-tags" value="Tag Input Control" placeholder="Enter tags ..." />
+			<input type="text" name="tags" id="form-field-tags" placeholder="Ingrese los tipos" />
 		</div>
 	</div>
 	<div class="space-4"></div>
@@ -35,24 +35,7 @@
 		</div>
 	</div>
 </form>
-		<script type="text/javascript">
-			jQuery(function($) {
-				var tag_input = $('#form-field-tags');
-				if(! ( /msie\s*(8|7|6)/.test(navigator.userAgent.toLowerCase())) ) 
-				{
-					tag_input.tag(
-					  {
-						placeholder:tag_input.attr('placeholder'),
-						//enable typeahead by specifying the source array
-						source: ace.variable_US_STATES,//defined in ace.js >> ace.enable_search_ahead
-					  }
-					);
-				}
-				else {
-					//display a textarea for old IE, because it doesn't support this plugin or another one I tried!
-					tag_input.after('<textarea id="'+tag_input.attr('id')+'" name="'+tag_input.attr('name')+'" rows="3">'+tag_input.val()+'</textarea>').remove();
-					//$('#form-field-tags').autosize({append: "\n"});
-				}
-})
+<script src="<?php echo URL_JS; ?>bootstrap-tag.min.js"></script>
+<script src="<?php echo URL_JS; ?>ace-elements.min.js"></script>
 <!-- // <script src="<?php echo URL_JS; ?>jquery.maskedinput.min.js"></script> -->
 <!-- // <script src="<?php echo URL_JS; ?>chosen.jquery.min.js"></script> -->
