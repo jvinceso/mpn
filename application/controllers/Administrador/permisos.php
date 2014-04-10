@@ -102,7 +102,7 @@ class Permisos extends CI_Controller {
 					$tree_data[$fila['ID']] = array('name'=>$fila['Nombre'],'type'=>'item');
 				}
 			}
-			// print_p( json_encode($tree_data,JSON_PRETTY_PRINT ));"itemSelected":false
+			// print_p( json_encode($tree_data,JSON_PRETTY_PRINT ));
 			echo json_encode($tree_data);
 			// print_p($this->objModulo->qryAplicaciones( ));
 	}

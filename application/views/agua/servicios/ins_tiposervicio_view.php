@@ -1,7 +1,5 @@
-<script type="text/javascript" src='<?php echo URL_JS; ?>sistema/agua/servicios/servicios_ins.js'></script>
-<!-- // <script src="<?php echo URL_JS; ?>date-time/bootstrap-datepicker.min.js"></script> -->
-<!-- <link rel="stylesheet" href="<?php echo URL_CSS; ?>datepicker.css" /> -->
-<!-- <link rel="stylesheet" href="<?php echo URL_CSS; ?>chosen.css" /> -->
+<!-- // <script type="text/javascript" src='<?php echo URL_JS; ?>sistema/agua/servicios/servicios_ins.js'></script> -->
+
 
 <form id="frm_ins_tiposervicio" name = "frm_ins_tiposervicio" class="form-horizontal" role="form">
 	<div class="form-group">
@@ -26,5 +24,3 @@
 		</div>
 	</div>
 </form>
-<!-- // <script src="<?php echo URL_JS; ?>jquery.maskedinput.min.js"></script> -->
-<!-- // <script src="<?php echo URL_JS; ?>chosen.jquery.min.js"></script> -->

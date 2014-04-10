@@ -65,6 +65,7 @@
         <script src="<?php echo URL_JS; ?>jquery-ui-1.10.3.custom.min.js"></script>
         <script src='<?php echo URL_JS; ?>sistema/jsGeneral.js'></script> 
         <script src='<?php echo URL_JS; ?>sistema/jqueryvalidate.js'></script> 
+        <script src="<?php echo URL_JS; ?>ace.min.js"></script>
 
     <link rel="stylesheet" href="<?php echo URL_CSS; ?>jquery.jgrowl.css" />
     <script src='<?php echo URL_JS; ?>jquery.jgrowl_minimized.js'></script> 
