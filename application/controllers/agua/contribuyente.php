@@ -7,6 +7,7 @@ class Contribuyente extends CI_Controller {
 		parent::__construct();
 		$this->load->model('persona_natural_model','objPersonaNatural');
 		$this->load->model('persona_detalle_model','objPersonaDetalle');
+		$this->load->model('agua/sector_model','objSector');
 		$this->load->model('persona_model','objPersona');
 		$this->load->helper('tables_helper');
 	}
@@ -83,7 +84,7 @@ class Contribuyente extends CI_Controller {
 		$tabla_data = $this->objPersona->qryContribuyente();
 		$funciones = array(
 			'initEvtOpc("pagos","asignaDetalle(fila,\'pago\')")',
-			'initEvtOpc("direccion","asignaDetalle(fila,\'dir\')")',
+			'initEvtOpc("direccion","asignar_direccion(fila)")',
 			'initEvtOpc("documento","asignaDetalle(fila,\'docu\')")',
 			'initEvtOpc("telefono","asignaDetalle(fila,\'tele\')")',
 			'initEvtOpc("darbaja","asignaDetalle(fila,\'baja\')")',
@@ -91,6 +92,16 @@ class Contribuyente extends CI_Controller {
 		$nameTable = 'tabla-contrib';
 		$pk = 'ID';
 		CrudGridMultipleJson($tabla_data,$nameTable,$pk,$opciones,$funciones);
+	}
+
+	function get_agregar_direccion(){
+		$json = $this->input->post('json');
+		$this->objPersonaDetalle->set_nPerId( $json['nPerId'] );
+		$this->objPersonaDetalle->set_nMulId( 46 );
+		$data['persona'] = $json;
+		$data['sector'] = $this->objSector->qrySector();
+		$data['objDireccion'] = $this->objPersonaDetalle->listaDetalle();
+		$this->load->view('agua/contribuyente/get_agregar_direccion', $data, FALSE);
 	}
 
 }

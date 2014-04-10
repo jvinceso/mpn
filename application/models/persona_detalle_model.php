@@ -66,11 +66,6 @@
 	}
 
 	public	function instPersonaDetalle($parametros){
-// print_p($this->cPdeValor);
-// extract($this->cPdeValor);
-// print_p($dni);
-// print_p($direccion);
-// exit();
 		switch ($parametros) {
 			case 'trabajador':
 				  $objPersonadetalle = array(
@@ -139,6 +134,12 @@
 				break;
 		}
 		$this->db->insert_batch('persona_detalle', $objPersonadetalle); 
+	}
+	public function listaDetalle(  ){
+		// select * from persona_detalle where nMulId = 46 and nPerId = 5
+		// nPdeId,nMulId,cPdeValor,cPedEstado
+		$this->db->select('nPdeId as ID,cPdeValor as Direccion');
+		return $this->db->where(array( 'nPerId'=>$this->nPerId, 'cPedEstado'=>1, 'nMulId'=>$this->nMulId ))->get('persona_detalle')->result_array();			
 	}
 }	
 ?>

@@ -58,8 +58,6 @@
 					</p>
 					<p>
 						<div id="tabla_modulos" class="table-responsive"></div>
-						<!-- <div id="pnlAsignarObjetos" class="ocultar">ererter</div> -->
-
 					</p>
 					<div id="c_frm_modulo" class="switchs disnone w860" >
 					    <a href="#" id="anc_back_modulo" class="ui-dialog-titlebar-close ui-corner-all" role="button">
