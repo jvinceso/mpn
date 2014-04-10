@@ -17,7 +17,7 @@
 				<li class="dropdown active">
 					<a data-toggle="dropdown" class="dropdown-toggle" href="#">
 						<i class="pink icon-exchange bigger-110"></i>
-							Registrar Servicios
+							Registrar
 						<i class="icon-caret-down bigger-110 width-auto"></i>
 					</a>
 
