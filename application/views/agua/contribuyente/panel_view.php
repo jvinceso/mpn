@@ -49,7 +49,7 @@
 
 			</ul>
 
-			<div class="tab-content" style="height:400px">
+			<div class="tab-content min450">
 				<div id="home3" class="tab-pane">
 					
 					<?php $this->load->view('agua/contribuyente/ins_view'); ?>						

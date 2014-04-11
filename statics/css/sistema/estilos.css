@@ -11,6 +11,10 @@
 .oculto{
     display: none;
 }
+.min450{
+    min-height:400px;
+    max-height: 850px;
+}
 
 /*Modulo*/
 .ancla_regresar span{

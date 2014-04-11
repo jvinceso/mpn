@@ -138,8 +138,8 @@
 	public function listaDetalle(  ){
 		// select * from persona_detalle where nMulId = 46 and nPerId = 5
 		// nPdeId,nMulId,cPdeValor,cPedEstado
-		$this->db->select('nPdeId as ID,cPdeValor as Direccion');
-		return $this->db->where(array( 'nPerId'=>$this->nPerId, 'cPedEstado'=>1, 'nMulId'=>$this->nMulId ))->get('persona_detalle')->result_array();			
+		$this->db->select('nPdeId as ID, cPdeValor as Direccion');
+		return $this->db->where(array( 'nPerId' => $this->nPerId, 'cPedEstado'=>1, 'nMulId'=>$this->nMulId ))->get('persona_detalle')->result_array();			
 	}
 }	
 ?>
