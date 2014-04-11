@@ -7,9 +7,21 @@ $(function(){
 	    data:{},
 	    success:function(datax){
 	    	console.log( datax );
+	    	// alert(datax.id)
+	    	 // var resultList = datax.map(function (item) {
+       //              var aItem = {name: item.Name };
+       //                          // alert(item.Id)
+       //              return JSON.stringify(aItem);
+       //          });
+	    	  // alert(resultList)
+
 	    	 $("#nav-search-input").typeahead({
             	source: datax,
             	updater: function (c) {
+            		alert(c)
+           //  		var item = JSON.parse(c);
+       				//  $('#IdControl').attr('value', item.id);
+        			// return item.name;
                 // $("#nav-search-input").focus();
                 // return c
             	}
@@ -21,6 +33,11 @@ $(function(){
 					  {
 						placeholder:tag_input.attr('placeholder'),
 						//enable typeahead by specifying the source array
+						// source: function(datax){
+      //                   // var tags = new Array()
+      //                   // tags     = ["Actor", "Director", "Producer", "Musician", "test", "cool", "sexy", "Hot", "Cricket"]
+      //                   // return tags
+      //               	},	
 						source: datax,//defined in ace.js >> ace.enable_search_ahead
 					  }
 					);
@@ -36,94 +53,48 @@ $(function(){
 	        alert("Houston, tenemos un problema... Creo que has roto algo...");
 	    }
 	})
+    $("#frm_ins_servicio").validate({
+        rules: {           
+            txt_ins_serv_nom: {
+                required: true
+            },
+            tags:{
+            	required: true
+            }
+        },
+        messages: {
+            txt_ins_sec_nom:{
+                required:"Ingrese el nombre"
+            },
+            tags:{
+            	required: "Seleccione un tipo de servicio"
+            }
+        },
+        submitHandler: function(form){ 
+            DesabilitarBoton('btn_ins_serv_registrar')
+            var np = $('tr', $("#tbpermisos")).length;
+            $.ajax({
+                type: "POST",
+                url:  "sectoresyvias/insSector",
+                data: $(form).serialize(),
+                success: function(data){                    
+                    switch (data) { 
+                        case "0":
+                        mensaje("Error al guardar el Sector!","a"); 
+                        HabilitarBoton('btn_ins_serv_registrar');                        
+                        break;
+                        default:                        
+                        mensaje("Se Registro Correctamente el Sector","e");
+                        HabilitarBoton('btn_ins_serv_registrar');
+                        // limpiarForm('#frm_ins_trabajador');
+                    }
+
+                },
+                error: function(msg){                
+                    mensaje("r","Error Inesperando registrando el Sector!, vuelva a intentarlo"); 
+                    HabilitarBoton('btn_ins_serv_registrar');                       ;
+                }
+            });
+        }
+    });
 });
-
-
-
-
-
-
-
-
-
-
-
-
-//     $("#frm_ins_sector").validate({
-//         rules: {           
-//             txt_ins_sec_nom: {
-//                 required: true
-//             }
-//         },
-//         messages: {
-//             txt_ins_sec_nom:{
-//                 required:"Ingrese el nombre"
-//             }
-//         },
-//         submitHandler: function(form){ 
-//             DesabilitarBoton('btn_ins_sec_registrar')
-//             $.ajax({
-//                 type: "POST",
-//                 url:  "sectoresyvias/insSector",
-//                 data: $(form).serialize(),
-//                 success: function(data){                    
-//                     switch (data) { 
-//                         case "0":
-//                         mensaje("Error al guardar el Sector!","a"); 
-//                         HabilitarBoton('btn_ins_sec_registrar');                        
-//                         break;
-//                         default:                        
-//                         mensaje("Se Registro Correctamente el Sector","e");
-//                         HabilitarBoton('btn_ins_sec_registrar');
-//                         // limpiarForm('#frm_ins_trabajador');
-//                     }
-
-//                 },
-//                 error: function(msg){                
-//                     mensaje("r","Error Inesperando registrando el Sector!, vuelva a intentarlo"); 
-//                     HabilitarBoton('btn_ins_sec_registrar');                       ;
-//                 }
-//             });
-//         }
-//     });
-
-    
-//     $("#frm_ins_via").validate({
-//         rules: {           
-//             txt_ins_via_nom: {
-//                 required: true
-//             }
-//         },
-//         messages: {
-//             txt_ins_via_nom:{
-//                 required:"Ingrese el nombre"
-//             }
-//         },
-//         submitHandler: function(form){ 
-//             DesabilitarBoton('btn_ins_via_registrar')
-//             $.ajax({
-//                 type: "POST",
-//                 url:  "sectoresyvias/insVia",
-//                 data: $(form).serialize(),
-//                 success: function(data){                    
-//                     switch (data) { 
-//                         case "0":
-//                         mensaje("Error al guardar la Vía!","a"); 
-//                         HabilitarBoton('btn_ins_via_registrar');                        
-//                         break;
-//                         default:                        
-//                         mensaje("Se Registro Correctamente la Vía","e");
-//                         HabilitarBoton('btn_ins_via_registrar');
-//                         // limpiarForm('#frm_ins_trabajador');
-//                     }
-
-//                 },
-//                 error: function(msg){                
-//                     mensaje("r","Error Inesperando registrando la Vía!, vuelva a intentarlo"); 
-//                     HabilitarBoton('btn_ins_via_registrar');                       ;
-//                 }
-//             });
-//         }
-//     });
-    
-// })
