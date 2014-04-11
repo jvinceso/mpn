@@ -21,11 +21,12 @@ class Servicios extends CI_Controller {
 			$tipos_servicio = $this->objServiosTipo->qryServicioTipo( );
 			foreach ($tipos_servicio as $key => $fila) {
 					$tipos_servicio_data[] = $fila['cMulDescripcion'];
+					// $tipos_servicio_data[] = array('id'=>$fila['nMulId'],'name'=>$fila['cMulDescripcion']);
 			}
 			echo json_encode($tipos_servicio_data);
 	}
 
-	function insSector(){
+	function insServicio(){
 		$this->objSector->set_cSecNombre( $this->input->post('txt_ins_sec_nom') );
 		$result = $this->objSector->insSector();
 		if ($result) {

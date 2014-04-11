@@ -7,9 +7,21 @@ $(function(){
 	    data:{},
 	    success:function(datax){
 	    	console.log( datax );
+	    	// alert(datax.id)
+	    	 // var resultList = datax.map(function (item) {
+       //              var aItem = {name: item.Name };
+       //                          // alert(item.Id)
+       //              return JSON.stringify(aItem);
+       //          });
+	    	  // alert(resultList)
+
 	    	 $("#nav-search-input").typeahead({
             	source: datax,
             	updater: function (c) {
+            		alert(c)
+           //  		var item = JSON.parse(c);
+       				//  $('#IdControl').attr('value', item.id);
+        			// return item.name;
                 // $("#nav-search-input").focus();
                 // return c
             	}
@@ -21,6 +33,11 @@ $(function(){
 					  {
 						placeholder:tag_input.attr('placeholder'),
 						//enable typeahead by specifying the source array
+						// source: function(datax){
+      //                   // var tags = new Array()
+      //                   // tags     = ["Actor", "Director", "Producer", "Musician", "test", "cool", "sexy", "Hot", "Cricket"]
+      //                   // return tags
+      //               	},	
 						source: datax,//defined in ace.js >> ace.enable_search_ahead
 					  }
 					);
@@ -54,7 +71,8 @@ $(function(){
             }
         },
         submitHandler: function(form){ 
-            DesabilitarBoton('btn_ins_sec_registrar')
+            DesabilitarBoton('btn_ins_serv_registrar')
+            var np = $('tr', $("#tbpermisos")).length;
             $.ajax({
                 type: "POST",
                 url:  "sectoresyvias/insSector",
@@ -63,18 +81,18 @@ $(function(){
                     switch (data) { 
                         case "0":
                         mensaje("Error al guardar el Sector!","a"); 
-                        HabilitarBoton('btn_ins_sec_registrar');                        
+                        HabilitarBoton('btn_ins_serv_registrar');                        
                         break;
                         default:                        
                         mensaje("Se Registro Correctamente el Sector","e");
-                        HabilitarBoton('btn_ins_sec_registrar');
+                        HabilitarBoton('btn_ins_serv_registrar');
                         // limpiarForm('#frm_ins_trabajador');
                     }
 
                 },
                 error: function(msg){                
                     mensaje("r","Error Inesperando registrando el Sector!, vuelva a intentarlo"); 
-                    HabilitarBoton('btn_ins_sec_registrar');                       ;
+                    HabilitarBoton('btn_ins_serv_registrar');                       ;
                 }
             });
         }
