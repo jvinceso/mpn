@@ -72,22 +72,29 @@ $(function(){
         },
         submitHandler: function(form){ 
             DesabilitarBoton('btn_ins_serv_registrar')
-            var np = $('tr', $("#tbpermisos")).length;
+             // var np = $('tr', $("#tbpermisos")).length};
             $.ajax({
                 type: "POST",
-                url:  "sectoresyvias/insSector",
-                data: $(form).serialize(),
-                success: function(data){                    
-                    switch (data) { 
-                        case "0":
-                        mensaje("Error al guardar el Sector!","a"); 
-                        HabilitarBoton('btn_ins_serv_registrar');                        
-                        break;
-                        default:                        
-                        mensaje("Se Registro Correctamente el Sector","e");
-                        HabilitarBoton('btn_ins_serv_registrar');
-                        // limpiarForm('#frm_ins_trabajador');
-                    }
+                url:  "servicios/insServicio",
+                data:{
+                    json:{
+                            txt_ins_serv_nom : $("#txt_ins_serv_nom").val(),
+                            tipos_servicios  : obtieneCampos()
+                         }
+                } ,
+                success: function(data){ 
+                alert(data)                   
+                    // switch (data) { 
+                    //     case "0":
+                    //     mensaje("Error al guardar el Sector!","a"); 
+                    //     HabilitarBoton('btn_ins_serv_registrar');                        
+                    //     break;
+                    //     default:                        
+                    //     mensaje("Se Registro Correctamente el Sector","e");
+                    //     HabilitarBoton('btn_ins_serv_registrar');
+                    //     // limpiarForm('#frm_ins_trabajador');
+                    // }
+
 
                 },
                 error: function(msg){                
@@ -98,3 +105,15 @@ $(function(){
         }
     });
 });
+function obtieneCampos(){
+    var spans = $("#tag").find("span");
+    var arr=[];
+    var indice=0;
+    $.each(spans,function(i,valor){
+    var obj = new Object();
+    var cadena =  $(valor).text().trim();
+        obj.nombre = cadena.substring(0,cadena.length - 1)
+        arr[i] = obj ;
+    }); 
+    return arr;
+}

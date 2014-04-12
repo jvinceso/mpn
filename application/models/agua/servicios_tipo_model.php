@@ -59,7 +59,38 @@
 		public function qryServicioTipo(){
 			 $query = $this->db->query("select nMulId,cMulDescripcion from multitabla where nMulIdPadre = 47");
 			 return  $query->result_array();
-	}
+		}
+
+		public function insServicio_Tipo(){
+			// print_p($this->nMulTipoServicio);exit();
+			// $tipos_servicio = $this->objServiosTipo->qryServicioTipo( );
+			foreach ($this->nMulTipoServicio as $key => $fila) {
+					$objTipoServicios[] = $fila['cMulDescripcion'];
+					// $tipos_servicio_data[] = array('id'=>$fila['nMulId'],'name'=>$fila['cMulDescripcion']);
+			}
+				 //  $objTipoServicios = array(
+					//    array(
+					//       'nMulServicio' => $this->nMulServicio ,
+					//       'nMulTipoServicio' => $this->nMulTipoServicio['Normal'] 
+					//    ),
+					//    array(
+					//       'nMulServicio' => $this->nMulServicio ,
+					//       'nMulTipoServicio' => $this->nMulTipoServicio['Especial'] 
+					//    ),
+					//    array(
+					//       'nMulServicio' => $this->nMulServicio ,
+					//       'nMulTipoServicio' => $this->nMulTipoServicio['Industrial'] 
+					//    )
+					// );	
+					// print_p($objTipoServicios);	exit();
+			// $this->db->insert_batch('Servicios_Tipo', $objTipoServicios); 
+			// return $this->db->insert_id();
+		}
+
+		public function insServiciosTipo( $serviciosTipo ){
+			$this->db->insert_batch('servicios_tipo', $serviciosTipo);
+			return $this->db->insert_id();
+		}			
 
 	}
 ?>
