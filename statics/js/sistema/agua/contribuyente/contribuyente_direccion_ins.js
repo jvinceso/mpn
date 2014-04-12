@@ -69,3 +69,9 @@ function cargar_cboCalles(){
 	    }
 	});
 }
+function asignarTipo(fila){
+	console.log("servicio_direccion");
+	console.log(fila);
+	var nPdeId = $(fila).data('codx');
+	set_popup('../agua/contribuyente/qryServicios/','Servicios',350,400,{'codx':nPdeId},'');
+}

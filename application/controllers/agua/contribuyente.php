@@ -116,12 +116,16 @@ class Contribuyente extends CI_Controller {
 	}
 	function insdireccion(){
 		// cbo_calle
+		// direc
 		// txt_hdn_nPerid
 		// txt_hdn_nMulId
 		// txt_direccion		
 		$this->objPersonaDetalle->set_nPerId( $this->input->post('txt_hdn_nPerid') );
 		$this->objPersonaDetalle->set_cPdeValor( $this->input->post('direc') );		
 		$this->objPersonaDetalle->set_nMulId( $this->input->post('txt_hdn_nMulId') );
+	}
+	function qryServicios(){
+		print_p( $this->input->post('json') );
 	}
 
 }
