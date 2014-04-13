@@ -1,5 +1,4 @@
-<!-- // <script type="text/javascript" src='<?php echo URL_JS; ?>sistema/agua/servicios/servicios_ins.js'></script> -->
-
+<script type="text/javascript" src='<?php echo URL_JS; ?>sistema/agua/servicios/servicios_ins.js'></script>
 
 <form id="frm_ins_tiposervicio" name = "frm_ins_tiposervicio" class="form-horizontal" role="form">
 	<div class="form-group">

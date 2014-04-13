@@ -1,7 +1,4 @@
 <script type="text/javascript" src='<?php echo URL_JS; ?>sistema/agua/servicios/servicios_ins.js'></script>
-<!-- // <script src="<?php echo URL_JS; ?>date-time/bootstrap-datepicker.min.js"></script> -->
-<!-- <link rel="stylesheet" href="<?php echo URL_CSS; ?>datepicker.css" /> -->
-<!-- <link rel="stylesheet" href="<?php echo URL_CSS; ?>chosen.css" /> -->
 
 <form id="frm_ins_servicio" name = "frm_ins_servicio" class="form-horizontal" role="form">
 	<div class="form-group">

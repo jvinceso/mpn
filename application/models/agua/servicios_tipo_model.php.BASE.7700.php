@@ -61,34 +61,36 @@
 			 return  $query->result_array();
 		}
 
+		public function insServicio_Tipo(){
+			// print_p($this->nMulTipoServicio);exit();
+			// $tipos_servicio = $this->objServiosTipo->qryServicioTipo( );
+			foreach ($this->nMulTipoServicio as $key => $fila) {
+					$objTipoServicios[] = $fila['cMulDescripcion'];
+					// $tipos_servicio_data[] = array('id'=>$fila['nMulId'],'name'=>$fila['cMulDescripcion']);
+			}
+				 //  $objTipoServicios = array(
+					//    array(
+					//       'nMulServicio' => $this->nMulServicio ,
+					//       'nMulTipoServicio' => $this->nMulTipoServicio['Normal'] 
+					//    ),
+					//    array(
+					//       'nMulServicio' => $this->nMulServicio ,
+					//       'nMulTipoServicio' => $this->nMulTipoServicio['Especial'] 
+					//    ),
+					//    array(
+					//       'nMulServicio' => $this->nMulServicio ,
+					//       'nMulTipoServicio' => $this->nMulTipoServicio['Industrial'] 
+					//    )
+					// );	
+					// print_p($objTipoServicios);	exit();
+			// $this->db->insert_batch('Servicios_Tipo', $objTipoServicios); 
+			// return $this->db->insert_id();
+		}
+
 		public function insServiciosTipo( $serviciosTipo ){
 			$this->db->insert_batch('servicios_tipo', $serviciosTipo);
 			return $this->db->insert_id();
-		}
-		public function listarServiciostipo(){
-			$query = $this->db->query("select st.nSetId,CONCAT(m.cMulDescripcion,' - ',mt.cMulDescripcion) as serviciotipo from servicios_tipo st 
-					inner join multitabla m on m.nMulId = st.nMulServicio
-					inner join multitabla mt on mt.nMulId = st.nMulTipoServicio
-					where st.cSetEstado = 1
-				order by 1 asc;");
-			return  $query->result_array();
-		}
-		public function qryServiciosTipo(){
-			$query = $this->db->query("select st.nSetId as ID, m.cMulDescripcion as servicio,mt.cMulDescripcion as tipo from servicios_tipo st 
-				inner join multitabla m on m.nMulId = st.nMulServicio
-				inner join multitabla mt on mt.nMulId = st.nMulTipoServicio
-				where st.cSetEstado = 1
-			order by 1 asc;");
-			return  $query->result_array();
-		}
-		public function listaServicioXDireccion($objDireccionCalle){
-			$query = $this->db->query("select m.cMulDescripcion as Servicio ,mt.cMulDescripcion as Tipo from servicios_contribuyente sc
-				inner join servicios_tipo st on st.nSetId = sc.nSetId
-				inner join multitabla m on m.nMulId = st.nMulServicio
-				inner join multitabla mt on mt.nMulId = st.nMulTipoServicio
-			where sc.nDicId ='".$objDireccionCalle->get_nDicId()."'");
-			return  $query->result_array();
-		}
+		}			
 
 	}
 ?>
