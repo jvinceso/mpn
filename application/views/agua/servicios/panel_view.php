@@ -16,7 +16,7 @@
 			<ul class="nav nav-tabs" id="TabSectoresyVias">
 				<li class="dropdown active">
 					<a data-toggle="dropdown" class="dropdown-toggle" href="#">
-						<i class="pink icon-exchange bigger-110"></i>
+						<i class="blue icon-exchange bigger-110"></i>
 							Registrar
 						<i class="icon-caret-down bigger-110 width-auto"></i>
 					</a>
@@ -33,14 +33,14 @@
 				</li>
 				<li class="dropdown">
 					<a data-toggle="dropdown" class="dropdown-toggle" href="#">
-						<i class="pink icon-exchange bigger-110"></i>
-							Listado Servicios
+						<i class="blue icon-list bigger-110"></i>
+							Listados
 						<i class="icon-caret-down bigger-110 width-auto"></i>
 					</a>
 
 					<ul class="dropdown-menu dropdown-info">
 						<li>
-							<a data-toggle="tab" href="#sectorl">Servicios</a>
+							<a id="servicios" data-toggle="tab" href="#serviciosl">Servicios</a>
 						</li>
 						<li>
 							<a data-toggle="tab" href="#viasl">Tipo de Servicios</a>
@@ -55,8 +55,10 @@
 				<div id="viasr" class="tab-pane">
 					<p><?php $this->load->view('agua/servicios/ins_tiposervicio_view'); ?></p>
 				</div>
-				<div id="sectorl" class="tab-pane">
-					<p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade.</p>
+				<div id="serviciosl" class="tab-pane">
+					<p>
+						<div id="tabla_servicios" class="table-responsive"></div>
+					</p>
 				</div>
 				<div id="viasl" class="tab-pane">
 					<p>Trust fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master cleanse gluten-free squid scenester freegan cosby sweater. Fanny pack portland seitan DIY, art party locavore wolf cliche high life echo park Austin.</p>

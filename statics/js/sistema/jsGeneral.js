@@ -39,6 +39,17 @@ function initEvtUpdJson(url,title,alto,ancho,func_close){
         })
     });
 }
+//Inicializar Evento Con Opcion Popup Con Envio Id Como Parametro
+function initEvtOpcPopupId(clase_icono,url,title,alto,ancho,func_close){
+    $(".icon-"+clase_icono).unbind('click');
+    $(".icon-"+clase_icono).each(function(){
+        $("#"+this.id).click(function(e){
+            e.preventDefault();
+            var fila =$(this).parents('tr');
+            set_popup(url+$(fila).data('codx'),title,alto,ancho,'',func_close); 
+        })
+    });    
+}
 // function initEvPermisosJson(){
 //     $('.icon-user').each(function(){
 //         var fila;

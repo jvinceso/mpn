@@ -6,9 +6,10 @@ class Servicios extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('agua/servicios_tipo_model','objServiosTipo');
+		$this->load->model('agua/Costo_servicios_tipo_model','objCostoServiosTipo');
 		$this->load->model('multitabla_model','objMultitabla');
 		// $this->load->model('agua/via_model','objVia');
-		// $this->load->library('table');
+		$this->load->helper('tables_helper');
 	}
 	public function index()
 	{
@@ -26,9 +27,7 @@ class Servicios extends CI_Controller {
 			}
 			echo json_encode($tipos_servicio_data);
 	}
-	function pru(){
 
-	}
 	function insServicio(){
 		$array = $this->input->post('json');
 		// $nServId = $array['txt_ins_serv_nom'];
@@ -42,21 +41,60 @@ class Servicios extends CI_Controller {
 			$temp[$indice]['nMulTipoServicio'] = $this->objMultitabla->get_nMulId();
 			$temp[$indice]['nMulServicio'] = $servicio;
 		}
-		// $this->objServiosTipo->insServiciosTipo($temp);
-		print_p( $this->objServiosTipo->insServiciosTipo($temp) );
-		// $result = $this->objServiosTipo->insServicio_Tipo();
-/*		$array = $this->input->post('json');
-		$this->objMultitabla->set_cMulDescripcion($array['txt_ins_serv_nom']);
-		// $servicio = $this->objMultitabla->insServicio();
-		// $this->servicios_tipo_model->set_nMulServicio($servicio);
-		$this->objServiosTipo->set_nMulTipoServicio($array['tipos_servicios']);
-		// print_p($this->input->post('json'));exit();
-		$result = $this->objServiosTipo->insServicio_Tipo();
-		// if ($result) {
-		// 	echo "1";
-		// } else {
-		// 	echo "0";
-		// }*/
+		$result = $this->objServiosTipo->insServiciosTipo($temp);
+		// print_p( $this->objServiosTipo->insServiciosTipo($temp) );
+		if ($result) {
+			echo "1";
+		} else {
+			echo "0";
+		}
+	}
+
+	function insServicioTipo(){
+		$this->objMultitabla->set_cMulDescripcion($this->input->post('txt_ins_tserv_nom'));
+		$result = $this->objMultitabla->insServicioTipo();
+		// print_p( $this->objServiosTipo->insServiciosTipo($temp) );
+		if ($result) {
+			echo "1";
+		} else {
+			echo "0";
+		}
+	}
+	function loadDataServicios(){
+		$opciones = array(
+			'Costo' => array(
+				 'color'=>'red'
+				,'icono'=>'money'
+				,'tooltip'=>'success'
+			)
+		);
+		$tabla_data = $this->objServiosTipo->qryServiciosTipo();
+		$funciones = array(
+			// "circle-plus","servicios/agregarCosto/","Agregar etiquetas a noticias",480,420,"func_close"
+			'initEvtOpcPopupId("money","servicios/getViewCosto/","Agregar Costo por Año",480,420,"func_close")',
+			// 'initEvtOpcPopupId("cogs","asignarCosto(fila)")',
+		);
+		$nameTable = 'tabla-servicios';
+		$pk = 'ID';
+		CrudGridMultipleJson($tabla_data,$nameTable,$pk,$opciones,$funciones);		
+
+	}
+	function getViewCosto($nSetId){	
+		 $Codigo["nSetId"] = $nSetId;	
+		 $this->load->view('agua/servicios/ins_tiposervicio_costo_view', $Codigo);
+	}
+
+	function insCostoServiciosTipo(){
+		$this->objCostoServiosTipo->set_nSetId($this->input->post('txt_ins_setid'));
+		$this->objCostoServiosTipo->set_fCstPago($this->input->post('txt_ins_cst_costo'));
+		$this->objCostoServiosTipo->set_nCstAnio($this->input->post('txt_ins_cst_anio'));
+		$result = $this->objCostoServiosTipo->insCostoServiciosTipo();
+		// print_p( $this->objServiosTipo->insServiciosTipo($temp) );
+		if ($result) {
+			echo "1";
+		} else {
+			echo "0";
+		}
 	}
 }
 ?>

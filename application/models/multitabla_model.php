@@ -58,6 +58,16 @@
 			$this->db->insert('multitabla', $data);
 			return $this->db->insert_id();
 		}
+
+		public function insServicioTipo(){
+			$data = array(
+				'nMulIdPadre' 	   => 47,
+				'cMulDescripcion'  =>  $this->get_cMulDescripcion(),				
+				'cMulEstado' 	   => 1
+				);
+			$this->db->insert('multitabla', $data);
+			return $this->db->insert_id();
+		}
 		public function getServicioId(){ 
 			$this->db->select('nMulId');
 			$this->nMulId = $this->db->where(array('nMulIdPadre'=>47,'cMulDescripcion'=>$this->cMulDescripcion, 'cMulEstado'=>1 ))->get('multitabla')->result_array()[0]['nMulId'];
