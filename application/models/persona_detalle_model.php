@@ -141,5 +141,20 @@
 		$this->db->select('nPdeId as ID, cPdeValor as Direccion');
 		return $this->db->where(array( 'nPerId' => $this->nPerId, 'cPedEstado'=>1, 'nMulId'=>$this->nMulId ))->get('persona_detalle')->result_array();			
 	}
+	public function setPersonaDetalle(){
+		$detalle = array(
+			'nPerId' => $this->nPerId ,
+			'nMulId' => $this->nMulId ,
+			'cPdeValor' => $this->cPdeValor
+			);
+		$this->db->insert('persona_detalle', $detalle);
+		if($this->db->affected_rows() > 0)
+		{
+			$this->nPdeId = $this->db->insert_id();
+			return true;
+		}else{
+			return false;
+		}
+	}	
 }	
 ?>

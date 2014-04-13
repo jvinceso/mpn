@@ -17,13 +17,15 @@ $(function(){
 	            },
 	            success:function(data){
 	                switch (data) { 
-	                    case "2":
+	                    case "e":
 	                    mensaje("Error al guardar la Dirección!","a"); 
 	                    break; 
 	                    default:
 	                    msgLoadSaveRemove("#btnRegistrar");
 	                    mensaje("Se Registro Correctamente la Dirección","e");
 	                    limpiarForm('#frm_ins_modulo');
+	                    listaDireccion();
+	                    break;
 	                }
 	        		HabilitarBoton('btn_asignar_direccion');
 	            },
@@ -47,6 +49,13 @@ $(function(){
 	});
 	cargar_cboCalles();
 });
+
+function listaDireccion(){
+	var nPerId = $("input[name='txt_hdn_nPerid']").val();
+	var nMulId = $("input[name='txt_hdn_nMulId']").val()
+	get_page('contribuyente/listarDirecciones','c_qry_direccion_contribuyente',{'nPerId':nPerId,'nMulId':nMulId});
+}
+
 function cargar_cboCalles(){
 	msgLoading('#c_cbo_calles',"Buscando calles...");
 	var nSector = $("#cbo_sector option:selected").val();
@@ -73,5 +82,6 @@ function asignarTipo(fila){
 	console.log("servicio_direccion");
 	console.log(fila);
 	var nPdeId = $(fila).data('codx');
-	set_popup('../agua/contribuyente/qryServicios/','Servicios',350,400,{'codx':nPdeId},'');
+	var nPerId = $("input[name='txt_hdn_nPerid']").val();
+	set_popup('../agua/contribuyente/qryServicios/','Servicios',650,450,{'codx':nPdeId,'PerId':nPerId},'');
 }
