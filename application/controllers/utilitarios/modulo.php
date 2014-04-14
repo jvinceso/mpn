@@ -162,6 +162,7 @@ class Modulo extends CI_Controller {
 		if ( $this->objObjeto->insObjeto() ) {
 			/*Objeto Detalle*/
 			$this->objObjetoDetalle->set_nObjId( $this->objObjeto->get_nObjId() );
+			$this->objObjetoDetalle->set_nOdetTipo( 1 );
 			$this->objObjetoDetalle->set_cOdetNombreArchivo( $this->input->post('txt_ins_obj_file') );			
 			$this->objObjetoDetalle->set_cOdetPlataforma( 'I' );			
 			$response = ( $this->objObjetoDetalle->insObjetoDetalle() ) ? 'succes_all' : 'err002';
