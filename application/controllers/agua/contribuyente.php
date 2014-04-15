@@ -63,34 +63,34 @@ class Contribuyente extends CI_Controller {
 				,'icono'=>'pagos'
 				,'tooltip'=>'success'
 			),
-			'Documentos' => array(
-				 'color'=>'blue'
-				,'icono'=>'documento'
-				,'tooltip'=>'success'
-			),
+			// 'Documentos' => array(
+			// 	 'color'=>'blue'
+			// 	,'icono'=>'documento'
+			// 	,'tooltip'=>'success'
+			// ),
 			'Direccion' => array(
 				 'color'=>'green'
 				,'icono'=>'direccion'
 				,'tooltip'=>'success'
 			),
-			'Telefono' => array(
-				 'color'=>'green'
-				,'icono'=>'telefono'
-				,'tooltip'=>'success'
-			),
-			'Eliminar' => array(
-				 'color'=>'red'
-				,'icono'=>'darbaja'
-				,'tooltip'=>'success'
-			)
+			// 'Telefono' => array(
+			// 	 'color'=>'green'
+			// 	,'icono'=>'telefono'
+			// 	,'tooltip'=>'success'
+			// ),
+			// 'Eliminar' => array(
+			// 	 'color'=>'red'
+			// 	,'icono'=>'darbaja'
+			// 	,'tooltip'=>'success'
+			// )
 		);
 		$tabla_data = $this->objPersona->qryContribuyente();
 		$funciones = array(
-			'initEvtOpc("pagos","asignaDetalle(fila,\'pago\')")',
+			'initEvtOpc("pagos","ver_pagos(fila)")',
 			'initEvtOpc("direccion","asignar_direccion(fila)")',
-			'initEvtOpc("documento","asignaDetalle(fila,\'docu\')")',
-			'initEvtOpc("telefono","asignaDetalle(fila,\'tele\')")',
-			'initEvtOpc("darbaja","asignaDetalle(fila,\'baja\')")',
+			// 'initEvtOpc("documento","asignaDetalle(fila,\'docu\')")',
+			// 'initEvtOpc("telefono","asignaDetalle(fila,\'tele\')")',
+			// 'initEvtOpc("darbaja","asignaDetalle(fila,\'baja\')")',
 		);
 		$nameTable = 'tabla-contrib';
 		$pk = 'ID';

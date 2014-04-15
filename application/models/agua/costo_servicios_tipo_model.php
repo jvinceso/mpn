@@ -72,5 +72,11 @@
 			$this->db->insert('Costo_Servicios_Tipo', $data);
 			return $this->db->insert_id();
 		}
+
+		public function getAniosFiscales(){
+			// select distinct nCstAnio from costo_servicios_tipo
+			$this->db->select('nCstAnio as ID,cAplNombre as Nombre,cAplEstado as Estado,dAplFechaRegistro as "Fecha Registro"');
+			return $this->db->where('cAplEstado',1)->get('aplicacion')->result_array();
+		}
 	}
 ?>
