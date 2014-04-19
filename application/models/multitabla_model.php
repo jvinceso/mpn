@@ -74,5 +74,28 @@
 			return $this->nMulId;
 		}	
 
+		public function insTipoPago(){
+			$data = array(
+				'nMulIdPadre' 	   => 1,
+				'cMulDescripcion'  => $this->get_cMulDescripcion(),				
+				'cMulEstado' 	   => 1
+				);
+			$this->db->insert('multitabla', $data);
+			return $this->db->insert_id();
+		}
+
+		public function qryTipoPago(){
+		$query = $this->db->query("select nMulId,cMulDescripcion from multitabla where nMulIdPadre = 1");
+        if ($query) {
+            $data   = $query->result_array();
+            // print_p($data);exit();
+            $combo  = creaCombo($data);
+            $result = form_dropdown("cbo_ins_con_tipopago", $combo,'', 'id="cbo_ins_con_tipopago" class="chosen-select"');
+            return $result;
+        } else {
+            return false;
+        }
+		}
+
 	}
 ?>
