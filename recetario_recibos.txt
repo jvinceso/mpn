@@ -1,4 +1,7 @@
 Generar Arbitrios 
 -->Seleccionar Año fiscal
+
 -->Obtener los servicios y tipo de dicho año 
--->Buscar por todos los contribuyentes sus direcciones ver que servicios cuenta cada direccion fiscal
+
+-->Buscar por todos los contribuyentes sus direcciones 
+ver que servicios cuenta cada direccion fiscal

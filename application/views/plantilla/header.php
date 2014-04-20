@@ -14,6 +14,7 @@
       <!-- fonts -->
       <link rel="stylesheet" href="<?php echo URL_CSS; ?>ace-fonts.css" />
       <link rel="stylesheet" href="<?php echo URL_CSS; ?>sistema/estilos.css" />
+      <link rel="stylesheet" href="<?php echo URL_CSS; ?>chosen.css" />
       <!-- ace styles -->
       <link rel="stylesheet" href="<?php echo URL_CSS; ?>ace.min.css" />
       <link rel="stylesheet" href="<?php echo URL_CSS; ?>ace-rtl.min.css" />

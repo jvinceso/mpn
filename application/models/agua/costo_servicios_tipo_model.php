@@ -73,10 +73,15 @@
 			return $this->db->insert_id();
 		}
 
-		public function getAniosFiscales(){
-			// select distinct nCstAnio from costo_servicios_tipo
-			$this->db->select('nCstAnio as ID,cAplNombre as Nombre,cAplEstado as Estado,dAplFechaRegistro as "Fecha Registro"');
-			return $this->db->where('cAplEstado',1)->get('aplicacion')->result_array();
+		public function getAniosFiscales($idServicio){
+			$tmp = null;
+			$rs = $this->db->query('select DISTINCT cst.nCstAnio as aid,cst.nCstAnio as descrip from costo_servicios_tipo cst
+			inner join servicios_tipo st on st.nSetId = cst.nSetId
+			where st.nMulServicio  = '.$idServicio.' ');
+			if ($rs->num_rows() > 0){
+				$tmp = $rs->result_array();
+			}
+			return $tmp;
 		}
 	}
 ?>

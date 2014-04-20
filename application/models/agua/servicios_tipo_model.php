@@ -86,7 +86,7 @@
 				inner join servicios_tipo st on st.nSetId = sc.nSetId
 				inner join multitabla m on m.nMulId = st.nMulServicio
 				inner join multitabla mt on mt.nMulId = st.nMulTipoServicio
-			where sc.nDicId ='".$objDireccionCalle->get_nDicId()."'");
+			where sc.nDicId ='".$objDireccionCalle->get_nDicId()."' and  sc.cSecEstado = 1");
 			return  $query->result_array();
 		}
 

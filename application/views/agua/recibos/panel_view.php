@@ -23,7 +23,7 @@
 			<p>
 				<a id="btnProcesar" class="btn btn-light btn-app radius-4" href="#">
 					<i class="icon-cog bigger-230"></i>
-					Procesar <br>Año Fiscal
+					Generar <br>Recibos
 				</a>
 				<a id="btnPrint" class="btn btn-light btn-app radius-4" href="#">
 					<i class="icon-print bigger-230"></i>
@@ -31,10 +31,13 @@
 				</a>
 			</p>
 		</div>
-		<div id="c_frm_recibos"></div>
+		<div id="c_frm_recibos">
+			<?php 
+			$this->load->view('agua/recibos/ins_recibos_view');
+			?>
+		</div>
 		<!-- fin codigo del cuerpo -->
 	</div>
 
 </div>
-<link rel="stylesheet" href="<?php echo URL_CSS; ?>chosen.css" />
 <script src="<?php echo URL_JS; ?>chosen.jquery.min.js"></script>
