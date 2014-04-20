@@ -13,7 +13,7 @@ class Recibo extends CI_Controller {
 		$data['main_content'] = 'agua/recibos/panel_view';
 		$data['aplicacion'] = 'Agua';
 		$data['objeto'] = 'Recibos';
-		$data['cboAniosFiscales'] = ;
+		$data['cboAniosFiscales'] = array('cbo'=>0);
 		$this->load->view('plantilla/template', $data);			
 	}
 
