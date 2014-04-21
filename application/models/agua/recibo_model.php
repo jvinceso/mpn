@@ -41,17 +41,9 @@ class Recibo_model extends CI_Model {
 	}
 
 	public function ins_procesar_recibos($anio){
-		// nRecId
-		// dRecFechaImpresion
-		// fRecDeuda
-		// fRecAbono
-		// fRecDescuento
-		// cRecPagado
-		// dRecFechaPago
-		// nFevId
-		// nPerIdContribuyente
-		// nPerIdTrabajador
 		echo "procesando......";
+		$sql_recibo = "";
+		$sql_reciboDetalle = "";
 		$nPerIdTrabajador = $this->session->userdata('IdPersona');
 		$this->db->trans_start();
 		$rsContribuyentes = $this->db->query('select p.nPerId from persona p
@@ -60,16 +52,37 @@ class Recibo_model extends CI_Model {
 			where cPerEstado = 1 and cst.nCstAnio = '.$anio.'
 			group by p.nPerId')->result_array();
 		$rsCuotas = $this->db->query('select nFevId from fechas_vencimiento where nFevAnio = '.$anio.'')->result_array();
+		// print_p( $rsContribuyentes );
 		foreach ($rsContribuyentes as $key => $value) {
-
 			$nPerIdContribuyente = $value['nPerId'];
 			foreach ( $rsCuotas as $indice => $valor) {
-				$this->db->query("INSERT INTO recibo(nFevId,nPerIdContribuyente,nPerIdTrabajador)
-					VALUES(".$valor['nFevId'].",".$nPerIdContribuyente.",".$nPerIdTrabajador.")");
-				// print_p( $valor );
-			}
+				// $sql_recibo .= "INSERT INTO recibo(nFevId,nPerIdContribuyente,nPerIdTrabajador)VALUES(".$valor['nFevId'].",".$nPerIdContribuyente.",".$nPerIdTrabajador.")";
+				// $sql_recibo .="<br />";
+				
+				$this->db->query("INSERT INTO recibo(nFevId,nPerIdContribuyente,nPerIdTrabajador)VALUES(".$valor['nFevId'].",".$nPerIdContribuyente.",".$nPerIdTrabajador.")");
+				$nRecId = $this->db->insert_id();
 
+				$rsServicios = $this->db->query("select sc.nSecId,cst.fCstPago from servicios_contribuyente sc
+					inner join servicios_tipo st ON sc.nSetId = st.nSetId
+					inner join costo_servicios_tipo cst on st.nSetId = cst.nSetId
+				where sc.nPerId = ".$nPerIdContribuyente."  and sc.cSecEstado = 1 and cst.nCstAnio = ".$anio."")->result_array();
+				// $nRecId = 5;
+				$total = 0;
+				foreach ($rsServicios as $indi => $val) {
+					$total +=$val['fCstPago'];
+					// $sql_reciboDetalle .= "INSERT INTO recibo_detalle(nRecId,nSecId,cRedPrecio)VALUES(".$nRecId.",".$val['nSecId'].",".$val['fCstPago'].")";
+					$this->db->query("INSERT INTO recibo_detalle(nRecId,nSecId,cRedPrecio)VALUES(".$nRecId.",".$val['nSecId'].",".$val['fCstPago'].")");
+					// $sql_reciboDetalle .= "<br />";					
+				}
+				// $sql_update .= "UPDATE recibo SET fRecDeuda = ".$total." WHERE nRecId = ".$nRecId." ";
+				$this->db->query("UPDATE recibo SET fRecDeuda = ".$total." WHERE nRecId = ".$nRecId." ");
+				// $sql_update .= "<br />";
+				// nRecId, nSecId, cRedPrecio
+			}
 		}
+/*		print_p( $sql_recibo );
+		print_p( $sql_reciboDetalle );
+		print_p( $sql_update );*/
 		// print_p($rsContribuyentes);
 
 		$this->db->trans_complete();
