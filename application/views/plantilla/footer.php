@@ -49,7 +49,7 @@
 		</div><!-- /.main-container -->		
 		<script src="<?php echo URL_JS; ?>jquery.dataTables.min.js"></script>
 		<script src="<?php echo URL_JS; ?>jquery.dataTables.bootstrap.js"></script>
-
+		<script src="<?php echo URL_JS; ?>chosen.jquery.min.js"></script>
 		<!-- // <script src="<?php echo URL_JS; ?>jquery.slimscroll.min.js"></script> -->
 		<!-- // <script src="<?php echo URL_JS; ?>jquery.easy-pie-chart.min.js"></script> -->
 		<!-- // <script src="<?php echo URL_JS; ?>jquery.sparkline.min.js"></script> -->

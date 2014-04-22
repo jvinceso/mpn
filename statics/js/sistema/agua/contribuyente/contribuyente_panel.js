@@ -9,7 +9,7 @@ $(function(){
 	// Evento Regresar Pantalla Anterior
 	$("#anc_back_contribuyente").click(function(evt){
 	    evt.preventDefault();
-	    MostrarOcultarCapas('#c_frm_contribuyente','#tbl_contribuyentes_principal');
+	    MostrarOcultarCapas('c_frm_contribuyente','tbl_contribuyentes_principal');
 	    $('#pnl_frm_title').show();
 	});		
 });
@@ -61,14 +61,5 @@ function asignar_direccion(fila){
 	console.log(fila);
 	$('#pnl_frm_title').hide();
 	get_page('contribuyente/get_agregar_direccion/','c_frm_procesos_contribuyente',{"nPerId":nPerId,"nombre":nombre,'apellido':apellido});
-	MostrarOcultarCapas('#tbl_contribuyentes_principal','#c_frm_contribuyente','','');
-}
-function ver_pagos(fila){
-	var nPerId   = $(fila).find("td:eq(0)").text().trim();
-	var nombre   = $(fila).find("td:eq(1)").text().trim();	
-	var apellido = $(fila).find("td:eq(2)").text().trim();	
-	console.log(fila);
-	$('#pnl_frm_title').hide();
-	get_page('contribuyente/get_agregar_direccion/','c_frm_procesos_contribuyente',{"nPerId":nPerId,"nombre":nombre,'apellido':apellido});
-	MostrarOcultarCapas('#tbl_contribuyentes_principal','#c_frm_contribuyente','','');
+	MostrarOcultarCapas('tbl_contribuyentes_principal','c_frm_contribuyente','','');
 }

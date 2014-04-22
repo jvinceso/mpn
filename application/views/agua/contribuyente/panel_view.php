@@ -1,6 +1,6 @@
 <script type="text/javascript" src='<?php echo URL_JS; ?>sistema/agua/contribuyente/contribuyente_panel.js'></script>
 <style>
-.icon-pagos:before{
+/*.icon-pagos:before{
 	content: url( '<?php echo URL_IMG ?>/essen/16/advertising.png');
 }
 .icon-direccion:before{
@@ -14,7 +14,7 @@
 }
 .icon-darbaja:before{
 	content: url( '<?php echo URL_IMG ?>/essen/16/busy.png');
-}
+}*/
 /*.ui-icon-trash{color:#dd5a43}.ui-icon-trash:before{content:"\f014"}	*/
 </style>
 <div class="page-header">
@@ -57,14 +57,11 @@
 				</div>
 
 				<div id="qry_contribuyente" class="tab-pane in active">
-					<p>
-						<div id="pnl_frm_title">
-							<h2 class="header lighter blue">Listado Contribuyentes</h2>							
-						</div>
-					</p>
-					<p>						
-						<div id="tbl_contribuyentes_principal" class="table-responsive"></div>
-					</p>
+
+					<div class="table-header">Resultado de los Contribuyentes"</div>	
+
+					<div id="tbl_contribuyentes_principal" class="table-responsive"></div>
+					
 					<div id="c_frm_contribuyente" class="switchs disnone w860" >
 						<a href="#" id="anc_back_contribuyente" class="ancla_regresar ui-dialog-titlebar-close ui-corner-all" role="button">
 							<span><img src="../statics/images/iconos_regresar.png"></span>
@@ -76,7 +73,5 @@
 		</div>
 		<!-- fin codigo propio del cuerpo -->
 	</div>
-
 </div>
-<link rel="stylesheet" href="<?php echo URL_CSS; ?>chosen.css" />
-<script src="<?php echo URL_JS; ?>chosen.jquery.min.js"></script>
+<script src="<?php echo URL_JS; ?>jquery.maskedinput.min.js"></script>
