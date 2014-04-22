@@ -1,14 +1,14 @@
 <?php 
-function CrudGridMultipleJson($sql, $idtable = null, $primary_key=0,$opciones = array(), $funciones = null ) {
+function CrudGridMultipleJson($sql, $idtable = null, $primary_key,$opciones = array(), $funciones = null ) {
 
 if( count($sql)>0 ){
 	$nroopc = count($opciones);	//Nro de Opciones
     $nroCamposSql = count($sql);	//Nro de Campos de la Consula SQL
     $nombre_Columnas = array_keys( $sql[0]);
-    $nroCamposSql = count( $nombre_Columnas );	//Cantidad de columnas a mostrar
+    $nroCamposSql = count( $nombre_Columnas );	//Cantidad de columnas a mostrar table table-stripped
     $idtable = ($idtable==null) ? 'tabla'.rand():$idtable;
     ?>
-    <table id="<?php print $idtable; ?>" class="table table-stripped">
+    <table id="<?php print $idtable; ?>" class="table table-striped table-bordered table-hover">
     	<thead>
     		<tr>
     			<?php
@@ -37,7 +37,7 @@ if( count($sql)>0 ){
                     // exit();
 			    	// $json = json_encode($temp,JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE);
 			        ?>
-			        <tr data-codx="<?php print (($primary_key)?$fila[$primary_key]:rand()) ?>" >
+			        <tr data-codx="<?php print $fila[$primary_key] ?>" >
 			        <?php
 			        foreach ($fila as $key => $cell) {
 			        	?>
@@ -63,13 +63,17 @@ if( count($sql)>0 ){
 			        	$html_responsive_li = '';
 			        ?>
 			        	<td>
-			        		<div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
+			        		<!-- <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons"> -->
+			        		<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
 				        		<?php
 				        		foreach ($opciones as $clave_opcion => $opcion) {
 				        			?>
-				        			<a class="<?php print $opcion['color']; ?>" href="#">
+				        			<a class="btn btn-xs btn-<?php echo $opcion['tooltip']; ?>">											
+											<i id="<?php print rand(5,1000000); ?>" class="icon-<?php print $opcion['icono'] ?> bigger-130"></i>
+									</a>
+<!-- 				        			<a class="<?php print $opcion['color']; ?>" href="#">
 				        				<i id="<?php print rand(5,1000000); ?>" class="icon-<?php print $opcion['icono'] ?> bigger-130"></i>
-				        			</a>
+				        			</a> -->
 				        			<?php
 				        			$html_responsive_li .='
 				        			<li>

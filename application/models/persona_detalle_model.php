@@ -141,20 +141,18 @@
 		$this->db->select('nPdeId as ID, cPdeValor as Direccion');
 		return $this->db->where(array( 'nPerId' => $this->nPerId, 'cPedEstado'=>1, 'nMulId'=>$this->nMulId ))->get('persona_detalle')->result_array();			
 	}
-	public function setPersonaDetalle(){
-		$detalle = array(
-			'nPerId' => $this->nPerId ,
-			'nMulId' => $this->nMulId ,
-			'cPdeValor' => $this->cPdeValor
-			);
-		$this->db->insert('persona_detalle', $detalle);
-		if($this->db->affected_rows() > 0)
-		{
-			$this->nPdeId = $this->db->insert_id();
-			return true;
-		}else{
-			return false;
-		}
-	}	
+
+	public function cboEstadoCivilUpd(){
+        $query = $this->db->query("select nMulId,cMulDescripcion from multitabla where nMulIdPadre = 18");
+        if ($query) {
+            $data   = $query->result_array();
+            // print_p($data);exit();
+            $combo  = creaCombo($data);
+            $result = form_dropdown("cbo_upd_per_estcivil", $combo,$this->get_cPdeValor(), 'id="cbo_upd_per_estcivil" class="chzn-select" style="width:160px"');
+            return $result;
+        } else {
+            return false;
+        }
+	}
 }	
 ?>

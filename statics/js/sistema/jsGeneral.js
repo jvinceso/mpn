@@ -21,24 +21,41 @@ function initEvtOpc(clase_icono,funcion){
         })
     });    
 }
-// function initEvtUpd(){
-function initEvtUpdJson(url,title,alto,ancho,func_close){
-    $(".icon-pencil").unbind('click');
-    $('.icon-pencil').each(function(){
-        var fila;
+//esta funcion podria reemplazar a initEvtOpc solo envia como parametro el 'id' de la fila
+function initEvtSlider(clase_icono,url,objocultar,objmostrar,divmostrar,fnocultar,fnmostrar){
+    $(".ui-icon-"+clase_icono).each(function(){
         $("#"+this.id).click(function(e){
             e.preventDefault();
-            fila =$(this).parents('tr');
-            var objJson = $(fila).data('json');
-            console.log(this);
-            console.log(fila);
-            console.log(objJson);
-            console.log("Debug : initEvtUpdJson Loaded...");
-            // set_popupJSON(url+$(fila).data('codx'),title,alto,ancho,objJson,func_close);
-            set_popup(url+$(fila).data('codx'),title,alto,ancho,'',func_close);
-        })
+            var fila =$(this).parents('tr');
+            //$.post("bandejaPendientes/EditarDiversos",{//get
+            $.post(url,{//get
+                Codigo:$(fila).data('codx')
+            }, function(data){                
+                MostrarOcultarCapas(objocultar,objmostrar,'','');
+                $("#"+divmostrar).html(data);
+            });
+        //; 
+    })
     });
 }
+// hace lo mismo que initEvtOpcPopupId
+// function initEvtUpdJson(url,title,alto,ancho,func_close){
+//     $(".icon-pencil").unbind('click');
+//     $('.icon-pencil').each(function(){
+//         var fila;
+//         $("#"+this.id).click(function(e){
+//             e.preventDefault();
+//             fila =$(this).parents('tr');
+//             var objJson = $(fila).data('json');
+//             console.log(this);
+//             console.log(fila);
+//             console.log(objJson);
+//             console.log("Debug : initEvtUpdJson Loaded...");
+//             // set_popupJSON(url+$(fila).data('codx'),title,alto,ancho,objJson,func_close);
+//             set_popup(url+$(fila).data('codx'),title,alto,ancho,'',func_close);
+//         })
+//     });
+// }
 //Inicializar Evento Con Opcion Popup Con Envio Id Como Parametro
 function initEvtOpcPopupId(clase_icono,url,title,alto,ancho,func_close){
     $(".icon-"+clase_icono).unbind('click');
@@ -62,31 +79,32 @@ function initEvtOpcPopupId(clase_icono,url,title,alto,ancho,func_close){
 //     });
 // }
 
-function initEvtUpd(url,title,alto,ancho,func_close){
-    $(".icon-pencil").unbind('click');
-    $('.icon-pencil').each(function(){
-        var fila;
-        $("#"+this.id).click(function(e){
-            e.preventDefault();
-            fila =$(this).parents('tr');
-            console.log(this);
-            console.log(fila);
-            console.log("Debug : initEvtUpd Loaded...");
-            set_popup(url+$(fila).data('codx'),title,alto,ancho,'',func_close);
-        })
-    });
-}
+// function initEvtUpd(url,title,alto,ancho,func_close){
+//     $(".icon-pencil").unbind('click');
+//     $('.icon-pencil').each(function(){
+//         var fila;
+//         $("#"+this.id).click(function(e){
+//             e.preventDefault();
+//             fila =$(this).parents('tr');
+//             console.log(this);
+//             console.log(fila);
+//             console.log("Debug : initEvtUpd Loaded...");
+//             set_popup(url+$(fila).data('codx'),title,alto,ancho,'',func_close);
+//         })
+//     });
+// }
+
 function initEvtDel(funcion){ 
     $(".icon-trash").unbind('click');
     $(".icon-trash").on("click",function(e){
         e.preventDefault();
         var fila,fn;
         fila = $(this).parents('tr');
-    console.log("fila");
-    console.log(fila);
+    // console.log("fila");
+    // console.log(fila);
         fn =""+funcion+"("+$(fila).data('codx')+")"; 
-    console.log("fn");
-    console.log(fn);
+    // console.log("fn");
+    // console.log(fn);
         confirmar("Confirmar","¿Seguro que desea retirar el registro seleccionado?",fn);
     });
 }
@@ -123,12 +141,12 @@ function HabilitarBoton(btn){
 }
 
 function MostrarOcultarCapas(ObjOcultar,ObjMostrar,fnOcultar,fnMostrar){
-    $(ObjOcultar).hide('slide',100,function(){
+    $("#"+ObjOcultar).hide('slide',100,function(){
         // $(".tooltip").removeClass("in");
         // $(".tooltip").addClass("out");        
         eval(fnOcultar);
     });
-    $(ObjMostrar).show('slide',1000,function(){
+    $("#"+ObjMostrar).show('slide',1000,function(){
         // $(".tooltip").removeClass("in");
         // $(".tooltip").addClass("out");
         eval(fnMostrar);

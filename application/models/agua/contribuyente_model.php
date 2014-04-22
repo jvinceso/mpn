@@ -55,5 +55,36 @@
 				//CREANDO EL OBJETO
 			}
 		}
+
+		function getContribuyente($nPerId){		
+		$query = $this->db->query("
+									select p.nPerId ,
+									   pd1.cPdeValor as dni,
+								       p.cPerNombres,
+								       p.cPerApellidoPaterno,
+								       p.cPerApellidoMaterno, 
+								       pn.dPnaFechaNacimiento,
+								       pd2.cPdeValor as estcivil,
+								       pn.cPnaSexo, 
+								       pd3.cPdeValor as telefono,
+									   pd4.cPdeValor as celular,
+									   pd5.cPdeValor as email
+									from persona p 
+									inner join persona_detalle pd1 on p.nPerId = pd1.nPerId
+									inner join persona_natural pn  on p.nPerId = pn.nPerId
+									inner join persona_detalle pd2 on p.nPerId = pd2.nPerId
+									inner join persona_detalle pd3 on p.nPerId = pd3.nPerId
+									inner join persona_detalle pd4 on p.nPerId = pd4.nPerId
+									inner join persona_detalle pd5 on p.nPerId = pd5.nPerId
+									where p.nPerId = '".$nPerId."' and pd1.nMulId = 16 and pd2.nMulId = 18 and pd3.nMulId = 43 and pd4.nMulId = 44 and pd5.nMulId = 45 and
+									 p.cPerContribuyente='SI' and p.cPerEstado=1
+			");
+		if ($query->num_rows() > 0) {
+			return $query->row_array();
+		} else {
+			return false;
+		}
+	}
+
 	}
 ?>
