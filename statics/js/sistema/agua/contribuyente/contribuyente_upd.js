@@ -1,35 +1,34 @@
 $(function(){      
     
-    cboEstadoCivilUpd();
-    
-    // ACTUALIZAR PUBLICIDAD
-    $("#frm_upd_documento").validate({         
+    cboEstadoCivilUpd();    
+   
+    $("#frm_upd_contribuyente").validate({         
         submitHandler: function(form){
-            msgLoadSave("#c_btn_upd_documento_load","#btn_upd_documento");            
+            DesabilitarBoton('btn_upd_cont_registrar')            
             $.ajax({
                 type: "POST",
-                url: "crearDocumento/crearDocumentoUpd",
+                url:  "contribuyente/updContribuyente",
                 data: $(form).serialize(),
-                success: function(data){ 
-                    //console.log(data);
-                    switch (data) {
+                success: function(data){                    
+                    switch (data) { 
+                        case "2":
+                        mensaje("Error al actualizar el Contribuyente!","a"); 
+                        HabilitarBoton('btn_upd_cont_registrar');
+                        break; 
                         case "0":
-                            msgLoadSaveRemove("#btn_upd_documento");
-                            mensaje("Estos adtos ya fueron ingresados.","r");
-                            $(".popedit").dialog("close");
-                            break; 
-                        default:
-                            msgLoadSaveRemove("#btn_upd_documento");                                                        
-                            limpiarForm("#frm_upd_documento");        
-                            //                            $("#txt_upd_pub_descripcion").val("").blur();  preguntar!!!                                                       
-                            mensaje("Operacion realizada con exito.","e"); 
-                            listarDocumentos();
-                            $(".popedit").dialog("close");                             
-                            break;                            
-                    }      
+                        mensaje("Error al actualizar el Contribuyente!","a"); 
+                        HabilitarBoton('btn_upd_cont_registrar');                        
+                        break;
+                        default:                        
+                        mensaje("Se actualizó Correctamente el Contribuyente","e");
+                        HabilitarBoton('btn_upd_cont_registrar');
+                        // limpiarForm('#frm_ins_trabajador');
+                    }
+
                 },
-                error: function(){                
-                    mensaje("Ha ocurrido un error, vuelva a intentarlo.","r");                        
+                error: function(msg){                
+                    mensaje("r","Error Inesperando actualizando al Contribuyente!, vuelva a intentarlo"); 
+                    HabilitarBoton('btn_upd_cont_registrar');                       ;
                 }
             });
         },
