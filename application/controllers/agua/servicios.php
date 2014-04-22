@@ -42,7 +42,23 @@ class Servicios extends CI_Controller {
 			$temp[$indice]['nMulServicio'] = $servicio;
 		}
 		$result = $this->objServiosTipo->insServiciosTipo($temp);
-		// print_p( $this->objServiosTipo->insServiciosTipo($temp) );
+		// print_r( $temp ); exit();
+// Array
+// (
+//     [0] => Array
+//         (
+//             [nMulTipoServicio] => 48
+//             [nMulServicio] => 68
+//         )
+
+//     [1] => Array
+//         (
+//             [nMulTipoServicio] => 49
+//             [nMulServicio] => 68
+//         )
+
+// )
+
 		if ($result) {
 			echo "1";
 		} else {

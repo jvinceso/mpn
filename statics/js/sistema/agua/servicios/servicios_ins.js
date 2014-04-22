@@ -92,8 +92,6 @@ $(function(){
                         HabilitarBoton('btn_ins_serv_registrar');
                         // limpiarForm('#frm_ins_trabajador');
                     }
-
-
                 },
                 error: function(msg){                
                     mensaje("r","Error Inesperando registrando el Servicio!, vuelva a intentarlo"); 
