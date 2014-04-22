@@ -97,5 +97,10 @@
         }
 		}
 
+		public function qrymultitabla(){
+			$query = $this->db->query("select nMulId as ID,cMulDescripcion as descripcion from multitabla where nMulIdPadre ='".$this->nMulIdPadre."' ");
+			return $query->result_array();	
+		}
+
 	}
 ?>
