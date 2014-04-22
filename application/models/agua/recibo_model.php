@@ -46,38 +46,31 @@ class Recibo_model extends CI_Model {
 		$sql_reciboDetalle = "";
 		$nPerIdTrabajador = $this->session->userdata('IdPersona');
 		$this->db->trans_start();
+		/**
+		 * Se Obtiene lista de contribuyentes segun el año que se ah seleccionado
+		 * en base al servicio tipo y relación con la tabla costo
+		 */
 		$rsContribuyentes = $this->db->query('select p.nPerId from persona p
 			inner join servicios_contribuyente sc on p.nPerId = sc.nPerId
 			inner join costo_servicios_tipo cst on sc.nSetId = cst.nSetId
 			where cPerEstado = 1 and cst.nCstAnio = '.$anio.'
 			group by p.nPerId')->result_array();
 		$rsCuotas = $this->db->query('select nFevId from fechas_vencimiento where nFevAnio = '.$anio.'')->result_array();
-		// print_p( $rsContribuyentes );
 		foreach ($rsContribuyentes as $key => $value) {
 			$nPerIdContribuyente = $value['nPerId'];
-			foreach ( $rsCuotas as $indice => $valor) {
-				// $sql_recibo .= "INSERT INTO recibo(nFevId,nPerIdContribuyente,nPerIdTrabajador)VALUES(".$valor['nFevId'].",".$nPerIdContribuyente.",".$nPerIdTrabajador.")";
-				// $sql_recibo .="<br />";
-				
+			foreach ( $rsCuotas as $indice => $valor) {				
 				$this->db->query("INSERT INTO recibo(nFevId,nPerIdContribuyente,nPerIdTrabajador)VALUES(".$valor['nFevId'].",".$nPerIdContribuyente.",".$nPerIdTrabajador.")");
 				$nRecId = $this->db->insert_id();
-
 				$rsServicios = $this->db->query("select sc.nSecId,cst.fCstPago from servicios_contribuyente sc
 					inner join servicios_tipo st ON sc.nSetId = st.nSetId
 					inner join costo_servicios_tipo cst on st.nSetId = cst.nSetId
 				where sc.nPerId = ".$nPerIdContribuyente."  and sc.cSecEstado = 1 and cst.nCstAnio = ".$anio."")->result_array();
-				// $nRecId = 5;
 				$total = 0;
 				foreach ($rsServicios as $indi => $val) {
 					$total +=$val['fCstPago'];
-					// $sql_reciboDetalle .= "INSERT INTO recibo_detalle(nRecId,nSecId,cRedPrecio)VALUES(".$nRecId.",".$val['nSecId'].",".$val['fCstPago'].")";
 					$this->db->query("INSERT INTO recibo_detalle(nRecId,nSecId,cRedPrecio)VALUES(".$nRecId.",".$val['nSecId'].",".$val['fCstPago'].")");
-					// $sql_reciboDetalle .= "<br />";					
 				}
-				// $sql_update .= "UPDATE recibo SET fRecDeuda = ".$total." WHERE nRecId = ".$nRecId." ";
 				$this->db->query("UPDATE recibo SET fRecDeuda = ".$total." WHERE nRecId = ".$nRecId." ");
-				// $sql_update .= "<br />";
-				// nRecId, nSecId, cRedPrecio
 			}
 		}
 /*		print_p( $sql_recibo );
