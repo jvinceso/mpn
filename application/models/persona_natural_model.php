@@ -54,5 +54,16 @@
 				$this->db->insert('persona_natural', $persona_natural);
 				// return $this->db->insert_id();
 		}
+
+	    function updPersonaNatural(){
+				$data = array(					
+					'cPnaSexo'             =>  $this->get_cPnaSexo(),
+					'dPnaFechaNacimiento'  =>  $this->get_dPnaFechaNacimiento()
+					);
+
+        $this->db->where('nPerId', $this->get_nPerId());
+        $this->db->update('persona_natural', $data); 
+        return true;
+    }
 	}
 ?>

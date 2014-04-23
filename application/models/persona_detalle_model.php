@@ -154,5 +154,34 @@
             return false;
         }
 	}
+
+	function updPersonaDetalle(){
+		 // print_r($this->cPdeValor);exit();
+		 // $array = array("uno", "dos", "tres");
+
+		 foreach ($this->cPdeValor as $clave => $valor) {
+		 	$this->db->update('persona_detalle', $this->cPdeValor[$clave],array('nPerId' => $this->nPerId ,'nMulId' => $this->cPdeValor[$clave]['nMulId'] ));
+   					 // echo "Clave: $clave; Valor: $valor<br />\n";
+		  }
+		// $datapd = 
+		// array(
+		// 	'nPerId'      =>  $this->input->post('txt_upd_nperid'),
+		// 	'dni'         =>  $this->input->post('txt_upd_cont_dni') ,
+		// 	'email'       =>  $this->input->post('txt_upd_cont_email'),
+		// 	'telefono'    =>  $this->input->post('txt_upd_cont_telefono'),
+		// 	'celular'     =>  $this->input->post('txt_upd_cont_celular'),
+		// 	'estadocivil' =>  $this->input->post('cbo_upd_per_estcivil')
+		// 	);
+
+
+				// $data = array(					
+				// 	'cPnaSexo'             =>  $this->get_cPnaSexo(),
+				// 	'dPnaFechaNacimiento'  =>  $this->get_dPnaFechaNacimiento()
+				// 	);
+
+    //     $this->db->where('nPerId', $this->get_nPerId());
+    //     $this->db->update('persona_natural', $data); 
+        return true;
+    }
 }	
 ?>

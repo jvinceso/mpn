@@ -1,6 +1,5 @@
 <script type="text/javascript" src='<?php echo URL_JS; ?>sistema/agua/contribuyente/contribuyente_ins.js'></script>
-<script src="<?php echo URL_JS; ?>date-time/bootstrap-datepicker.min.js"></script>
-<link rel="stylesheet" href="<?php echo URL_CSS; ?>datepicker.css" />
+
 <!-- <link rel="stylesheet" href="<?php echo URL_CSS; ?>chosen.css" /> -->
 
 <form id="frm_ins_contribuyente" name = "frm_ins_contribuyente" class="form-horizontal" role="form">
@@ -127,4 +126,3 @@
 		</div>
 	</div>
 </form>
-

@@ -2,6 +2,7 @@
 
 
 <form id="frm_upd_contribuyente" name = "frm_upd_contribuyente" class="form-horizontal" role="form">
+	<input type="hidden" id="txt_upd_nperid" name="txt_upd_nperid" value="<?php echo $fila['nPerId'] ?>" />
 	<h3 class="header smaller lighter blue">
 		Datos Personales
 		<small>Todos los datos propios de cada persona</small>

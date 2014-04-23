@@ -1,4 +1,6 @@
 <script type="text/javascript" src='<?php echo URL_JS; ?>sistema/agua/contribuyente/contribuyente_panel.js'></script>
+<script src="<?php echo URL_JS; ?>date-time/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet" href="<?php echo URL_CSS; ?>datepicker.css" />
 <style>
 /*.icon-pagos:before{
 	content: url( '<?php echo URL_IMG ?>/essen/16/advertising.png');

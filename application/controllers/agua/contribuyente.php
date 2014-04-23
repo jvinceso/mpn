@@ -118,38 +118,55 @@ class Contribuyente extends CI_Controller {
 
 	function getContribuyente($nPerId) {
 		// echo $nPerId;
-        $fila = $this->objContribuyente->getContribuyente($nPerId);
+		$fila = $this->objContribuyente->getContribuyente($nPerId);
         // print_p($fila);
-        if ($fila) {
-            $filax["fila"] = $fila;
-            $this->load->view('agua/contribuyente/upd_view', $filax);
-        } else {
-            echo "Error";
-        }
+		if ($fila) {
+			$filax["fila"] = $fila;
+			$this->load->view('agua/contribuyente/upd_view', $filax);
+		} else {
+			echo "Error";
+		}
 	}
 
-	function updContribuyente($nPerId) {
-		$datapd = 
-		array(
-			'dni'         =>  $this->input->post('txt_ins_cont_dni') ,
-			'email'       =>  $this->input->post('txt_ins_cont_email'),
-			'telefono'    =>  $this->input->post('txt_ins_cont_telefono'),
-			'celular'     =>  $this->input->post('txt_ins_cont_celular'),
-			'estadocivil' =>  $this->input->post('cbo_ins_per_estcivil')
+	function updContribuyente() {
+		$datapd = array(
+			array(				
+				'nMulId' => '16' ,
+				'cPdeValor' => $this->input->post('txt_upd_cont_dni')
+				),
+			array(				
+				'nMulId' => '45' ,
+				'cPdeValor' => $this->input->post('txt_upd_cont_email')
+				),
+			array(				
+				'nMulId' => '43' ,
+				'cPdeValor' => $this->input->post('txt_upd_cont_telefono')
+				),
+			array(				
+				'nMulId' => '44' ,
+				'cPdeValor' => $this->input->post('txt_upd_cont_celular')
+				),
+			array(				
+				'nMulId' => '18' ,
+				'cPdeValor' => $this->input->post('cbo_upd_per_estcivil')
+				)
 			);
-		$this->objPersona->setPerApellidoPaterno( $this->input->post('txt_ins_cont_appaterno') );	
-		$this->objPersona->setPerApellidoMaterno( $this->input->post('txt_ins_cont_apmaterno') );	
-		$this->objPersona->setPerNombres( $this->input->post('txt_ins_cont_nombres') );			
-		$this->objPersona->setPerContribuyente( 'SI' );			
-		$this->objPersonaNatural->set_cPnaSexo( $this->input->post('cbo_ins_cont_sexo') );	
-		$this->objPersonaNatural->set_dPnaFechaNacimiento( $this->input->post('txt_ins_cont_nacimiento') );	
+
+		$this->objPersona->setPerApellidoPaterno( $this->input->post('txt_upd_cont_appaterno') );	
+		$this->objPersona->setPerApellidoMaterno( $this->input->post('txt_upd_cont_apmaterno') );	
+		$this->objPersona->setPerNombres( $this->input->post('txt_upd_cont_nombres') );			
+		$this->objPersona->setPerContribuyente( 'SI' );	
+		$this->objPersona->setPerId( $this->input->post('txt_upd_nperid') );	
+
+		$this->objPersonaNatural->set_cPnaSexo( $this->input->post('cbo_upd_cont_sexo') );	
+		$this->objPersonaNatural->set_dPnaFechaNacimiento( $this->input->post('txt_upd_cont_nacimiento') );	
+		$this->objPersonaNatural->set_nPerId( $this->input->post('txt_upd_nperid') );
+
 		$this->objPersonaDetalle->set_cPdeValor( $datapd );
-		if ( $this->objPersona->insPersona() ) {
-			$this->objPersonaNatural->set_nPerId( $this->objPersona->getPerId() );
-			$this->objPersonaNatural->insPersonaNatural();
-			$this->objPersonaDetalle->set_nPerId( $this->objPersona->getPerId() );
-			$this->objPersonaDetalle->instPersonaDetalle('contribuyente');
-			echo "1";		
+		$this->objPersonaDetalle->set_nPerId( $this->input->post('txt_upd_nperid') );
+
+		if ( $this->objPersona->updPersona() && $this->objPersonaNatural->updPersonaNatural() && $this->objPersonaDetalle->updPersonaDetalle() ) {
+			 echo "1";		
 		} else {
 			echo "0";
 		}
@@ -157,9 +174,9 @@ class Contribuyente extends CI_Controller {
 
 	function cboEstadoCivilUpd() {
 		$this->objPersonaDetalle->set_cPdeValor( $this->input->post('txt_upd_estcivil') );
-        $result = $this->objPersonaDetalle->cboEstadoCivilUpd();
-        echo $result;
-    }
+		$result = $this->objPersonaDetalle->cboEstadoCivilUpd();
+		echo $result;
+	}
 
 	function get_agregar_direccion(){
 		$json = $this->input->post('json');

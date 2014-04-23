@@ -74,6 +74,20 @@ class Persona_model extends CI_Model {
         return $this->db->query("select nPerId as ID,cPerNombres as Nombre,CONCAT( cPerApellidoPaterno,' ', cPerApellidoMaterno ) as Apellidos from persona where cPerContribuyente='SI' and cPerEstado=1")->result_array();
         // return $this->db->where(array('cPerContribuyente'=>'SI','cPerEstado'=>1))->get('persona')->result_array();
     }
+
+    public function updPersona(){
+        $data = array(
+            'cPerApellidoPaterno'  =>  $this->getPerApellidoPaterno(),
+            'cPerApellidoMaterno'  =>  $this->getPerApellidoMaterno(),
+            'cPerNombres'          =>  $this->getPerNombres(),
+            'cPerRandom'           =>  '12345',
+            'cPerContribuyente'    =>  $this->getPerContribuyente()
+            );
+
+        $this->db->where('nPerId', $this->getPerId());
+        $this->db->update('persona', $data); 
+        return true;
+    }
 }
 
 ?>
