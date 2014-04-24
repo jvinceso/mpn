@@ -6,7 +6,7 @@ select nFevId,nFevCuota from fechas_vencimiento where nFevAnio = 2014;
 select p.nPerId from persona p
 	inner join servicios_contribuyente sc on p.nPerId = sc.nPerId
 	inner join costo_servicios_tipo cst on sc.nSetId = cst.nSetId
-where cPerEstado = 1 and cst.nCstAnio = 2014
+where cPerEstado = 1 and cst.nCstAnio = 2013
 group by p.nPerId;
 -- Detalle Recibo ------------nSecId,cRedPrecio
 select * from servicios_contribuyente sc
@@ -14,23 +14,21 @@ select * from servicios_contribuyente sc
 	-- inner join multitabla m on m.nMulId = st.nMulServicio
 	-- inner join multitabla mt on mt.nMulId = st.nMulTipoServicio
 	inner join costo_servicios_tipo cst on st.nSetId = cst.nSetId
-where sc.nPerId = 14  and sc.cSecEstado = 1 and cst.nCstAnio = 2014; -- and st.nMulServicio = 52 ;
+where sc.nPerId = 35  and sc.cSecEstado = 1 and cst.nCstAnio = 2013; -- and st.nMulServicio = 52 ;
 select sc.nSecId,cst.fCstPago from servicios_contribuyente sc
 	inner join servicios_tipo st ON sc.nSetId = st.nSetId
 	inner join costo_servicios_tipo cst on st.nSetId = cst.nSetId
 where sc.nPerId = 11  and sc.cSecEstado = 1 and cst.nCstAnio = 2014;
-describe Recibo_Detalle;
-select * from costo_servicios_tipo ;
-select * from trabajador_municipal where nPerId= 2;
-select * from servicios_contribuyente order by 1 desc;
-select * from servicios_contribuyente sc where sc.nPerId = 14 ;
-select * from direccion_calle where nPdeId = 135;
-select * from Recibo ;
-select * from Recibo where nPerIdContribuyente = 11;
+select * from Recibo where nPerIdContribuyente = 35;
 select * from Recibo_Detalle where nRecId = 98;
-delete from recibo where true = true;
-truncate table recibo;
-truncate table recibo_detalle;
+-- Verificar Recibos
+select  year(now());
+select nRecId from recibo r
+inner join servicios_contribuyente sc ON r.nPerIdContribuyente = sc.nPerId
+	inner join servicios_tipo st ON sc.nSetId = st.nSetId
+	inner join costo_servicios_tipo cst on st.nSetId = cst.nSetId
+where sc.cSecEstado = 1 and cst.nCstAnio = 2013;
+ -- where YEAR(dFecFechaRegistro) = '2014' and nPerIdContribuyente IN(11,14,37,39);
 
 select * from servicios_contribuyente;
 select * from persona where nPerId = 35;
