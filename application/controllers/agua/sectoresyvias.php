@@ -7,7 +7,7 @@ class Sectoresyvias extends CI_Controller {
 		parent::__construct();
 		$this->load->model('agua/sector_model','objSector');
 		$this->load->model('agua/via_model','objVia');
-		// $this->load->library('table');
+		$this->load->helper('tables_helper');
 	}
 	public function index()
 	{
@@ -36,6 +36,29 @@ class Sectoresyvias extends CI_Controller {
 		} else {
 			echo "0";
 		}
+	}
+
+	function listarSectores(){
+		$opciones = array(
+			'Editar' => array(
+				'color'=>'blue'
+				,'icono'=>'edit'
+				,'tooltip'=>'info'
+				),
+			'Eliminar' => array(
+				'color'=>'red'
+				,'icono'=>'trash'
+				,'tooltip'=>'danger'
+				)
+			);
+		$tabla_data = $this->objSector->qrySector();
+		$funciones = array(
+			'initEvtOpcPopupId("edit","contribuyente/getContribuyente/","Editar Contribuyente",920,400,"func_close")',
+			'initEvtDel("confirmarDelete")'
+			);
+		$nameTable = 'tabla-Sector';
+		$pk = 'ID';
+		CrudGridMultipleJson($tabla_data,$nameTable,$pk,$opciones,$funciones);
 	}
 }
 ?>

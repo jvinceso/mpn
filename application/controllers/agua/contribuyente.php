@@ -104,7 +104,7 @@ class Contribuyente extends CI_Controller {
 			'initEvtOpc("home","asignar_direccion(fila)")',
 			'initEvtOpcPopupId("edit","contribuyente/getContribuyente/","Editar Contribuyente",920,400,"func_close")',
 			// 'initEvtSlider("home","contribuyente/get_agregar_direccion/","tbl_contribuyentes_principal","c_frm_contribuyente","c_frm_procesos_contribuyente","","")',			
-			'initEvtOpc("trash","asignaDetalle(fila,\'docu\')")'
+			'initEvtDel("confirmarDelete")'
 			);
 		// $funciones = array(
 		// 	'initEvtOpc("direccion","asignar_direccion(fila)")',
@@ -166,7 +166,7 @@ class Contribuyente extends CI_Controller {
 		$this->objPersonaDetalle->set_nPerId( $this->input->post('txt_upd_nperid') );
 
 		if ( $this->objPersona->updPersona() && $this->objPersonaNatural->updPersonaNatural() && $this->objPersonaDetalle->updPersonaDetalle() ) {
-			 echo "1";		
+			echo "1";		
 		} else {
 			echo "0";
 		}
@@ -198,18 +198,19 @@ class Contribuyente extends CI_Controller {
 			echo "0";
 		}
 	}
-	function insdireccion(){
-		// cbo_calle
-		// direc
-		// txt_hdn_nPerid
-		// txt_hdn_nMulId
-		// txt_direccion		
+	function insdireccion(){		
 		$this->objPersonaDetalle->set_nPerId( $this->input->post('txt_hdn_nPerid') );
 		$this->objPersonaDetalle->set_cPdeValor( $this->input->post('direc') );		
 		$this->objPersonaDetalle->set_nMulId( $this->input->post('txt_hdn_nMulId') );
 	}
 	function qryServicios(){
 		print_p( $this->input->post('json') );
+	}
+
+	function delContribuyente(){
+		$this->objPersona->setPerId( $this->input->post('nPerId') );
+		echo $this->objPersona->delContribuyente();
+
 	}
 
 }

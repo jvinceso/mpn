@@ -39,23 +39,23 @@ function initEvtSlider(clase_icono,url,objocultar,objmostrar,divmostrar,fnoculta
     });
 }
 // hace lo mismo que initEvtOpcPopupId
-// function initEvtUpdJson(url,title,alto,ancho,func_close){
-//     $(".icon-pencil").unbind('click');
-//     $('.icon-pencil').each(function(){
-//         var fila;
-//         $("#"+this.id).click(function(e){
-//             e.preventDefault();
-//             fila =$(this).parents('tr');
-//             var objJson = $(fila).data('json');
-//             console.log(this);
-//             console.log(fila);
-//             console.log(objJson);
-//             console.log("Debug : initEvtUpdJson Loaded...");
-//             // set_popupJSON(url+$(fila).data('codx'),title,alto,ancho,objJson,func_close);
-//             set_popup(url+$(fila).data('codx'),title,alto,ancho,'',func_close);
-//         })
-//     });
-// }
+function initEvtUpdJson(url,title,alto,ancho,func_close){
+    $(".icon-pencil").unbind('click');
+    $('.icon-pencil').each(function(){
+        var fila;
+        $("#"+this.id).click(function(e){
+            e.preventDefault();
+            fila =$(this).parents('tr');
+            var objJson = $(fila).data('json');
+            console.log(this);
+            console.log(fila);
+            console.log(objJson);
+            console.log("Debug : initEvtUpdJson Loaded...");
+            // set_popupJSON(url+$(fila).data('codx'),title,alto,ancho,objJson,func_close);
+            set_popup(url+$(fila).data('codx'),title,alto,ancho,'',func_close);
+        })
+    });
+}
 //Inicializar Evento Con Opcion Popup Con Envio Id Como Parametro
 function initEvtOpcPopupId(clase_icono,url,title,alto,ancho,func_close){
     $(".icon-"+clase_icono).unbind('click');

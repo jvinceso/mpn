@@ -45,12 +45,17 @@ class Sector_model extends CI_Model {
 		return $this->db->insert_id();
 	}
 	public function qrySector(){		
-		$query = $this->db->query("select nSecId,cSecNombre from sector");
+		$query = $this->db->query("select nSecId as ID,cSecNombre as Nombre,dSecFechaRegistro as fecha from sector where  cSecEstado=1");
 		if ($query) {
 			return $query->result_array();
 		} else {
 			return false;
 		}
-	}		
+	}	
+
+	// public function qrySector(){
+	// 	return $this->db->query("select nSecId as ID,cSecNombre as Nombre,dSecFechaRegistro as fecha from sector where  cSecEstado=1")->result_array();
+ //        // return $this->db->where(array('cPerContribuyente'=>'SI','cPerEstado'=>1))->get('persona')->result_array();
+	// }	
 }
 ?>

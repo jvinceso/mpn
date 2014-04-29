@@ -106,7 +106,7 @@ class Modulo extends CI_Controller {
 					'Eliminar' => array(
 						 'color'=>'red'
 						,'icono'=>'trash'
-						,'tooltip'=>'success'
+						,'tooltip'=>'danger'
 					),
 					'Configuracion' => array(
 						 'color'=>'blue'

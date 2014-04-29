@@ -88,6 +88,15 @@ class Persona_model extends CI_Model {
         $this->db->update('persona', $data); 
         return true;
     }
+
+    public function delContribuyente(){
+        $data = array(
+            'cPerEstado' => 0
+            );
+        $this->db->where( 'nPerId', $this->getPerId() );
+        $this->db->update( 'persona', $data );
+        return true;
+    }
 }
 
 ?>
