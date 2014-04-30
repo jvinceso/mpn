@@ -60,5 +60,28 @@ class Sectoresyvias extends CI_Controller {
 		$pk = 'ID';
 		CrudGridMultipleJson($tabla_data,$nameTable,$pk,$opciones,$funciones);
 	}
+
+	function listarVias(){
+		$opciones = array(
+			'Editar' => array(
+				'color'=>'blue'
+				,'icono'=>'edit'
+				,'tooltip'=>'info'
+				),
+			'Eliminar' => array(
+				'color'=>'red'
+				,'icono'=>'trash'
+				,'tooltip'=>'danger'
+				)
+			);
+		$tabla_data = $this->objVia->qryVias();
+		$funciones = array(
+			'initEvtOpcPopupId("edit","contribuyente/getContribuyente/","Editar Contribuyente",920,400,"func_close")',
+			'initEvtDel("confirmarDelete")'
+			);
+		$nameTable = 'tabla-Vias';
+		$pk = 'ID';
+		CrudGridMultipleJson($tabla_data,$nameTable,$pk,$opciones,$funciones);
+	}
 }
 ?>

@@ -6,8 +6,7 @@ class Calle extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('agua/calle_model','objCalle');
-		// $this->load->model('agua/via_model','objVia');
-		// $this->load->library('table');
+		$this->load->helper('tables_helper');
 	}
 	public function index()
 	{
@@ -18,14 +17,14 @@ class Calle extends CI_Controller {
 	}
 
 	function cboTipoSector() {
-        $result = $this->objCalle->cboTipoSector();
-        echo $result;
-    }
+		$result = $this->objCalle->cboTipoSector();
+		echo $result;
+	}
 
-    function cboTipoVia() {
-        $result = $this->objCalle->cboTipoVia();
-        echo $result;
-    }
+	function cboTipoVia() {
+		$result = $this->objCalle->cboTipoVia();
+		echo $result;
+	}
 
 	function insCalle(){
 		$this->objCalle->set_cCalNombre( $this->input->post('txt_ins_cal_nom') );
@@ -37,6 +36,29 @@ class Calle extends CI_Controller {
 		} else {
 			echo "0";
 		}
+	}
+
+	function listarCalles(){
+		$opciones = array(
+			'Editar' => array(
+				'color'=>'blue'
+				,'icono'=>'edit'
+				,'tooltip'=>'info'
+				),
+			'Eliminar' => array(
+				'color'=>'red'
+				,'icono'=>'trash'
+				,'tooltip'=>'danger'
+				)
+			);
+		$tabla_data = $this->objCalle->qryCalle();
+		$funciones = array(
+			'initEvtOpcPopupId("edit","contribuyente/getContribuyente/","Editar Contribuyente",920,400,"func_close")',
+			'initEvtDel("confirmarDelete")'
+			);
+		$nameTable = 'tabla-Calle';
+		$pk = 'ID';
+		CrudGridMultipleJson($tabla_data,$nameTable,$pk,$opciones,$funciones);
 	}
 }
 ?>

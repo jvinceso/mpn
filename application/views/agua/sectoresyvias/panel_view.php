@@ -16,7 +16,7 @@
 			<ul class="nav nav-tabs" id="TabSectoresyVias">
 				<li class="dropdown active">
 					<a data-toggle="dropdown" class="dropdown-toggle" href="#">
-						<i class="blue icon-list bigger-110"></i>
+						<i class="pink icon-exchange bigger-110"></i>
 						Registrar
 						<i class="icon-caret-down bigger-110 width-auto"></i>
 					</a>
@@ -33,7 +33,7 @@
 				</li>
 				<li class="dropdown">
 					<a data-toggle="dropdown" class="dropdown-toggle" href="#">
-						<i class="pink icon-exchange bigger-110"></i>
+						<i class="blue icon-list bigger-110"></i>
 						Listado
 						<i class="icon-caret-down bigger-110 width-auto"></i>
 					</a>
@@ -60,7 +60,8 @@
 					<div id="tabla_sectores" class="table-responsive"></div>					
 				</div>
 				<div id="viasl" class="tab-pane">
-					<p>Trust fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master cleanse gluten-free squid scenester freegan cosby sweater. Fanny pack portland seitan DIY, art party locavore wolf cliche high life echo park Austin.</p>
+					<div class="table-header">Resultado de los Vías"</div>
+					<div id="tabla_vias" class="table-responsive"></div>	
 				</div>
 			</div>		
 		</div>

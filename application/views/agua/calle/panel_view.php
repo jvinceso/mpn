@@ -1,3 +1,4 @@
+<script type="text/javascript" src='<?php echo URL_JS; ?>sistema/agua/calle/calle_panel.js'></script>
 <div class="page-header">
 	<h1>
 		<?php echo $aplicacion; ?>
@@ -14,14 +15,14 @@
 			<ul class="nav nav-tabs" id="myTab3">
 				<li class="active">
 					<a data-toggle="tab" href="#caller">
-						<i class="pink icon-dashboard bigger-110"></i>
+						<i class="pink icon-road bigger-110"></i>
 						Registrar
 					</a>
 				</li>
 
 				<li>
-					<a id="tb_lista_trabajador" data-toggle="tab" href="#callel">
-						<i class="blue icon-user bigger-110"></i>
+					<a id="lista_calles" data-toggle="tab" href="#callel">
+						<i class="blue icon-list bigger-110"></i>
 						Listado
 					</a>
 				</li>
@@ -33,9 +34,8 @@
 				</div>
 
 				<div id="callel" class="tab-pane">
-					<p>
-						sadasd
-					</p>
+					<div class="table-header">Resultado de las Calles"</div>
+					<div id="tabla_calles" class="table-responsive"></div>
 				</div>
 			</div>
 		</div>

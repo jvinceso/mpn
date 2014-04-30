@@ -1,43 +1,27 @@
 $(function(){
 	// listarSectores();
-	$("#lista_sectores").bind({
+	$("#lista_calles").bind({
 		click:function(evt){
 			evt.preventDefault();
-			listarSectores();
+			listarCalles();
 		}
 	});
-	$("#lista_vias").bind({
+	$("#lista_calles").bind({
 		click:function(evt){
 			evt.preventDefault();
-			listarVias();
+			listarCalles();
 		}
 	});
 });
 
-function listarSectores(){
-	msgLoading('#tabla_sectores',"Obteniendo Datos de los Sectores sea paciente!!!");
+function listarCalles(){
+	msgLoading('#tabla_calles',"Obteniendo Datos de las Calles sea paciente!!!");
 	$.ajax({
-		url:'sectoresyvias/listarSectores',
+		url:'calle/listarCalles',
 		type:'post',
 		cache:false,
 		success:function(data){
-			$("#tabla_sectores").html(data);
-		},
-		error:function(er){
-			console.log(er.statusText);
-			alert("Houston, tenemos un problema... Creo que has roto algo...");
-		}
-	});	
-}
-
-function listarVias(){
-	msgLoading('#tabla_vias',"Obteniendo Datos de las Vías sea paciente!!!");
-	$.ajax({
-		url:'sectoresyvias/listarVias',
-		type:'post',
-		cache:false,
-		success:function(data){
-			$("#tabla_vias").html(data);
+			$("#tabla_calles").html(data);
 		},
 		error:function(er){
 			console.log(er.statusText);

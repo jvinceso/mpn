@@ -16,7 +16,7 @@
 			<ul class="nav nav-tabs" id="TabSectoresyVias">
 				<li class="dropdown active">
 					<a data-toggle="dropdown" class="dropdown-toggle" href="#">
-						<i class="blue icon-exchange bigger-110"></i>
+						<i class="pink icon-cog bigger-110"></i>
 							Registrar
 						<i class="icon-caret-down bigger-110 width-auto"></i>
 					</a>
