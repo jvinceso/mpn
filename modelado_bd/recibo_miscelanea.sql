@@ -33,3 +33,11 @@ where sc.cSecEstado = 1 and cst.nCstAnio = 2013;
 select * from servicios_contribuyente;
 select * from persona where nPerId = 35;
 select * from multitabla where nMulIdPadre = 51;
+
+select * from recibo_detalle rd
+inner join servicios_contribuyente sc on rd.nSecId = sc.nSecId
+inner join servicios_tipo st on st.nSetId = sc.nSetId
+inner join multitabla ms on ms.nMulId = st.nMulServicio
+inner join multitabla mt on mt.nMulId = st.nMulTipoServicio
+where sc.nPerId = 37;
+select * from multitabla where nMulIdPadre = 51;

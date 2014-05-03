@@ -83,6 +83,11 @@ class Contribuyente extends CI_Controller {
 		// 	)
 		// );
 		$opciones = array(
+			'Recibos' => array(
+				'color'=>'blue'
+				,'icono'=>'calendar'
+				,'tooltip'=>'pink'
+				),
 			'Direccion' => array(
 				'color'=>'green'
 				,'icono'=>'home'
@@ -101,6 +106,7 @@ class Contribuyente extends CI_Controller {
 			);
 		$tabla_data = $this->objPersona->qryContribuyente();
 		$funciones = array(
+			'initEvtOpc("calendar","verificar_pagos(fila)")',
 			'initEvtOpc("home","asignar_direccion(fila)")',
 			'initEvtOpcPopupId("edit","contribuyente/getContribuyente/","Editar Contribuyente",920,400,"func_close")',
 			// 'initEvtSlider("home","contribuyente/get_agregar_direccion/","tbl_contribuyentes_principal","c_frm_contribuyente","c_frm_procesos_contribuyente","","")',			
@@ -187,6 +193,16 @@ class Contribuyente extends CI_Controller {
 		$data['sector'] = $this->objSector->qrySector();
 		$data['objDireccion'] = $this->objPersonaDetalle->listaDetalle();
 		$this->load->view('agua/contribuyente/get_agregar_direccion', $data, FALSE);
+	}
+	function get_recibos_contribuyente(){
+		$json = $this->input->post('json');
+		$this->objPersonaDetalle->set_nPerId( $json['nPerId'] );
+		$this->objPersonaDetalle->set_nMulId( 46 );
+		$json['nMulId'] = 46;
+		$data['persona'] = $json;
+		$data['sector'] = $this->objSector->qrySector();
+		$data['objDireccion'] = $this->objPersonaDetalle->listaDetalle();
+		$this->load->view('agua/contribuyente/get_recibos_contribuyente', $data, FALSE);
 	}
 	function get_calles(){
 		$this->load->model('agua/calle_model','objCalle');

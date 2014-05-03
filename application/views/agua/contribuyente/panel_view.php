@@ -1,24 +1,6 @@
 <script type="text/javascript" src='<?php echo URL_JS; ?>sistema/agua/contribuyente/contribuyente_panel.js'></script>
 <script src="<?php echo URL_JS; ?>date-time/bootstrap-datepicker.min.js"></script>
 <link rel="stylesheet" href="<?php echo URL_CSS; ?>datepicker.css" />
-<style>
-/*.icon-pagos:before{
-	content: url( '<?php echo URL_IMG ?>/essen/16/advertising.png');
-}
-.icon-direccion:before{
-	content: url( '<?php echo URL_IMG ?>/essen/16/home.png');
-}
-.icon-documento:before{
-	content: url( '<?php echo URL_IMG ?>/essen/16/my-account.png');
-}
-.icon-telefono:before{
-	content: url( '<?php echo URL_IMG ?>/essen/16/phone.png');
-}
-.icon-darbaja:before{
-	content: url( '<?php echo URL_IMG ?>/essen/16/busy.png');
-}*/
-/*.ui-icon-trash{color:#dd5a43}.ui-icon-trash:before{content:"\f014"}	*/
-</style>
 <div class="page-header">
 	<h1>
 		<?php echo $aplicacion; ?>
@@ -32,8 +14,6 @@
 <div class="row">
 	<div class="col-xs-12">
 		<!-- codigo propio del cuerpo -->
-
-
 		<div class="tabbable tabs-left">
 			<ul class="nav nav-tabs" id="myTab3">
 				<li class="active">

@@ -1,8 +1,8 @@
 application/logs/log-2014-03-22.php
 application/config/*
 result/*
-application/config/constants.php
-application/logs/*mpn.sublime-workspace
+/application/config/constants.php
+/application/logs/*mpn.sublime-workspace
 /mpn.sublime-project
 /mpn.sublime-workspace
 
