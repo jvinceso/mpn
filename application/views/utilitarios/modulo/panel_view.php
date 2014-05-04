@@ -18,14 +18,14 @@
 			<ul class="nav nav-tabs" id="myTab3">
 				<li class="active">
 					<a data-toggle="tab" href="#home3">
-						<i class="pink icon-dashboard bigger-110"></i>
+						<i class="pink icon-tasks bigger-110"></i>
 						Registrar
 					</a>
 				</li>
 
 				<li>
 					<a id="btnQryModulo" data-toggle="tab" href="#profile3">
-						<i class="blue icon-user bigger-110"></i>
+						<i class="blue icon-list bigger-110"></i>
 						Listado
 					</a>
 				</li>

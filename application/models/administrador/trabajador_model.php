@@ -88,51 +88,70 @@ class Trabajador_model extends Persona_model {
         return $this->db->insert_id();
 	}
 
-	public function insAplicacion(){
-		$data = array(
-			'cAplNombre' => $this->get_nombre(),
-			'nAplTipo'  =>  '1',
-			'cAplIcono' =>  $this->get_cAplIcono(),
-			'nAplOrden' =>  $this->getUltimoNroOrden()
-			);
-		$this->db->insert('aplicacion', $data);
-		return $this->db->insert_id();
-	}
-	public function updAplicacion(){
-		$data = array(
-			'cAplNombre' => $this->get_nombre(),
-			'cAplIcono' => $this->get_cAplIcono()
-		);
-		$this->db->where( 'nAplId', $this->get_codigo() );
-		$this->db->update( 'aplicacion', $data );
-		return true;
-	}
-	public function delAplicacion(){
-		$data = array(
-			'cAplEstado' => 0
-		);
-		$this->db->where( 'nAplId', $this->get_codigo() );
-		$this->db->update( 'aplicacion', $data );
-		return true;
-	}
+	public function listarTrabajador(){
+        return $this->db->query("
+            select p.nPerId as ID,
+            p.cPerNombres as Nombre,
+            CONCAT( p.cPerApellidoPaterno,' ', p.cPerApellidoMaterno ) as Apellidos
+			,pd1.cPdeValor
+		    ,pd2.cPdeValor as telefono
+			,pd3.cPdeValor as celular
+			,m1.cMulDescripcion AS Área
+			,m2.cMulDescripcion as Cargo
+            from persona p 
+			inner join persona_detalle pd1 on p.nPerId = pd1.nPerId
+			inner join persona_detalle pd2 on p.nPerId = pd2.nPerId 
+			inner join persona_detalle pd3 on p.nPerId = pd3.nPerId
+			inner join trabajador_municipal tm on p.nPerId = tm.nPerId
+			inner join multitabla m1			   on  tm.nMulArea = m1.nMulId
+			inner join multitabla m2               on  tm.nMulCargo = m2.nMulId
+            where p.cPerContribuyente='NO' and p.cPerEstado=1 and pd1.nMulId = 16 and pd2.nMulId = 43 and pd3.nMulId = 44 and m1.nMulIdPadre = 28 and m2.nMulIdPadre = 37
+            ")->result_array();
+        // return $this->db->where(array('cPerContribuyente'=>'SI','cPerEstado'=>1))->get('persona')->result_array();
+    }
 
-	public function getUltimoNroOrden(){
-		return $this->db->count_all_results('aplicacion');
-	}
-	public function qryAplicaciones(){
-		$this->db->select('nAplId as ID,cAplNombre as Nombre,cAplEstado as Estado,dAplFechaRegistro as "Fecha Registro"');
-		return $this->db->where('cAplEstado',1)->get('aplicacion')->result_array();
-	}
-	public function getObjeto(){
-		$this->db->select('nObjId AS ID,cObjNombre as "Opcion", nObjOrden as "Orden"');
-		return $this->db->where(array('nAplId'=>$this->get_codigo(), 'cObjEstado'=>1))->get('objeto')->result_array();		
-	}
-	public function getAplicacion(){
-		$this->db->select('nAplId ,cAplNombre ,cAplEstado ,dAplFechaRegistro,cAplIcono');
-		return $this->db->where(array('cAplEstado'=>1,'nAplId'=>$this->get_codigo() ))->get('aplicacion')->result_array()[0];
-	}
+	// public function insAplicacion(){
+	// 	$data = array(
+	// 		'cAplNombre' => $this->get_nombre(),
+	// 		'nAplTipo'  =>  '1',
+	// 		'cAplIcono' =>  $this->get_cAplIcono(),
+	// 		'nAplOrden' =>  $this->getUltimoNroOrden()
+	// 		);
+	// 	$this->db->insert('aplicacion', $data);
+	// 	return $this->db->insert_id();
+	// }
+	// public function updAplicacion(){
+	// 	$data = array(
+	// 		'cAplNombre' => $this->get_nombre(),
+	// 		'cAplIcono' => $this->get_cAplIcono()
+	// 	);
+	// 	$this->db->where( 'nAplId', $this->get_codigo() );
+	// 	$this->db->update( 'aplicacion', $data );
+	// 	return true;
+	// }
+	// public function delAplicacion(){
+	// 	$data = array(
+	// 		'cAplEstado' => 0
+	// 	);
+	// 	$this->db->where( 'nAplId', $this->get_codigo() );
+	// 	$this->db->update( 'aplicacion', $data );
+	// 	return true;
+	// }
+
+	// public function getUltimoNroOrden(){
+	// 	return $this->db->count_all_results('aplicacion');
+	// }
+	// public function qryAplicaciones(){
+	// 	$this->db->select('nAplId as ID,cAplNombre as Nombre,cAplEstado as Estado,dAplFechaRegistro as "Fecha Registro"');
+	// 	return $this->db->where('cAplEstado',1)->get('aplicacion')->result_array();
+	// }
+	// public function getObjeto(){
+	// 	$this->db->select('nObjId AS ID,cObjNombre as "Opcion", nObjOrden as "Orden"');
+	// 	return $this->db->where(array('nAplId'=>$this->get_codigo(), 'cObjEstado'=>1))->get('objeto')->result_array();		
+	// }
+	// public function getAplicacion(){
+	// 	$this->db->select('nAplId ,cAplNombre ,cAplEstado ,dAplFechaRegistro,cAplIcono');
+	// 	return $this->db->where(array('cAplEstado'=>1,'nAplId'=>$this->get_codigo() ))->get('aplicacion')->result_array()[0];
+	// }
 }
-
-/* End of file modulo_model.php */
-/* Location: ./application/models/utilitarios/modulo_model.php */
 ?>

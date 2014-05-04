@@ -9,6 +9,7 @@ class Trabajador extends CI_Controller {
 		$this->load->model('persona_natural_model','objPersonaNatural');
 		$this->load->model('usuario_model','objUsuario');
 		$this->load->model('persona_detalle_model','objPersonaDetalle');
+		$this->load->helper('tables_helper');
 	}
 	public function index()
 	{
@@ -63,6 +64,30 @@ class Trabajador extends CI_Controller {
 		} else {
 			echo "0";
 		}
+	}
+
+	function listarTrabajador(){
+		$opciones = array(
+			'Editar' => array(
+				'color'=>'blue'
+				,'icono'=>'edit'
+				,'tooltip'=>'info'
+				),
+			'Eliminar' => array(
+				'color'=>'red'
+				,'icono'=>'trash'
+				,'tooltip'=>'danger'
+				)
+			);
+		$tabla_data = $this->objTrabajador->listarTrabajador();
+		$funciones = array(
+			'initEvtOpcPopupId("edit","contribuyente/getContribuyente/","Editar Contribuyente",920,400,"func_close")',
+			// 'initEvtSlider("home","contribuyente/get_agregar_direccion/","tbl_contribuyentes_principal","c_frm_contribuyente","c_frm_procesos_contribuyente","","")',			
+			'initEvtDel("confirmarDelete")'
+			);
+		$nameTable = 'tabla-Trabajador';
+		$pk = 'ID';
+		CrudGridMultipleJson($tabla_data,$nameTable,$pk,$opciones,$funciones);
 	}
 }
 ?>

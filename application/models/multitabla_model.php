@@ -85,7 +85,7 @@
 		}
 
 		public function qryTipoPago(){
-		$query = $this->db->query("select nMulId,cMulDescripcion from multitabla where nMulIdPadre = 1");
+		$query = $this->db->query("select nMulId,cMulDescripcion from multitabla where cMulEstado = 1 and nMulIdPadre = 1");
         if ($query) {
             $data   = $query->result_array();
             // print_p($data);exit();
@@ -98,9 +98,11 @@
 		}
 
 		public function qrymultitabla(){
-			$query = $this->db->query("select nMulId as ID,cMulDescripcion as descripcion from multitabla where nMulIdPadre ='".$this->nMulIdPadre."' ");
+			$query = $this->db->query("select nMulId as ID,cMulDescripcion as descripción from multitabla where cMulEstado = 1 and nMulIdPadre ='".$this->nMulIdPadre."' ");
 			return $query->result_array();	
 		}
+
+
 
 	}
 ?>

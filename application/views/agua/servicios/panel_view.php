@@ -1,4 +1,4 @@
-<!-- // <script type="text/javascript" src='<?php echo URL_JS; ?>sistema/agua/sectoresyvias/sectoresyvias_panel.js'></script> -->
+<script type="text/javascript" src='<?php echo URL_JS; ?>sistema/agua/servicios/servicios_panel.js'></script>
 <div class="page-header">
 	<h1>
 		<?php echo $aplicacion; ?>
@@ -43,7 +43,7 @@
 							<a id="servicios" data-toggle="tab" href="#serviciosl">Servicios</a>
 						</li>
 						<li>
-							<a data-toggle="tab" href="#viasl">Tipo de Servicios</a>
+							<a id="lista_tipo_servicios" data-toggle="tab" href="#viasl">Tipo de Servicios</a>
 						</li>
 					</ul>
 				</li>
@@ -55,13 +55,13 @@
 				<div id="viasr" class="tab-pane">
 					<p><?php $this->load->view('agua/servicios/ins_tiposervicio_view'); ?></p>
 				</div>
-				<div id="serviciosl" class="tab-pane">
-					<p>
-						<div id="tabla_servicios" class="table-responsive"></div>
-					</p>
+				<div id="serviciosl" class="tab-pane">	
+					<div class="table-header">Resultado de los Servicios</div>				
+					<div id="tabla_servicios" class="table-responsive"></div>					
 				</div>
 				<div id="viasl" class="tab-pane">
-					<p>Trust fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master cleanse gluten-free squid scenester freegan cosby sweater. Fanny pack portland seitan DIY, art party locavore wolf cliche high life echo park Austin.</p>
+					<div class="table-header">Resultado de los Tipo de Servicios</div>				
+					<div id="tabla_tipo_servicios" class="table-responsive"></div>	
 				</div>
 			</div>		
 		</div>

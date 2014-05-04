@@ -56,11 +56,11 @@
 					<p><?php $this->load->view('agua/sectoresyvias/ins_via_view'); ?></p>
 				</div>
 				<div id="sectorl" class="tab-pane">
-					<div class="table-header">Resultado de los Sectores"</div>
+					<div class="table-header">Resultado de los Sectores</div>
 					<div id="tabla_sectores" class="table-responsive"></div>					
 				</div>
 				<div id="viasl" class="tab-pane">
-					<div class="table-header">Resultado de los Vías"</div>
+					<div class="table-header">Resultado de los Vías</div>
 					<div id="tabla_vias" class="table-responsive"></div>	
 				</div>
 			</div>		

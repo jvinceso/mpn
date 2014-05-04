@@ -55,33 +55,6 @@ class Contribuyente extends CI_Controller {
 	}
 
 	function listarContribuyente(){
-		// $opciones = array(
-		// 	'Pagos' => array(
-		// 		 'color'=>'blue'
-		// 		,'icono'=>'pagos'
-		// 		,'tooltip'=>'success'
-		// 	),
-		// 	'Documentos' => array(
-		// 		 'color'=>'blue'
-		// 		,'icono'=>'documento'
-		// 		,'tooltip'=>'success'
-		// 	),
-		// 	'Direccion' => array(
-		// 		 'color'=>'green'
-		// 		,'icono'=>'direccion'
-		// 		,'tooltip'=>'success'
-		// 	),
-		// 	'Telefono' => array(
-		// 		 'color'=>'green'
-		// 		,'icono'=>'telefono'
-		// 		,'tooltip'=>'success'
-		// 	),
-		// 	'Eliminar' => array(
-		// 		 'color'=>'red'
-		// 		,'icono'=>'darbaja'
-		// 		,'tooltip'=>'success'
-		// 	)
-		// );
 		$opciones = array(
 			'Recibos' => array(
 				'color'=>'blue'
@@ -112,11 +85,6 @@ class Contribuyente extends CI_Controller {
 			// 'initEvtSlider("home","contribuyente/get_agregar_direccion/","tbl_contribuyentes_principal","c_frm_contribuyente","c_frm_procesos_contribuyente","","")',			
 			'initEvtDel("confirmarDelete")'
 			);
-		// $funciones = array(
-		// 	'initEvtOpc("direccion","asignar_direccion(fila)")',
-		// 	'initEvtOpc("pagos","asignaDetalle(fila,\'pago\')")',
-		// 	'initEvtOpc("documento","asignaDetalle(fila,\'docu\')")',
-		// );
 		$nameTable = 'tabla-contrib';
 		$pk = 'ID';
 		CrudGridMultipleJson($tabla_data,$nameTable,$pk,$opciones,$funciones);
