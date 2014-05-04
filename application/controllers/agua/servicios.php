@@ -112,5 +112,29 @@ class Servicios extends CI_Controller {
 			echo "0";
 		}
 	}
+
+	function listarTipoServicios(){
+		$opciones = array(
+			'Editar' => array(
+				'color'=>'blue'
+				,'icono'=>'edit'
+				,'tooltip'=>'info'
+				),
+			'Eliminar' => array(
+				'color'=>'red'
+				,'icono'=>'trash'
+				,'tooltip'=>'danger'
+				)
+			);
+		$this->objMultitabla->set_nMulIdPadre('47');
+		$tabla_data = $this->objMultitabla->qrymultitabla();
+		$funciones = array(
+			'initEvtOpcPopupId("edit","contribuyente/getContribuyente/","Editar Contribuyente",920,400,"func_close")',
+			'initEvtDel("confirmarDelete")'
+			);
+		$nameTable = 'tabla-TipoServicios';
+		$pk = 'ID';
+		CrudGridMultipleJson($tabla_data,$nameTable,$pk,$opciones,$funciones);
+	}
 }
 ?>

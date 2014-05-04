@@ -1,10 +1,4 @@
 $(function(){
-    $("#servicios").bind({
-        click:function(evt){
-            evt.preventDefault();
-            get_page('servicios/loadDataServicios','tabla_servicios',{'codigito':345});
-        }
-    });
 	$.ajax({
 	    url:'servicios/qryServicioTipo',
 	    type:'post',

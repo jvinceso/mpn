@@ -40,7 +40,7 @@
 
 				<div id="qry_contribuyente" class="tab-pane in active">
 
-					<div class="table-header">Resultado de los Contribuyentes"</div>	
+					<div class="table-header">Resultado de los Contribuyentes</div>	
 
 					<div id="tbl_contribuyentes_principal" class="table-responsive"></div>
 					

@@ -71,7 +71,19 @@ class Persona_model extends CI_Model {
     }
 
     public function qryContribuyente(){
-        return $this->db->query("select nPerId as ID,cPerNombres as Nombre,CONCAT( cPerApellidoPaterno,' ', cPerApellidoMaterno ) as Apellidos from persona where cPerContribuyente='SI' and cPerEstado=1")->result_array();
+        return $this->db->query("
+            select p.nPerId as ID,
+            p.cPerNombres as Nombre,
+            CONCAT( p.cPerApellidoPaterno,' ', p.cPerApellidoMaterno ) as Apellidos
+            ,pd1.cPdeValor as DNI
+            ,pd2.cPdeValor as telefono
+            ,pd3.cPdeValor as celular
+            from persona p 
+            inner join persona_detalle pd1 on p.nPerId = pd1.nPerId
+            inner join persona_detalle pd2 on p.nPerId = pd2.nPerId 
+            inner join persona_detalle pd3 on p.nPerId = pd3.nPerId
+            where p.cPerContribuyente='SI' and p.cPerEstado=1 and pd1.nMulId = 16 and pd2.nMulId = 43 and pd3.nMulId = 44
+            ")->result_array();
         // return $this->db->where(array('cPerContribuyente'=>'SI','cPerEstado'=>1))->get('persona')->result_array();
     }
 

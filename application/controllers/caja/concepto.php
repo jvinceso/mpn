@@ -7,7 +7,7 @@ class Concepto extends CI_Controller {
 		parent::__construct();
 		$this->load->model('caja/concepto_model','objConcepto');
 		$this->load->model('multitabla_model','objMultitabla');
-		// $this->load->library('table');
+		$this->load->helper('tables_helper');
 	}
 	public function index()
 	{
@@ -44,6 +44,54 @@ class Concepto extends CI_Controller {
 		} else {
 			echo "0";
 		}
+	}
+
+	function listarTipoPago(){
+		$opciones = array(
+			'Editar' => array(
+				'color'=>'blue'
+				,'icono'=>'edit'
+				,'tooltip'=>'info'
+				),
+			'Eliminar' => array(
+				'color'=>'red'
+				,'icono'=>'trash'
+				,'tooltip'=>'danger'
+				)
+			);
+		$this->objMultitabla->set_nMulIdPadre('1');
+		$tabla_data = $this->objMultitabla->qrymultitabla();
+		$funciones = array(
+			'initEvtOpcPopupId("edit","contribuyente/getContribuyente/","Editar Contribuyente",920,400,"func_close")',
+			'initEvtDel("confirmarDelete")'
+			);
+		$nameTable = 'tabla-TipoPago';
+		$pk = 'ID';
+		CrudGridMultipleJson($tabla_data,$nameTable,$pk,$opciones,$funciones);
+	}
+
+	function listarConcepto(){
+		$opciones = array(
+			'Editar' => array(
+				'color'=>'blue'
+				,'icono'=>'edit'
+				,'tooltip'=>'info'
+				),
+			'Eliminar' => array(
+				'color'=>'red'
+				,'icono'=>'trash'
+				,'tooltip'=>'danger'
+				)
+			);
+		
+		$tabla_data = $this->objConcepto->listarConcepto();
+		$funciones = array(
+			'initEvtOpcPopupId("edit","contribuyente/getContribuyente/","Editar Contribuyente",920,400,"func_close")',
+			'initEvtDel("confirmarDelete")'
+			);
+		$nameTable = 'tabla-Concepto';
+		$pk = 'ID';
+		CrudGridMultipleJson($tabla_data,$nameTable,$pk,$opciones,$funciones);
 	}
 }
 ?>
