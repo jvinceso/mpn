@@ -58,15 +58,13 @@ class Recibo_model extends CI_Model {
 				where cPerEstado = 1 and cst.nCstAnio = '.$anio.'
 				group by p.nPerId')->result_array();
 			$rsCuotas = $this->db->query('select nFevId from fechas_vencimiento where nFevAnio = '.$anio.'')->result_array();
-			// print_p( $rsContribuyentes );
-			// print_p( $rsCuotas );
-			// exit();
+
 			foreach ($rsContribuyentes as $key => $value) {
 				$nPerIdContribuyente = $value['nPerId'];
 				foreach ( $rsCuotas as $indice => $valor) {				
 					$this->db->query("INSERT INTO recibo(nFevId,nPerIdContribuyente,nPerIdTrabajador)VALUES(".$valor['nFevId'].",".$nPerIdContribuyente.",".$nPerIdTrabajador.")");
 					$nRecId = $this->db->insert_id();
-					print_p($nRecId);
+					// print_p($nRecId);
 					$rsServicios = $this->db->query("select sc.nSecId,cst.fCstPago from servicios_contribuyente sc
 						inner join servicios_tipo st ON sc.nSetId = st.nSetId
 						inner join costo_servicios_tipo cst on st.nSetId = cst.nSetId
@@ -88,7 +86,31 @@ class Recibo_model extends CI_Model {
 		}
 	}
 
+	public function qryRecibos(){
+		// $this->db->trans_start();
+		$sql_recibo_qry = 'SELECT
+			r.nRecId as "ID"
+			,@i := @i + 1 as Cuota
+			,f.dFevFecha_vence AS "Fecha Vencimiento"
+			,r.fRecDeuda AS "Deuda"
+			,r.fRecAbono AS "Abonos"
+		FROM recibo r
+		INNER JOIN fechas_vencimiento f ON f.nFevId = r.nFevId
+		,(select @i := 0) temp
+		WHERE r.nPerIdContribuyente = '.$this->nPerIdContribuyente.'
+		ORDER BY nRecId ASC
+		';
+		// print_p( $sql_recibo_qry );
+		// exit();
+		$rsRecibos = $this->db->query( $sql_recibo_qry );
 
+		if ($rsRecibos->num_rows() > 0) {
+			return $rsRecibos->result_array();
+		} else {
+			return false;
+		}
+		// $this->db->trans_complete();
+	}
 	// $this->db->trans_start();
 	// $this->db->query('AN SQL QUERY...');
 	// $this->db->query('ANOTHER QUERY...');

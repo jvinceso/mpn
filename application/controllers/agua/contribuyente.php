@@ -11,6 +11,10 @@ class Contribuyente extends CI_Controller {
 		$this->load->model('persona_model','objPersona');
 		$this->load->model('agua/contribuyente_model','objContribuyente');
 		$this->load->helper('tables_helper');
+
+		$this->load->model('agua/servicios_tipo_model','objServiosTipo');
+		$this->load->model('agua/direccion_calle_model','objDireccionCalle');
+		$this->load->model('agua/servicios_contribuyente_model','objServiciosContribuyente');
 	}
 	public function index()
 	{
@@ -55,33 +59,6 @@ class Contribuyente extends CI_Controller {
 	}
 
 	function listarContribuyente(){
-		// $opciones = array(
-		// 	'Pagos' => array(
-		// 		 'color'=>'blue'
-		// 		,'icono'=>'pagos'
-		// 		,'tooltip'=>'success'
-		// 	),
-		// 	'Documentos' => array(
-		// 		 'color'=>'blue'
-		// 		,'icono'=>'documento'
-		// 		,'tooltip'=>'success'
-		// 	),
-		// 	'Direccion' => array(
-		// 		 'color'=>'green'
-		// 		,'icono'=>'direccion'
-		// 		,'tooltip'=>'success'
-		// 	),
-		// 	'Telefono' => array(
-		// 		 'color'=>'green'
-		// 		,'icono'=>'telefono'
-		// 		,'tooltip'=>'success'
-		// 	),
-		// 	'Eliminar' => array(
-		// 		 'color'=>'red'
-		// 		,'icono'=>'darbaja'
-		// 		,'tooltip'=>'success'
-		// 	)
-		// );
 		$opciones = array(
 			'Recibos' => array(
 				'color'=>'blue'
@@ -118,6 +95,26 @@ class Contribuyente extends CI_Controller {
 		// 	'initEvtOpc("documento","asignaDetalle(fila,\'docu\')")',
 		// );
 		$nameTable = 'tabla-contrib';
+		$pk = 'ID';
+		CrudGridMultipleJson($tabla_data,$nameTable,$pk,$opciones,$funciones);
+	}
+
+	function listarDirecciones(){
+		$json = $this->input->post('json');
+		$this->objPersonaDetalle->set_nPerId( $json['nPerId'] );
+		$this->objPersonaDetalle->set_nMulId( $json['nMulId'] );
+		$tabla_data = $this->objPersonaDetalle->listaDetalle();
+		$opciones = array(
+		    'Pagos' => array(
+		         'color'=>'blue'
+		        ,'icono'=>'cloud-upload'
+		        ,'tooltip'=>'success'
+		    )
+		);
+		$funciones = array(
+		    'initEvtOpc("cloud-upload","asignarTipo(fila)")'
+		);
+		$nameTable = 'tabla-direcccion-contribuyente';
 		$pk = 'ID';
 		CrudGridMultipleJson($tabla_data,$nameTable,$pk,$opciones,$funciones);
 	}
@@ -195,13 +192,13 @@ class Contribuyente extends CI_Controller {
 		$this->load->view('agua/contribuyente/get_agregar_direccion', $data, FALSE);
 	}
 	function get_recibos_contribuyente(){
+		$this->load->model('agua/recibo_model','objRecibos');
+
 		$json = $this->input->post('json');
-		$this->objPersonaDetalle->set_nPerId( $json['nPerId'] );
-		$this->objPersonaDetalle->set_nMulId( 46 );
-		$json['nMulId'] = 46;
+		$this->objRecibos->set_nPerIdContribuyente( $json['nPerId'] );
+		// $json['nMulId'] = 46;
 		$data['persona'] = $json;
-		$data['sector'] = $this->objSector->qrySector();
-		$data['objDireccion'] = $this->objPersonaDetalle->listaDetalle();
+		$data['recibos_contribuyente'] = $this->objRecibos->qryRecibos();
 		$this->load->view('agua/contribuyente/get_recibos_contribuyente', $data, FALSE);
 	}
 	function get_calles(){
@@ -214,13 +211,24 @@ class Contribuyente extends CI_Controller {
 			echo "0";
 		}
 	}
-	function insdireccion(){		
-		$this->objPersonaDetalle->set_nPerId( $this->input->post('txt_hdn_nPerid') );
-		$this->objPersonaDetalle->set_cPdeValor( $this->input->post('direc') );		
+
+	function insdireccion(){
+ 		$this->objPersonaDetalle->set_nPerId( $this->input->post('txt_hdn_nPerid') );
 		$this->objPersonaDetalle->set_nMulId( $this->input->post('txt_hdn_nMulId') );
-	}
-	function qryServicios(){
-		print_p( $this->input->post('json') );
+		$this->objPersonaDetalle->set_cPdeValor( $this->input->post('direc') );		
+		if($this->objPersonaDetalle->setPersonaDetalle()){
+			/*Relacionamos calle con la direccion*/
+			print_p( $this->objPersonaDetalle->get_nPdeId() );
+			$this->objDireccionCalle->set_nPdeId( $this->objPersonaDetalle->get_nPdeId() );
+			$this->objDireccionCalle->set_nCalId( $this->input->post('cbo_calle') );
+			if( $this->objDireccionCalle->insDireccionCalle() ){
+				echo "1";
+			}else{
+				echo "e";
+			}
+			
+		}
+		$this->objPersonaDetalle->set_nMulId( $this->input->post('txt_hdn_nMulId') );
 	}
 
 	function delContribuyente(){
@@ -228,6 +236,42 @@ class Contribuyente extends CI_Controller {
 		echo $this->objPersona->delContribuyente();
 
 	}
+
+	function qryServicios(){
+		$json = $this->input->post('json');
+		$data['cboServiciosTipo'] = $this->objServiosTipo->listarServiciostipo();
+		$data['codDireccion'] = $json['codx'];
+		$data['nPerId'] = $json['PerId'];
+		$this->objDireccionCalle->set_nPdeId( $json['codx'] );
+			$this->objDireccionCalle->obtenernDicIdxnPdeId();
+		$data['servicios_prestados'] = $this->objServiosTipo->listaServicioXDireccion( $this->objDireccionCalle );		
+		$this->load->view('agua/contribuyente/get_agregar_serviciotipo_view', $data);
+		// print_p( $this->input->post('json') );
+	}
+	
+	function insServiciosxDireccion(){
+		$this->objDireccionCalle->set_nPdeId( $this->input->post('nPdeId') );
+			$this->objDireccionCalle->obtenernDicIdxnPdeId();
+		$this->objServiciosContribuyente->set_nDicId( $this->objDireccionCalle->get_nDicId() );
+		$this->objServiciosContribuyente->set_nSetId( $this->input->post('serviciotipo') );
+		$this->objServiciosContribuyente->set_nPerId( $this->input->post('nPerId') );
+		if ( $this->objServiciosContribuyente->verificaRegistro() < 1 ) {
+			$this->objServiciosContribuyente->insServiciosContribuyente();
+			echo "1";
+		}else{
+			echo "3";
+		}
+	}
+		function listarServiciosxDireccion(){
+		$this->objDireccionCalle->set_nPdeId( $this->input->post('nPdeId') );
+			$this->objDireccionCalle->obtenernDicIdxnPdeId();
+		$servicios_prestados = $this->objServiosTipo->listaServicioXDireccion( $this->objDireccionCalle );
+		$opciones = null;
+		$funciones = null;
+		$nameTable = 'tabla-servicios-direccion';
+		$pk = null;
+		CrudGridMultipleJson($servicios_prestados,$nameTable,$pk,$opciones,$funciones);
+	}	
 
 }
 ?>

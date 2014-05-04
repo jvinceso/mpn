@@ -73,7 +73,7 @@ class Recibo extends CI_Controller {
 		}
 		// $numero_ruc = "<small><b>N&#xFA;mero Ruc. </b>";
 	}
-	function scraping_dinamico(){
+	function scraping_dinamico(){ 
 		// http://www.sunat.gob.pe/w/wapS01Alias?ruc=10463979729
 		// $url = "http://www.sunat.gob.pe/w/wapS01Alias?ruc=10463979729";		 
 		$url = "http://localhost/mpn/wapS01Alias.xml";		 

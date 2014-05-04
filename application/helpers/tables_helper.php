@@ -37,7 +37,7 @@ if( count($sql)>0 ){
                     // exit();
 			    	// $json = json_encode($temp,JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE);
 			        ?>
-			        <tr data-codx="<?php print $fila[$primary_key] ?>" >
+			        <tr data-codx="<?php print (($primary_key)?$fila[$primary_key]:rand()) ?>" >
 			        <?php
 			        foreach ($fila as $key => $cell) {
 			        	?>

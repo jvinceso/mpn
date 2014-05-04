@@ -1,5 +1,5 @@
 <?php
-$txt_hdn_persona = form_hidden(array('txt_hdn_nPerid'=> $persona['nPerId'] , 'txt_hdn_nMulId' => $persona['nMulId'] ));
+$txt_hdn_persona = form_hidden( array('txt_hdn_nPerid'=> $persona['nPerId'] ) );
 echo $txt_hdn_persona;
 ?>
 <script type="text/javascript" src="<?php echo URL_JS ?>sistema/agua/contribuyente/contribuyente_recibos.js"></script>
@@ -18,12 +18,12 @@ echo $txt_hdn_persona;
             ,'tooltip'=>'success'
         )
     );
-    $tabla_data = $objDireccion;
+    $tabla_data = $recibos_contribuyente;
     $funciones = array(
         'initEvtOpc("cloud-upload","asignarTipo(fila)")'
     );
     $nameTable = 'tabla-direcccion-contribuyente';
     $pk = 'ID';
-    CrudGridMultipleJson($objDireccion,$nameTable,$pk,$opciones,$funciones); 
+    CrudGridMultipleJson($recibos_contribuyente,$nameTable,$pk,$opciones,$funciones); 
     ?>
 </div>

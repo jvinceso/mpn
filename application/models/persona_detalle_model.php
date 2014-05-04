@@ -183,5 +183,21 @@
     //     $this->db->update('persona_natural', $data); 
         return true;
     }
+
+    public function setPersonaDetalle(){
+    	$detalle = array(
+    		'nPerId' => $this->nPerId ,
+    		'nMulId' => $this->nMulId ,
+    		'cPdeValor' => $this->cPdeValor
+    		);
+    	$this->db->insert('persona_detalle', $detalle);
+    	if($this->db->affected_rows() > 0)
+    	{
+    		$this->nPdeId = $this->db->insert_id();
+    		return true;
+    	}else{
+    		return false;
+    	}
+    }    
 }	
 ?>
