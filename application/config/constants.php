@@ -18,8 +18,11 @@ define('FILE_WRITE_MODE', 0666);
 define('DIR_READ_MODE', 0755);
 define('DIR_WRITE_MODE', 0777);
 
+<<<<<<< Updated upstream
 
-define('SERVER_AP', '172.20.17.10');
+=======
+>>>>>>> Stashed changes
+define('SERVER_AP', 'localhost:8081');
 define('SERVER_DB', '172.20.17.10');
 
 define('PROJECT', 'mpn');
