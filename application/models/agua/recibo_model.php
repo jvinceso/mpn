@@ -12,6 +12,9 @@ class Recibo_model extends CI_Model {
 	private $nPerIdContribuyente = '';
 	private $nPerIdTrabajador = '';
 
+	public function set_nRecId( $nRecId ){
+		$this->nRecId = $nRecId;
+	}
 	public function set_dRecFechaImpresion( $dRecFechaImpresion ){
 		$this->dRecFechaImpresion = $dRecFechaImpresion;
 	}
@@ -88,20 +91,54 @@ class Recibo_model extends CI_Model {
 
 	public function qryRecibos(){
 		// $this->db->trans_start();
-		$sql_recibo_qry = 'SELECT
-			r.nRecId as "ID"
-			,@i := @i + 1 as Cuota
-			,f.dFevFecha_vence AS "Fecha Vencimiento"
-			,r.fRecDeuda AS "Deuda"
-			,r.fRecAbono AS "Abonos"
-		FROM recibo r
-		INNER JOIN fechas_vencimiento f ON f.nFevId = r.nFevId
-		,(select @i := 0) temp
-		WHERE r.nPerIdContribuyente = '.$this->nPerIdContribuyente.'
-		ORDER BY nRecId ASC
+		$sql_recibo_qry = 'SELECT 
+			  r.nRecId as "ID"
+				,@i := @i + 1 as Cuota
+				,f.dFevFecha_vence AS "Fecha Vencimiento"
+				,(
+			SELECT
+				case 
+					when st.nSetId IN( 1,2,3) then SUM(rd.cRedPrecio)
+					else 0.0
+				end 
+			FROM recibo_detalle rd
+			INNER JOIN servicios_contribuyente sc on sc.nSecId = rd.nSecId
+			INNER JOIN servicios_tipo st on st.nSetId = sc.nSetId
+				where rd.nRecId = r.nRecId
+				 ) as "Agua"
+				,(
+			SELECT
+				case 
+					when st.nSetId IN (12,13) then SUM(rd.cRedPrecio)
+					else 0.0
+				end 
+			FROM recibo_detalle rd
+			INNER JOIN servicios_contribuyente sc on sc.nSecId = rd.nSecId
+			INNER JOIN servicios_tipo st on st.nSetId = sc.nSetId
+				where rd.nRecId = r.nRecId
+				 ) as "Desague"
+				,(
+			SELECT
+			case 
+					when st.nSetId IN (15,16) then SUM(rd.cRedPrecio)
+					else 0.0
+				end 
+			FROM recibo_detalle rd
+			INNER JOIN servicios_contribuyente sc on sc.nSecId = rd.nSecId
+			INNER JOIN servicios_tipo st on st.nSetId = sc.nSetId
+				where rd.nRecId = r.nRecId
+				 ) as "Limpieza Municipal"
+				,r.fRecDeuda AS "Deuda"
+				,CASE 
+					WHEN r.fRecAbono IS NULL THEN 0.0
+					ELSE r.fRecAbono
+				END AS "Abonos"
+			FROM recibo r
+				INNER JOIN fechas_vencimiento f ON f.nFevId = r.nFevId
+				,(select @i := 0) temp
+			WHERE r.nPerIdContribuyente = '.$this->nPerIdContribuyente.' 
+			ORDER BY nRecId ASC
 		';
-		// print_p( $sql_recibo_qry );
-		// exit();
 		$rsRecibos = $this->db->query( $sql_recibo_qry );
 
 		if ($rsRecibos->num_rows() > 0) {
@@ -109,7 +146,16 @@ class Recibo_model extends CI_Model {
 		} else {
 			return false;
 		}
-		// $this->db->trans_complete();
+	}
+
+	public function updateRecibo(){
+		
+	}
+	public function getRecibo(){
+		$sql = 'SELECT nRecId, dRecFechaImpresion, ( IFNULL(fRecDeuda,0) + IFNULL(fRecAbono,0) ) as Monto, dRecFechaPago, nFevId, nPerIdContribuyente FROM recibo where nRecId = '. $this->nRecId .';';
+		$query = $this->db->query( $sql )->result_array();
+		return $query;
+
 	}
 	// $this->db->trans_start();
 	// $this->db->query('AN SQL QUERY...');

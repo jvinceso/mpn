@@ -29,6 +29,13 @@ class Recibo extends CI_Controller {
 	function procesar_recibos( $anio ){
 		$this->objRecibo->ins_procesar_recibos( $anio );
 	}
+	function efectuarPago(){
+		$nRecID = $this->input->post('nRecId');
+		$this->objRecibo->set_nRecId( $nRecID );
+		$recibo_pagar = $this->objRecibo->getRecibo()[0];
+	}
+
+	/*POR REVISAR PARA BORRAR*/
 	function scraping(){
 		// http://www.sunat.gob.pe/w/wapS01Alias?ruc=10463979729
 		// $url = "http://www.sunat.gob.pe/w/wapS01Alias?ruc=10463979729";		 
@@ -116,7 +123,53 @@ class Recibo extends CI_Controller {
 			}
 		}
 	}
+	function reporte()
+	{
+		/* 
+		 * To change this template, choose Tools | Templates
+		 * and open the template in the editor.
+		*/
+		$this->load->library('pdf');
 
+
+
+
+		$this->load->library('PHPJasperXML');
+		// include_once( dirname(__FILE__)."/.php");
+		// include_once('class/tcpdf/tcpdf.php');
+		// include_once("class/PHPJasperXML.inc.php");
+		// include_once ('setting.php');
+		// $this->PHPJasperXML->debugsql=true;
+		$rs = $this->db->query('SELECT 
+	rd.nRedId AS nRedId
+,rd.cRedPrecio as Deuda
+from recibo_detalle rd
+INNER JOIN servicios_contribuyente sc on sc.nSecId = rd.nSecId
+INNER JOIN servicios_tipo st on st.nSetId = sc.nSetId
+where nRecId = 73
+	')->result_array();
+// 		$rs = $this->db->query('SELECT
+//      demo.`iddemo` AS demo_iddemo,
+//      demo.`descripcion` AS demo_descripcion
+// FROM
+//      `demo` demo')->result_array();
+		// print_p( $rs );
+		// exit();
+		$PHPJasperXML = new PHPJasperXML($pdf);
+		// $PHPJasperXML->testtcpdf($pdf);
+		$xml =  simplexml_load_file( FCPATH."reportes_design/sample1.jrxml" );
+
+		// $PHPJasperXML->arrayParameter=array("nRecId"=>98);
+
+		$PHPJasperXML->xml_dismantle($xml);
+
+		$PHPJasperXML->dataToArray($rs);
+		// // $PHPJasperXML->parametros();
+
+		$PHPJasperXML->outpage("I"); 
+		// exit(0);
+		// var_dump($PHPJasperXML);
+	}
 }
 /* End of file recibo.php */
 /* Location: ./application/controllers/agua/recibo.php */

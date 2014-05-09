@@ -1,5 +1,6 @@
 -- Row_number()
-select  @i := @i + 1 as Cuota,nRecId from recibo ,(select @i := 0) temp where nPerIdContribuyente = 45 order by nRecId ASC ;
+select  @i := @i + 1 as Cuota,nRecId from recibo ,(select @i := 0) temp where nPerIdContribuyente = 11 order by nRecId ASC ;
+select  * from recibo where nPerIdContribuyente = 11 order by nRecId ASC ;
 
 -- Iteration Recibos por Mes
 select nFevId,nFevCuota from fechas_vencimiento where nFevAnio = 2014;
