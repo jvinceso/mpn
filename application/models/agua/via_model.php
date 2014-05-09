@@ -35,7 +35,7 @@ class Via_model extends CI_Model {
 		}
 	}
 
-	public function insVia(){
+	function insVia(){
 		$data = array(
 			'cViaNombre' => $this->get_cViaNombre()
 			);
@@ -43,7 +43,7 @@ class Via_model extends CI_Model {
 		return $this->db->insert_id();
 	}
 
-	public function qryVias(){		
+	function qryVias(){		
 		$query = $this->db->query("select nViaId as ID,cViaNombre as Nombre,dViaFechaRegistro as fecha from via where  cViaEstado=1");
 		if ($query) {
 			return $query->result_array();
@@ -51,5 +51,38 @@ class Via_model extends CI_Model {
 			return false;
 		}
 	}	
+
+	function getVia($nViaId){		
+		$query = $this->db->query("
+									SELECT nViaId,cViaNombre FROM via WHERE nViaId = '".$nViaId."' and cViaEstado = 1
+			");
+		if ($query->num_rows() > 0) {
+			return $query->row_array();
+		} else {
+			return false;
+		}
+	}
+
+	function updVia(){
+        $data = array(
+            'cViaNombre'  =>  $this->get_cViaNombre()
+            );
+        $this->db->where('nViaId', $this->get_nViaId());
+        $this->db->update('via', $data); 
+        return true;
+    }
+
+    function cboViaUpd(){
+        $query = $this->db->query("select nViaId,cViaNombre from via");
+        if ($query) {
+            $data   = $query->result_array();
+            // print_p($data);exit();
+            $combo  = creaCombo($data);
+            $result = form_dropdown("cbo_upd_via_nViaId", $combo,$this->get_nViaId(), 'id="cbo_upd_via_nViaId" class="chosen-select" style="width:160px"');
+            return $result;
+        } else {
+            return false;
+        }
+	}
 }
 ?>

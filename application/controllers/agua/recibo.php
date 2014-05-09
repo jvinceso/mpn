@@ -29,6 +29,7 @@ class Recibo extends CI_Controller {
 	function procesar_recibos( $anio ){
 		$this->objRecibo->ins_procesar_recibos( $anio );
 	}
+
 	function efectuarPago(){
 		$nRecID = $this->input->post('nRecId');
 		$this->objRecibo->set_nRecId( $nRecID );
@@ -36,9 +37,9 @@ class Recibo extends CI_Controller {
 	}
 
 	/*POR REVISAR PARA BORRAR*/
-	function scraping(){
-		// http://www.sunat.gob.pe/w/wapS01Alias?ruc=10463979729
-		// $url = "http://www.sunat.gob.pe/w/wapS01Alias?ruc=10463979729";		 
+	function scraping($ruc = null ){
+		// $url = "http://www.sunat.gob.pe/w/wapS01Alias?ruc=10463979729"
+		// $url = "http://www.sunat.gob.pe/w/wapS01Alias?ruc=".$ruc;
 		$url = "http://localhost/mpn/wapS01Alias.xml";		 
 		$raw = file_get_contents($url);
 		$newlines = array("\t","\n","\r","\x20\x20","\0","\x0B");		 

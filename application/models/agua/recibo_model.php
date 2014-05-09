@@ -91,53 +91,17 @@ class Recibo_model extends CI_Model {
 
 	public function qryRecibos(){
 		// $this->db->trans_start();
-		$sql_recibo_qry = 'SELECT 
-			  r.nRecId as "ID"
-				,@i := @i + 1 as Cuota
-				,f.dFevFecha_vence AS "Fecha Vencimiento"
-				,(
-			SELECT
-				case 
-					when st.nSetId IN( 1,2,3) then SUM(rd.cRedPrecio)
-					else 0.0
-				end 
-			FROM recibo_detalle rd
-			INNER JOIN servicios_contribuyente sc on sc.nSecId = rd.nSecId
-			INNER JOIN servicios_tipo st on st.nSetId = sc.nSetId
-				where rd.nRecId = r.nRecId
-				 ) as "Agua"
-				,(
-			SELECT
-				case 
-					when st.nSetId IN (12,13) then SUM(rd.cRedPrecio)
-					else 0.0
-				end 
-			FROM recibo_detalle rd
-			INNER JOIN servicios_contribuyente sc on sc.nSecId = rd.nSecId
-			INNER JOIN servicios_tipo st on st.nSetId = sc.nSetId
-				where rd.nRecId = r.nRecId
-				 ) as "Desague"
-				,(
-			SELECT
-			case 
-					when st.nSetId IN (15,16) then SUM(rd.cRedPrecio)
-					else 0.0
-				end 
-			FROM recibo_detalle rd
-			INNER JOIN servicios_contribuyente sc on sc.nSecId = rd.nSecId
-			INNER JOIN servicios_tipo st on st.nSetId = sc.nSetId
-				where rd.nRecId = r.nRecId
-				 ) as "Limpieza Municipal"
-				,r.fRecDeuda AS "Deuda"
-				,CASE 
-					WHEN r.fRecAbono IS NULL THEN 0.0
-					ELSE r.fRecAbono
-				END AS "Abonos"
-			FROM recibo r
-				INNER JOIN fechas_vencimiento f ON f.nFevId = r.nFevId
-				,(select @i := 0) temp
-			WHERE r.nPerIdContribuyente = '.$this->nPerIdContribuyente.' 
-			ORDER BY nRecId ASC
+		$sql_recibo_qry = 'SELECT
+			r.nRecId as "ID"
+			,@i := @i + 1 as Cuota
+			,f.dFevFecha_vence AS "Fecha Vencimiento"
+			,r.fRecDeuda AS "Deuda"
+			,CASE WHEN fRecAbono IS NULL then "--" ELSE fRecAbono end	 as "Abonos"
+		FROM recibo r
+		INNER JOIN fechas_vencimiento f ON f.nFevId = r.nFevId
+		,(select @i := 0) temp
+		WHERE r.nPerIdContribuyente = '.$this->nPerIdContribuyente.'
+		ORDER BY nRecId ASC
 		';
 		$rsRecibos = $this->db->query( $sql_recibo_qry );
 
