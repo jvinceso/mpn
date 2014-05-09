@@ -6,6 +6,8 @@ class Calle extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('agua/calle_model','objCalle');
+		$this->load->model('agua/sector_model','objSector');
+		$this->load->model('agua/via_model','objVia');
 		$this->load->helper('tables_helper');
 	}
 	public function index()
@@ -53,12 +55,30 @@ class Calle extends CI_Controller {
 			);
 		$tabla_data = $this->objCalle->qryCalle();
 		$funciones = array(
-			'initEvtOpcPopupId("edit","contribuyente/getContribuyente/","Editar Contribuyente",920,400,"func_close")',
+			'initEvtOpcPopupId("edit","calle/getCalle/","Editar Calle",800,300,"func_close")',
 			'initEvtDel("confirmarDelete")'
 			);
 		$nameTable = 'tabla-Calle';
 		$pk = 'ID';
 		CrudGridMultipleJson($tabla_data,$nameTable,$pk,$opciones,$funciones);
+	}
+
+	function getCalle($nCalId) {
+		// echo $nPerId;
+		$fila = $this->objCalle->getCalle($nCalId);
+        // print_p($fila);
+		if ($fila) {
+			$filax["fila"] = $fila;
+			$this->load->view('agua/calle/upd_view', $filax);
+		} else {
+			echo "Error";
+		}
+	}
+
+	function cboSectorUpd() {
+		$this->objSector->set_nSecId( $this->input->post('txt_upd_cal_nSecId') );
+		$result = $this->objSector->cboSectorUpd();
+		echo $result;
 	}
 }
 ?>
