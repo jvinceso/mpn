@@ -93,7 +93,7 @@ class Recibo_model extends CI_Model {
 			,@i := @i + 1 as Cuota
 			,f.dFevFecha_vence AS "Fecha Vencimiento"
 			,r.fRecDeuda AS "Deuda"
-			,r.fRecAbono AS "Abonos"
+			,CASE WHEN fRecAbono IS NULL then "--" ELSE fRecAbono end	 as "Abonos"
 		FROM recibo r
 		INNER JOIN fechas_vencimiento f ON f.nFevId = r.nFevId
 		,(select @i := 0) temp
