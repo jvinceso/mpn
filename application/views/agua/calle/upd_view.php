@@ -1,5 +1,4 @@
 <script type="text/javascript" src='<?php echo URL_JS; ?>sistema/agua/calle/calle_upd.js'></script>
-<!-- <link rel="stylesheet" href="<?php echo URL_CSS; ?>chosen.css" /> -->
 <form id="frm_upd_calle" name = "frm_upd_calle" class="form-horizontal" role="form">
 	<input type="hidden" id="txt_upd_nCalId" name="txt_upd_nCalId" value="<?php echo $fila['nCalId'] ?>" />
 	<div class="form-group">
@@ -38,4 +37,3 @@
 		</div>
 	</div>
 </form>
-<script src="<?php echo URL_JS; ?>chosen.jquery.min.js"></script>

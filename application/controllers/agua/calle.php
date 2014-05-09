@@ -80,5 +80,25 @@ class Calle extends CI_Controller {
 		$result = $this->objSector->cboSectorUpd();
 		echo $result;
 	}
+
+	function cboViaUpd() {
+		$this->objVia->set_nViaId( $this->input->post('txt_upd_cal_nViaId') );
+		$result = $this->objVia->cboViaUpd();
+		echo $result;
+	}
+
+	function updCalle() {
+		$this->objCalle->set_nCalId($this->input->post('txt_upd_nCalId'));
+		$this->objCalle->set_cCalNombre($this->input->post('txt_upd_cal_nom'));
+		$this->objCalle->set_nSecId($this->input->post('cbo_upd_cal_nSecId'));
+		$this->objCalle->set_nViaId($this->input->post('cbo_upd_via_nViaId'));
+		$result = $this->objCalle->updCalle();
+		// print_p($_POST);exit();
+		if ($result) {
+			echo "1";
+		} else {
+			echo "0";
+		}
+	}
 }
 ?>

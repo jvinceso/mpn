@@ -71,5 +71,18 @@ class Via_model extends CI_Model {
         $this->db->update('via', $data); 
         return true;
     }
+
+    function cboViaUpd(){
+        $query = $this->db->query("select nViaId,cViaNombre from via");
+        if ($query) {
+            $data   = $query->result_array();
+            // print_p($data);exit();
+            $combo  = creaCombo($data);
+            $result = form_dropdown("cbo_upd_via_nViaId", $combo,$this->get_nViaId(), 'id="cbo_upd_via_nViaId" class="chosen-select" style="width:160px"');
+            return $result;
+        } else {
+            return false;
+        }
+	}
 }
 ?>

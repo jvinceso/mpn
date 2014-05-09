@@ -1,100 +1,44 @@
 $(function(){      
     
     cboSectorUpd();    
-    // cboViaUpd();    
+    cboViaUpd();   
 
-        $("#frm_upd_calle").validate({
+    $("#frm_upd_calle").validate({
         rules: {
-            txt_upd_cont_dni: {
-                // required: true ,
-                maxlength:8,
-                minlength:8,
-                digits:true
-                // ,remote: {
-                //     url: "txtUsuarioGet",
-                //     type: "post",
-                //     data: {
-                //         accion: "Dni",
-                //         dni: function() {
-                //             return $("#txt_upd_trab_dni").val();
-                //         },
-                //         cbo_upd_per_tipdoc: function() {
-                //             return $("#cbo_upd_per_tipdoc").val();
-                //         }
-                //     }
-                // }
-            },
-            txt_upd_cont_appaterno: {
-                // required: true ,
+            txt_upd_cal_nom: {
+                required: true ,
                 // lettersonly: true,
                 maxlength:80
-            },
-            txt_upd_cont_apmaterno: {
-                // required: true ,
-                // lettersonly: true,
-                maxlength:80
-            },
-            txt_upd_cont_nombres: {
-                // required: true,
-                // lettersonly: true,
-                maxlength:200
-            },
-            txt_upd_cont_nacimiento: {
-                // required: true
-            },
-            cbo_upd_cont_sexo: {
-                // required: true
-            },
-            cbo_upd_cont_ecivil: {
-                // required: true
-            },
-            txt_upd_cont_telefono: {
-                // required: true,
-                maxlength:11
-            }, 
-            txt_upd_cont_celular: {
-                // required: true
-            },
-            txt_upd_cont_email: {
-                // required: true,
-                email: true,
-                maxlength:250
             }
         },
         messages: {
-            txt_upd_cont_dni:{
-                remote:"Ya existe este documento de identidad <a href='recupera_clave.html' style='color: blue'>!Recupera tu clave Aquí¡</a>"
-            },
-            txt_upd_cont_email:{
-                required:"Ingrese su e-mail"
+            txt_upd_cal_nom:{
+                required:"Ingrese el Nombre de la calle"
             }
         },
         submitHandler: function(form){ 
-            DesabilitarBoton('btn_upd_cont_registrar')
+            DesabilitarBoton('btn_upd_cal_registrar')
             $.ajax({
                 type: "POST",
-                url:  "contribuyente/updContribuyente",
+                url:  "calle/updCalle",
                 data: $(form).serialize(),
-                success: function(data){                    
+                success: function(data){  
                     switch (data) { 
-                        case "2":
-                        mensaje("Error al actualizar el Contribuyente!","a"); 
-                        HabilitarBoton('btn_upd_cont_registrar');
-                        break; 
                         case "0":
-                        mensaje("Error al actualizar el Contribuyente!","a"); 
-                        HabilitarBoton('btn_upd_cont_registrar');                        
+                        mensaje("Error al guardar Actualizar la Calle!","a");   
+                        HabilitarBoton('btn_upd_cal_registrar');                      
                         break;
                         default:                        
-                        mensaje("Se Actualizo Correctamente el Contribuyente","e");
-                        HabilitarBoton('btn_upd_cont_registrar');
-                        // limpiarForm('#frm_upd_trabajador');
+                        mensaje("Se Actualizó Correctamente la Calle","e");
+                        HabilitarBoton('btn_upd_cal_registrar');
+                        listarCalles();
+                        // limpiarForm('#frm_ins_trabajador');
                     }
 
                 },
                 error: function(msg){                
-                    mensaje("r","Error Inesperando actualizando al Contribuyente!, vuelva a intentarlo"); 
-                    HabilitarBoton('btn_upd_cont_registrar');                       ;
+                    mensaje("Error Inesperando Actualizando la Calle!, vuelva a intentarlo","r");   
+                    HabilitarBoton('btn_upd_cal_registrar');                     ;
                 }
             });
         }
@@ -102,7 +46,7 @@ $(function(){
 });
 
 // CARGA TIPO DE DOCUMENTO DESDE BD -> OPCION EDITAR DOCUMENTO
-function cboSectorUpd (){      
+function cboSectorUpd(){      
     // msgLoading("#c_cbo_upd_doc_tipo");
     $.ajax({
         type: "POST",
@@ -113,6 +57,26 @@ function cboSectorUpd (){
         },        
         success: function(data) {                
             $("#c_cbo_upd_cal_sector").html(data); 
+            $(".chosen-select").chosen();
+        },
+        error: function() { 
+            alert("error")
+            // msgError("#c_cbo_upd_doc_tipo");   
+        }              
+    });        
+}
+
+function cboViaUpd(){      
+    // msgLoading("#c_cbo_upd_doc_tipo");
+    $.ajax({
+        type: "POST",
+        url: "calle/cboViaUpd",
+        cache: false,
+        data: { 
+            txt_upd_cal_nViaId:$("#txt_upd_cal_nViaId").val()
+        },        
+        success: function(data) {                
+            $("#c_cbo_upd_cal_via").html(data); 
             $(".chosen-select").chosen();
         },
         error: function() { 

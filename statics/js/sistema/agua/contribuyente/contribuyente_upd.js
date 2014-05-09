@@ -90,6 +90,7 @@ $(function(){
                         default:                        
                         mensaje("Se Actualizo Correctamente el Contribuyente","e");
                         HabilitarBoton('btn_upd_cont_registrar');
+                        listarContribuyentes();
                         // limpiarForm('#frm_upd_trabajador');
                     }
 

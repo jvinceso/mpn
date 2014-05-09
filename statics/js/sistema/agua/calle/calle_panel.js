@@ -1,11 +1,4 @@
 $(function(){
-	// listarSectores();
-	$("#lista_calles").bind({
-		click:function(evt){
-			evt.preventDefault();
-			listarCalles();
-		}
-	});
 	$("#lista_calles").bind({
 		click:function(evt){
 			evt.preventDefault();

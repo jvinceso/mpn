@@ -23,6 +23,7 @@ $(function(){
                         case "1":
                         mensaje("Se Actualizó Correctamente el Sector!","e"); 
                         HabilitarBoton('btn_upd_sec_registrar');
+                        listarSectores();
                         break; 
                         case "0":
                         mensaje("Error al Actualizar el Sector!","r"); 
@@ -67,6 +68,7 @@ $(function(){
                         case "1":
                         mensaje("Se Actualizó Correctamente la Vía!","e"); 
                         HabilitarBoton('btn_upd_via_registrar');
+                        listarVias();
                         break; 
                         case "0":
                         mensaje("Error al Actualizar la Vía!","r"); 
@@ -89,7 +91,7 @@ $(function(){
 });
 
 // CARGA TIPO DE DOCUMENTO DESDE BD -> OPCION EDITAR DOCUMENTO
-function cboEstadoCivilUpd (){      
+function cboEstadoCivilUpd(){      
     // msgLoading("#c_cbo_upd_doc_tipo");
     $.ajax({
         type: "POST",

@@ -79,7 +79,7 @@ class Sector_model extends CI_Model {
             $data   = $query->result_array();
             // print_p($data);exit();
             $combo  = creaCombo($data);
-            $result = form_dropdown("cbo_upd_cal_nSecId", $combo,$this->get_nSecId(), 'id="cbo_upd_cal_nSecId" class="chzn-select" style="width:160px"');
+            $result = form_dropdown("cbo_upd_cal_nSecId", $combo,$this->get_nSecId(), 'id="cbo_upd_cal_nSecId" class="chosen-select" style="width:160px"');
             return $result;
         } else {
             return false;
