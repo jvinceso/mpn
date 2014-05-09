@@ -53,9 +53,38 @@ class Sector_model extends CI_Model {
 		}
 	}	
 
-	// public function qrySector(){
-	// 	return $this->db->query("select nSecId as ID,cSecNombre as Nombre,dSecFechaRegistro as fecha from sector where  cSecEstado=1")->result_array();
- //        // return $this->db->where(array('cPerContribuyente'=>'SI','cPerEstado'=>1))->get('persona')->result_array();
-	// }	
+	function getSector($nSecId){		
+		$query = $this->db->query("
+									SELECT nSecId,cSecNombre FROM SECTOR WHERE nSecId = '".$nSecId."' AND cSecEstado = 1
+			");
+		if ($query->num_rows() > 0) {
+			return $query->row_array();
+		} else {
+			return false;
+		}
+	}
+
+	function updSector(){
+        $data = array(
+            'cSecNombre'  =>  $this->get_cSecNombre()
+            );
+        $this->db->where('nSecId', $this->get_nSecId());
+        $this->db->update('sector', $data); 
+        return true;
+    }
+
+   	function cboSectorUpd(){
+        $query = $this->db->query("select nSecId,cSecNombre from sector");
+        if ($query) {
+            $data   = $query->result_array();
+            // print_p($data);exit();
+            $combo  = creaCombo($data);
+            $result = form_dropdown("cbo_upd_cal_nSecId", $combo,$this->get_nSecId(), 'id="cbo_upd_cal_nSecId" class="chzn-select" style="width:160px"');
+            return $result;
+        } else {
+            return false;
+        }
+	}
+
 }
 ?>

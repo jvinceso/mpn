@@ -101,6 +101,22 @@ class Calle_model extends CI_Model {
 		} else {
 			return false;
 		}
-	}	
+	}
+
+	function getCalle($nCalId){		
+		$query = $this->db->query("
+						select c.nCalId ,c.cCalNombre ,s.nSecId, v.nViaId ,c.dCalFechaRegistro from calle c
+						inner join  sector s on c.nSecId = s.nSecId
+						inner join  via v on c.nViaId = v.nViaId
+						where nCalId = '".$nCalId."' and c.nCalEstado = 1
+									
+			");
+		if ($query->num_rows() > 0) {
+			return $query->row_array();
+		} else {
+			return false;
+		}
+	}
+	
 }
 ?>
