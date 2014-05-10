@@ -72,8 +72,7 @@ class Persona_model extends CI_Model {
 
     public function qryContribuyente(){
         return $this->db->query("
-            select p.nPerId as ID,
-            p.cPerNombres as Nombre,
+            select p.nPerId as ID,p.cPerNombres as Nombre,
             CONCAT( p.cPerApellidoPaterno,' ', p.cPerApellidoMaterno ) as Apellidos
             ,pd1.cPdeValor as DNI
             ,pd2.cPdeValor as telefono
@@ -83,6 +82,7 @@ class Persona_model extends CI_Model {
             inner join persona_detalle pd2 on p.nPerId = pd2.nPerId 
             inner join persona_detalle pd3 on p.nPerId = pd3.nPerId
             where p.cPerContribuyente='SI' and p.cPerEstado=1 and pd1.nMulId = 16 and pd2.nMulId = 43 and pd3.nMulId = 44
+            ORDER BY p.nPerId DESC;
             ")->result_array();
         // return $this->db->where(array('cPerContribuyente'=>'SI','cPerEstado'=>1))->get('persona')->result_array();
     }

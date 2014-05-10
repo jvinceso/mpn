@@ -1,4 +1,4 @@
-<form id="frm_proc_anios" name = "frm_proc_anios" class="form-horizontal" role="form">
+<form id="frm_proc_anios"  name = "frm_proc_anios" class="form-horizontal" role="form">
 	<div class="form-group">
 		<label class="col-sm-3 control-label no-padding-right" for="cbo_servicio"> Servicio</label>
 		<div class="col-sm-9">
@@ -9,7 +9,7 @@
 		<label class="col-sm-3 control-label no-padding-right" for="cbo_anios"> Año</label>
 		<div class="col-sm-9">
 			<div id="c_cbo_anios">
-			    <?php echo form_dropdown("cbo_anio", creaCombo(array(0=>array('Id'=>0,'nAnioId' => 'Seleccione un Servicio'))),'', 'id="cbo_anio" class="chosen-select w360"'); ?>
+			    <?php echo form_dropdown("cbo_anio", creaCombo(array(0=>array('Id'=>0,'nAnioId' => '2014'))),'', 'id="cbo_anio" class="chosen-select w360"'); ?>
 			</div>
 		</div>
 	</div>	

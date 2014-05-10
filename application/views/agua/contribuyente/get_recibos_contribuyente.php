@@ -12,6 +12,8 @@ echo $txt_hdn_persona;
 <p>&nbsp;</p>
 <div id="c_qry_direccion_contribuyente" class="table-responsive">
     <?php 
+    // print_p($recibos_contribuyente);
+    if($recibos_contribuyente){
     $opciones = array(
         'Pagos' => array(
              'color'=>'blue'
@@ -26,5 +28,6 @@ echo $txt_hdn_persona;
     $nameTable = 'tabla-direcccion-contribuyente';
     $pk = 'ID';
     CrudGridMultipleJson($recibos_contribuyente,$nameTable,$pk,$opciones,$funciones); 
+}
     ?>
 </div>

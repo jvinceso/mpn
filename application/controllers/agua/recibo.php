@@ -147,7 +147,7 @@ class Recibo extends CI_Controller {
 from recibo_detalle rd
 INNER JOIN servicios_contribuyente sc on sc.nSecId = rd.nSecId
 INNER JOIN servicios_tipo st on st.nSetId = sc.nSetId
-where nRecId = 73
+where nRecId = 157
 	')->result_array();
 // 		$rs = $this->db->query('SELECT
 //      demo.`iddemo` AS demo_iddemo,

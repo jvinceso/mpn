@@ -20,6 +20,7 @@ function pagarRecibo(fila){
 	    	nRecId:nRecId
 	    },
 	    success:function(data){
+	    	// window.open()
 	    	console.log( data );
 	    },
 	    error:function(er){
