@@ -83,5 +83,16 @@
 			}
 			return $tmp;
 		}
+
+		function VerificaCostoAnio(){		
+			$query = $this->db->query("
+				select * from costo_servicios_tipo where nSetId = '".$this->get_nSetId()."' and nCstAnio = '".$this->get_nCstAnio()."'									
+			");
+		if ($query->num_rows() > 0) {
+			return $query->num_rows();
+		} else {
+			return false;
+		}
+	}
 	}
 ?>

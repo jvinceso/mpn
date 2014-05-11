@@ -87,30 +87,18 @@ class Servicios extends CI_Controller {
 		$tabla_data = $this->objServiosTipo->qryServiciosTipo();
 		$funciones = array(
 			// "circle-plus","servicios/agregarCosto/","Agregar etiquetas a noticias",480,420,"func_close"
-			'initEvtOpcPopupId("money","servicios/getViewCosto/","Agregar Costo por Año",480,420,"func_close")',
+			'initEvtOpcPopupId("money","servicios/getViewCosto/","Agregar Costo por Año",480,200,"func_close")',
 			// 'initEvtOpcPopupId("cogs","asignarCosto(fila)")',
 		);
 		$nameTable = 'tabla-servicios';
 		$pk = 'ID';
-		CrudGridMultipleJson($tabla_data,$nameTable,$pk,$opciones,$funciones);		
+		$disable_order=true;
+		CrudGridMultipleJson($tabla_data,$nameTable,$pk,$opciones,$funciones,$disable_order);		
 
 	}
 	function getViewCosto($nSetId){	
 		 $Codigo["nSetId"] = $nSetId;	
-		 $this->load->view('agua/servicios/ins_tiposervicio_costo_view', $Codigo);
-	}
-
-	function insCostoServiciosTipo(){
-		$this->objCostoServiosTipo->set_nSetId($this->input->post('txt_ins_setid'));
-		$this->objCostoServiosTipo->set_fCstPago($this->input->post('txt_ins_cst_costo'));
-		$this->objCostoServiosTipo->set_nCstAnio($this->input->post('txt_ins_cst_anio'));
-		$result = $this->objCostoServiosTipo->insCostoServiciosTipo();
-		// print_p( $this->objServiosTipo->insServiciosTipo($temp) );
-		if ($result) {
-			echo "1";
-		} else {
-			echo "0";
-		}
+		 $this->load->view('agua/costo_servicios_tipo/ins_tiposervicio_costo_view', $Codigo);
 	}
 
 	function listarTipoServicios(){
@@ -136,5 +124,7 @@ class Servicios extends CI_Controller {
 		$pk = 'ID';
 		CrudGridMultipleJson($tabla_data,$nameTable,$pk,$opciones,$funciones);
 	}
+
+
 }
 ?>

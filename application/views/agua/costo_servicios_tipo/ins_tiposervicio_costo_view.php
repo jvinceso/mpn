@@ -1,19 +1,19 @@
-<script type="text/javascript" src='<?php echo URL_JS; ?>sistema/agua/servicios/costo_servicios_tipo_ins.js'></script>
+<script type="text/javascript" src='<?php echo URL_JS; ?>sistema/agua/costo_servicios_tipo/costo_servicios_tipo_ins.js'></script>
 
 <form id="frm_ins_costo_servicios_tipo" name = "frm_ins_costo_servicios_tipo" class="form-horizontal" role="form">
 	<input type="hidden" id="txt_ins_setid" name="txt_ins_setid" value="<?php echo $nSetId ?>" />
+	<div class="alert alert-info">
+		<button data-dismiss="alert" class="close" type="button">
+			<i class="icon-remove"></i>
+		</button>
+		<strong>Aviso!</strong>
+			El costo que esta registrando sera para el año <?php echo date("Y"); ?> 
+			<br>
+	</div>
 	<div class="form-group">
 		<label class="col-sm-4 control-label no-padding-right" for="form-field-1">Costo del Servicio</label>
 		<div class="col-sm-8">
 			<input type="text" id="txt_ins_cst_costo" name = "txt_ins_cst_costo" placeholder="Ingrese el monto" class="col-xs-10 col-sm-6" />
-		</div>
-	</div>	
-	<div class="form-group">
-		<label class="col-sm-4 control-label no-padding-right" for="form-field-tags">
-			Año
-		</label>
-		<div class="col-sm-8">
-			<input type="text" name="txt_ins_cst_anio" id="txt_ins_cst_anio" placeholder="Ingrese el año" class="col-xs-10 col-sm-5" />
 		</div>
 	</div>
 	<div class="space-4"></div>
@@ -31,7 +31,3 @@
 		</div>
 	</div>
 </form>
-<!-- // <script src="<?php echo URL_JS; ?>bootstrap-tag.min.js"></script> -->
-<!-- // <script src="<?php echo URL_JS; ?>ace-elements.min.js"></script> -->
-<!-- // <script src="<?php echo URL_JS; ?>jquery.maskedinput.min.js"></script> -->
-<!-- // <script src="<?php echo URL_JS; ?>chosen.jquery.min.js"></script> -->

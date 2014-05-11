@@ -2,25 +2,29 @@ $(function(){
     $("#frm_ins_costo_servicios_tipo").validate({
         rules: {           
             txt_ins_cst_costo: {
-                required: true
-            },
-            txt_ins_cst_anio: {
-                required: true
+                required: true,
+                remote: {
+                    url: "costo_servicios_tipo/VerificaCostoAnio",
+                    type: "post",
+                    data: {                        
+                        nSetId: function() {
+                            return $("#txt_ins_setid").val();
+                        }
+                    }
+                }
             }
         },
         messages: {
             txt_ins_cst_costo:{
-                required:"Ingrese el monto"
-            },
-            txt_ins_cst_anio:{
-                required:"Ingrese el año"
+                required:"Ingrese el monto",
+                remote:"El costo para este año ya existe"
             }
         },
         submitHandler: function(form){ 
             DesabilitarBoton('btn_ins_cst_registrar')
             $.ajax({
                 type: "POST",
-                url:  "servicios/insCostoServiciosTipo",
+                url:  "costo_servicios_tipo/insCostoServiciosTipo",
                 data: $(form).serialize(),
                 success: function(data){ 
                 // alert(data)                   
