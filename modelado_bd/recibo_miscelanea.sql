@@ -44,3 +44,48 @@ inner join multitabla ms on ms.nMulId = st.nMulServicio
 inner join multitabla mt on mt.nMulId = st.nMulTipoServicio
 where sc.nPerId = 37;
 select * from multitabla where nMulIdPadre = 51;
+
+
+
+/*Nuevo Lista Recibosd*/
+SELECT  		r.nRecId as "ID"
+				,@i := @i + 1 as Cuota
+				,f.dFevFecha_vence AS "Fecha Vencimiento"
+				,(
+				SELECT sum(rd.cRedPrecio)
+				FROM recibo_detalle rd 
+					INNER JOIN servicios_contribuyente sc on sc.nSecId = rd.nSecId
+					INNER JOIN servicios_tipo st on st.nSetId = sc.nSetId 
+						and st.nMulTipoServicio IN (select nMulId from multitabla where nMulIdPadre = 47)
+						and st.nMulServicio IN (select nMulId from multitabla where UPPER(cMulDescripcion) = UPPER('agua'))
+				WHERE rd.nRecId = r.nRecId
+				 ) as "Agua"
+				,(
+				SELECT rd.cRedPrecio
+				FROM recibo_detalle rd 
+					INNER JOIN servicios_contribuyente sc on sc.nSecId = rd.nSecId
+					INNER JOIN servicios_tipo st on st.nSetId = sc.nSetId 
+						and st.nMulTipoServicio IN (select nMulId from multitabla where nMulIdPadre = 47)
+						and st.nMulServicio IN (select nMulId from multitabla where UPPER(cMulDescripcion) = UPPER('Desague'))
+				WHERE rd.nRecId = r.nRecId
+				 ) as "Desague"
+				,IFNULL(
+				(
+				SELECT rd.cRedPrecio
+				FROM recibo_detalle rd 
+					INNER JOIN servicios_contribuyente sc on sc.nSecId = rd.nSecId
+					INNER JOIN servicios_tipo st on st.nSetId = sc.nSetId 
+						and st.nMulTipoServicio IN (select nMulId from multitabla where nMulIdPadre = 47)
+						and st.nMulServicio IN (select nMulId from multitabla where UPPER(cMulDescripcion) = UPPER('Limpieza'))
+				WHERE rd.nRecId = r.nRecId
+				),0) as "Limpieza Municipal"
+				,r.fRecDeuda AS "Deuda"
+				,CASE 
+					WHEN r.fRecAbono IS NULL THEN 0.0
+					ELSE r.fRecAbono
+				END AS "Abonos"
+			FROM recibo r
+				INNER JOIN fechas_vencimiento f ON f.nFevId = r.nFevId
+				,(select @i := 0) temp
+			WHERE r.nPerIdContribuyente = 47 
+			ORDER BY nRecId ASC
