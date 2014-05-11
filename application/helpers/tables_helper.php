@@ -1,5 +1,5 @@
 <?php 
-function CrudGridMultipleJson($sql, $idtable = null, $primary_key,$opciones = array(), $funciones = null ) {
+function CrudGridMultipleJson($sql, $idtable = null, $primary_key,$opciones = array(), $funciones = null,$disable_order = false ) {
 
 if( count($sql)>0 ){
 	$nroopc = count($opciones);	//Nro de Opciones
@@ -109,9 +109,13 @@ if( count($sql)>0 ){
     </table>
 		<?php
 		$js_tabla_open = '<script type="text/javascript">$(function($) {
-		var oTable1 = $("#'.$idtable.'").dataTable( { "aoColumns": [';
+		var oTable1 = $("#'.$idtable.'").dataTable({';
+		if ( $disable_order ) {
+			$js_tabla_open .='"bSort": false,';
+		}
+		$js_tabla_open .='"aoColumns": [';
 		if ($nroopc != NULL && $nroopc > 0) {
-			$js_campos = str_repeat('null,',$nroCamposSql).'{ "bSortable": false }';
+			$js_campos = str_repeat('null,',$nroCamposSql).'{ "bSortable": false  }';
 			// $js_campos .='{ "bSortable": false }';
 		}else{
 			$js_campos = substr(str_repeat('null,',$nroCamposSql), 0, -1);

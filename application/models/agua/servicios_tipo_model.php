@@ -68,13 +68,30 @@
 
 //Llena la tabla con todos los servcios con sus respectivos tipos		
 		public function qryServiciosTipo(){
-			$query = $this->db->query("select st.nSetId as ID, m.cMulDescripcion as servicio,mt.cMulDescripcion as tipo from servicios_tipo st 
-				inner join multitabla m on m.nMulId = st.nMulServicio
-				inner join multitabla mt on mt.nMulId = st.nMulTipoServicio
-				where st.cSetEstado = 1
-			order by 1 asc;");
+			$query = $this->db->query("
+						select 
+							st.nSetId as ID, m.cMulDescripcion as servicio 
+							,mt.cMulDescripcion as tipo 
+							,ifnull(cst.fCstPago,'0') as costo
+							,ifnull(cst.nCstAnio,'-') as Anio
+						from servicios_tipo st 
+										inner join multitabla m on m.nMulId = st.nMulServicio
+										inner join multitabla mt on mt.nMulId = st.nMulTipoServicio
+										left join costo_servicios_tipo cst on cst.nSetId = st.nSetId
+										where st.cSetEstado = 1
+									order by m.cMulDescripcion asc,cst.nCstAnio desc;
+			");
 			return  $query->result_array();
 		}
+
+		// public function qryServiciosTipo(){
+		// 	$query = $this->db->query("select st.nSetId as ID, m.cMulDescripcion as servicio,mt.cMulDescripcion as tipo from servicios_tipo st 
+		// 		inner join multitabla m on m.nMulId = st.nMulServicio
+		// 		inner join multitabla mt on mt.nMulId = st.nMulTipoServicio
+		// 		where st.cSetEstado = 1
+		// 	order by 1 asc;");
+		// 	return  $query->result_array();
+		// }
 		public function listaServicioXDireccion($objDireccionCalle){
 			$query = $this->db->query("select m.cMulDescripcion as Servicio ,mt.cMulDescripcion as Tipo from servicios_contribuyente sc
 				inner join servicios_tipo st on st.nSetId = sc.nSetId
