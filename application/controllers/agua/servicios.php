@@ -76,19 +76,29 @@ class Servicios extends CI_Controller {
 			echo "0";
 		}
 	}
-	function loadDataServicios(){
+	function listarServicios(){
 		$opciones = array(
 			'Costo' => array(
 				 'color'=>'red'
 				,'icono'=>'money'
 				,'tooltip'=>'success'
+			),
+			'Editar' => array(
+				'color'=>'blue'
+				,'icono'=>'edit'
+				,'tooltip'=>'info'
+			),
+			'Eliminar' => array(
+				'color'=>'red'
+				,'icono'=>'trash'
+				,'tooltip'=>'danger'
 			)
 		);
 		$tabla_data = $this->objServiosTipo->qryServiciosTipo();
-		$funciones = array(
-			// "circle-plus","servicios/agregarCosto/","Agregar etiquetas a noticias",480,420,"func_close"
+		$funciones = array(		
 			'initEvtOpcPopupId("money","servicios/getViewCosto/","Agregar Costo por Año",480,200,"func_close")',
-			// 'initEvtOpcPopupId("cogs","asignarCosto(fila)")',
+			'initEvtOpcPopupId("edit","servicios/getServicios/","Editar Servicios",920,400,"func_close")',
+			'initEvtDel("confirmarDelete")'
 		);
 		$nameTable = 'tabla-servicios';
 		$pk = 'ID';
@@ -125,6 +135,17 @@ class Servicios extends CI_Controller {
 		CrudGridMultipleJson($tabla_data,$nameTable,$pk,$opciones,$funciones);
 	}
 
+	function getServicios($nSetId) {
+		// echo $nPerId;
+		$fila = $this->objServiosTipo->getServicios($nSetId);
+        // print_p($fila);
+		if ($fila) {
+			$filax["fila"] = $fila;
+			$this->load->view('agua/calle/upd_view', $filax);
+		} else {
+			echo "Error";
+		}
+	}
 
 }
 ?>

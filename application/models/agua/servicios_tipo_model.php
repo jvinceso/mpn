@@ -70,28 +70,22 @@
 		public function qryServiciosTipo(){
 			$query = $this->db->query("
 						select 
-							st.nSetId as ID, m.cMulDescripcion as servicio 
+							st.nSetId as ID
+							,m.cMulDescripcion as servicio 
 							,mt.cMulDescripcion as tipo 
 							,ifnull(cst.fCstPago,'0') as costo
 							,ifnull(cst.nCstAnio,'-') as Anio
 						from servicios_tipo st 
 										inner join multitabla m on m.nMulId = st.nMulServicio
 										inner join multitabla mt on mt.nMulId = st.nMulTipoServicio
-										left join costo_servicios_tipo cst on cst.nSetId = st.nSetId
+										left join costo_servicios_tipo cst on cst.nSetId = st.nSetId and cst.nCstAnio = year(now())
 										where st.cSetEstado = 1
-									order by m.cMulDescripcion asc,cst.nCstAnio desc;
+									order by m.cMulDescripcion asc;
+
 			");
 			return  $query->result_array();
 		}
 
-		// public function qryServiciosTipo(){
-		// 	$query = $this->db->query("select st.nSetId as ID, m.cMulDescripcion as servicio,mt.cMulDescripcion as tipo from servicios_tipo st 
-		// 		inner join multitabla m on m.nMulId = st.nMulServicio
-		// 		inner join multitabla mt on mt.nMulId = st.nMulTipoServicio
-		// 		where st.cSetEstado = 1
-		// 	order by 1 asc;");
-		// 	return  $query->result_array();
-		// }
 		public function listaServicioXDireccion($objDireccionCalle){
 			$query = $this->db->query("select m.cMulDescripcion as Servicio ,mt.cMulDescripcion as Tipo from servicios_contribuyente sc
 				inner join servicios_tipo st on st.nSetId = sc.nSetId
@@ -108,6 +102,21 @@
 				order by 1 asc;");
 			return  $query->result_array();
 		}		
+
+		function getServicios($nSetId){		
+			$query = $this->db->query("
+						select c.nCalId ,c.cCalNombre ,s.nSecId, v.nViaId ,c.dCalFechaRegistro from calle c
+						inner join  sector s on c.nSecId = s.nSecId
+						inner join  via v on c.nViaId = v.nViaId
+						where nCalId = '".$nCalId."' and c.nCalEstado = 1
+									
+			");
+		if ($query->num_rows() > 0) {
+			return $query->row_array();
+		} else {
+			return false;
+		}
+	}
 
 	}
 ?>

@@ -35,6 +35,7 @@ $(function(){
                         break;
                         default:                        
                         mensaje("Se Registro Correctamente el Costo del Servicio","e");
+                        get_page('servicios/listarServicios','tabla_servicios');
                         HabilitarBoton('btn_ins_cst_registrar');
                         // limpiarForm('#frm_ins_trabajador');
                     }
