@@ -1,11 +1,5 @@
 $(function(){
 
-	$("#servicios").bind({
-        click:function(evt){
-            evt.preventDefault();
-            get_page('servicios/listarServicios','tabla_servicios');
-        }
-    });
 
 	$("#lista_tipo_servicios").bind({
 		click:function(evt){
@@ -14,6 +8,12 @@ $(function(){
 		}
 	});
 
+	$("#lista_servicios_por_tipo").bind({
+        click:function(evt){
+            evt.preventDefault();
+            get_page('servicios/listarServicios','tabla_servicios_por_tipo');
+        }
+    });
 })
 
 function listarTipoServicios(){
