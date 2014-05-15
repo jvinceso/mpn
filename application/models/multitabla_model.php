@@ -102,7 +102,18 @@
 			return $query->result_array();	
 		}
 
-
+   		public function cboTipoServicioUpd(){
+        $query = $this->db->query("select nMulId as ID,cMulDescripcion as descripción from multitabla where cMulEstado = 1 and nMulIdPadre = 47");
+        if ($query) {
+            $data   = $query->result_array();
+            // print_p($data);exit();
+            $combo  = creaCombo($data);
+            $result = form_dropdown("cbo_upd_serv_tipo", $combo,$this->get_nMulId(), 'id="cbo_upd_serv_tipo" class="chosen-select" style="width:160px"');
+            return $result;
+        } else {
+            return false;
+        }
+	}
 
 	}
 ?>

@@ -105,10 +105,18 @@
 
 		function getServicios($nSetId){		
 			$query = $this->db->query("
-						select c.nCalId ,c.cCalNombre ,s.nSecId, v.nViaId ,c.dCalFechaRegistro from calle c
-						inner join  sector s on c.nSecId = s.nSecId
-						inner join  via v on c.nViaId = v.nViaId
-						where nCalId = '".$nCalId."' and c.nCalEstado = 1
+						select 
+							st.nSetId
+							,m.cMulDescripcion as servicio 
+							,mt.nMulId
+							,ifnull(cst.fCstPago,'0') as costo
+						from servicios_tipo st 
+										inner join multitabla m on m.nMulId = st.nMulServicio
+										inner join multitabla mt on mt.nMulId = st.nMulTipoServicio
+										left join costo_servicios_tipo cst on cst.nSetId = st.nSetId and cst.nCstAnio = year(now())
+										where st.cSetEstado = 1 and st.nSetId = '".$nSetId."'
+									order by m.cMulDescripcion asc;
+
 									
 			");
 		if ($query->num_rows() > 0) {

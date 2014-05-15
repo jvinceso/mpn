@@ -97,7 +97,7 @@ class Servicios extends CI_Controller {
 		$tabla_data = $this->objServiosTipo->qryServiciosTipo();
 		$funciones = array(		
 			'initEvtOpcPopupId("money","servicios/getViewCosto/","Agregar Costo por Año",480,200,"func_close")',
-			'initEvtOpcPopupId("edit","servicios/getServicios/","Editar Servicios",920,400,"func_close")',
+			'initEvtOpcPopupId("edit","servicios/getServicios/","Editar Servicios",600,300,"func_close")',
 			'initEvtDel("confirmarDelete")'
 		);
 		$nameTable = 'tabla-servicios';
@@ -138,12 +138,32 @@ class Servicios extends CI_Controller {
 	function getServicios($nSetId) {
 		// echo $nPerId;
 		$fila = $this->objServiosTipo->getServicios($nSetId);
-        // print_p($fila);
+         // print_p($fila);
 		if ($fila) {
 			$filax["fila"] = $fila;
-			$this->load->view('agua/calle/upd_view', $filax);
+			$this->load->view('agua/servicios/upd_servicios_view', $filax);
 		} else {
 			echo "Error";
+		}
+	}
+
+	function cboTipoServicioUpd() {
+		$this->objMultitabla->set_nMulId( $this->input->post('txt_upd_servtipo_nMulId') );
+		$result = $this->objMultitabla->cboTipoServicioUpd();
+		echo $result;
+	}
+
+	function updServicio() {
+		$this->objCalle->set_nCalId($this->input->post('txt_upd_nCalId'));
+		$this->objCalle->set_cCalNombre($this->input->post('txt_upd_cal_nom'));
+		$this->objCalle->set_nSecId($this->input->post('cbo_upd_cal_nSecId'));
+		$this->objCalle->set_nViaId($this->input->post('cbo_upd_via_nViaId'));
+		$result = $this->objCalle->updCalle();
+		// print_p($_POST);exit();
+		if ($result) {
+			echo "1";
+		} else {
+			echo "0";
 		}
 	}
 

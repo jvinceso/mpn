@@ -34,5 +34,3 @@
 </form>
 <script src="<?php echo URL_JS; ?>bootstrap-tag.min.js"></script>
 <script src="<?php echo URL_JS; ?>ace-elements.min.js"></script>
-<!-- // <script src="<?php echo URL_JS; ?>jquery.maskedinput.min.js"></script> -->
-<!-- // <script src="<?php echo URL_JS; ?>chosen.jquery.min.js"></script> -->
