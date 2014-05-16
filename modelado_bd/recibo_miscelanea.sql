@@ -14,10 +14,10 @@ group by p.nPerId;
 -- Detalle Recibo ------------nSecId,cRedPrecio
 select * from servicios_contribuyente sc
 	inner join servicios_tipo st ON sc.nSetId = st.nSetId
-	-- inner join multitabla m on m.nMulId = st.nMulServicio
-	-- inner join multitabla mt on mt.nMulId = st.nMulTipoServicio
+	 inner join multitabla m on m.nMulId = st.nMulServicio
+	 inner join multitabla mt on mt.nMulId = st.nMulTipoServicio
 	inner join costo_servicios_tipo cst on st.nSetId = cst.nSetId
-where sc.nPerId = 35  and sc.cSecEstado = 1 and cst.nCstAnio = 2013; -- and st.nMulServicio = 52 ;
+where sc.cSecEstado = 1 and cst.nCstAnio = 2013; -- and st.nMulServicio = 52 ;
 select sc.nSecId,cst.fCstPago from servicios_contribuyente sc
 	inner join servicios_tipo st ON sc.nSetId = st.nSetId
 	inner join costo_servicios_tipo cst on st.nSetId = cst.nSetId

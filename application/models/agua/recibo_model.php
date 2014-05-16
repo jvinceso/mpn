@@ -44,7 +44,7 @@ class Recibo_model extends CI_Model {
 	}
 
 	public function ins_procesar_recibos($anio){
-		echo "procesando......";
+		$rpta_proceso = 0;
 		$sql_recibo = "";
 		$sql_reciboDetalle = "";
 		$nPerIdTrabajador = $this->session->userdata('IdPersona');
@@ -83,10 +83,12 @@ class Recibo_model extends CI_Model {
 			$this->db->trans_complete();
 			// print_p( $this->db->_error_number() );
 			// print_p( $this->db->_error_message() );
-			echo "<br>proceso terminado!!!!";
+			$rpta_proceso = 1;
 		}else{
-			echo "ya se registraron los recibos de dicho anio";
+			// ya se registraron los recibos de dicho anio
+			$rpta_proceso = 3;
 		}
+		return $rpta_proceso;
 	}
 
 	public function qryRecibos(){

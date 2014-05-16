@@ -15,6 +15,7 @@ class Recibo extends CI_Controller {
 		$this->loaders->verificaAcceso();
 		$data['main_content'] = 'agua/recibos/panel_view';
 		$data['aplicacion'] = 'Agua';
+		$data['anios'] = $this->objCosto->getAniosFiscales();
 		$data['objeto'] = 'Recibos';
 		$this->objMultitabla->set_nMulIdPadre(51);//nMulIdPadre->Servicios=51
 		$data['cboServicio'] = $this->objMultitabla->qrymultitabla();
@@ -26,8 +27,19 @@ class Recibo extends CI_Controller {
 		if( !empty($cboAniosFiscales) )	echo form_dropdown("cbo_anios", creaCombo($cboAniosFiscales),'', 'id="cbo_anios" class="chosen-select w360"');
 		else echo "2";
 	}
-	function procesar_recibos( $anio ){
-		$this->objRecibo->ins_procesar_recibos( $anio );
+	function procesar_recibos(  ){
+		$anio = date('Y');
+		// $anio = $this->input->post('cbo_anio') ;
+		$rpt_procesar = 0;
+		if ( isset( $anio ) ) {
+			// procesando......
+			$rpt_procesar = $this->objRecibo->ins_procesar_recibos( $anio );
+		}else{
+			$rpt_procesar = 4;
+		}
+		echo $rpt_procesar;
+		exit(0);
+		// exit();
 	}
 
 	function efectuarPago(){
