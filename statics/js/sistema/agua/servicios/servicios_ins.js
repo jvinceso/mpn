@@ -45,9 +45,9 @@ $(function(){
 	        alert("Houston, tenemos un problema... Creo que has roto algo...");
 	    }
 	})
-    $("#frm_ins_servicio").validate({
+    $("#frm_ins_servicioportipo").validate({
         rules: {           
-            txt_ins_serv_nom: {
+            txt_ins_servpt_nom: {
                 required: true
             },
             tags:{
@@ -55,7 +55,7 @@ $(function(){
             }
         },
         messages: {
-            txt_ins_sec_nom:{
+            txt_ins_servpt_nom:{
                 required:"Ingrese el nombre"
             },
             tags:{
@@ -63,14 +63,14 @@ $(function(){
             }
         },
         submitHandler: function(form){ 
-            DesabilitarBoton('btn_ins_serv_registrar')
+            DesabilitarBoton('btn_ins_servpt_registrar')
              // var np = $('tr', $("#tbpermisos")).length};
             $.ajax({
                 type: "POST",
-                url:  "servicios/insServicio",
+                url:  "servicios/insServicioporTipo",
                 data:{
                     json:{
-                            txt_ins_serv_nom : $("#txt_ins_serv_nom").val(),
+                            txt_ins_servpt_nom : $("#txt_ins_servpt_nom").val(),
                             tipos_servicios  : obtieneCampos()
                          }
                 } ,
@@ -79,17 +79,17 @@ $(function(){
                     switch (data) { 
                         case "0":
                         mensaje("Error al guardar el Servicio!","a"); 
-                        HabilitarBoton('btn_ins_serv_registrar');                        
+                        HabilitarBoton('btn_ins_servpt_registrar');                        
                         break;
                         default:                        
                         mensaje("Se Registro Correctamente el Servicio","e");
-                        HabilitarBoton('btn_ins_serv_registrar');
+                        HabilitarBoton('btn_ins_servpt_registrar');
                         // limpiarForm('#frm_ins_trabajador');
                     }
                 },
                 error: function(msg){                
                     mensaje("r","Error Inesperando registrando el Servicio!, vuelva a intentarlo"); 
-                    HabilitarBoton('btn_ins_serv_registrar');                       ;
+                    HabilitarBoton('btn_ins_servpt_registrar');                       ;
                 }
             });
         }
@@ -111,7 +111,7 @@ $(function(){
              // var np = $('tr', $("#tbpermisos")).length};
             $.ajax({
                 type: "POST",
-                url:  "servicios/insServicioTipo",
+                url:  "servicios/insTipoServicio",
                 data: $(form).serialize(),
                 success: function(data){ 
                 // alert(data)                   
@@ -126,11 +126,51 @@ $(function(){
                         // limpiarForm('#frm_ins_trabajador');
                     }
 
-
                 },
                 error: function(msg){                
                     mensaje("r","Error Inesperando registrando el Tipo de Servicio!, vuelva a intentarlo"); 
                     HabilitarBoton('btn_ins_tserv_registrar');                       ;
+                }
+            });
+        }
+    });
+
+    $("#frm_ins_servicio").validate({
+        rules: {           
+            txt_ins_serv_nom: {
+                required: true
+            }
+        },
+        messages: {
+            txt_ins_serv_nom:{
+                required:"Ingrese el nombre"
+            }
+        },
+        submitHandler: function(form){ 
+            DesabilitarBoton('btn_ins_serv_registrar')
+             // var np = $('tr', $("#tbpermisos")).length};
+            $.ajax({
+                type: "POST",
+                url:  "servicios/insServicio",
+                data: $(form).serialize(),
+                success: function(data){ 
+                // alert(data)                   
+                    switch (data) { 
+                        case "0":
+                        mensaje("Error al guardar el Tipo de Servicio!","a"); 
+                        HabilitarBoton('btn_ins_serv_registrar');                        
+                        break;
+                        default:                        
+                        mensaje("Se Registro Correctamente el Tipo de Servicio","e");
+                        HabilitarBoton('btn_ins_serv_registrar');
+                        // limpiarForm('#frm_ins_trabajador');
+                    }
+
+
+                },
+                error: function(msg){                
+                    mensaje("r","Error Inesperando registrando el Tipo de Servicio!, vuelva a intentarlo"); 
+                    HabilitarBoton('btn_ins_serv_registrar');                       ;
                 }
             });
         }
