@@ -46,20 +46,54 @@ function listarVias(){
 	});	
 }
 
-function confirmarDelete(nPerId){
+function confirmarDeleteVia(nViaId){
 	$.ajax({
 		type:"post",
-		url: 'contribuyente/delContribuyente',
+		url: 'sectoresyvias/delVia',
 		cache:false,
 		data:{
-			nPerId : nPerId
+			nViaId : nViaId
 		},
 		success:function(data){
-			mensaje("Se Eliminó correctamente la Aplicacion","e");
-			listarSectores();
+
+			switch (data) { 
+				case "0":
+				mensaje("Error al eliminar la Via!","a");                   
+				break;
+				default:                        
+				mensaje("Se Eliminó correctamente la Via","e");
+				listarVias();
+                        // limpiarForm('#frm_ins_trabajador');
+                    }
+
+                },
+                error:function(){
+                	alert("error");
+                }
+            });
+}
+
+function confirmarDeleteSector(nSecId){
+	$.ajax({
+		type:"post",
+		url: 'sectoresyvias/delSector',
+		cache:false,
+		data:{
+			nSecId : nSecId
 		},
-		error:function(){
-			alert("error");
-		}
-	});
+		success:function(data){
+			switch (data) { 
+				case "0":
+				mensaje("Error al eliminar el Sector!","a");                   
+				break;
+				default:                        
+				mensaje("Se Eliminó correctamente el Sector","e");
+				listarSectores();
+                        // limpiarForm('#frm_ins_trabajador');
+                    }
+                },
+                error:function(){
+                	alert("error");
+                }
+            });
 }

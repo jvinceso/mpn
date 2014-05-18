@@ -23,7 +23,7 @@
 
 					<ul class="dropdown-menu dropdown-info">
 						<li>
-							<a data-toggle="tab" href="#conceptor">Concepto</a>
+							<a id="registra_concepto" data-toggle="tab" href="#conceptor">Concepto</a>
 						</li>
 
 						<li>

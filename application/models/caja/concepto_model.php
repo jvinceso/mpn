@@ -69,12 +69,21 @@
 
 	public function listarConcepto(){		
 		$query = $this->db->query("
-		select c.nConId as ID, c.cConDescripcion as Nombre, c.fConCosto as costo,m.cMulDescripcion, c.dConFechaRegistro as Fecha from concepto c
+		select c.nConId as ID, c.cConDescripcion as Nombre, c.fConCosto as costo,m.cMulDescripcion as 'Tipo de Pago', c.dConFechaRegistro as Fecha from concepto c
 		inner join multitabla m on c.nMulIdTipoPago = m.nMulId
 		where c.cConEstado = 1"
 			);
 		if ($query) {
 			return $query->result_array();
+		} else {
+			return false;
+		}
+	}
+
+	public function getConcepto($nConId){
+		$query = $this->db->query("select nConId,cConDescripcion,fConCosto,nMulIdTipoPago from concepto where cConEstado = 1 and nConId='".$nConId."' ");
+		if ($query->num_rows() > 0) {
+			return $query->row_array();
 		} else {
 			return false;
 		}

@@ -7,7 +7,7 @@ class Calle_model extends CI_Model {
 	private $cCalNombre = '';
 	private $nViaId = '';
 	private $nSecId = '';
-	private $nCalEstado = '';
+	private $cCalEstado = '';
 	private $dCalFechaRegistro = '';
 
 		//Constructor de Clase
@@ -45,7 +45,7 @@ class Calle_model extends CI_Model {
 		//Obtener Objeto CALLE
 	public function get_ObjCalle(){
 		$query = $this->db->query("select c.nCalId,CONCAT(v.cViaNombre,' ',c.cCalNombre) as nombre from calle as c  
-			inner join via as v on c.nViaId = v.nViaId where c.nCalEstado = 1 and c.nSecId = ?", array( $this->nSecId ));
+			inner join via as v on c.nViaId = v.nViaId where c.cCalEstado = 1 and c.nSecId = ?", array( $this->nSecId ));
 		if ($query->num_rows() > 0){
 			return $query->result_array();
 		}else{
@@ -54,7 +54,7 @@ class Calle_model extends CI_Model {
 	}
 
 	public function cboTipoSector(){		
-		$query = $this->db->query("select nSecId,cSecNombre from sector");
+		$query = $this->db->query("select nSecId,cSecNombre from sector where cSecEstado = 1");
 		if ($query) {
 			$data   = $query->result_array();
             // print_p($data);exit();
@@ -66,7 +66,7 @@ class Calle_model extends CI_Model {
 		}
 	}
 	public function cboTipoVia(){		
-		$query = $this->db->query("select nViaId,cViaNombre from via");
+		$query = $this->db->query("select nViaId,cViaNombre from via where cViaEstado = 1" );
 		if ($query) {
 			$data   = $query->result_array();
             // print_p($data);exit();
@@ -94,7 +94,7 @@ class Calle_model extends CI_Model {
 			select c.nCalId as ID,c.cCalNombre as Nombre,s.cSecNombre as Sector,v.cViaNombre as Vía,c.dCalFechaRegistro as fecha from calle c
 			inner join  sector s on c.nSecId = s.nSecId
 			inner join  via v on c.nViaId = v.nViaId
-			where c.nCalEstado = 1"
+			where c.cCalEstado = 1"
 			);
 		if ($query) {
 			return $query->result_array();
@@ -108,7 +108,7 @@ class Calle_model extends CI_Model {
 						select c.nCalId ,c.cCalNombre ,s.nSecId, v.nViaId ,c.dCalFechaRegistro from calle c
 						inner join  sector s on c.nSecId = s.nSecId
 						inner join  via v on c.nViaId = v.nViaId
-						where nCalId = '".$nCalId."' and c.nCalEstado = 1
+						where nCalId = '".$nCalId."' and c.cCalEstado = 1
 									
 			");
 		if ($query->num_rows() > 0) {
@@ -123,6 +123,15 @@ class Calle_model extends CI_Model {
             'cCalNombre'  =>  $this->get_cCalNombre(),
             'nSecId'  	  =>  $this->get_nSecId(),
             'nViaId'      =>  $this->get_nViaId()
+            );
+        $this->db->where('nCalId', $this->get_nCalId());
+        $this->db->update('calle', $data); 
+        return true;
+    }
+
+    function delCalle(){
+        $data = array(
+            'cCalEstado'  =>  0
             );
         $this->db->where('nCalId', $this->get_nCalId());
         $this->db->update('calle', $data); 

@@ -62,12 +62,24 @@ class Concepto extends CI_Controller {
 		$this->objMultitabla->set_nMulIdPadre('1');
 		$tabla_data = $this->objMultitabla->qrymultitabla();
 		$funciones = array(
-			'initEvtOpcPopupId("edit","contribuyente/getContribuyente/","Editar Contribuyente",920,400,"func_close")',
-			'initEvtDel("confirmarDelete")'
+			'initEvtOpcPopupId("edit","concepto/getTipoPago/","Editar Tipo de Pago",500,200,"func_close")',
+			'initEvtDel("confirmarDeleteTipoPago")'
 			);
 		$nameTable = 'tabla-TipoPago';
 		$pk = 'ID';
 		CrudGridMultipleJson($tabla_data,$nameTable,$pk,$opciones,$funciones);
+	}
+
+	function getTipoPago($nMulId) {
+		// echo $nPerId;
+		$fila = $this->objMultitabla->getmultitabla($nMulId);
+        // print_p($fila);
+		if ($fila) {
+			$filax["fila"] = $fila;
+			$this->load->view('caja/concepto/upd_tipopago_view', $filax);
+		} else {
+			echo "Error";
+		}
 	}
 
 	function listarConcepto(){
@@ -86,12 +98,52 @@ class Concepto extends CI_Controller {
 		
 		$tabla_data = $this->objConcepto->listarConcepto();
 		$funciones = array(
-			'initEvtOpcPopupId("edit","contribuyente/getContribuyente/","Editar Contribuyente",920,400,"func_close")',
+			'initEvtOpcPopupId("edit","concepto/getConcepto/","Editar Concepto",600,200,"func_close")',
 			'initEvtDel("confirmarDelete")'
 			);
 		$nameTable = 'tabla-Concepto';
 		$pk = 'ID';
 		CrudGridMultipleJson($tabla_data,$nameTable,$pk,$opciones,$funciones);
+	}
+
+	function getConcepto($nConId) {
+		// echo $nPerId;
+		$fila = $this->objConcepto->getConcepto($nConId);
+        // print_p($fila);
+		if ($fila) {
+			$filax["fila"] = $fila;
+			$this->load->view('caja/concepto/upd_concepto_view', $filax);
+		} else {
+			echo "Error";
+		}
+	}
+
+	function updTipoPago() {
+		$this->objMultitabla->set_nMulId($this->input->post('txt_upd_tpago_nMulId'));
+		$this->objMultitabla->set_cMulDescripcion($this->input->post('txt_upd_tpago_nom'));
+		$result = $this->objMultitabla->updMultitabla();
+		// print_p($_POST);exit();
+		if ($result) {
+			echo "1";
+		} else {
+			echo "0";
+		}
+	}
+
+	function delTipoPago(){
+		$this->objMultitabla->set_nMulId( $this->input->post('nMulId') );
+		if ($this->objMultitabla->delMultitabla()) {	
+			echo "1";
+		}else{
+			echo "0";
+		}
+	}
+
+	function cboTipoPagoUpd() {
+		$this->objMultitabla->set_nMulId( $this->input->post('txt_upd_con_nMulId') );
+		$this->objMultitabla->set_nMulIdPadre( '1' );
+		$result = $this->objMultitabla->cboTipoPagoUpd();
+		echo $result;
 	}
 }
 ?>

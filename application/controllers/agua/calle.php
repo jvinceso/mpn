@@ -100,5 +100,14 @@ class Calle extends CI_Controller {
 			echo "0";
 		}
 	}
+
+	function delCalle(){
+		$this->objCalle->set_nCalId( $this->input->post('nCalId') );
+		if ($this->objCalle->delCalle()) {	
+			echo "1";
+		}else{
+			echo "0";
+		}
+	}
 }
 ?>

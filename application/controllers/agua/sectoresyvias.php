@@ -54,7 +54,7 @@ class Sectoresyvias extends CI_Controller {
 		$tabla_data = $this->objSector->qrySector();
 		$funciones = array(
 			'initEvtOpcPopupId("edit","sectoresyvias/getSector/","Editar Sector",700,200,"func_close")',
-			'initEvtDel("confirmarDelete")'
+			'initEvtDel("confirmarDeleteSector")'
 			);
 		$nameTable = 'tabla-Sector';
 		$pk = 'ID';
@@ -77,7 +77,7 @@ class Sectoresyvias extends CI_Controller {
 		$tabla_data = $this->objVia->qryVias();
 		$funciones = array(
 			'initEvtOpcPopupId("edit","sectoresyvias/getVia/","Editar Vía",700,200,"func_close")',
-			'initEvtDel("confirmarDelete")'
+			'initEvtDel("confirmarDeleteVia")'
 			);
 		$nameTable = 'tabla-Vias';
 		$pk = 'ID';
@@ -131,5 +131,23 @@ class Sectoresyvias extends CI_Controller {
             echo "0";
         }
     }
+
+    function delSector(){
+		$this->objSector->set_nSecId( $this->input->post('nSecId') );
+		if ($this->objSector->delSector()) {	
+			echo "1";
+		}else{
+			echo "0";
+		}
+	} 
+
+	function delVia(){
+		$this->objVia->set_nViaId( $this->input->post('nViaId') );
+		if ($this->objVia->delVia()) {	
+			echo "1";
+		}else{
+			echo "0";
+		}
+	}
 }
 ?>

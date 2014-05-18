@@ -13,6 +13,13 @@ $(function(){
 		}
 	});
 
+	$("#registra_concepto").bind({
+		click:function(evt){
+			evt.preventDefault();
+			cboTipoPago();
+		}
+	});
+
 })
 
 function listarTipoPago(){
@@ -45,4 +52,29 @@ function listarConcepto(){
 			alert("Houston, tenemos un problema... Creo que has roto algo...");
 		}
 	});	
+}
+
+function confirmarDeleteTipoPago(nMulId){
+	$.ajax({
+		type:"post",
+		url: 'concepto/delTipoPago',
+		cache:false,
+		data:{
+			nMulId : nMulId
+		},
+		success:function(data){
+			switch (data) { 
+				case "0":
+				mensaje("Error al eliminar el Tipo de Pago!","a");                   
+				break;
+				default:                        
+				mensaje("Se Eliminó correctamente el Tipo de Pago","e");
+				listarTipoPago();
+                        // limpiarForm('#frm_ins_trabajador');
+            }
+                },
+                error:function(){
+                	alert("error");
+                }
+            });
 }

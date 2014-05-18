@@ -122,6 +122,19 @@ class Multitabla_model extends CI_Model {
 		} else {
 			return false;
 		}
+	}	
+
+	public function cboTipoPagoUpd(){
+		$query = $this->db->query("select nMulId as ID,cMulDescripcion as descripción from multitabla where cMulEstado = 1 and nMulIdPadre = '".$this->nMulIdPadre."'");
+		if ($query) {
+			$data   = $query->result_array();
+            // print_p($data);exit();
+			$combo  = creaCombo($data);
+			$result = form_dropdown("cbo_upd_tipo_pago", $combo,$this->get_nMulId(), 'id="cbo_upd_tipo_pago" class="chosen-select" style="width:160px"');
+			return $result;
+		} else {
+			return false;
+		}
 	}
 
 	public	function updMultitabla(){

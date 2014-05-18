@@ -23,20 +23,27 @@ function listarCalles(){
 	});	
 }
 
-function confirmarDelete(nPerId){
+function confirmarDelete(nCalId){
 	$.ajax({
 		type:"post",
-		url: 'contribuyente/delContribuyente',
+		url: 'calle/delCalle',
 		cache:false,
 		data:{
-			nPerId : nPerId
+			nCalId : nCalId
 		},
 		success:function(data){
-			mensaje("Se Eliminó correctamente la Aplicacion","e");
-			listarSectores();
-		},
-		error:function(){
-			alert("error");
-		}
-	});
+			switch (data) { 
+				case "0":
+				mensaje("Error al eliminar la calle!","a");                   
+				break;
+				default:                        
+				mensaje("Se Eliminó correctamente la Calle","e");
+				listarCalles();
+                        // limpiarForm('#frm_ins_trabajador');
+            }
+                },
+                error:function(){
+                	alert("error");
+                }
+            });
 }
