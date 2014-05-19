@@ -74,7 +74,7 @@ class Sector_model extends CI_Model {
     }
 
    	function cboSectorUpd(){
-        $query = $this->db->query("select nSecId,cSecNombre from sector");
+        $query = $this->db->query("select nSecId,cSecNombre from sector where cSecEstado = 1");
         if ($query) {
             $data   = $query->result_array();
             // print_p($data);exit();
@@ -85,6 +85,15 @@ class Sector_model extends CI_Model {
             return false;
         }
 	}
+
+	function delSector(){
+        $data = array(
+            'cSecEstado'  =>  0
+            );
+        $this->db->where('nSecId', $this->get_nSecId());
+        $this->db->update('sector', $data); 
+        return true;
+    }
 
 }
 ?>

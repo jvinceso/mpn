@@ -1,11 +1,11 @@
 <script type="text/javascript" src='<?php echo URL_JS; ?>sistema/agua/servicios/servicios_ins.js'></script>
 
-<form id="frm_ins_servicio" name = "frm_ins_servicio" class="form-horizontal" role="form">
+<form id="frm_ins_servicioportipo" name = "frm_ins_servicioportipo" class="form-horizontal" role="form">
 	<div class="form-group">
 		<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nombre del Servicio</label>
 
 		<div class="col-sm-9">
-			<input type="text" id="txt_ins_serv_nom" name = "txt_ins_serv_nom" placeholder="Ingrese el nombre" class="col-xs-10 col-sm-5" />
+			<input type="text" id="txt_ins_servpt_nom" name = "txt_ins_servpt_nom" placeholder="Ingrese el nombre" class="col-xs-10 col-sm-5" />
 		</div>
 	</div>	
 	<div class="form-group">
@@ -20,7 +20,7 @@
 	<div class="space-4"></div>
 	<div class="clearfix form-actions">
 		<div class="col-md-offset-3 col-md-9">
-			<button id = "btn_ins_serv_registrar" class="btn btn-info" data-loading-text="Loading..." type="submit">
+			<button id = "btn_ins_servpt_registrar" class="btn btn-info" data-loading-text="Loading..." type="submit">
 				<i class="icon-ok bigger-110"></i>
 				Registrar
 			</button>

@@ -73,7 +73,7 @@ class Via_model extends CI_Model {
     }
 
     function cboViaUpd(){
-        $query = $this->db->query("select nViaId,cViaNombre from via");
+        $query = $this->db->query("select nViaId,cViaNombre from via where cViaEstado = 1");
         if ($query) {
             $data   = $query->result_array();
             // print_p($data);exit();
@@ -84,5 +84,14 @@ class Via_model extends CI_Model {
             return false;
         }
 	}
+
+	function delVia(){
+        $data = array(
+            'cViaEstado'  =>  0
+            );
+        $this->db->where('nViaId', $this->get_nViaId());
+        $this->db->update('via', $data); 
+        return true;
+    }
 }
 ?>

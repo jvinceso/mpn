@@ -54,7 +54,7 @@ class Calle_model extends CI_Model {
 	}
 
 	public function cboTipoSector(){		
-		$query = $this->db->query("select nSecId,cSecNombre from sector");
+		$query = $this->db->query("select nSecId,cSecNombre from sector where cSecEstado = 1");
 		if ($query) {
 			$data   = $query->result_array();
             // print_p($data);exit();
@@ -66,7 +66,7 @@ class Calle_model extends CI_Model {
 		}
 	}
 	public function cboTipoVia(){		
-		$query = $this->db->query("select nViaId,cViaNombre from via");
+		$query = $this->db->query("select nViaId,cViaNombre from via where cViaEstado = 1" );
 		if ($query) {
 			$data   = $query->result_array();
             // print_p($data);exit();
@@ -123,6 +123,15 @@ class Calle_model extends CI_Model {
             'cCalNombre'  =>  $this->get_cCalNombre(),
             'nSecId'  	  =>  $this->get_nSecId(),
             'nViaId'      =>  $this->get_nViaId()
+            );
+        $this->db->where('nCalId', $this->get_nCalId());
+        $this->db->update('calle', $data); 
+        return true;
+    }
+
+    function delCalle(){
+        $data = array(
+            'cCalEstado'  =>  0
             );
         $this->db->where('nCalId', $this->get_nCalId());
         $this->db->update('calle', $data); 

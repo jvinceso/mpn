@@ -61,7 +61,7 @@
 			 return  $query->result_array();
 		}
 
-		public function insServiciosTipo( $serviciosTipo ){
+		public function insServicioporTipo( $serviciosTipo ){
 			$this->db->insert_batch('servicios_tipo', $serviciosTipo);
 			return $this->db->insert_id();
 		}
@@ -79,7 +79,7 @@
 										inner join multitabla m on m.nMulId = st.nMulServicio
 										inner join multitabla mt on mt.nMulId = st.nMulTipoServicio
 										left join costo_servicios_tipo cst on cst.nSetId = st.nSetId and cst.nCstAnio = year(now())
-										where st.cSetEstado = 1
+										where st.cSetEstado = 1 and m.cMulEstado = 1 and mt.cMulEstado = 1 and cst.cCstEstado = 1
 									order by m.cMulDescripcion asc;
 
 			");
@@ -103,7 +103,7 @@
 			return  $query->result_array();
 		}		
 
-		function getServicios($nSetId){		
+		function getServiciosporTipo($nSetId){		
 			$query = $this->db->query("
 						select 
 							st.nSetId
@@ -125,6 +125,24 @@
 			return false;
 		}
 	}
+
+	public	function updServicioporTipo(){
+        $data = array(
+            'nMulTipoServicio'  =>  $this->get_nMulTipoServicio()
+            );
+        $this->db->where('nSetId', $this->get_nSetId());
+        $this->db->update('servicios_tipo', $data); 
+        return true;
+    }
+
+     public function delServicioPorTipo(){
+        $data = array(
+            'cSetEstado' => 0
+            );
+        $this->db->where( 'nSetId', $this->get_nSetId() );
+        $this->db->update( 'servicios_tipo', $data );
+        return true;
+    }
 
 	}
 ?>
