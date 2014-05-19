@@ -7,7 +7,7 @@ class Calle_model extends CI_Model {
 	private $cCalNombre = '';
 	private $nViaId = '';
 	private $nSecId = '';
-	private $nCalEstado = '';
+	private $cCalEstado = '';
 	private $dCalFechaRegistro = '';
 
 		//Constructor de Clase
@@ -45,7 +45,7 @@ class Calle_model extends CI_Model {
 		//Obtener Objeto CALLE
 	public function get_ObjCalle(){
 		$query = $this->db->query("select c.nCalId,CONCAT(v.cViaNombre,' ',c.cCalNombre) as nombre from calle as c  
-			inner join via as v on c.nViaId = v.nViaId where c.nCalEstado = 1 and c.nSecId = ?", array( $this->nSecId ));
+			inner join via as v on c.nViaId = v.nViaId where c.cCalEstado = 1 and c.nSecId = ?", array( $this->nSecId ));
 		if ($query->num_rows() > 0){
 			return $query->result_array();
 		}else{
@@ -94,7 +94,7 @@ class Calle_model extends CI_Model {
 			select c.nCalId as ID,c.cCalNombre as Nombre,s.cSecNombre as Sector,v.cViaNombre as Vía,c.dCalFechaRegistro as fecha from calle c
 			inner join  sector s on c.nSecId = s.nSecId
 			inner join  via v on c.nViaId = v.nViaId
-			where c.nCalEstado = 1"
+			where c.cCalEstado = 1"
 			);
 		if ($query) {
 			return $query->result_array();
@@ -108,7 +108,7 @@ class Calle_model extends CI_Model {
 						select c.nCalId ,c.cCalNombre ,s.nSecId, v.nViaId ,c.dCalFechaRegistro from calle c
 						inner join  sector s on c.nSecId = s.nSecId
 						inner join  via v on c.nViaId = v.nViaId
-						where nCalId = '".$nCalId."' and c.nCalEstado = 1
+						where nCalId = '".$nCalId."' and c.cCalEstado = 1
 									
 			");
 		if ($query->num_rows() > 0) {

@@ -91,7 +91,7 @@ class Contribuyente extends CI_Controller {
 			);
 		$nameTable = 'tabla-contrib';
 		$pk = 'ID';
-		CrudGridMultipleJson($tabla_data,$nameTable,$pk,$opciones,$funciones);
+		CrudGridMultipleJson($tabla_data,$nameTable,$pk,$opciones,$funciones,true);
 	}
 
 	function listarDirecciones(){
@@ -115,9 +115,7 @@ class Contribuyente extends CI_Controller {
 	}
 
 	function getContribuyente($nPerId) {
-		// echo $nPerId;
 		$fila = $this->objContribuyente->getContribuyente($nPerId);
-        // print_p($fila);
 		if ($fila) {
 			$filax["fila"] = $fila;
 			$this->load->view('agua/contribuyente/upd_view', $filax);
@@ -188,13 +186,18 @@ class Contribuyente extends CI_Controller {
 	}
 	function get_recibos_contribuyente(){
 		$this->load->model('agua/recibo_model','objRecibos');
-
 		$json = $this->input->post('json');
+		$data['opcion']  = isset( $json['opt'] )? $json['opt']:'normal';
+		$anio  = isset( $json['anio'] )? $json['anio'] : null;
+		$this->load->model('agua/costo_servicios_tipo_model','objCosto');
+		if ($data['opcion']=='normal') 
+			$data['anios'] = $this->objCosto->getAniosFiscales();
+
 		$this->objRecibos->set_nPerIdContribuyente( $json['nPerId'] );
-		// $json['nMulId'] = 46;
 		$data['persona'] = $json;
-		$data['recibos_contribuyente'] = $this->objRecibos->qryRecibos();
+		$data['recibos_contribuyente'] = $this->objRecibos->qryRecibos( $anio );
 		$this->load->view('agua/contribuyente/get_recibos_contribuyente', $data, FALSE);
+
 	}
 	function get_calles(){
 		$this->load->model('agua/calle_model','objCalle');

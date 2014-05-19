@@ -3,7 +3,7 @@ $(function(){
 	$("#frm_reg_direccion_par").validate({
 	    submitHandler: function(form) {
 	        DesabilitarBoton('btn_asignar_direccion');
-	        var direccion = $("#cbo_sector option:selected").text()+' '+$("#cbo_calle option:selected").text()+' '+$("#txt_valor_direccion").val();
+	        var direccion = $("#txt_valor_direccion").val();
 	        $.ajax({
 	            url:'contribuyente/insdireccion',
 	            cache:false,

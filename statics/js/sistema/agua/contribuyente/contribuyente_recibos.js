@@ -1,5 +1,11 @@
 $(function(){
-
+	$(".chosen-select").chosen();
+	$("#cbo_anio_recibo").bind({
+		    change:function(evt){
+		        evt.preventDefault();
+		        actualizarGrilla();
+		    }
+		});	
 });
 function pagarRecibo(fila){
 	var nRecId   = $(fila).find("td:eq(0)").text().trim();
@@ -53,4 +59,10 @@ function coloresPago(){
 	        cells[i].style.backgroundColor = 'green';
 	    }
 	}	
+}
+
+function actualizarGrilla(){
+	var anio   = $("#cbo_anio_recibo option:selected").val();
+	var nPerId = $("input[name=txt_hdn_nPerid]").val();
+	get_page('contribuyente/get_recibos_contribuyente/','c_qry_direccion_contribuyente',{"opt":'list',"anio":anio,"nPerId":nPerId });	
 }

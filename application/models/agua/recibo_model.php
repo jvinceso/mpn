@@ -77,6 +77,7 @@ class Recibo_model extends CI_Model {
 						$total +=$val['fCstPago'];
 						$this->db->query("INSERT INTO recibo_detalle(nRecId,nSecId,cRedPrecio)VALUES(".$nRecId.",".$val['nSecId'].",".$val['fCstPago'].")");
 					}
+					$total = (Double) $total;
 					$this->db->query("UPDATE recibo SET fRecDeuda = ".$total." WHERE nRecId = ".$nRecId." ");
 				}
 			}
@@ -91,7 +92,8 @@ class Recibo_model extends CI_Model {
 		return $rpta_proceso;
 	}
 
-	public function qryRecibos(){
+	public function qryRecibos( $anio = null ){
+		$anio = is_null( $anio ) ? date('Y') : $anio ;
 		// $this->db->trans_start();
 		$sql_recibo_qry = 'SELECT  		r.nRecId as "ID"
 				,@i := @i + 1 as Cuota
@@ -132,8 +134,9 @@ class Recibo_model extends CI_Model {
 			FROM recibo r
 				INNER JOIN fechas_vencimiento f ON f.nFevId = r.nFevId
 				,(select @i := 0) temp
-			WHERE r.nPerIdContribuyente = '.$this->nPerIdContribuyente.' 
+			WHERE r.nPerIdContribuyente = '.$this->nPerIdContribuyente.' AND YEAR( r.dFecFechaRegistro ) = '.$anio.'
 			ORDER BY nRecId ASC';
+			// print_p( $sql_recibo_qry );	exit();
 		$rsRecibos = $this->db->query( $sql_recibo_qry );
 
 		if ($rsRecibos->num_rows() > 0) {
@@ -152,12 +155,57 @@ class Recibo_model extends CI_Model {
 		return $query;
 
 	}
-	// $this->db->trans_start();
-	// $this->db->query('AN SQL QUERY...');
-	// $this->db->query('ANOTHER QUERY...');
-	// $this->db->query('AND YET ANOTHER QUERY...');
-	// $this->db->trans_complete();
-
+	public function getDataReport(){
+		$sql_reporte = 'SELECT rd.nRecId ,
+			p.nPerId AS CodigoPersona ,
+		   case MONTH(fv.dFevFecha_vence) 
+				WHEN 1 THEN "Enero"
+				WHEN 2 THEN "Febrero"
+				WHEN 3 THEN "Marzo"
+				WHEN 4 THEN "Abril"
+				WHEN 5 THEN "Mayo"
+				WHEN 6 THEN "Junio"
+				WHEN 7 THEN "Julio"
+				WHEN 8 THEN "Agosto"
+				WHEN 9 THEN "Septiembre"
+				WHEN 10 THEN "Octubre"
+				WHEN 11 THEN "Noviembre"
+				WHEN 12 THEN "Diciembre"
+				ELSE "Esto no es un Mes"
+		   END as Mes,
+	   		YEAR( fv.dFevFecha_vence ) as Anio,			
+       		CONCAT(p.cPerApellidoPaterno," ",p.cPerApellidoMaterno," ",p.cPerNombres) AS Nombres ,
+       		CONCAT(v.cViaNombre," ",c.cCalNombre," ",pd.cPdeValor) AS Domicilio ,
+       		s.cSecNombre AS Lugar ,
+       		CONCAT(m.cMulDescripcion," - ",mt.cMulDescripcion) AS Concepto ,
+       		rd.cRedPrecio AS Importe ,
+       		DATE_FORMAT(cast(r.dRecFechaImpresion AS datetime),"%d/%m/%Y") AS FechaEmision ,
+       		fv.dFevFecha_vence AS FechaVencimiento ,
+       		fv.dFevFecha_corte AS FechaCorte ,
+       		CONCAT("S/. ",r.fRecDeuda) AS Deuda
+		FROM recibo_detalle rd
+			INNER JOIN recibo r ON rd.nRecId = r.nRecId
+			INNER JOIN servicios_contribuyente sc ON sc.nSecId = rd.nSecId
+			INNER JOIN servicios_tipo st ON st.nSetId = sc.nSetId
+			INNER JOIN multitabla m ON m.nMulId = st.nMulServicio
+			INNER JOIN multitabla mt ON mt.nMulId = st.nMulTipoServicio
+			INNER JOIN fechas_vencimiento fv ON fv.nFevId = r.nFevId
+			INNER JOIN persona p ON p.nPerId = r.nPerIdContribuyente
+			INNER JOIN direccion_calle dc ON dc.nDicId = sc.nDicId
+			INNER JOIN persona_detalle pd ON pd.nPdeId = dc.nPdeId
+			INNER JOIN calle c ON c.nCalId = dc.nCalId
+			INNER JOIN via v ON v.nViaId = c.nViaId
+			INNER JOIN sector s ON s.nSecId = c.nSecId
+		WHERE rd.nRecId IN(157,158,159,160,161,162,163)';
+		
+		$rsRecibos = $this->db->query( $sql_reporte );
+		
+		if ($rsRecibos->num_rows() > 0) {
+			return $rsRecibos->result_array();
+		} else {
+			return false;
+		}		
+	}
 }
 
 /* End of file recibo_model.php */
