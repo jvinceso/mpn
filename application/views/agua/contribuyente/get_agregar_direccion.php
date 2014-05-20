@@ -12,36 +12,38 @@ echo $txt_hdn_persona;
 <center>
     <img src="<?php echo URL_IMG; ?>essen/16/business-contact.png" alt="">&nbsp;<b><?php echo strtoupper($persona['apellido'] . ", " . $persona['nombre']); ?></b>
     <br/><br/>
-        <?php echo form_open('', $atributosForm); ?>
+    <?php echo form_open('', $atributosForm); ?>
 
-        <table class="table-horizontal">
-            <tbody>
-                <tr>
-                    <td class="valign_top_label"><label>Sector:</label></td>
-                    <td class="valign_top_control">
-                        <?php
-                            echo $cbo_sectores;
-                        ?>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="valign_top_label"><label>Calle:</label></td>
-                    <td class="valign_top_control">
-                        <div id="c_cbo_calles">
-                            <?php echo $cbo_calle; ?>                            
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="valign_top_label"><label>Dirección</label></td>
-                    <td><?php echo $txt_direccion; ?></td>
-                </tr>
-            </tbody>
-        </table>
-        <center>
-            <?php echo $btn_asignar_direccion; ?> 
-            <span id="preload_reg_direccion_per"></span>
-        </center>
+
+
+    <table class="table-horizontal">
+        <tbody>
+            <tr>
+                <td class="valign_top_label"><label>Sector:</label></td>
+                <td class="valign_top_control">
+                    <?php
+                    echo $cbo_sectores;
+                    ?>
+                </td>
+            </tr>
+            <tr>
+                <td class="valign_top_label"><label>Calle:</label></td>
+                <td class="valign_top_control">
+                    <div id="c_cbo_calles">
+                        <?php echo $cbo_calle; ?>                            
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="valign_top_label"><label>Dirección</label></td>
+                <td><?php echo $txt_direccion; ?></td>
+            </tr>
+        </tbody>
+    </table>
+    <center>
+        <?php echo $btn_asignar_direccion; ?> 
+        <span id="preload_reg_direccion_per"></span>
+    </center>
 </center>
 <?php echo form_close(); ?>
 <div id="msg_alertas_direcciones"></div>
@@ -50,15 +52,15 @@ echo $txt_hdn_persona;
     <?php 
     $opciones = array(
         'Pagos' => array(
-             'color'=>'blue'
-            ,'icono'=>'cloud-upload'
-            ,'tooltip'=>'success'
-        )
-    );
+           'color'=>'blue'
+           ,'icono'=>'cloud-upload'
+           ,'tooltip'=>'success'
+           )
+        );
     $tabla_data = $objDireccion;
     $funciones = array(
         'initEvtOpc("cloud-upload","asignarTipo(fila)")'
-    );
+        );
     $nameTable = 'tabla-direcccion-contribuyente';
     $pk = 'ID';
     CrudGridMultipleJson($objDireccion,$nameTable,$pk,$opciones,$funciones); 
