@@ -196,7 +196,7 @@ class Recibo_model extends CI_Model {
 			INNER JOIN calle c ON c.nCalId = dc.nCalId
 			INNER JOIN via v ON v.nViaId = c.nViaId
 			INNER JOIN sector s ON s.nSecId = c.nSecId
-		WHERE rd.nRecId IN(157,158,159,160,161,162,163)';
+		WHERE rd.nRecId = ' .$this->nRecId. ' ';
 		
 		$rsRecibos = $this->db->query( $sql_reporte );
 		

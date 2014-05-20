@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="adcdb0d0-a6bd-4fc1-b7b9-1a32ac234f94">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+     aplicacion.`nAplId` AS aplicacion_nAplId,
+     aplicacion.`cAplNombre` AS aplicacion_cAplNombre,
+     aplicacion.`nAplTipo` AS aplicacion_nAplTipo,
+     aplicacion.`cAplIcono` AS aplicacion_cAplIcono,
+     aplicacion.`nAplOrden` AS aplicacion_nAplOrden,
+     aplicacion.`dAplFechaRegistro` AS aplicacion_dAplFechaRegistro,
+     aplicacion.`cAplEstado` AS aplicacion_cAplEstado
+FROM
+     `aplicacion` aplicacion]]>
+	</queryString>
+	<field name="aplicacion_nAplId" class="java.lang.Integer"/>
+	<field name="aplicacion_cAplNombre" class="java.lang.String"/>
+	<field name="aplicacion_cAplIcono" class="java.lang.String"/>
+	<group name="nameGroup" isStartNewPage="true">
+		<groupExpression><![CDATA[$F{aplicacion_nAplId}]]></groupExpression>
+		<groupHeader>
+			<band height="20">
+				<textField>
+					<reportElement x="0" y="0" width="200" height="20" uuid="3bbcf55f-d808-4322-94ef-3d2063caeff1"/>
+					<textFieldExpression><![CDATA["Name: algo" + $F{aplicacion_nAplId}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="332" height="20" uuid="a1e4de99-3b94-4bcb-820f-345d2681113d"/>
+				<textFieldExpression><![CDATA[$F{aplicacion_cAplNombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="332" y="0" width="223" height="20" uuid="6e2410a7-61c3-4916-98d8-186d7a707812"/>
+				<textFieldExpression><![CDATA[$F{aplicacion_cAplIcono}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
