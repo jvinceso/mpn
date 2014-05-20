@@ -8,26 +8,29 @@ echo $txt_hdn_direccion_persona;
 <script type="text/javascript" src="<?php echo URL_JS ?>sistema/agua/contribuyente/servicio_tipo_panel.js"></script>
 <center>
     <br/><br/>
-        <?php echo form_open('', $atributosForm); ?>
-        <table class="table-horizontal">
-            <tbody>
-                <tr>
-                    <td class="valign_top_label"><label>Servicio & Tipo :</label></td>
-                    <td class="valign_top_control">
-                        <?php
-                            echo $cboServicioTipo;
-                        ?>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <center>
-            <?php echo $btn_serviciotipo; ?>
-        </center>
+    <?php echo form_open('', $atributosForm); ?>
+
+    <div class="row">
+        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">Servicio & Tipo</label>
+        <div class="col-xs-12 col-sm-8">
+            <div class="input-group">
+                <?php
+                echo $cboServicioTipo;
+                ?>
+                <span class="input-group-btn">
+                    <button  id="btn_serviciotipo" name = "btn_serviciotipo" class="btn btn-info btn-sm" type="submit" data-loading-text="Registrando...">
+                        Agregar
+                        <i class="icon-search icon-on-right bigger-110"></i>
+                    </button>
+                </span>
+            </div>
+        </div>
+    </div>
+
 </center>
 <?php echo form_close(); ?>
 <p>&nbsp;</p>
-<caption>Servicios Asignados</caption>
+<div class="table-header">Servicios Asignados</div>
 <div id="c_qry_serviciostipo" class="table-responsive">
     <?php 
     $opciones = null;
