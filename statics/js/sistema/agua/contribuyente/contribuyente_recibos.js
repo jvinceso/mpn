@@ -22,7 +22,14 @@ function pagarRecibo(fila){
 		    },
 		    success:function(data){
 		    	console.log( data );
-				mensaje("Se Realizo el cobro de forma exitosa...","e");
+				if (data == "1") {
+					mensaje("Se Realizo el cobro de forma exitosa...","e");
+					actualizarGrilla();
+				}if (data == "3") {
+					mensaje("El Recibo "+nRecId+" ya ha sido transferido a caja ó Pagado en caja","r");
+				}else{
+					mensaje("Por favor vuelva intentar...","a");
+				}
 		    },
 		    error:function(er){
 		    	console.log(er.statusText);

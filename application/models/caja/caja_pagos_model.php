@@ -88,14 +88,15 @@ class Caja_pagos_model extends CI_Model {
 
 		$caja = array(
 			'nPerId'    => $this->nPerId,
+			'nTmuId'   => $this->nTmuId,
 			'nConId'    => $this->nConId,
 			'fCpaMonto' => $this->fCpaMonto,
 			'cCpaAno'   => $this->cCpaAno,
-			'cCpaMes'   => $this->cCpaMes
+			'cCpaMes'   => $this->cCpaMes,
+			'cCpaSerieNumero'   => $this->cCpaSerieNumero
 			);
 		$this->db->insert('caja_pagos', $caja);
-		return $this->db->insert_id();		
-		$this->db->insert();
+		return $this->db->insert_id();
 	}
 }
 ?>

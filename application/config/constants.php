@@ -19,8 +19,8 @@ define('DIR_READ_MODE', 0755);
 define('DIR_WRITE_MODE', 0777);
 
 
-define('SERVER_AP', '172.20.17.10');
-define('SERVER_DB', '172.20.17.10');
+define('SERVER_AP', 'localhost');
+define('SERVER_DB', '192.168.1.41');
 
 define('PROJECT', 'mpn');
 // define('USSER_DB', 'sa');
@@ -31,6 +31,8 @@ define('URL_IMG', 'http://'.SERVER_AP.'/'.PROJECT.'/statics/images/');
 define('URL_FONTS', 'http://'.SERVER_AP.'/'.PROJECT.'/statics/font/'); 
 define('URL_MAIN', 'http://'.SERVER_AP.'/'.PROJECT.'/'); 
 define('KEY_ENCRIPT', 'sd$:%4sdfsd%:&$_/&(&/$&#[]??'); 
+
+define('CONCEPTO_AGUA', '6'); 
 /*
 |--------------------------------------------------------------------------
 | File Stream Modes

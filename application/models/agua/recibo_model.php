@@ -97,8 +97,9 @@ class Recibo_model extends CI_Model {
 		// $this->db->trans_start();
 		$sql_recibo_qry = 'SELECT  		r.nRecId as "ID"
 				,@i := @i + 1 as Cuota
-				,f.dFevFecha_vence AS "Vencimiento"
-				,IFNULL(r.dRecFechaPago,"----/--/--") AS "Pago"
+				-- ,f.dFevFecha_vence AS "Vence"
+				-- ,IFNULL(r.dRecFechaPago,"----/--/--") AS "Pago"
+				,IFNULL(r.cRecPagado,"--") AS "Estado"
 				,(
 				SELECT sum(rd.cRedPrecio)
 				FROM recibo_detalle rd 
@@ -126,7 +127,7 @@ class Recibo_model extends CI_Model {
 						and st.nMulTipoServicio IN (select nMulId from multitabla where nMulIdPadre = 47)
 						and st.nMulServicio IN (select nMulId from multitabla where UPPER(cMulDescripcion) = UPPER("Limpieza"))
 				WHERE rd.nRecId = r.nRecId
-				),0) as "Limpieza Municipal"
+				),0) as "Limpieza"
 				,r.fRecDeuda AS "Deuda"
 				,CASE 
 					WHEN r.fRecAbono IS NULL THEN 0.0
@@ -150,31 +151,70 @@ class Recibo_model extends CI_Model {
 	public function updateRecibo(){
 		
 	}
-	public function getRecibo(){
-		$sql = '
-		SELECT 
-			r.nRecId, r.dRecFechaImpresion, ( IFNULL(r.fRecDeuda,0) + IFNULL(r.fRecAbono,0) ) as Monto, 
-			case MONTH(fv.dFevFecha_vence) 
-						WHEN 1 THEN "Enero"
-						WHEN 2 THEN "Febrero"
-						WHEN 3 THEN "Marzo"
-						WHEN 4 THEN "Abril"
-						WHEN 5 THEN "Mayo"
-						WHEN 6 THEN "Junio"
-						WHEN 7 THEN "Julio"
-						WHEN 8 THEN "Agosto"
-						WHEN 9 THEN "Septiembre"
-						WHEN 10 THEN "Octubre"
-						WHEN 11 THEN "Noviembre"
-						WHEN 12 THEN "Diciembre"
-						ELSE "Esto no es un Mes"
-			END as Mes,
-			YEAR( fv.dFevFecha_vence ) as Anio,
-			r.dRecFechaPago, r.nFevId, r.nPerIdContribuyente FROM recibo r
-			INNER JOIN fechas_vencimiento fv ON fv.nFevId = r.nFevId
-		where nRecId = '. $this->nRecId .';';
-		$query = $this->db->query( $sql )->result_array();
-		return $query;
+	public function getRecibo( $estado = 'PP'){ //Por Pagar
+		$sql = '';
+
+		switch ( $estado ) {
+			case 'PP'://Obtiene data del recibo por pagar( no cancelado ó transferido a/en caja)
+				$sql = '
+				SELECT 
+					r.nRecId, r.dRecFechaImpresion, IFNULL(r.fRecDeuda,0) as Monto, 
+					case MONTH(fv.dFevFecha_vence) 
+								WHEN 1 THEN "Enero"
+								WHEN 2 THEN "Febrero"
+								WHEN 3 THEN "Marzo"
+								WHEN 4 THEN "Abril"
+								WHEN 5 THEN "Mayo"
+								WHEN 6 THEN "Junio"
+								WHEN 7 THEN "Julio"
+								WHEN 8 THEN "Agosto"
+								WHEN 9 THEN "Septiembre"
+								WHEN 10 THEN "Octubre"
+								WHEN 11 THEN "Noviembre"
+								WHEN 12 THEN "Diciembre"
+								ELSE "Esto no es un Mes"
+					END as Mes,
+					YEAR( fv.dFevFecha_vence ) as Anio,
+					r.dRecFechaPago, r.nFevId, r.nPerIdContribuyente FROM recibo r
+					INNER JOIN fechas_vencimiento fv ON fv.nFevId = r.nFevId
+				where r.nRecId = '. $this->nRecId .' AND r.cRecEstado = "P" AND cRecPagado is null';
+			break;			
+			default: //Obtiene los recibos sin tener en cuenta los estados
+				$sql = '
+				SELECT 
+					r.nRecId, r.dRecFechaImpresion, IFNULL(r.fRecDeuda,0) as Monto, 
+					case MONTH(fv.dFevFecha_vence) 
+								WHEN 1 THEN "Enero"
+								WHEN 2 THEN "Febrero"
+								WHEN 3 THEN "Marzo"
+								WHEN 4 THEN "Abril"
+								WHEN 5 THEN "Mayo"
+								WHEN 6 THEN "Junio"
+								WHEN 7 THEN "Julio"
+								WHEN 8 THEN "Agosto"
+								WHEN 9 THEN "Septiembre"
+								WHEN 10 THEN "Octubre"
+								WHEN 11 THEN "Noviembre"
+								WHEN 12 THEN "Diciembre"
+								ELSE "Esto no es un Mes"
+					END as Mes,
+					YEAR( fv.dFevFecha_vence ) as Anio,
+					r.dRecFechaPago, r.nFevId, r.nPerIdContribuyente FROM recibo r
+					INNER JOIN fechas_vencimiento fv ON fv.nFevId = r.nFevId
+				where r.nRecId = '. $this->nRecId .' ;';
+			break;
+		}
+
+		$rsRecibos = $this->db->query( $sql );
+
+		if ($rsRecibos->num_rows() > 0) {
+			$objTempRecibo = $rsRecibos->result_array()[0];
+			$this->nRecId    = $objTempRecibo['nRecId'];
+			$this->fRecDeuda = $objTempRecibo['Monto'];
+			return $objTempRecibo;
+		} else {
+			return false;
+		}
 
 	}
 	public function getDataReport(){
@@ -228,8 +268,9 @@ class Recibo_model extends CI_Model {
 			return false;
 		}		
 	}
-	public function pagar_recibo(){
-
+	public function updReciboCaja( $movi ){
+		$this->db->query("UPDATE recibo SET cRecPagado = '".$movi."',dRecFechaPago= now() WHERE nRecId = ".$this->nRecId." ");
+		return true;
 	}
 }
 

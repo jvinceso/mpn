@@ -56,3 +56,5 @@ select DATE_FORMAT(NOW(),'%d/%m/%Y');
 select * from persona_detalle where nPerId = 51;
 select * from multitabla where nMulId = 46;
 select * from persona_detalle pd where pd.nPerId = 51 and pd.nMulId = 46;
+SELECT SUBSTRING_INDEX('AGUA-45345', '-', 1);
+SELECT SUBSTRING_INDEX('AGUA-45345', '-', -1);
