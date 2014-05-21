@@ -86,13 +86,14 @@ class Caja_pagos_model extends CI_Model {
 
 	public function ins_pago_recibo(){
 
-		$data = array(
-			'nPerId'    =>  $this->nPerId,
-			'fCpaMonto' =>  $this->fCpaMonto,
+		$caja = array(
+			'nPerId'    => $this->nPerId,
+			'nConId'    => $this->nConId,
+			'fCpaMonto' => $this->fCpaMonto,
 			'cCpaAno'   => $this->cCpaAno,
-			'cCpaMes'   =>  $this->cCpaMes
+			'cCpaMes'   => $this->cCpaMes
 			);
-		$this->db->insert('aplicacion', $data);
+		$this->db->insert('caja_pagos', $caja);
 		return $this->db->insert_id();		
 		$this->db->insert();
 	}

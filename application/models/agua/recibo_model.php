@@ -97,7 +97,8 @@ class Recibo_model extends CI_Model {
 		// $this->db->trans_start();
 		$sql_recibo_qry = 'SELECT  		r.nRecId as "ID"
 				,@i := @i + 1 as Cuota
-				,f.dFevFecha_vence AS "Fecha Vencimiento"
+				,f.dFevFecha_vence AS "Vencimiento"
+				,IFNULL(r.dRecFechaPago,"----/--/--") AS "Pago"
 				,(
 				SELECT sum(rd.cRedPrecio)
 				FROM recibo_detalle rd 
@@ -113,7 +114,7 @@ class Recibo_model extends CI_Model {
 					INNER JOIN servicios_contribuyente sc on sc.nSecId = rd.nSecId
 					INNER JOIN servicios_tipo st on st.nSetId = sc.nSetId 
 						and st.nMulTipoServicio IN (select nMulId from multitabla where nMulIdPadre = 47)
-						and st.nMulServicio IN (select nMulId from multitabla where UPPER(cMulDescripcion) = UPPER("Desague"))
+						and st.nMulServicio IN (select nMulId from multitabla where UPPER(cMulDescripcion) = UPPER("Desaguexx"))
 				WHERE rd.nRecId = r.nRecId
 				 ) as "Desague"
 				,IFNULL(
@@ -150,7 +151,28 @@ class Recibo_model extends CI_Model {
 		
 	}
 	public function getRecibo(){
-		$sql = 'SELECT nRecId, dRecFechaImpresion, ( IFNULL(fRecDeuda,0) + IFNULL(fRecAbono,0) ) as Monto, dRecFechaPago, nFevId, nPerIdContribuyente FROM recibo where nRecId = '. $this->nRecId .';';
+		$sql = '
+		SELECT 
+			r.nRecId, r.dRecFechaImpresion, ( IFNULL(r.fRecDeuda,0) + IFNULL(r.fRecAbono,0) ) as Monto, 
+			case MONTH(fv.dFevFecha_vence) 
+						WHEN 1 THEN "Enero"
+						WHEN 2 THEN "Febrero"
+						WHEN 3 THEN "Marzo"
+						WHEN 4 THEN "Abril"
+						WHEN 5 THEN "Mayo"
+						WHEN 6 THEN "Junio"
+						WHEN 7 THEN "Julio"
+						WHEN 8 THEN "Agosto"
+						WHEN 9 THEN "Septiembre"
+						WHEN 10 THEN "Octubre"
+						WHEN 11 THEN "Noviembre"
+						WHEN 12 THEN "Diciembre"
+						ELSE "Esto no es un Mes"
+			END as Mes,
+			YEAR( fv.dFevFecha_vence ) as Anio,
+			r.dRecFechaPago, r.nFevId, r.nPerIdContribuyente FROM recibo r
+			INNER JOIN fechas_vencimiento fv ON fv.nFevId = r.nFevId
+		where nRecId = '. $this->nRecId .';';
 		$query = $this->db->query( $sql )->result_array();
 		return $query;
 
@@ -205,6 +227,9 @@ class Recibo_model extends CI_Model {
 		} else {
 			return false;
 		}		
+	}
+	public function pagar_recibo(){
+
 	}
 }
 

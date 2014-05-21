@@ -110,6 +110,17 @@ class Trabajador_model extends Persona_model {
         // return $this->db->where(array('cPerContribuyente'=>'SI','cPerEstado'=>1))->get('persona')->result_array();
     }
 
+    public function ObtenerCodigoTrabajador( $nPerId ){
+    	return $this->db->query("
+    		SELECT nTmuId
+    		            from persona p 
+    					inner join trabajador_municipal tm on p.nPerId = tm.nPerId
+    				 	inner join multitabla m1			   on  tm.nMulArea = m1.nMulId
+    		            where p.cPerContribuyente='NO' and p.cPerEstado=1  and m1.cMulEstado = 1
+    		and p.nPerId=  $nPerId;
+    		")->result_array()[0]['nTmuId'];
+    }
+
 	// public function insAplicacion(){
 	// 	$data = array(
 	// 		'cAplNombre' => $this->get_nombre(),

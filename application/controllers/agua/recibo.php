@@ -42,8 +42,22 @@ class Recibo extends CI_Controller {
 
 	function efectuarPago(){
 		$nRecID = $this->input->post('nRecId');
+		$this->load->model('administrador/trabajador_model','objTrabajador');
+		$this->load->model('caja/caja_pagos_model','objCajaPagos');
+
+		$nTmuId = $this->objTrabajador->ObtenerCodigoTrabajador( $this->session->userdata('IdPersona') );
+		// print_p( $nTmuId );
 		$this->objRecibo->set_nRecId( $nRecID );
 		$recibo_pagar = $this->objRecibo->getRecibo()[0];
+		/**
+		 * Data para Caja
+		 */
+		$this->objCajaPagos->set_nPerId( $recibo_pagar['nPerIdContribuyente'] );
+		$this->objCajaPagos->set_nConId(6);//Concepto Agua
+		$this->objCajaPagos->set_fCpaMonto( $recibo_pagar['Monto'] );
+		$this->objCajaPagos->set_cCpaAno( $recibo_pagar['Anio'] );
+		$this->objCajaPagos->set_cCpaMes( $recibo_pagar['Mes'] );
+		print_p( $recibo_pagar );
 	}
 
 	function vistaPrevia($codRecibo){
