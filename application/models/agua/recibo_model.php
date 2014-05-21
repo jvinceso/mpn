@@ -71,7 +71,7 @@ class Recibo_model extends CI_Model {
 					$rsServicios = $this->db->query("select sc.nSecId,cst.fCstPago from servicios_contribuyente sc
 						inner join servicios_tipo st ON sc.nSetId = st.nSetId
 						inner join costo_servicios_tipo cst on st.nSetId = cst.nSetId
-						where sc.nPerId = ".$nPerIdContribuyente."  and sc.cSecEstado = 1 and cst.nCstAnio = ".$anio."")->result_array();
+						where sc.nPerId = ".$nPerIdContribuyente."  and sc.cSecEstado = 1 and st.cSetEstado = 1 and cst.nCstAnio = ".$anio."")->result_array();
 					$total = 0;
 					foreach ($rsServicios as $indi => $val) {
 						$total +=$val['fCstPago'];
@@ -107,7 +107,7 @@ class Recibo_model extends CI_Model {
 					INNER JOIN servicios_tipo st on st.nSetId = sc.nSetId 
 						and st.nMulTipoServicio IN (select nMulId from multitabla where nMulIdPadre = 47)
 						and st.nMulServicio IN (select nMulId from multitabla where UPPER(cMulDescripcion) = UPPER("agua"))
-				WHERE rd.nRecId = r.nRecId
+				WHERE rd.nRecId = r.nRecId and st.cSetEstado = 1
 				 ) as "Agua"
 				,(
 				SELECT rd.cRedPrecio
@@ -115,8 +115,8 @@ class Recibo_model extends CI_Model {
 					INNER JOIN servicios_contribuyente sc on sc.nSecId = rd.nSecId
 					INNER JOIN servicios_tipo st on st.nSetId = sc.nSetId 
 						and st.nMulTipoServicio IN (select nMulId from multitabla where nMulIdPadre = 47)
-						and st.nMulServicio IN (select nMulId from multitabla where UPPER(cMulDescripcion) = UPPER("Desaguexx"))
-				WHERE rd.nRecId = r.nRecId
+						and st.nMulServicio IN (select nMulId from multitabla where UPPER(cMulDescripcion) = UPPER("Desague"))
+				WHERE rd.nRecId = r.nRecId and st.cSetEstado = 1
 				 ) as "Desague"
 				,IFNULL(
 				(
@@ -124,10 +124,10 @@ class Recibo_model extends CI_Model {
 				FROM recibo_detalle rd 
 					INNER JOIN servicios_contribuyente sc on sc.nSecId = rd.nSecId
 					INNER JOIN servicios_tipo st on st.nSetId = sc.nSetId 
-						and st.nMulTipoServicio IN (select nMulId from multitabla where nMulIdPadre = 47)
-						and st.nMulServicio IN (select nMulId from multitabla where UPPER(cMulDescripcion) = UPPER("Limpieza"))
-				WHERE rd.nRecId = r.nRecId
-				),0) as "Limpieza"
+						and st.nMulTipoServicio IN (select nMulId from multitabla where nMulIdPadre = 47 and cMulEstado = 1)
+						and st.nMulServicio IN (select nMulId from multitabla where UPPER(cMulDescripcion) = UPPER("Limpieza") and cMulEstado = 1)
+				WHERE rd.nRecId = r.nRecId and st.cSetEstado = 1
+				),0) as "Limpieza Municipal" 
 				,r.fRecDeuda AS "Deuda"
 				,CASE 
 					WHEN r.fRecAbono IS NULL THEN 0.0
@@ -136,7 +136,7 @@ class Recibo_model extends CI_Model {
 			FROM recibo r
 				INNER JOIN fechas_vencimiento f ON f.nFevId = r.nFevId
 				,(select @i := 0) temp
-			WHERE r.nPerIdContribuyente = '.$this->nPerIdContribuyente.' AND YEAR( r.dFecFechaRegistro ) = '.$anio.'
+			WHERE f.cFevEstado = 1 AND r.nPerIdContribuyente = '.$this->nPerIdContribuyente.' AND YEAR( r.dFecFechaRegistro ) = '.$anio.'
 			ORDER BY nRecId ASC';
 			// print_p( $sql_recibo_qry );	exit();
 		$rsRecibos = $this->db->query( $sql_recibo_qry );
@@ -258,7 +258,8 @@ class Recibo_model extends CI_Model {
 			INNER JOIN calle c ON c.nCalId = dc.nCalId
 			INNER JOIN via v ON v.nViaId = c.nViaId
 			INNER JOIN sector s ON s.nSecId = c.nSecId
-		WHERE rd.nRecId = ' .$this->nRecId. ' ';
+		WHERE sc.cSecEstado = 1 AND st.cSetEstado = 1  AND m.cMulEstado = 1 AND mt.cMulEstado = 1 AND
+		fv.cFevEstado = 1 AND p.cPerEstado = 1 AND c.cCalEstado = 1 AND v.cViaEstado = 1 AND s.cSecEstado = 1 AND   rd.nRecId = ' .$this->nRecId. ' ';
 		
 		$rsRecibos = $this->db->query( $sql_reporte );
 		
