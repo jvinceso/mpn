@@ -87,10 +87,11 @@
 		}
 
 		public function listaServicioXDireccion($objDireccionCalle){
-			$query = $this->db->query("select m.cMulDescripcion as Servicio ,mt.cMulDescripcion as Tipo from servicios_contribuyente sc
+			$query = $this->db->query("select m.cMulDescripcion as Servicio ,mt.cMulDescripcion as Tipo, cst.fcstPago  as costo from servicios_contribuyente sc
 				inner join servicios_tipo st on st.nSetId = sc.nSetId
 				inner join multitabla m on m.nMulId = st.nMulServicio
 				inner join multitabla mt on mt.nMulId = st.nMulTipoServicio
+				inner join costo_servicios_tipo cst on cst.nSetId = st.nSetId and cst.nCstAnio = year(now())
 			where sc.nDicId ='".$objDireccionCalle->get_nDicId()."' and  sc.cSecEstado = 1");
 			return  $query->result_array();
 		}
@@ -99,7 +100,7 @@
 					inner join multitabla m on m.nMulId = st.nMulServicio
 					inner join multitabla mt on mt.nMulId = st.nMulTipoServicio
 					inner join costo_servicios_tipo cst on cst.nSetId = st.nSetId and cst.nCstAnio = year(now())
-					where st.cSetEstado = 1
+					where st.cSetEstado = 1 and m.cMulEstado = 1 and mt.cMulEstado = 1
 				order by 1 asc;");
 			return  $query->result_array();
 		}		
