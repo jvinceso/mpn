@@ -78,8 +78,8 @@
 						from servicios_tipo st 
 										inner join multitabla m on m.nMulId = st.nMulServicio
 										inner join multitabla mt on mt.nMulId = st.nMulTipoServicio
-										left join costo_servicios_tipo cst on cst.nSetId = st.nSetId and cst.nCstAnio = year(now())
-										where st.cSetEstado = 1 and m.cMulEstado = 1 and mt.cMulEstado = 1 and cst.cCstEstado = 1
+										left join costo_servicios_tipo cst on cst.nSetId = st.nSetId and cst.nCstAnio = year(now()) and cst.cCstEstado = 1
+										where st.cSetEstado = 1 and m.cMulEstado = 1 and mt.cMulEstado = 1 
 									order by m.cMulDescripcion asc;
 
 			");
@@ -92,7 +92,7 @@
 				inner join multitabla m on m.nMulId = st.nMulServicio
 				inner join multitabla mt on mt.nMulId = st.nMulTipoServicio
 				inner join costo_servicios_tipo cst on cst.nSetId = st.nSetId and cst.nCstAnio = year(now())
-			where sc.nDicId ='".$objDireccionCalle->get_nDicId()."' and  sc.cSecEstado = 1");
+			where sc.nDicId ='".$objDireccionCalle->get_nDicId()."' and  sc.cSecEstado = 1 and m.cMulEstado = 1 and mt.cMulEstado = 1");
 			return  $query->result_array();
 		}
 		public function listarServiciostipo(){

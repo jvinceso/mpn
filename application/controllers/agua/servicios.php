@@ -32,7 +32,7 @@ class Servicios extends CI_Controller {
 		$array = $this->input->post('json');
 		// $nServId = $array['txt_ins_serv_nom'];
 		$temp = array();
-		$this->objMultitabla->set_cMulDescripcion($array['txt_ins_serv_nom']);
+		$this->objMultitabla->set_cMulDescripcion($array['txt_ins_servpt_nom']);
 		$servicio = $this->objMultitabla->insServicio();
 		foreach ($array['tipos_servicios'] as $indice => $filita) {
 			// $temp[]['nMulId'] = $THIS->OBTENERiDDESDEBD
