@@ -97,7 +97,7 @@ class Recibo_model extends CI_Model {
 		// $this->db->trans_start();
 		$sql_recibo_qry = 'SELECT  		r.nRecId as "ID"
 				,@i := @i + 1 as Cuota
-				-- ,f.dFevFecha_vence AS "Vence"
+				,f.dFevFecha_vence AS "Vence"
 				-- ,IFNULL(r.dRecFechaPago,"----/--/--") AS "Pago"
 				,IFNULL(r.cRecPagado,"--") AS "Estado"
 				,(
