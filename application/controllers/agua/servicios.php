@@ -28,18 +28,35 @@ class Servicios extends CI_Controller {
 		echo json_encode($tipos_servicio_data);
 	}
 
+	function nomServicio() {
+		$this->objMultitabla->set_nMulIdPadre('51');
+		$this->objMultitabla->set_cMulDescripcion( $this->input->get("term") );
+		$data = $this->objMultitabla->qrymultitablaAutocompelte();
+		$return_arr = array();
+		if ($data) {
+			foreach ($data as $row) {
+				$arrayServicio['label'] = htmlspecialchars($row['descripción']);
+				$arrayServicio['id'] = $row['ID'];
+				array_push($return_arr, $arrayServicio);
+			}
+		}
+		print_r(json_encode($return_arr));
+	}
+
 	function insServicioporTipo(){
 		$array = $this->input->post('json');
 		// $nServId = $array['txt_ins_serv_nom'];
 		$temp = array();
-		$this->objMultitabla->set_cMulDescripcion($array['txt_ins_servpt_nom']);
-		$servicio = $this->objMultitabla->insServicio();
+		// $this->objMultitabla->set_cMulDescripcion($array['txt_ins_servpt_nom']);
+		// $servicio = $this->objMultitabla->insServicio();
+
+
 		foreach ($array['tipos_servicios'] as $indice => $filita) {
 			// $temp[]['nMulId'] = $THIS->OBTENERiDDESDEBD
 			$this->objMultitabla->set_cMulDescripcion( $filita['nombre'] );
-			$this->objMultitabla->getServicioId();
+			$this->objMultitabla->getServicioId();//obtengo el id del tipo de servicio de multitabla
 			$temp[$indice]['nMulTipoServicio'] = $this->objMultitabla->get_nMulId();
-			$temp[$indice]['nMulServicio'] = $servicio;
+			$temp[$indice]['nMulServicio'] = $array['hid_fnd_ins_servpt_nom'];// obtengo el id del servicio de multitabla
 		}
 		$result = $this->objServiosTipo->insServicioporTipo($temp);
 		// print_r( $temp ); exit();
