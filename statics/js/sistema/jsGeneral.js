@@ -322,3 +322,14 @@ function limpiarForm(obj) {
             this.selectedIndex = 0; //-1
     });
 }
+
+function creaAutocomplete(autocomplete){
+    $("#"+autocomplete["value"]+"").autocomplete({
+        source: autocomplete["url"],
+        minLength: 3,
+        select: function(event, ui){     
+            $("#"+autocomplete["id"]+"").val(ui.item.id);
+            if (autocomplete["funcion"] != undefined) eval (autocomplete["funcion"]);                  
+        }
+    }); 
+}

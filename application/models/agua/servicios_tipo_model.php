@@ -57,7 +57,7 @@
 		}
 //me llena la lista que da la funcionalidad para escoger varios tipos de servcio 
 		public function qryServicioTipo(){
-			 $query = $this->db->query("select nMulId,cMulDescripcion from multitabla where nMulIdPadre = 47");
+			 $query = $this->db->query("select nMulId,cMulDescripcion from multitabla where nMulIdPadre = 47 and cMulEstado = 1");
 			 return  $query->result_array();
 		}
 

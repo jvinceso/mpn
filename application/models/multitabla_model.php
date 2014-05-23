@@ -138,22 +138,27 @@ class Multitabla_model extends CI_Model {
 	}
 
 	public	function updMultitabla(){
-        $data = array(
-            'cMulDescripcion'  =>  $this->get_cMulDescripcion()
-            );
-        $this->db->where('nMulId', $this->get_nMulId());
-        $this->db->update('multitabla', $data); 
-        return true;
-    }
+		$data = array(
+			'cMulDescripcion'  =>  $this->get_cMulDescripcion()
+			);
+		$this->db->where('nMulId', $this->get_nMulId());
+		$this->db->update('multitabla', $data); 
+		return true;
+	}
 
-    public	function delMultitabla(){
-        $data = array(
-            'cMulEstado'  =>  0
-            );
-        $this->db->where('nMulId', $this->get_nMulId());
-        $this->db->update('multitabla', $data); 
-        return true;
-    }
+	public	function delMultitabla(){
+		$data = array(
+			'cMulEstado'  =>  0
+			);
+		$this->db->where('nMulId', $this->get_nMulId());
+		$this->db->update('multitabla', $data); 
+		return true;
+	}
+
+	public function qrymultitablaAutocompelte(){
+		$query = $this->db->query("select nMulId as ID,cMulDescripcion as descripción from multitabla where cMulEstado = 1 and nMulIdPadre ='".$this->nMulIdPadre."' and cMulDescripcion like '%".$this->get_cMulDescripcion()."%' ");
+		return $query->result_array();	
+	}
 
 }
 ?>

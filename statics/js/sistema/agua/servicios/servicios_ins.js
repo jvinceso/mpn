@@ -1,5 +1,15 @@
 $(function(){
-	$.ajax({
+	
+    $('#txt_ins_servpt_nom').keyup(function(){  
+        creaAutocomplete({
+            id:"hid_fnd_ins_servpt_nom",
+            value:"txt_ins_servpt_nom",
+            url:'servicios/nomServicio',
+            funcion:""
+        });
+    });
+
+    $.ajax({
 	    url:'servicios/qryServicioTipo',
 	    type:'post',
 	    dataType:'json',
@@ -70,7 +80,7 @@ $(function(){
                 url:  "servicios/insServicioporTipo",
                 data:{
                     json:{
-                            txt_ins_servpt_nom : $("#txt_ins_servpt_nom").val(),
+                            hid_fnd_ins_servpt_nom : $("#hid_fnd_ins_servpt_nom").val(),
                             tipos_servicios  : obtieneCampos()
                          }
                 } ,
