@@ -109,6 +109,11 @@ class Persona_model extends CI_Model {
         $this->db->update( 'persona', $data );
         return true;
     }
+    public function qryfndContribuyente(){
+        return $this->db->query("
+            SELECT  nPerId as id,CONCAT(cPerApellidoPaterno,' ',cPerApellidoMaterno,' ',cPerNombres) as label 
+            FROM persona WHERE cPerContribuyente='SI' and cPerEstado = 1  AND MATCH (cPerApellidoPaterno,cPerApellidoMaterno,cPerNombres) AGAINST ('".$this->PerNombres."');
+            ")->result_array();        
+    }
 }
-
 ?>

@@ -1,3 +1,4 @@
+select * from recibo_detalle;
 -- Row_number()
 select  @i := @i + 1 as Cuota,nRecId from recibo ,(select @i := 0) temp where nPerIdContribuyente = 11 order by nRecId ASC ;
 select  * from recibo where nPerIdContribuyente = 11 order by nRecId ASC ;
@@ -26,11 +27,11 @@ select * from Recibo where nPerIdContribuyente = 35;
 select * from Recibo_Detalle where nRecId = 98;
 -- Verificar Recibos
 select  year(now());
-select nRecId from recibo r
+select * from recibo r
 inner join servicios_contribuyente sc ON r.nPerIdContribuyente = sc.nPerId
 	inner join servicios_tipo st ON sc.nSetId = st.nSetId
 	inner join costo_servicios_tipo cst on st.nSetId = cst.nSetId
-where sc.cSecEstado = 1 and cst.nCstAnio = 2013;
+where sc.cSecEstado = 1 ;-- and cst.nCstAnio = 2013;
  -- where YEAR(dFecFechaRegistro) = '2014' and nPerIdContribuyente IN(11,14,37,39);
 
 select * from servicios_contribuyente;
@@ -42,7 +43,9 @@ inner join servicios_contribuyente sc on rd.nSecId = sc.nSecId
 inner join servicios_tipo st on st.nSetId = sc.nSetId
 inner join multitabla ms on ms.nMulId = st.nMulServicio
 inner join multitabla mt on mt.nMulId = st.nMulTipoServicio
-where sc.nPerId = 37;
+where sc.nPerId = 37; 
+select  * from fechas_vencimiento order by nFevAnio,nFevCuota asc;
+select * from costo_servicios_tipo order by nCstAnio asc;
 select * from multitabla where nMulIdPadre = 51;
 
 

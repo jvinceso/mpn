@@ -15,7 +15,7 @@ class Recibo extends CI_Controller {
 		$this->loaders->verificaAcceso();
 		$data['main_content'] = 'agua/recibos/panel_view';
 		$data['aplicacion'] = 'Agua';
-		// $data['anios'] = $this->objCosto->getAniosFiscales();
+		$data['anios'] = $this->objCosto->getAniosFiscales();
 		$data['objeto'] = 'Recibos';
 		$this->objMultitabla->set_nMulIdPadre(51);//nMulIdPadre->Servicios=51
 		$data['cboServicio'] = $this->objMultitabla->qrymultitabla();
@@ -27,14 +27,26 @@ class Recibo extends CI_Controller {
 		if( !empty($cboAniosFiscales) )	echo form_dropdown("cbo_anios", creaCombo($cboAniosFiscales),'', 'id="cbo_anios" class="chosen-select w360"');
 		else echo "2";
 	}
-	function procesar_recibos(  ){
+	function procesar_recibos( $parcial = false ){
 		$anio = date('Y');
 		$rpt_procesar = 0;
-		if ( isset( $anio ) ) {
-			// procesando......
-			$rpt_procesar = $this->objRecibo->ins_procesar_recibos( $anio );
+		if ( $parcial ) {
+			$anio = $this->input->post('anio');
+			$mes = $this->input->post('mes');
+			if ( isset( $anio ) && isset($mes) ) {
+				// procesando parcialmente......
+				$this->objRecibo->set_nPerIdContribuyente( $this->input->post('idx') );
+				$rpt_procesar = $this->objRecibo->ins_procesar_recibos_parcial( $anio,$mes );
+			}else{
+				$rpt_procesar = 4;
+			}
 		}else{
-			$rpt_procesar = 4;
+			if ( isset( $anio ) ) {
+				// procesando......
+				$rpt_procesar = $this->objRecibo->ins_procesar_recibos( $anio );
+			}else{
+				$rpt_procesar = 4;
+			}
 		}
 		echo $rpt_procesar;
 		exit(0);

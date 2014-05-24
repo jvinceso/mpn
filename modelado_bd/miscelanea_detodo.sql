@@ -1,8 +1,16 @@
-select * from caja_pagos;
+delete from caja_pagos;
+describe costo_servicios_tipo ;
+select * from recibo where cRecPagado IN ( 'T','C');
 describe caja_pagos;
 select * from concepto;
 describe recibo;
+truncate recibo_detalle;
+delete from recibo_detalle where nRecId IN (select nRecId from recibo where YEAR(dFecFechaRegistro) = YEAR( now() ));
 DELETE from recibo where YEAR(dFecFechaRegistro) = YEAR( now() );
+delete from caja_pagos;
+truncate recibo;
+truncate recibo_detalle;
+truncate caja_pagos;
 select * from recibo where nRecId = 374  AND cRecEstado = "P" AND cRecPagado is null;
 select  * from trabajador_municipal;
 UPDATE recibo SET cRecPagado = 'T' where nRecId = 4;
@@ -35,3 +43,4 @@ SELECT
 	INNER JOIN fechas_vencimiento fv ON fv.nFevId = r.nFevId
 where nRecId = 373;
 SELECT SUBSTRING_INDEX('AGUA-45345', '-', -1);
+select nPerId as id,CONCAT(cPerApellidoPaterno,' ',cPerApellidoMaterno,' ',cPerNombres) as label from persona where CONCAT(cPerApellidoPaterno,' ',cPerApellidoMaterno,' ',cPerNombres) like '%ag%' ;

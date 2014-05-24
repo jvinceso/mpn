@@ -9,14 +9,14 @@
 	</h1>
 </div><!-- /.page-header -->
 <style>
-#centrado p{
+.centrado p{
 	margin:0 auto;
 	width:250px;
 	/*max-width:550px;*/
 }
 </style>
 <div class="row">
-	<div class="col-xs-12">
+	<div class="col-xs-11">
 		<!-- codigo del cuerpo -->
 		<div id="c_frm_recibos">
 			<?php 

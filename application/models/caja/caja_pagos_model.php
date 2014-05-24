@@ -85,7 +85,8 @@ class Caja_pagos_model extends CI_Model {
 	}
 
 	public function ins_pago_recibo(){
-
+		$idCaja = 0;
+		$this->db->trans_start();
 		$caja = array(
 			'nPerId'    => $this->nPerId,
 			'nTmuId'   => $this->nTmuId,
@@ -96,7 +97,9 @@ class Caja_pagos_model extends CI_Model {
 			'cCpaSerieNumero'   => $this->cCpaSerieNumero
 			);
 		$this->db->insert('caja_pagos', $caja);
-		return $this->db->insert_id();
+		$idCaja = $this->db->insert_id();
+		$this->db->trans_complete();
+		return $idCaja;
 	}
 }
 ?>

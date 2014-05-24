@@ -76,7 +76,12 @@ class Costo_servicios_tipo_model extends CI_Model {
 	public function getAniosFiscales( ){
 		$tmp = null;
 		$rs = $this->db->query('SELECT DISTINCT cst.nCstAnio as aid,cst.nCstAnio as descrip from costo_servicios_tipo cst
-			inner join servicios_tipo st on st.nSetId = cst.nSetId order by cst.nCstAnio desc');
+			inner join servicios_tipo st on st.nSetId = cst.nSetId 
+			inner join multitabla m on m.nMulId = st.nMulServicio
+			inner join multitabla mt on mt.nMulId = st.nMulTipoServicio
+			where st.cSetEstado = 1 and cst.cCstEstado = 1  and st.cSetEstado = 1 
+			and m.cMulEstado = 1 and mt.cMulEstado = 1 
+			order by cst.nCstAnio desc');
 		if ($rs->num_rows() > 0){
 			$tmp = $rs->result_array();
 		}

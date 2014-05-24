@@ -100,15 +100,15 @@ class Contribuyente extends CI_Controller {
 		$this->objPersonaDetalle->set_nMulId( $json['nMulId'] );
 		$tabla_data = $this->objPersonaDetalle->listaDetalle();
 		$opciones = array(
-		    'Pagos' => array(
-		         'color'=>'blue'
-		        ,'icono'=>'cloud-upload'
-		        ,'tooltip'=>'success'
-		    )
-		);
+			'Pagos' => array(
+				'color'=>'blue'
+				,'icono'=>'cloud-upload'
+				,'tooltip'=>'success'
+				)
+			);
 		$funciones = array(
-		    'initEvtOpc("cloud-upload","asignarTipo(fila)")'
-		);
+			'initEvtOpc("cloud-upload","asignarTipo(fila)")'
+			);
 		$nameTable = 'tabla-direcccion-contribuyente';
 		$pk = 'ID';
 		CrudGridMultipleJson($tabla_data,$nameTable,$pk,$opciones,$funciones);
@@ -211,7 +211,7 @@ class Contribuyente extends CI_Controller {
 	}
 
 	function insdireccion(){
- 		$this->objPersonaDetalle->set_nPerId( $this->input->post('txt_hdn_nPerid') );
+		$this->objPersonaDetalle->set_nPerId( $this->input->post('txt_hdn_nPerid') );
 		$this->objPersonaDetalle->set_nMulId( $this->input->post('txt_hdn_nMulId') );
 		$this->objPersonaDetalle->set_cPdeValor( $this->input->post('direc') );		
 		if($this->objPersonaDetalle->setPersonaDetalle()){
@@ -241,7 +241,7 @@ class Contribuyente extends CI_Controller {
 		$data['codDireccion'] = $json['codx'];
 		$data['nPerId'] = $json['PerId'];
 		$this->objDireccionCalle->set_nPdeId( $json['codx'] );
-			$this->objDireccionCalle->obtenernDicIdxnPdeId();
+		$this->objDireccionCalle->obtenernDicIdxnPdeId();
 		$data['servicios_prestados'] = $this->objServiosTipo->listaServicioXDireccion( $this->objDireccionCalle );		
 		$this->load->view('agua/contribuyente/get_agregar_serviciotipo_view', $data);
 		// print_p( $this->input->post('json') );
@@ -249,7 +249,7 @@ class Contribuyente extends CI_Controller {
 	
 	function insServiciosxDireccion(){
 		$this->objDireccionCalle->set_nPdeId( $this->input->post('nPdeId') );
-			$this->objDireccionCalle->obtenernDicIdxnPdeId();
+		$this->objDireccionCalle->obtenernDicIdxnPdeId();
 		$this->objServiciosContribuyente->set_nDicId( $this->objDireccionCalle->get_nDicId() );
 		$this->objServiciosContribuyente->set_nSetId( $this->input->post('serviciotipo') );
 		$this->objServiciosContribuyente->set_nPerId( $this->input->post('nPerId') );
@@ -260,15 +260,29 @@ class Contribuyente extends CI_Controller {
 			echo "3";
 		}
 	}
-		function listarServiciosxDireccion(){
+	function listarServiciosxDireccion(){
 		$this->objDireccionCalle->set_nPdeId( $this->input->post('nPdeId') );
-			$this->objDireccionCalle->obtenernDicIdxnPdeId();
+		$this->objDireccionCalle->obtenernDicIdxnPdeId();
 		$servicios_prestados = $this->objServiosTipo->listaServicioXDireccion( $this->objDireccionCalle );
 		$opciones = null;
 		$funciones = null;
 		$nameTable = 'tabla-servicios-direccion';
 		$pk = null;
 		CrudGridMultipleJson($servicios_prestados,$nameTable,$pk,$opciones,$funciones);
+	}
+
+	function nomContribuyenteAuto(){
+		$this->objPersona->setPerNombres( $this->input->get("term") );
+		$return_arr = array();
+		$return_arr = $this->objPersona->qryfndContribuyente();
+		if ($return_arr) {
+			echo json_encode($return_arr) ;
+			// foreach ($data as $row) {
+			// 	$arrayServicio['label'] = htmlspecialchars($row['descripción']);
+			// 	$arrayServicio['id'] = $row['ID'];
+			// 	array_push($return_arr, $arrayServicio);
+			// }
+		}
 	}	
 
 }
