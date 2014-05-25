@@ -181,7 +181,7 @@ class Recibo extends CI_Controller {
 		$data['ancho'] = '100%';
 		$data['alto'] = '500';
 		$this->load->view('reportes/reporte_template_view', $data);
->>>>>>> d4a1de468e5b8c04a8d86e6448df69b372242dda
+
 	}
 }
 /* End of file recibo.php */
