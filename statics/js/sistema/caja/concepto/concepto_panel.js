@@ -78,3 +78,28 @@ function confirmarDeleteTipoPago(nMulId){
                 }
             });
 }
+
+function confirmarDelete(nConId){
+	$.ajax({
+		type:"post",
+		url: 'concepto/delConcepto',
+		cache:false,
+		data:{
+			nConId : nConId
+		},
+		success:function(data){
+			switch (data) { 
+				case "0":
+				mensaje("Error al eliminar el Concepto!","a");                   
+				break;
+				default:                        
+				mensaje("Se Eliminó correctamente el Concepto","e");
+				listarConcepto();
+                        // limpiarForm('#frm_ins_trabajador');
+            }
+                },
+                error:function(){
+                	alert("error");
+                }
+            });
+}

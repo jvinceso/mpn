@@ -333,3 +333,23 @@ function creaAutocomplete(autocomplete){
         }
     }); 
 }
+
+function obtenerCamposArray(name){
+    var names = document.getElementsByName(name+"[]");
+    arr=[];
+    $.each(names,function(i,e){
+        var obj = new Object();
+        // obj.dataField = $(e).attr('data-field');
+        obj.nRecId = $(e).attr('data-nrecid');
+        obj.dRedFechaModificacion = $(e).attr('data-dRedFechaModificacion');
+        obj.cRedPrecio = $(e).val();
+        var id= $(e).prop("id") ; //obtiene id
+        var attr = id.split("_");//corta la cadena por caracter 
+        //obtengo la ultima posicion del array que es la que me interesa( IDAttr)
+        obj.nRedId = attr[attr.length-1];
+        arr[i]=obj;
+    });
+    
+    return arr;
+
+}

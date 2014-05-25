@@ -130,9 +130,32 @@ class Concepto extends CI_Controller {
 		}
 	}
 
+	function updConcepto() {
+		$this->objConcepto->set_nConId($this->input->post('txt_upd_con_nConId'));
+		$this->objConcepto->set_cConDescripcion($this->input->post('txt_upd_con_desc'));
+		$this->objConcepto->set_fConCosto($this->input->post('txt_upd_con_costo'));
+		$this->objConcepto->set_nMulIdTipoPago($this->input->post('cbo_upd_con_tipopago'));
+		$result = $this->objConcepto->updConcepto();
+		// print_p($_POST);exit();
+		if ($result) {
+			echo "1";
+		} else {
+			echo "0";
+		}
+	}
+
 	function delTipoPago(){
 		$this->objMultitabla->set_nMulId( $this->input->post('nMulId') );
 		if ($this->objMultitabla->delMultitabla()) {	
+			echo "1";
+		}else{
+			echo "0";
+		}
+	}
+
+	function delConcepto(){
+		$this->objConcepto->set_nConId( $this->input->post('nConId') );
+		if ($this->objConcepto->delConcepto()) {	
 			echo "1";
 		}else{
 			echo "0";
