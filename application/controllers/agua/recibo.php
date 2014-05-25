@@ -90,7 +90,7 @@ class Recibo extends CI_Controller {
 
 	function vistaPrevia($codRecibo){
 		$data['codigo'] = $codRecibo;
-		$this->load->view('reportes/template_view_resultado', $data);	
+		$this->load->view('reportes/template_view_resultado', $data);
 	}
 
 	function reporte( $codx = 157 )
@@ -144,6 +144,44 @@ class Recibo extends CI_Controller {
 		}
 
 
+	function recibos_mes($anio,$mes){
+		$this->load->library('pdf');
+		$this->load->library('PHPJasperXML');
+
+		$this->objRecibo->set_nRecId( $codx );
+		$rsreporte = $this->objRecibo->impresionMasiva( $anio, $mes );
+
+		if ( $rsreporte ) {
+			$PHPJasperXML = new PHPJasperXML($pdf);
+			$message = ($this->session->userdata('mensaje'))? $this->session->userdata('mensaje'):'El Pago de este recibo no cancela deudas anteriores, la perdida del mismo sera de S/.1 adicional';
+			$xml =  simplexml_load_file( FCPATH."reportes_design/agua_masivo_mes.jrxml" );
+			$PHPJasperXML->arrayParameter=array("mensaje"=>$message);
+			$PHPJasperXML->xml_dismantle( $xml );
+			$PHPJasperXML->dataToArray( $rsreporte );
+			$PHPJasperXML->outpage("I");			
+		}else{
+			echo '<center>No hay Datos para mostrar</center>';
+		}
+	}
+	function impresion_masiva( $codx = 157 )
+	{
+		/* 
+		 * To change this template, choose Tools | Templates
+		 * and open the template in the editor.
+		*/
+		$parametros = $this->input->post('json');
+		$array = array(
+			'mensaje' => $parametros['mensaje']
+		);
+		
+		$this->session->set_userdata( $array );
+
+		$data['titulo'] = 'Impresion Masiva';
+		$data['ruta'] = 'agua/recibo/recibos_mes/'.$parametros['anio'].'/'.$parametros['mes'];
+		$data['ancho'] = '100%';
+		$data['alto'] = '500';
+		$this->load->view('reportes/reporte_template_view', $data);
+>>>>>>> d4a1de468e5b8c04a8d86e6448df69b372242dda
 	}
 }
 /* End of file recibo.php */

@@ -22,6 +22,12 @@ $(function(){
 	        }
 	    }
 	});
+	$("#btn_print_recibo").bind({
+	    click:function(evt){
+	        evt.preventDefault();
+	        impresionMasiva();
+	    }
+	});
 
 	$("#btnProcesar").bind({
 	    click:function(evt){
@@ -61,7 +67,7 @@ $(function(){
 });
 
 function procesarRecibosParciales(){
-	alert("go process");
+	// alert("go process");
 	$.ajax({
 	    url:'recibo/procesar_recibos/parcial',
 	    cache:false,
@@ -77,7 +83,7 @@ function procesarRecibosParciales(){
 	            	mensaje("Seleccione un año!!!","a");
 	            break; 
 	            case "3":
-	            	var year = new Date().getFullYear()
+	            	var year = $("#cbo_in_contribuyente_anio option:selected").val()
 	            	mensaje("Ya se han Procesados los Arbitrios para el año "+year+" !!!","a");
 	            break; 
 	            case "2":
@@ -98,4 +104,11 @@ function procesarRecibosParciales(){
 	});
 	
 	
+}
+function impresionMasiva(){
+	set_popup('recibo/impresion_masiva','Impresion Masiva',920,400,{
+		mes  : $("#cbo_imprimir_recibo_mes option:selected").val(),
+		anio : $("#cbo_imprimir_recibo_anio option:selected").val(),
+		mensaje : $("textarea[name=txt_imprimir_recibo_mensaje]").val()
+	});
 }

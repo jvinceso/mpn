@@ -34,14 +34,16 @@ class Direccion_calle_model extends CI_Model {
 		}
 	}
 	public function insDireccionCalle(){
+		$this->db->trans_start();
 		$data = array(
 			'nPdeId' => $this->nPdeId ,
 			'nCalId' => $this->nCalId
 			);
 		$this->db->insert('direccion_calle', $data);
+		$this->nDicId = $this->db->insert_id();
+		$this->db->trans_complete();		
 		if($this->db->affected_rows() > 0)
 		{
-			$this->nDicId = $this->db->insert_id();
 			return true;
 		}else{
 			return false;

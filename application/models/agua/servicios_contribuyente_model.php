@@ -56,8 +56,14 @@
 			inner join multitabla m on m.nMulId = st.nMulServicio
 			inner join multitabla mt on mt.nMulId = st.nMulTipoServicio
 		where sc.nSetId = '".$this->nSetId."' and nPerId = '".$this->nPerId."' and nDicId = '".$this->nDicId."'  and  sc.cSecEstado = 1 and m.cMulEstado = 1 and mt.cMulEstado = 1" );
-		;	
 		return $query->num_rows();
+		}
+
+		public function eliminaServicioContribuyente(){
+			// print_p("UPDATE servicios_contribuyente SET cSecEstado = 0 WHERE nSecId = ".$this->nSecId."");
+			$this->db->trans_start();
+			$this->db->query("UPDATE servicios_contribuyente SET cSecEstado = 0 WHERE nSecId = ".$this->nSecId."");
+			$this->db->trans_complete();
 		}
 	}
 ?>
