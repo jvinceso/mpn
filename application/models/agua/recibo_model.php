@@ -52,7 +52,7 @@ class Recibo_model extends CI_Model {
 		 * Se Obtiene lista de contribuyentes segun el año que se ah seleccionado
 		 * en base al servicio tipo y relación con la tabla costo
 		 */
-		$rsRecibos = $this->db->query("select nRecId from recibo where YEAR(dFecFechaRegistro) = '".$anio."'")->result_array();
+		$rsRecibos = $this->db->query("select nRecId from recibo where YEAR(dFecFechaRegistro) = '".$anio."' AND cRecEstado = 'P'")->result_array();
 		if ( count( $rsRecibos ) == 0 ) {
 			$this->db->trans_start();
 			$rsContribuyentes = $this->db->query('select p.nPerId from persona p
@@ -99,7 +99,9 @@ class Recibo_model extends CI_Model {
 		$sql_reciboDetalle = "";
 		$nPerIdTrabajador = $this->session->userdata('IdPersona');
 
-		$rsRecibos = $this->db->query("select nRecId from recibo where YEAR(dFecFechaRegistro) = '".$anio."'  and nPerIdContribuyente = ".$this->nPerIdContribuyente." ")->result_array();
+		$rsRecibos = $this->db->query("select nRecId from recibo r inner join fechas_vencimiento fv on fv.nFevId = r.nFevId
+			where fv.nFevAnio = '".$anio."' AND r.nPerIdContribuyente = ".$this->nPerIdContribuyente." and r.cRecEstado = 'P' ")->result_array();
+				
 		if ( count( $rsRecibos ) == 0 ) {
 			$this->db->trans_start();
 
@@ -143,7 +145,6 @@ class Recibo_model extends CI_Model {
 		$sql_recibo_qry = 'SELECT  		r.nRecId as "ID"
 		,@i := @i + 1 as Cuota
 		,f.dFevFecha_vence AS "Vence"
-				-- ,IFNULL(r.dRecFechaPago,"----/--/--") AS "Pago"
 				,CASE r.cRecPagado
 					WHEN "P" THEN "Pendiente" 
 					WHEN "C" THEN "Pagado" 
@@ -184,10 +185,10 @@ class Recibo_model extends CI_Model {
 		SELECT rd.cRedPrecio
 		FROM recibo_detalle rd 
 		INNER JOIN servicios_contribuyente sc on sc.nSecId = rd.nSecId
-		INNER JOIN servicios_tipo st on st.nSetId = sc.nSetId 
+		INNER JOIN servicios_tipo st on st.nSetId = sc.nSetId  	AND st.cSetEstado = 1
 		and st.nMulTipoServicio IN (select nMulId from multitabla where nMulIdPadre = 47 and cMulEstado = 1)
 		and st.nMulServicio IN (select nMulId from multitabla where UPPER(cMulDescripcion) = UPPER("gastos administrativos") and cMulEstado = 1)
-		WHERE rd.nRecId = r.nRecId and st.cSetEstado = 1
+		WHERE rd.nRecId = r.nRecId and st.cSetEstado = 1 and sc.nPerId = r.nPerIdContribuyente
 		),0) as "Gastos" 
 ,r.fRecDeuda AS "Deuda"
 ,CASE 

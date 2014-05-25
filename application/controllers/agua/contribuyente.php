@@ -264,10 +264,18 @@ class Contribuyente extends CI_Controller {
 		$this->objDireccionCalle->set_nPdeId( $this->input->post('nPdeId') );
 		$this->objDireccionCalle->obtenernDicIdxnPdeId();
 		$servicios_prestados = $this->objServiosTipo->listaServicioXDireccion( $this->objDireccionCalle );
-		$opciones = null;
-		$funciones = null;
+		$opciones = array(
+		    'Eliminar' => array(
+		       'color'=>'red'
+		       ,'icono'=>'trash'
+		       ,'tooltip'=>'danger'
+		       )
+		    );    
+		$funciones = array(
+		    'initEvtDel("eliminarServicioTipo");'
+		    );
 		$nameTable = 'tabla-servicios-direccion';
-		$pk = null;
+		$pk = 'ID';
 		CrudGridMultipleJson($servicios_prestados,$nameTable,$pk,$opciones,$funciones);
 	}
 
@@ -284,6 +292,10 @@ class Contribuyente extends CI_Controller {
 			// }
 		}
 	}	
+	function eliminaServicioPredio(){		
+		$this->objServiciosContribuyente->set_nSecId( $this->input->post('nSecId') );
+		$this->objServiciosContribuyente->eliminaServicioContribuyente( );
+	}
 
 }
 ?>

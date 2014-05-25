@@ -15,6 +15,7 @@
 	/*max-width:550px;*/
 }
 </style>
+
 <div class="row">
 	<div class="col-xs-11">
 		<!-- codigo del cuerpo -->

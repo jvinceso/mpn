@@ -61,7 +61,7 @@ $(function(){
 });
 
 function procesarRecibosParciales(){
-	alert("go process");
+	// alert("go process");
 	$.ajax({
 	    url:'recibo/procesar_recibos/parcial',
 	    cache:false,
@@ -77,7 +77,7 @@ function procesarRecibosParciales(){
 	            	mensaje("Seleccione un año!!!","a");
 	            break; 
 	            case "3":
-	            	var year = new Date().getFullYear()
+	            	var year = $("#cbo_in_contribuyente_anio option:selected").val()
 	            	mensaje("Ya se han Procesados los Arbitrios para el año "+year+" !!!","a");
 	            break; 
 	            case "2":

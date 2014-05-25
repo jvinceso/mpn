@@ -55,3 +55,26 @@ function listarModulo(){
 	
 	// get_page('../agua/contribuyente/listarServiciosxDireccion','c_qry_serviciostipo',{ 'nPdeId':nPdeId, 'nPerId':nPerId });
 }
+
+function eliminarServicioTipo(id){
+	console.log(id);
+	// var nSecId   = $(fila).find("td:eq(0)").text().trim();
+	$.ajax({
+	    url:'contribuyente/eliminaServicioPredio',
+	    type:'post',
+	    cache:false,
+	    data:{
+	    	nSecId : id
+	    },
+	    success:function(data){
+	    	mensaje("Se elimino correctamente el servicio","e");
+	    	listarModulo();
+	    },
+	    error:function(er){
+	    	console.log(er.statusText);
+	        alert("Houston, tenemos un problema... Creo que has roto algo...");
+	    }
+	});
+	
+	
+}

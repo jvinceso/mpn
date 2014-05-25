@@ -87,7 +87,7 @@
 		}
 
 		public function listaServicioXDireccion($objDireccionCalle){
-			$query = $this->db->query("select m.cMulDescripcion as Servicio ,mt.cMulDescripcion as Tipo, cst.fcstPago  as costo from servicios_contribuyente sc
+			$query = $this->db->query("select sc.nSecId as ID, m.cMulDescripcion as Servicio ,mt.cMulDescripcion as Tipo, cst.fcstPago  as costo from servicios_contribuyente sc
 				inner join servicios_tipo st on st.nSetId = sc.nSetId
 				inner join multitabla m on m.nMulId = st.nMulServicio
 				inner join multitabla mt on mt.nMulId = st.nMulTipoServicio

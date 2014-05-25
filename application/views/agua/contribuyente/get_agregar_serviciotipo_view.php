@@ -33,10 +33,18 @@ echo $txt_hdn_direccion_persona;
 <div class="table-header">Servicios Asignados</div>
 <div id="c_qry_serviciostipo" class="table-responsive">
     <?php 
-    $opciones = null;
-    $funciones = null;
+    $opciones = array(
+        'Eliminar' => array(
+           'color'=>'red'
+           ,'icono'=>'trash'
+           ,'tooltip'=>'danger'
+           )
+        );    
+    $funciones = array(
+        'initEvtDel("eliminarServicioTipo");'
+        );
     $nameTable = 'tabla-servicios-direccion';
-    $pk = null;
+    $pk = 'ID';
     CrudGridMultipleJson($servicios_prestados,$nameTable,$pk,$opciones,$funciones); 
     ?>
 </div>

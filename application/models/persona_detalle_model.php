@@ -185,15 +185,18 @@
     }
 
     public function setPersonaDetalle(){
+    	$this->db->trans_start();
     	$detalle = array(
     		'nPerId' => $this->nPerId ,
     		'nMulId' => $this->nMulId ,
     		'cPdeValor' => $this->cPdeValor
     		);
     	$this->db->insert('persona_detalle', $detalle);
+    	$this->nPdeId = $this->db->insert_id();
+    	$this->db->trans_complete();
     	if($this->db->affected_rows() > 0)
     	{
-    		$this->nPdeId = $this->db->insert_id();
+    		
     		return true;
     	}else{
     		return false;
