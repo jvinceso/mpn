@@ -130,7 +130,7 @@ class Multitabla_model extends CI_Model {
 			$data   = $query->result_array();
             // print_p($data);exit();
 			$combo  = creaCombo($data);
-			$result = form_dropdown("cbo_upd_tipo_pago", $combo,$this->get_nMulId(), 'id="cbo_upd_tipo_pago" class="chosen-select" style="width:160px"');
+			$result = form_dropdown("cbo_upd_con_tipopago", $combo,$this->get_nMulId(), 'id="cbo_upd_con_tipopago" class="chosen-select" style="width:160px"');
 			return $result;
 		} else {
 			return false;

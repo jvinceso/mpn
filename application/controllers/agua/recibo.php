@@ -115,6 +115,36 @@ class Recibo extends CI_Controller {
 			echo '<center>No hay Datos para mostrar</center>';
 		}
 	}
+
+	function datosRecalcularRecibo($nRecId){
+
+		$recalcular = $this->objRecibo->optimoRecalcular($nRecId);
+		if($recalcular)
+		{
+			$fila = $this->objRecibo->datosRecalcularRecibo($nRecId);
+        // print_p($fila);
+			if ($fila) {
+				$filax["datos"] = $fila;
+				$this->load->view('agua/recibos/recalcular_view', $filax);
+			} else {
+				echo "Error";
+			}
+		}
+		else
+		{
+			echo '	<div class="alert alert-info">
+			<button data-dismiss="alert" class="close" type="button">
+			<i class="icon-remove"></i>
+			</button>
+			<strong>Aviso!</strong>
+			No se puede recalcular la Cuota porque ha sido Transferido a Caja para su cobro
+			<br>
+
+			</div>';
+		}
+
+
+	}
 }
 /* End of file recibo.php */
 /* Location: ./application/controllers/agua/recibo.php */

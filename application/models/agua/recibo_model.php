@@ -145,9 +145,9 @@ class Recibo_model extends CI_Model {
 		,f.dFevFecha_vence AS "Vence"
 				-- ,IFNULL(r.dRecFechaPago,"----/--/--") AS "Pago"
 				,CASE r.cRecPagado
-					WHEN "P" THEN "Pendiente" 
-					WHEN "C" THEN "Pagado" 
-					WHEN "T" THEN "Transferido" 
+				WHEN "P" THEN "Pendiente" 
+				WHEN "C" THEN "Pagado" 
+				WHEN "T" THEN "Transferido" 
 				END AS "Estado"
 				,(
 					SELECT sum(rd.cRedPrecio)
@@ -167,8 +167,8 @@ class Recibo_model extends CI_Model {
 		and st.nMulTipoServicio IN (select nMulId from multitabla where nMulIdPadre = 47)
 		and st.nMulServicio IN (select nMulId from multitabla where UPPER(cMulDescripcion) = UPPER("Desague"))
 		WHERE rd.nRecId = r.nRecId and st.cSetEstado = 1
-	),0
-	) as "Desague"
+		),0
+) as "Desague"
 ,IFNULL(
 	(
 		SELECT rd.cRedPrecio
@@ -335,6 +335,36 @@ public function updateRecibo(){
 		$this->db->query("UPDATE recibo SET cRecPagado = '".$movi."',dRecFechaPago= now() WHERE nRecId = ".$this->nRecId." ");
 		$this->db->trans_complete();
 		return true;
+	}
+
+	public function datosRecalcularRecibo($nRecId)
+	{
+		$query = $this->db->query("
+			select rd.nRedId,m.cMulDescripcion,rd.cRedPrecio,rd.nRecId,now() as dRedFechaModificacion from recibo_detalle rd
+			inner join servicios_contribuyente sc on rd.nSecId = sc.nSecId 
+			inner join servicios_tipo st on sc.nSetId = st.nSetId
+			inner join multitabla m on st.nMulServicio = m.nMulId
+			where nRecId = ".$nRecId.";		
+			");
+		if ($query->num_rows() > 0) {
+			return $query->result_array();
+		} else {
+			return false;
+		}
+	}
+
+	public function optimoRecalcular($nRecId)
+	{
+		$query = $this->db->query("
+			select nRecId from recibo
+			where nRecId = ".$nRecId." and cRecPagado = 'P' and cRecEstado = 'P';		
+			");
+		if ($query->num_rows() > 0) {
+			return true;
+		} else {
+			return false;
+		}
+
 	}
 }
 
