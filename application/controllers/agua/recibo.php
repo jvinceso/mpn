@@ -142,7 +142,7 @@ class Recibo extends CI_Controller {
 
 			</div>';
 		}
-
+	}
 
 	function recibos_mes($anio,$mes){
 		$this->load->library('pdf');
@@ -172,7 +172,7 @@ class Recibo extends CI_Controller {
 		$parametros = $this->input->post('json');
 		$array = array(
 			'mensaje' => $parametros['mensaje']
-		);
+			);
 		
 		$this->session->set_userdata( $array );
 
