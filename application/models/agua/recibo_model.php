@@ -239,7 +239,7 @@ public function updateRecibo(){
 			YEAR( fv.dFevFecha_vence ) as Anio,
 			r.dRecFechaPago, r.nFevId, r.nPerIdContribuyente FROM recibo r
 			INNER JOIN fechas_vencimiento fv ON fv.nFevId = r.nFevId
-			where r.nRecId = '. $this->nRecId .' AND r.cRecEstado = "P" AND cRecPagado is null';
+			where r.nRecId = '. $this->nRecId .' AND r.cRecEstado = "P" AND r.cRecPagado = "P" ';
 			break;			
 			default: //Obtiene los recibos sin tener en cuenta los estados
 			$sql = '
