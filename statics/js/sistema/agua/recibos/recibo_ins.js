@@ -22,6 +22,12 @@ $(function(){
 	        }
 	    }
 	});
+	$("#btn_print_recibo").bind({
+	    click:function(evt){
+	        evt.preventDefault();
+	        impresionMasiva();
+	    }
+	});
 
 	$("#btnProcesar").bind({
 	    click:function(evt){
@@ -98,4 +104,11 @@ function procesarRecibosParciales(){
 	});
 	
 	
+}
+function impresionMasiva(){
+	set_popup('recibo/impresion_masiva','Impresion Masiva',920,400,{
+		mes  : $("#cbo_imprimir_recibo_mes option:selected").val(),
+		anio : $("#cbo_imprimir_recibo_anio option:selected").val(),
+		mensaje : $("textarea[name=txt_imprimir_recibo_mensaje]").val()
+	});
 }

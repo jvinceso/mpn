@@ -143,7 +143,7 @@ class Recibo_model extends CI_Model {
 		$anio = is_null( $anio ) ? date('Y') : $anio ;
 		// $this->db->trans_start();
 		$sql_recibo_qry = 'SELECT  		r.nRecId as "ID"
-		,@i := @i + 1 as Cuota
+		,f.nFevCuota as Cuota
 		,f.dFevFecha_vence AS "Vence"
 				,CASE r.cRecPagado
 					WHEN "P" THEN "Pendiente" 
@@ -197,8 +197,8 @@ ELSE r.fRecAbono
 END AS "Abonos"
 FROM recibo r
 INNER JOIN fechas_vencimiento f ON f.nFevId = r.nFevId
-,(select @i := 0) temp
-WHERE f.cFevEstado = 1 AND r.nPerIdContribuyente = '.$this->nPerIdContribuyente.' AND YEAR( r.dFecFechaRegistro ) = '.$anio.'
+
+WHERE f.cFevEstado = 1 AND r.nPerIdContribuyente = '.$this->nPerIdContribuyente.' AND f.nFevAnio  = '.$anio.'
 ORDER BY nRecId ASC';
 			// print_p( $sql_recibo_qry );	exit();
 $rsRecibos = $this->db->query( $sql_recibo_qry );
@@ -331,6 +331,85 @@ public function updateRecibo(){
 			return false;
 		}		
 	}
+
+	public function impresionMasiva($anio,$mes){
+		$sql_imprimir = 
+		'SELECT r.nRecId
+				,p.nPerId AS CodigoPersona
+				,CASE MONTH(fv.dFevFecha_vence)
+					WHEN 1
+						THEN "Enero"
+					WHEN 2
+						THEN "Febrero"
+					WHEN 3
+						THEN "Marzo"
+					WHEN 4
+						THEN "Abril"
+					WHEN 5
+						THEN "Mayo"
+					WHEN 6
+						THEN "Junio"
+					WHEN 7
+						THEN "Julio"
+					WHEN 8
+						THEN "Agosto"
+					WHEN 9
+						THEN "Septiembre"
+					WHEN 10
+						THEN "Octubre"
+					WHEN 11
+						THEN "Noviembre"
+					WHEN 12
+						THEN "Diciembre"
+					ELSE "Esto no es un Mes"
+					END AS Mes
+				,YEAR(fv.dFevFecha_vence) AS Anio
+				,CONCAT (
+					p.cPerApellidoPaterno
+					," "
+					,p.cPerApellidoMaterno
+					," "
+					,p.cPerNombres
+					) AS Nombres
+				,CONCAT (
+					v.cViaNombre
+					," "
+					,c.cCalNombre
+					," "
+					,pd.cPdeValor
+					) AS Domicilio
+				,s.cSecNombre AS Lugar
+				,DATE_FORMAT(cast(r.dRecFechaImpresion AS DATETIME), "%d/%m/%Y") AS FechaEmision
+				,fv.dFevFecha_vence AS FechaVencimiento
+				,fv.dFevFecha_corte AS FechaCorte
+				,CONCAT (
+					"S/. "
+					,r.fRecDeuda
+					) AS Deuda
+			FROM recibo r
+			INNER JOIN fechas_vencimiento fv ON r.nFevId = fv.nFevId
+			INNER JOIN recibo_detalle rd ON rd.nRecId
+				AND r.nRecId
+			INNER JOIN servicios_contribuyente sc ON sc.nSecId = rd.nSecId
+			INNER JOIN persona p ON p.nPerId = r.nPerIdContribuyente
+			INNER JOIN direccion_calle dc ON dc.nDicId = sc.nDicId
+			INNER JOIN persona_detalle pd ON pd.nPdeId = dc.nPdeId
+			INNER JOIN calle c ON c.nCalId = dc.nCalId
+			INNER JOIN via v ON v.nViaId = c.nViaId
+			INNER JOIN sector s ON s.nSecId = c.nSecId
+			WHERE fv.nFevCuota = '.$mes.'
+				AND fv.nFevAnio = '.$anio.'
+				AND sc.cSecEstado = 1
+				AND fv.cFevEstado = 1
+				AND p.cPerEstado = 1
+				AND c.cCalEstado = 1
+				AND v.cViaEstado = 1
+				AND s.cSecEstado = 1
+			GROUP BY p.nPerId;		
+		';
+		return $this->db->query( $sql_imprimir )->result_array();
+	}
+
 	public function updReciboCaja( $movi ){
 		$this->db->trans_start();
 		$this->db->query("UPDATE recibo SET cRecPagado = '".$movi."',dRecFechaPago= now() WHERE nRecId = ".$this->nRecId." ");

@@ -84,4 +84,68 @@
 		<div class="col-md-offset-3 col-md-9"></div>
 	</div>
 </div>
+
+<!-- Formulario para procesar recibos por contribuyente -->
+<div id="frm_imprimir_recibos_masivos">
+	<div class="alert alert-info">
+		<button data-dismiss="alert" class="close" type="button">
+			<i class="icon-remove"></i>
+		</button>
+		<strong>Aviso!</strong>
+		Se Imprimiran los recibos del mes y año que sea seleccionado
+		<br>
+	</div>
+	<div>
+		<div class="row centrado">
+			<form id="frm_qry_imprimir_parcial" name = "frm_qry_imprimir_parcial" class="form-horizontal" role="form">
+				<div class="form-group">
+					<label class="col-sm-3 control-label no-padding-right" for="form-field-tags">
+						Año
+					</label>
+					<div class="col-sm-9">
+						<?php 
+						echo form_dropdown("cbo_imprimir_recibo_anio", creaCombo( $anios ),'', 'id="cbo_imprimir_recibo_anio" class="chosen-select w360"');
+						?>
+						<!-- <input type="text" name="txt_upd_servpt_costo" id="txt_upd_servpt_costo" placeholder="Ingrese el costo" value = "<?php echo $fila['costo'] ?>" /> -->
+					</div>
+				</div>	
+				<div class="form-group">
+					<label class="col-sm-3 control-label no-padding-right" for="form-field-tags">
+						Mes
+					</label>
+					<div class="col-sm-9">
+						<?php 
+						echo form_dropdown("cbo_imprimir_recibo_mes", creaCombo( generaMeses() ),'', 'id="cbo_imprimir_recibo_mes" class="chosen-select w360"');
+						?>
+						<!-- <input type="text" name="txt_upd_servpt_costo" id="txt_upd_servpt_costo" placeholder="Ingrese el costo" value = "<?php echo $fila['costo'] ?>" /> -->
+					</div>
+				</div>	
+				<div class="form-group">
+					<label class="col-sm-3 control-label no-padding-right" for="form-field-tags">
+						Mes
+					</label>
+					<div class="col-sm-9">
+						<?php 
+						echo form_textarea("txt_imprimir_recibo_mensaje");
+						?>
+						<!-- <input type="text" name="txt_upd_servpt_costo" id="txt_upd_servpt_costo" placeholder="Ingrese el costo" value = "<?php echo $fila['costo'] ?>" /> -->
+					</div>
+				</div>
+				<div class="clearfix form-actions">
+					<div class="col-md-offset-3 col-md-9">
+						<button id="btn_print_recibo" class="btn btn-purple btn-sm" type="button">
+							Imprimir
+							<i class="icon-print icon-on-right bigger-110"></i>
+						</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="space-4"></div>
+	<div class="clearfix form-actions">
+		<div class="col-md-offset-3 col-md-9"></div>
+	</div>
+</div>
+
 <script type="text/javascript" src='<?php echo URL_JS; ?>sistema/agua/recibos/recibo_ins.js'></script>
