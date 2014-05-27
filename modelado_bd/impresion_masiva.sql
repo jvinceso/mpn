@@ -1,8 +1,9 @@
 select 
 
-rd.nRecId
+r.nRecId
 	,p.nPerId AS CodigoPersona
-	,CASE MONTH(fv.dFevFecha_vence)
+	,CASE MONTH(fv.
+dFevFecha_vence)
 		WHEN 1
 			THEN "Enero"
 		WHEN 2
@@ -66,4 +67,4 @@ from recibo r
 	INNER JOIN sector s ON s.nSecId = c.nSecId
 where fv.nFevCuota = 5 and fv.nFevAnio = 2014
 AND sc.cSecEstado = 1 AND fv.cFevEstado = 1 AND p.cPerEstado = 1 AND c.cCalEstado = 1 AND v.cViaEstado = 1 	AND s.cSecEstado = 1
-group by p.nPerId;
+group by r.nRecId;
