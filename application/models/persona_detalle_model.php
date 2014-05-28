@@ -194,9 +194,8 @@
     	$this->db->insert('persona_detalle', $detalle);
     	$this->nPdeId = $this->db->insert_id();
     	$this->db->trans_complete();
-    	if($this->db->affected_rows() > 0)
-    	{
-    		
+    	if( $this->db->trans_status() !== FALSE )
+    	{    		
     		return true;
     	}else{
     		return false;
