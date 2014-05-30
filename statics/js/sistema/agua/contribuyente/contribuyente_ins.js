@@ -27,38 +27,38 @@ $(function(){
                 // }
             },
             txt_ins_cont_appaterno: {
-                // required: true ,
+                required: true ,
                 // lettersonly: true,
                 maxlength:80
             },
             txt_ins_cont_apmaterno: {
-                // required: true ,
+                required: true ,
                 // lettersonly: true,
                 maxlength:80
             },
             txt_ins_cont_nombres: {
-                // required: true,
+                required: true,
                 // lettersonly: true,
                 maxlength:200
             },
             txt_ins_cont_nacimiento: {
-                // required: true
+                required: true
             },
             cbo_ins_cont_sexo: {
-                // required: true
+                required: true
             },
             cbo_ins_cont_ecivil: {
-                // required: true
+                required: true
             },
             txt_ins_cont_telefono: {
-                // required: true,
+                required: true,
                 maxlength:11
             }, 
             txt_ins_cont_celular: {
-                // required: true
+                required: true
             },
             txt_ins_cont_email: {
-                // required: true,
+                required: true,
                 email: true,
                 maxlength:250
             }
