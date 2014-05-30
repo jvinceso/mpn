@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="detalle_recibo_masivo" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="94118a9d-2945-4b53-91fc-6e5b0de170c5">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="recibo_codigo" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT rd.nRecId ,
+		CONCAT(m.cMulDescripcion," - ",mt.cMulDescripcion) AS Concepto ,
+		rd.cRedPrecio AS Importe
+		FROM recibo_detalle rd
+		INNER JOIN recibo r ON rd.nRecId = r.nRecId
+		INNER JOIN servicios_contribuyente sc ON sc.nSecId = rd.nSecId
+		INNER JOIN servicios_tipo st ON st.nSetId = sc.nSetId
+		INNER JOIN multitabla m ON m.nMulId = st.nMulServicio
+		INNER JOIN multitabla mt ON mt.nMulId = st.nMulTipoServicio
+		INNER JOIN fechas_vencimiento fv ON fv.nFevId = r.nFevId
+		INNER JOIN persona p ON p.nPerId = r.nPerIdContribuyente
+		INNER JOIN direccion_calle dc ON dc.nDicId = sc.nDicId
+		INNER JOIN persona_detalle pd ON pd.nPdeId = dc.nPdeId
+		INNER JOIN calle c ON c.nCalId = dc.nCalId
+		INNER JOIN via v ON v.nViaId = c.nViaId
+		INNER JOIN sector s ON s.nSecId = c.nSecId
+		WHERE sc.cSecEstado = 1 AND st.cSetEstado = 1  AND m.cMulEstado = 1 AND mt.cMulEstado = 1 AND
+		fv.cFevEstado = 1 AND p.cPerEstado = 1 AND c.cCalEstado = 1 AND v.cViaEstado = 1 AND s.cSecEstado = 1 AND   rd.nRecId = $P{recibo_codigo}]]>
+	</queryString>
+	<field name="nRecId" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Concepto" class="java.lang.String"/>
+	<field name="Importe" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="23" y="2" width="330" height="20" uuid="3a8ae8ff-ff88-4c4a-88d2-6465f2eb3c69"/>
+				<textFieldExpression><![CDATA[$F{Concepto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="353" y="2" width="100" height="20" uuid="e8c00c77-bd1b-49f5-a832-94d3ed61a917"/>
+				<textFieldExpression><![CDATA[$F{Importe}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

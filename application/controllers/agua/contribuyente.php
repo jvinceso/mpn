@@ -204,7 +204,7 @@ class Contribuyente extends CI_Controller {
 		$this->objCalle->set_nSecId(  $this->input->post('nSector') );
 		$calles = $this->objCalle->get_ObjCalle();
 		if ($calles) {
-			echo form_dropdown("cbo_calle", creaCombo($calles),'', 'id="cbo_calle" class="chosen-select w360"');
+			echo form_dropdown("cbo_calle", creaComboCSO($calles),'', 'id="cbo_calle" class="chosen-select w360"');
 		}else{
 			echo "0";
 		}
@@ -216,7 +216,7 @@ class Contribuyente extends CI_Controller {
 		$this->objPersonaDetalle->set_cPdeValor( $this->input->post('direc') );		
 		if($this->objPersonaDetalle->setPersonaDetalle()){
 			/*Relacionamos calle con la direccion*/
-			print_p( $this->objPersonaDetalle->get_nPdeId() );
+			// print_p( $this->objPersonaDetalle->get_nPdeId() );
 			$this->objDireccionCalle->set_nPdeId( $this->objPersonaDetalle->get_nPdeId() );
 			$this->objDireccionCalle->set_nCalId( $this->input->post('cbo_calle') );
 			if( $this->objDireccionCalle->insDireccionCalle() ){

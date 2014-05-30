@@ -20,7 +20,7 @@ $(function(){
 	                    case "e":
 	                    mensaje("Error al guardar la Dirección!","a"); 
 	                    break; 
-	                    default:
+	                    case "1":
 	                    msgLoadSaveRemove("#btnRegistrar");
 	                    mensaje("Se Registro Correctamente la Dirección","e");
 	                    limpiarForm('#frm_ins_modulo');

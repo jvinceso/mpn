@@ -28,6 +28,15 @@ $(function(){
 	        impresionMasiva();
 	    }
 	});
+	$("#cbo_sector").bind({
+	    change:function(evt){
+	        evt.preventDefault();
+	    	cargar_cboCalles();
+	    }
+	});
+	//Carga Calles del primer Sector
+	// cargar_cboCalles();
+	
 
 	$("#btnProcesar").bind({
 	    click:function(evt){
@@ -65,6 +74,29 @@ $(function(){
 	    }
 	});
 });
+
+function cargar_cboCalles(){
+	msgLoading('#c_cbo_calles',"Buscando calles...");
+	var nSector = $("#cbo_sector option:selected").val();
+	$.ajax({
+	    url:'contribuyente/get_calles/',
+	    type:'post',
+	    cache:false,
+	    data:{"nSector":nSector},
+	    success:function(data){
+	    	if (data!="0") {
+	    		$("#c_cbo_calles").html(data);
+				$(".chosen-select").chosen();	            		
+	    	}else{
+	    		mensaje("No hemos encontrado calles que coincidan con el sector seleccionado, por favor vuelva a intentarlo... :(","a"); 
+	    	}
+	    },
+	    error:function(er){
+	    	console.log(er.statusText);
+	        alert("Houston, tenemos un problema... Creo que has roto algo...");
+	    }
+	});
+}
 
 function procesarRecibosParciales(){
 	// alert("go process");
@@ -109,6 +141,7 @@ function impresionMasiva(){
 	set_popup('recibo/impresion_masiva','Impresion Masiva',920,400,{
 		mes  : $("#cbo_imprimir_recibo_mes option:selected").val(),
 		anio : $("#cbo_imprimir_recibo_anio option:selected").val(),
-		mensaje : $("textarea[name=txt_imprimir_recibo_mensaje]").val()
+		mensaje : $("textarea[name=txt_imprimir_recibo_mensaje]").val(),
+		nSec  : $("#cbo_calle option:selected").val()
 	});
 }

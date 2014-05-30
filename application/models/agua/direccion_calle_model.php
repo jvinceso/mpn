@@ -39,10 +39,12 @@ class Direccion_calle_model extends CI_Model {
 			'nPdeId' => $this->nPdeId ,
 			'nCalId' => $this->nCalId
 			);
+		// print_p($data);
+		// exit();
 		$this->db->insert('direccion_calle', $data);
 		$this->nDicId = $this->db->insert_id();
 		$this->db->trans_complete();		
-		if($this->db->affected_rows() > 0)
+		if( $this->db->trans_status() !== FALSE )
 		{
 			return true;
 		}else{
@@ -53,6 +55,7 @@ class Direccion_calle_model extends CI_Model {
 		// select nDicId from direccion_calle where nPdeId = 1
 		$this->db->select('nDicId');
 		$fila =  $this->db->where( 'nPdeId', $this->nPdeId )->get('direccion_calle')->row_array();
+		// print_p($fila);exit();
 		if ( !empty( $fila ) ) {
 			$this->nDicId = $fila['nDicId'];
 		}else{

@@ -100,6 +100,26 @@
 			<form id="frm_qry_imprimir_parcial" name = "frm_qry_imprimir_parcial" class="form-horizontal" role="form">
 				<div class="form-group">
 					<label class="col-sm-3 control-label no-padding-right" for="form-field-tags">
+						Sector
+					</label>
+					<div class="col-sm-9">
+						<?php 
+						echo form_dropdown("cbo_sector", creaComboCSO($sector),'', 'id="cbo_sector" class="chosen-select w360"');
+						?>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label no-padding-right" for="form-field-tags">
+						Calle
+					</label>
+					<div class="col-sm-9" id="c_cbo_calles">
+						<?php 
+						echo form_dropdown("cbo_calle", creaCombo(array(0=>array('nCalId'=>0,'cCalNombre' => 'Seleccione un Sector'))),'', 'id="cbo_calle" class="chosen-select w360"');
+						?>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label no-padding-right" for="form-field-tags">
 						Año
 					</label>
 					<div class="col-sm-9">
@@ -122,7 +142,7 @@
 				</div>	
 				<div class="form-group">
 					<label class="col-sm-3 control-label no-padding-right" for="form-field-tags">
-						Mes
+						Mensaje
 					</label>
 					<div class="col-sm-9">
 						<?php 

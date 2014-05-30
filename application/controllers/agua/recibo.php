@@ -8,6 +8,7 @@ class Recibo extends CI_Controller {
 		$this->load->model('agua/costo_servicios_tipo_model','objCosto');
 		$this->load->model('agua/recibo_model','objRecibo');
 		$this->load->model('multitabla_model','objMultitabla');
+		$this->load->model('agua/sector_model','objSector');
 		//Do your magic here
 	}
 	public function index()
@@ -16,6 +17,7 @@ class Recibo extends CI_Controller {
 		$data['main_content'] = 'agua/recibos/panel_view';
 		$data['aplicacion'] = 'Agua';
 		$data['anios'] = $this->objCosto->getAniosFiscales();
+		$data['sector'] = $this->objSector->qrySector();
 		$data['objeto'] = 'Recibos';
 		$this->objMultitabla->set_nMulIdPadre(51);//nMulIdPadre->Servicios=51
 		$data['cboServicio'] = $this->objMultitabla->qrymultitabla();
@@ -144,21 +146,23 @@ class Recibo extends CI_Controller {
 		}
 	}
 
-	function recibos_mes($anio,$mes){
+	function recibos_mes($anio,$mes,$nSecId){
 		$this->load->library('pdf');
 		$this->load->library('PHPJasperXML');
+		$this->load->library('PHPJasperXMLSubReport');
 
 		$this->objRecibo->set_nRecId( $codx );
-		$rsreporte = $this->objRecibo->impresionMasiva( $anio, $mes );
+		// $nSecId = ($nSecId)?'':$nSecId;
+		$rsreporte = $this->objRecibo->impresionMasiva( $anio, $mes,$nSecId );
 
 		if ( $rsreporte ) {
 			$PHPJasperXML = new PHPJasperXML($pdf);
 			$message = ($this->session->userdata('mensaje'))? $this->session->userdata('mensaje'):'El Pago de este recibo no cancela deudas anteriores, la perdida del mismo sera de S/.1 adicional';
-			$xml =  simplexml_load_file( FCPATH."reportes_design/agua_masivo_mes.jrxml" );
-			$PHPJasperXML->arrayParameter=array("mensaje"=>$message);
-			$PHPJasperXML->xml_dismantle( $xml );
-			$PHPJasperXML->dataToArray( $rsreporte );
-			$PHPJasperXML->outpage("I");			
+			$xml =  simplexml_load_file( FCPATH."reportes_design/agua_masivo_mes2.jrxml" );
+			@$PHPJasperXML->arrayParameter=array("mensaje"=>$message);
+			@$PHPJasperXML->xml_dismantle( $xml );
+			@$PHPJasperXML->dataToArray( $rsreporte );
+			@$PHPJasperXML->outpage("I");			
 		}else{
 			echo '<center>No hay Datos para mostrar</center>';
 		}
@@ -177,7 +181,7 @@ class Recibo extends CI_Controller {
 		$this->session->set_userdata( $array );
 
 		$data['titulo'] = 'Impresion Masiva';
-		$data['ruta'] = 'agua/recibo/recibos_mes/'.$parametros['anio'].'/'.$parametros['mes'];
+		$data['ruta'] = 'agua/recibo/recibos_mes/'.$parametros['anio'].'/'.$parametros['mes'].'/'.$parametros['nSec'];
 		$data['ancho'] = '100%';
 		$data['alto'] = '500';
 		$this->load->view('reportes/reporte_template_view', $data);
