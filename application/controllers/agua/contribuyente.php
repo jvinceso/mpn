@@ -250,6 +250,7 @@ class Contribuyente extends CI_Controller {
 	function insServiciosxDireccion(){
 		$this->objDireccionCalle->set_nPdeId( $this->input->post('nPdeId') );
 		$this->objDireccionCalle->obtenernDicIdxnPdeId();
+		// print_p( $this->objDireccionCalle->get_nDicId() );exit();
 		$this->objServiciosContribuyente->set_nDicId( $this->objDireccionCalle->get_nDicId() );
 		$this->objServiciosContribuyente->set_nSetId( $this->input->post('serviciotipo') );
 		$this->objServiciosContribuyente->set_nPerId( $this->input->post('nPerId') );
