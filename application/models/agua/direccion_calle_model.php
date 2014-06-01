@@ -53,6 +53,9 @@ class Direccion_calle_model extends CI_Model {
 	}
 	public function obtenernDicIdxnPdeId(){
 		// select nDicId from direccion_calle where nPdeId = 1
+		// echo "sdfsd";
+		// print_p($this->nPdeId );
+		// exit();
 		$this->db->select('nDicId');
 		$fila =  $this->db->where( 'nPdeId', $this->nPdeId )->get('direccion_calle')->row_array();
 		// print_p($fila);exit();
