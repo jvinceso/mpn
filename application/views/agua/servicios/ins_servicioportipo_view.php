@@ -3,9 +3,7 @@
 <form id="frm_ins_servicioportipo" name = "frm_ins_servicioportipo" class="form-horizontal" role="form">
 	<div class="form-group">
 		<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nombre del Servicio</label>
-
 		<div class="col-sm-9">
-			<!-- $hid_fnd_nomgiro = form_input(array('name' => 'hid_fnd_nomgiro', 'id' => 'hid_fnd_nomgiro', 'type' => 'hidden')); -->
 			<input type="text" id="txt_ins_servpt_nom" name = "txt_ins_servpt_nom" placeholder="Ingrese el nombre" class="col-xs-10 col-sm-5" />
 			<input type="hidden" id="hid_fnd_ins_servpt_nom" name = "hid_fnd_ins_servpt_nom"/>
 		</div>

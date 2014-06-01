@@ -90,24 +90,39 @@ class Concepto_model extends CI_Model {
 	}
 
 	public function updConcepto(){
-        $data = array(
-            'cConDescripcion'  =>  $this->get_cConDescripcion(),
-            'fConCosto'  	   =>  $this->get_fConCosto(),
-            'nMulIdTipoPago'   =>  $this->get_nMulIdTipoPago()
-            );
-        $this->db->where('nConId', $this->get_nConId());
-        $this->db->update('concepto', $data); 
-        return true;
-    }
+		$data = array(
+			'cConDescripcion'  =>  $this->get_cConDescripcion(),
+			'fConCosto'  	   =>  $this->get_fConCosto(),
+			'nMulIdTipoPago'   =>  $this->get_nMulIdTipoPago()
+			);
+		$this->db->where('nConId', $this->get_nConId());
+		$this->db->update('concepto', $data); 
+		return true;
+	}
 
-    public function delConcepto(){
-        $data = array(
-            'cConEstado'  =>  0
-            );
-        $this->db->where('nConId', $this->get_nConId());
-        $this->db->update('concepto', $data); 
-        return true;
-    }
+	public function delConcepto(){
+		$data = array(
+			'cConEstado'  =>  0
+			);
+		$this->db->where('nConId', $this->get_nConId());
+		$this->db->update('concepto', $data); 
+		return true;
+	}
+
+	public function cboConcepto(){		
+		$query = $this->db->query("
+			select nConId, cConDescripcion from concepto where cConEstado = 1
+			");
+		if ($query) {
+			$data   = $query->result_array();
+            // print_p($data);exit();
+			$combo  = creaCombo($data);
+			$result = form_dropdown("cbo_ins_pag_concepto", $combo,'', 'id="cbo_ins_pag_concepto" class="chosen-select"');
+			return $result;
+		} else {
+			return false;
+		}
+	}
 
 }
 ?>

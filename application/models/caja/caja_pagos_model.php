@@ -101,5 +101,30 @@ class Caja_pagos_model extends CI_Model {
 		$this->db->trans_complete();
 		return $idCaja;
 	}
+
+	public function qryCajaPagos(){		
+		$query = $this->db->query("
+			select 
+			nCpaId as ID
+			,CONCAT(p.cPerNombres ,' ',p.cPerApellidoPaterno,' ', p.cPerApellidoMaterno ) as Poblador
+			,c.cConDescripcion as Descripción
+			,cp.fCpaMonto as Monto
+			,ifnull(cp.cCpaMes,'-') as Mes 
+			,ifnull(cp.fCpaHoras,'-') as Horas 
+			,ifnull(cp.cCpaSector,'-') as Sector 
+			,ifnull(cp.cCpaPlanilla,'-') as Planilla
+			,ifnull(cp.cCpaFechaPlanilla,'-') as Fecha
+			,ifnull(cp.cCpaSerie,'-') as Serie
+			from caja_pagos cp
+			inner join persona p on cp.nPerId = p.nPerId
+			inner join concepto c on cp.nConId = c.nConId
+			where cp.cCpaEstado = 1 and p.cPerEstado = 1 and c.cConEstado = 1
+			");
+		if ($query) {
+			return $query->result_array();
+		} else {
+			return false;
+		}
+	}
 }
 ?>

@@ -115,5 +115,13 @@ class Persona_model extends CI_Model {
             FROM persona WHERE cPerContribuyente='SI' and cPerEstado = 1  AND MATCH (cPerApellidoPaterno,cPerApellidoMaterno,cPerNombres) AGAINST ('".$this->PerNombres."');
             ")->result_array();        
     }
+
+    public function GetNombreContribuyente(){
+        $query = $this->db->query("
+            select nPerId as ID,CONCAT(cPerNombres ,' ',cPerApellidoPaterno,' ', cPerApellidoMaterno ) AS DESCRIPCION from persona
+            WHERE CONCAT(cPerNombres ,' ',cPerApellidoPaterno,' ', cPerApellidoMaterno ) LIKE '%".$this->getPerNombres()."%'  and cPerContribuyente = 'SI' and cPerEstado = 1
+            ");
+        return $query->result_array();  
+    }
 }
 ?>
