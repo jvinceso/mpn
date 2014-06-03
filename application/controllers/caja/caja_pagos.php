@@ -7,6 +7,7 @@ class Caja_pagos extends CI_Controller {
 		parent::__construct();
 		$this->load->model('caja/caja_pagos_model','objCajaPagos');
 		$this->load->model('caja/concepto_model','objConcepto');
+		$this->load->model('agua/sector_model','objSector');
 		$this->load->model('persona_model','objPersona');
 		$this->load->helper('tables_helper');
 	}
@@ -58,17 +59,35 @@ class Caja_pagos extends CI_Controller {
 		print_r(json_encode($return_arr));
 	}
 
+	function GetNombreSector() {
+		$this->objSector->set_cSecNombre( $this->input->get("term") );
+		$data = $this->objSector->GetNombreSector();
+		$return_arr = array();
+		if ($data) {
+			foreach ($data as $row) {
+				$arraySetor['label'] = htmlspecialchars($row['DESCRIPCION']);
+				$arraySetor['id'] = $row['ID'];
+				array_push($return_arr, $arraySetor);
+			}
+		}
+		print_r(json_encode($return_arr));
+	}
+
+	function insCajaPagos(){
+		$this->objCajaPagos->set_nTmuId($this->session->userdata('IdPersona'));
+		$this->objCajaPagos->set_nConId($this->input->post('cbo_ins_pag_concepto'));
+		$this->objCajaPagos->set_cCpaSerieNumero($this->input->post('txt_ins_pag_serie'));
+		$this->objCajaPagos->set_nPerId($this->input->post('hid_fnd_ins_pag_nombre'));
+		$this->objCajaPagos->set_fCpaMonto($this->input->post('txt_ins_pag_monto'));
+		$this->objCajaPagos->set_cCpaMes($this->input->post('txt_ins_pag_mes'));
+		$this->objCajaPagos->set_fCpaHoras($this->input->post('txt_ins_pag_horas'));
+		$this->objCajaPagos->set_cCpaSector($this->input->post('hid_fnd_ins_pag_sector'));
+		$this->objCajaPagos->set_cCpaPlanilla($this->input->post('txt_ins_pag_planilla'));
+		$this->objCajaPagos->set_cCpaFechaPlanilla($this->input->post('txt_ins_pag_fecha_planilla'));
+		$this->objCajaPagos->set_cCpaSerie($this->input->post('txt_ins_pag_serie'));
 
 
-
-
-
-
-	function insConcepto(){
-		$this->objConcepto->set_cConDescripcion($this->input->post('txt_ins_con_desc'));
-		$this->objConcepto->set_fConCosto($this->input->post('txt_ins_con_costo'));
-		$this->objConcepto->set_nMulIdTipoPago($this->input->post('cbo_ins_con_tipopago'));
-		$result = $this->objConcepto->insConcepto();
+		$result = $this->objCajaPagos->insCajaPagos();
 		// print_p( $this->objServiosTipo->insServiciosTipo($temp) );
 		if ($result) {
 			echo "1";
@@ -76,6 +95,13 @@ class Caja_pagos extends CI_Controller {
 			echo "0";
 		}
 	}
+
+
+
+
+
+
+
 
 	function getConcepto($nConId) {
 		// echo $nPerId;
