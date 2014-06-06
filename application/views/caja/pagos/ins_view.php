@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="<?php echo URL_CSS; ?>bootstrap-timepicker.css" />
+<link rel="stylesheet" href="<?php echo URL_CSS; ?>datepicker.css" />
 <script type="text/javascript" src='<?php echo URL_JS; ?>sistema/caja/pagos/pagos_ins.js'></script>
 <form id="frm_ins_pagos" name = "frm_ins_pagos" class="form-horizontal" role="form">
 	<div class="form-group">
@@ -28,9 +30,14 @@
 
 	<div class="form-group grupo1">
 		<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> Mes </label>
-		<div class="col-sm-9">
-			<input type="text" id="txt_ins_pag_mes" name = "txt_ins_pag_mes" placeholder="Ingrese el mes" class="col-xs-10 col-sm-2" />
-		</div>
+		<span class="input-icon col-xs-3">
+			<div id="c_cbo_ins_pag_mes">
+				<?php 			
+				echo form_dropdown("cbo_ins_pag_mes", creaComboCSO( generaMesesNombre() ),'', 'id="cbo_ins_pag_mes" class="chosen-select"');
+				?>
+			</div>
+			<!-- <input type="text" id="txt_ins_pag_mes" name = "txt_ins_pag_mes" placeholder="Ingrese el mes" class="col-xs-10 col-sm-2" /> -->
+		</span>
 	</div>	
 	<div class="space-4 grupo1"></div>
 
@@ -38,13 +45,13 @@
 		<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> Horas </label>
 		<div class="col-sm-2">
 			<div class="input-group bootstrap-timepicker">
-				<input id="timepicker1" type="text" class="form-control" />
+				<input id="timepicker1" name = "txt_ins_pag_horas" type="text" class="form-control" />
 				<span class="input-group-addon">
 					<i class="icon-time bigger-110"></i>
 				</span>
 			</div>
 		</div>
-<!-- 		<div class="col-sm-9">
+<!-- 	<div class="col-sm-9">
 			<input type="text" id="txt_ins_pag_horas" name = "txt_ins_pag_horas" placeholder="Ingrese las horas" class="col-xs-10 col-sm-2" />
 		</div> -->
 	</div>	
@@ -103,3 +110,5 @@
 		</div>
 	</div>
 </form>
+<script src="<?php echo URL_JS; ?>date-time/bootstrap-timepicker.min.js"></script>
+<script src="<?php echo URL_JS; ?>date-time/bootstrap-datepicker.min.js"></script>

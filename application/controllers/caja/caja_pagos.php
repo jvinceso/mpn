@@ -79,22 +79,39 @@ class Caja_pagos extends CI_Controller {
 		$this->objCajaPagos->set_cCpaSerieNumero($this->input->post('txt_ins_pag_serie'));
 		$this->objCajaPagos->set_nPerId($this->input->post('hid_fnd_ins_pag_nombre'));
 		$this->objCajaPagos->set_fCpaMonto($this->input->post('txt_ins_pag_monto'));
-		$this->objCajaPagos->set_cCpaMes($this->input->post('txt_ins_pag_mes'));
+		$this->objCajaPagos->set_cCpaMes($this->input->post('cbo_ins_pag_mes'));
 		$this->objCajaPagos->set_fCpaHoras($this->input->post('txt_ins_pag_horas'));
 		$this->objCajaPagos->set_cCpaSector($this->input->post('hid_fnd_ins_pag_sector'));
 		$this->objCajaPagos->set_cCpaPlanilla($this->input->post('txt_ins_pag_planilla'));
 		$this->objCajaPagos->set_cCpaFechaPlanilla($this->input->post('txt_ins_pag_fecha_planilla'));
 		$this->objCajaPagos->set_cCpaSerie($this->input->post('txt_ins_pag_serie'));
-
-
 		$result = $this->objCajaPagos->insCajaPagos();
-		// print_p( $this->objServiosTipo->insServiciosTipo($temp) );
+		// print_p( $_POST );
 		if ($result) {
 			echo "1";
 		} else {
 			echo "0";
 		}
 	}
+
+// 	<pre>Array
+// (
+//     [txt_ins_pag_nombre] => Pedro diego Castro Alvarez
+//     [hid_fnd_ins_pag_nombre] => 50
+//     [cbo_ins_pag_concepto] => 1
+//     [txt_ins_pag_monto] => 12
+//     [cbo_ins_pag_mes] => 
+//     [hour] => 
+//     [minute] => 
+//     [second] => 
+//     [txt_ins_pag_horas] => 
+//     [txt_ins_pag_sector] => 
+//     [hid_fnd_ins_pag_sector] => 
+//     [txt_ins_pag_fecha_planilla] => 
+//     [txt_ins_pag_planilla] => 
+//     [txt_ins_pag_serie] => 
+// )
+// </pre>
 
 
 

@@ -1,8 +1,4 @@
 <script type="text/javascript" src='<?php echo URL_JS; ?>sistema/caja/pagos/pagos_panel.js'></script>
-<script src="<?php echo URL_JS; ?>date-time/bootstrap-datepicker.min.js"></script>
-<script src="<?php echo URL_JS; ?>date-time/bootstrap-timepicker.min.js"></script>
-<link rel="stylesheet" href="<?php echo URL_CSS; ?>datepicker.css" />
-<link rel="stylesheet" href="<?php echo URL_JS; ?>bootstrap-timepicker.css" />
 <div class="page-header">
 	<h1>
 		<?php echo $aplicacion; ?>

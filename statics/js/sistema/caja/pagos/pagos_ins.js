@@ -5,13 +5,15 @@ $(function(){
     $('#timepicker1').timepicker({
         minuteStep: 1,
         showSeconds: true,
-        showMeridian: false
+        showMeridian: false,
+        defaultTime: false
     }).next().on(ace.click_event, function(){
         $(this).prev().focus();
     });
     $(".grupo1").css("display", "none");
     $(".grupo2").css("display", "none");
     $(".grupo3").css("display", "none");
+
     $(".chosen-select").chosen();
 
     var Array1 =new Array('5','6','14','40','41','42','51','79','83','85','106','117','124','132','146','150','151','152','161','164','165','166','167','168','169','173','184','199','201','202','205','209','213','214','224','226','228','229','230','232');
@@ -21,10 +23,13 @@ $(function(){
     $("#cbo_ins_pag_concepto").bind({
         change:function(){
             // alert($("#cbo_ins_pag_concepto").val())
+            // $("div").css({ color: "#FFFFFF", background: "#FF0000" });
             if ($.inArray($("#cbo_ins_pag_concepto").val(),Array1) != -1) {
-                $(".grupo1").css("display", "block");
+                $(".grupo1").css({display:"block"});
+                $("#cbo_ins_pag_mes_chosen").css({width:"150px"});
                 $(".grupo2").css("display", "none");
-                $(".grupo3").css("display", "none");
+                $(".grupo3").css("display", "none");                
+                // $("#")
             }else{
                 if ($.inArray($("#cbo_ins_pag_concepto").val(),Array2) != -1) {
                     $(".grupo1").css("display", "none");
@@ -94,15 +99,14 @@ $("#frm_ins_pagos").validate({
                 // alert(data)                   
                 switch (data) { 
                     case "0":
-                    mensaje("Error al guardar el Tipo de Servicio!","a"); 
+                    mensaje("Error al guardar el Pago!","a"); 
                     HabilitarBoton('btn_ins_pagos_registrar');                        
                     break;
                     default:                        
-                    mensaje("Se Registro Correctamente el Tipo de Servicio","e");
+                    mensaje("Se Registro Correctamente el Pago","e");
                     HabilitarBoton('btn_ins_pagos_registrar');
-                        // limpiarForm('#frm_ins_trabajador');
+                    limpiarForm('#frm_ins_pagos');
                     }
-
 
                 },
                 error: function(msg){                

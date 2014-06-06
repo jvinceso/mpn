@@ -53,4 +53,21 @@ function generaMeses(){
     );    
 }
 
+function generaMesesNombre(){
+    return array(
+        array("id"=> "Enero","mes"=>"Enero"),
+        array("id"=> "Febrero","mes"=>"Febrero"),
+        array("id"=> "Marzo","mes"=>"Marzo"),
+        array("id"=> "Abril","mes"=>"Abril"),
+        array("id"=> "Mayo","mes"=>"Mayo"),
+        array("id"=> "Junio","mes"=>"Junio"),
+        array("id"=> "Julio","mes"=>"Julio"),
+        array("id"=> "Agosto","mes"=>"Agosto"),
+        array("id"=> "Septiembre","mes"=>"Septiembre"),
+        array("id"=> "Octubre","mes"=>"Octubre"),
+        array("id"=> "Noviembre","mes"=>"Noviembre"),
+        array("id"=> "Diciembre","mes"=>"Diciembre") 
+    );    
+}
+
 ?>

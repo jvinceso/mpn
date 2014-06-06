@@ -89,12 +89,46 @@ class Caja_pagos_model extends CI_Model {
 		$this->db->trans_start();
 		$caja = array(
 			'nPerId'    => $this->nPerId,
-			'nTmuId'   => $this->nTmuId,
+			'nTmuId'    => $this->nTmuId,
 			'nConId'    => $this->nConId,
 			'fCpaMonto' => $this->fCpaMonto,
 			'cCpaAno'   => $this->cCpaAno,
 			'cCpaMes'   => $this->cCpaMes,
 			'cCpaSerieNumero'   => $this->cCpaSerieNumero
+			);
+		$this->db->insert('caja_pagos', $caja);
+		$idCaja = $this->db->insert_id();
+		$this->db->trans_complete();
+		return $idCaja;
+	}
+		// $this->objCajaPagos->set_nTmuId($this->session->userdata('IdPersona'));
+		// $this->objCajaPagos->set_nConId($this->input->post('cbo_ins_pag_concepto'));
+		// $this->objCajaPagos->set_cCpaSerieNumero($this->input->post('txt_ins_pag_serie'));
+		// $this->objCajaPagos->set_nPerId($this->input->post('hid_fnd_ins_pag_nombre'));
+		// $this->objCajaPagos->set_fCpaMonto($this->input->post('txt_ins_pag_monto'));
+		// $this->objCajaPagos->set_cCpaMes($this->input->post('txt_ins_pag_mes'));
+		// $this->objCajaPagos->set_fCpaHoras($this->input->post('txt_ins_pag_horas'));
+		// $this->objCajaPagos->set_cCpaSector($this->input->post('hid_fnd_ins_pag_sector'));
+		// $this->objCajaPagos->set_cCpaPlanilla($this->input->post('txt_ins_pag_planilla'));
+		// $this->objCajaPagos->set_cCpaFechaPlanilla($this->input->post('txt_ins_pag_fecha_planilla'));
+		// $this->objCajaPagos->set_cCpaSerie($this->input->post('txt_ins_pag_serie'));
+	public function insCajaPagos(){
+		$this->db->trans_start();
+		$ano = date("Y");
+		$caja = array(
+			'nTmuId'    		=> $this->nTmuId,
+			'nConId'    		=> $this->nConId,
+			'cCpaSerieNumero'   => 'CAJA',
+			'cCpaAno'  			=> $ano,
+			'nPerId'    		=> $this->nPerId,
+			'fCpaMonto' 		=> $this->fCpaMonto,
+			'cCpaEstadoCobro'	=> '0',
+			'cCpaMes'  			=> $this->cCpaMes,
+			'fCpaHoras'  		=> $this->fCpaHoras,
+			'cCpaSector'  		=> $this->cCpaSector,
+			'cCpaPlanilla'  	=> $this->cCpaPlanilla,
+			'cCpaFechaPlanilla' => $this->cCpaFechaPlanilla,
+			'cCpaSerie'  		=> $this->cCpaSerie,
 			);
 		$this->db->insert('caja_pagos', $caja);
 		$idCaja = $this->db->insert_id();
