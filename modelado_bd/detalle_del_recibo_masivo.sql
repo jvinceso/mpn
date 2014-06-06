@@ -1,6 +1,7 @@
 SELECT rd.nRecId ,
 		CONCAT(m.cMulDescripcion," - ",mt.cMulDescripcion) AS Concepto ,
 		rd.cRedPrecio AS Importe 
+		,r.fRecDeuda
 		FROM recibo_detalle rd
 		INNER JOIN recibo r ON rd.nRecId = r.nRecId
 		INNER JOIN servicios_contribuyente sc ON sc.nSecId = rd.nSecId
@@ -15,4 +16,6 @@ SELECT rd.nRecId ,
 		INNER JOIN via v ON v.nViaId = c.nViaId
 		INNER JOIN sector s ON s.nSecId = c.nSecId
 		WHERE sc.cSecEstado = 1 AND st.cSetEstado = 1  AND m.cMulEstado = 1 AND mt.cMulEstado = 1 AND
-		fv.cFevEstado = 1 AND p.cPerEstado = 1 AND c.cCalEstado = 1 AND v.cViaEstado = 1 AND s.cSecEstado = 1 AND   rd.nRecId = 42
+		fv.cFevEstado = 1 AND p.cPerEstado = 1 AND c.cCalEstado = 1 AND v.cViaEstado = 1 AND s.cSecEstado = 1 AND   rd.nRecId = 7;
+select * from recibo_detalle where nRecId = 7;
+select * from recibo where nRecId = 7;

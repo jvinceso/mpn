@@ -42,7 +42,7 @@ if($recibos_contribuyente){
     $opciones = array(
         'Pagos' => array(
             'color'=>'blue'
-            ,'icono'=>'cloud-upload'
+            ,'icono'=>'credit-card'
             ,'tooltip'=>'success'
          ),
         'Recalcular' => array(
@@ -54,13 +54,20 @@ if($recibos_contribuyente){
             'color'=>'blue'
             ,'icono'=>'print'
             ,'tooltip'=>'info'
+         ),
+        'Cancelar' => array(
+            'color'=>'danger'
+            ,'icono'=>'ban-circle'
+            ,'tooltip'=>'danger'
          )
     );
     $tabla_data = $recibos_contribuyente;
     $funciones = array(
-         'initEvtOpc("cloud-upload","pagarRecibo(fila)")',
+         'initEvtOpc("credit-card","pagarRecibo(fila)")',
          'initEvtOpcPopupId("retweet","recibo/datosRecalcularRecibo/","Recalcular Recibo",800,90,"func_close")',      
          'initEvtOpcPopupId("print","recibo/vistaPrevia/","Vista Previa Recibo",920,400,"func_close")',
+         'initEvtOpc("ban-circle","EliminarTransferencia(fila)")',
+         'disableEliminar()'
         );
     $nameTable = 'tabla-direcccion-contribuyente';
     $pk = 'ID';

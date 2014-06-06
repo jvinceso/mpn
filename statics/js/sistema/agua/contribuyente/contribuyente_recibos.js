@@ -72,3 +72,21 @@ function actualizarGrilla(){
 	var nPerId = $("input[name=txt_hdn_nPerid]").val();
 	get_page('contribuyente/get_recibos_contribuyente/','c_qry_direccion_contribuyente',{"opt":'list',"anio":anio,"nPerId":nPerId });	
 }
+
+function disableEliminar(){
+	var tablita = $('#tabla-direcccion-contribuyente').dataTable().fnGetNodes();
+	var estado;
+console.log("tabli");
+	$.each(tablita, function (indice, valor) {
+	    estado = $(valor).find('td:eq(3)').text().trim();
+	    if (estado.toUpperCase() != "TRANSFERIDO") {
+	        //    var opcion = $(valor).find('a>.icon-ban-circle');
+	        $(valor).find('a>.icon-ban-circle').parent('a').addClass('disabled');
+	    }
+
+	});	
+}
+function EliminarTransferencia(fila){
+	console.log("voy a eliminar este recibo que se transfirio a caja");
+	console.log(fila);
+}
