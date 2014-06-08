@@ -124,5 +124,14 @@ class Concepto_model extends CI_Model {
 		}
 	}
 
+	public function getCosto(){
+		$query = $this->db->query("select fConCosto from concepto where cConEstado = 1 and nConId='".$this->get_nConId()."' ");
+		if ($query->num_rows() > 0) {
+			return $query->row_array();
+		} else {
+			return false;
+		}
+	}
+
 }
 ?>

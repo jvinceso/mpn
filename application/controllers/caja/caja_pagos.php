@@ -44,6 +44,29 @@ class Caja_pagos extends CI_Controller {
 		CrudGridMultipleJson($tabla_data,$nameTable,$pk,$opciones,$funciones);
 	}
 
+	function listaAgua(){
+		$opciones = array(
+			'Editar' => array(
+				'color'=>'blue'
+				,'icono'=>'edit'
+				,'tooltip'=>'info'
+				),
+			'Eliminar' => array(
+				'color'=>'red'
+				,'icono'=>'trash'
+				,'tooltip'=>'danger'
+				)
+			);
+		$tabla_data = $this->objCajaPagos->qryCajaAgua();
+		$funciones = array(
+			'initEvtOpcPopupId("edit","concepto/getTipoPago/","Editar Tipo de Pago",500,200,"func_close")',
+			'initEvtDel("confirmarDeleteTipoPago")'
+			);
+		$nameTable = 'tabla-Agua';
+		$pk = 'ID';
+		CrudGridMultipleJson($tabla_data,$nameTable,$pk,$opciones,$funciones);
+	}
+
 
 	function GetNombreContribuyente() {
 		$this->objPersona->setPerNombres( $this->input->get("term") );
@@ -94,26 +117,16 @@ class Caja_pagos extends CI_Controller {
 		}
 	}
 
-// 	<pre>Array
-// (
-//     [txt_ins_pag_nombre] => Pedro diego Castro Alvarez
-//     [hid_fnd_ins_pag_nombre] => 50
-//     [cbo_ins_pag_concepto] => 1
-//     [txt_ins_pag_monto] => 12
-//     [cbo_ins_pag_mes] => 
-//     [hour] => 
-//     [minute] => 
-//     [second] => 
-//     [txt_ins_pag_horas] => 
-//     [txt_ins_pag_sector] => 
-//     [hid_fnd_ins_pag_sector] => 
-//     [txt_ins_pag_fecha_planilla] => 
-//     [txt_ins_pag_planilla] => 
-//     [txt_ins_pag_serie] => 
-// )
-// </pre>
+	function getCosto(){       
+		$this->objConcepto->set_nConId($this->input->post('cbo_ins_pag_concepto'));
+		$fila = $this->objConcepto->getCosto();
+		if ($fila) {
+			echo $fila["fConCosto"];
+		} else {
+			echo "0";
+		}
 
-
+	}
 
 
 

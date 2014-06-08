@@ -46,11 +46,32 @@ $(function(){
                         $(".grupo3").css("display", "none");
                     }
                 }
-
-                
             };
-        }
-    });
+            $.ajax({
+                type: "POST",
+                url: "caja_pagos/getCosto",
+                cache: false,
+                data: { 
+                    cbo_ins_pag_concepto: $("#cbo_ins_pag_concepto").val()
+                },
+                success: function(data) {
+                    switch (data) {
+                        case "0":
+                        $("#txt_ins_pag_monto").val("Error de costo");
+                        break;
+                        default :                       
+                        $("#txt_ins_pag_monto").val(data);
+
+
+
+                    } 
+                },
+                error: function() { 
+                    $("#txt_ins_pag_monto").val("Error de costo");
+                }              
+            });  
+}
+});
 
 
 $('#txt_ins_pag_nombre').keyup(function(){  
@@ -106,14 +127,14 @@ $("#frm_ins_pagos").validate({
                     mensaje("Se Registro Correctamente el Pago","e");
                     HabilitarBoton('btn_ins_pagos_registrar');
                     limpiarForm('#frm_ins_pagos');
-                    }
-
-                },
-                error: function(msg){                
-                    mensaje("r","Error Inesperando registrando el Tipo de Servicio!, vuelva a intentarlo"); 
-                    HabilitarBoton('btn_ins_pagos_registrar');                       ;
                 }
-            });
-}
-});
+
+            },
+            error: function(msg){                
+                mensaje("r","Error Inesperando registrando el Tipo de Servicio!, vuelva a intentarlo"); 
+                HabilitarBoton('btn_ins_pagos_registrar');                       ;
+            }
+        });
+         }
+     });
 });

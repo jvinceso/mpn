@@ -6,13 +6,12 @@ $(function(){
 		}
 	});
 
-	// $("#registra_concepto").bind({
-	// 	click:function(evt){
-	// 		evt.preventDefault();
-	// 		cboTipoPago();
-	// 	}
-	// });
-
+	$("#lista_agua").bind({
+		click:function(evt){
+			evt.preventDefault();
+			listaAgua();
+		}
+	});
 })
 
 function listaPagos(){
@@ -23,6 +22,22 @@ function listaPagos(){
 		cache:false,
 		success:function(data){
 			$("#tabla_pagos").html(data);
+		},
+		error:function(er){
+			console.log(er.statusText);
+			alert("Houston, tenemos un problema... Creo que has roto algo...");
+		}
+	});	
+}
+
+function listaAgua(){
+	msgLoading('#tabla_agua',"Obteniendo Datos de Agua!!!");
+	$.ajax({
+		url:'caja_pagos/listaAgua',
+		type:'post',
+		cache:false,
+		success:function(data){
+			$("#tabla_agua").html(data);
 		},
 		error:function(er){
 			console.log(er.statusText);
