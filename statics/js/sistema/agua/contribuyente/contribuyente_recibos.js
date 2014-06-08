@@ -76,7 +76,7 @@ function actualizarGrilla(){
 function disableEliminar(){
 	var tablita = $('#tabla-direcccion-contribuyente').dataTable().fnGetNodes();
 	var estado;
-console.log("tabli");
+	console.log("tablis");
 	$.each(tablita, function (indice, valor) {
 	    estado = $(valor).find('td:eq(3)').text().trim();
 	    if (estado.toUpperCase() != "TRANSFERIDO") {
@@ -87,6 +87,31 @@ console.log("tabli");
 	});	
 }
 function EliminarTransferencia(fila){
-	console.log("voy a eliminar este recibo que se transfirio a caja");
+	msjCargando();
 	console.log(fila);
+	var nRecId = $(fila).find('td:eq(0)').text().trim();
+	$.ajax({
+	    url:'recibo/cancelarTransferenciaCaja',
+	    type:'post',
+	    cache:false,
+	    data:{
+	    	nRecId : nRecId
+	    },
+	    success:function(data){
+	    	if (data == "1") {
+	    		cierraCargando();
+	    		mensaje("Se Cancelo el recibo de forma Exitosa...","e");
+	    		actualizarGrilla();
+	    	}if (data == "0") {
+	    		cierraCargando();
+	    		mensaje("El Recibo "+nRecId+" ya ha sido Pagado en caja por favor comuniquese con dicha area","r");
+	    	}
+	    },
+	    error:function(er){
+	    	console.log(er.statusText);
+	        alert("Houston, tenemos un problema... Creo que has roto algo...");
+	    }
+	});
+	
+	
 }

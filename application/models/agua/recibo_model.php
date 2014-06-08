@@ -516,6 +516,25 @@ AND ( '.$nSecId.' = 0 OR ( dc.nCalId = '.$nSecId.' ) )
 		}
 
 	}
+
+	/**
+	 * $rpta_proceso 0 => El Recibo ya ah sido cancelado
+	 * 				 1 => Transaccion Exitosa
+	 */
+	public function updCancelarTransferencia( ){
+		$nRecId = 'AGUA-'.$this->nRecId;
+		$rpta_proceso = 0;
+		$this->db->trans_start();
+		$cantidad = $this->db->query("select nCpaId as cantidad from caja_pagos where cCpaSerieNumero = '".$nRecId."' and cCpaEstado = 1;")->num_rows();
+		if ( $cantidad != 0 ) {
+			$this->db->query("update recibo set cRecPagado = 'P' WHERE nRecId = ".$this->nRecId." ");
+			$this->db->query("update caja_pagos set cCpaEstado = 0 where cCpaSerieNumero = '".$nRecId."' and cCpaEstado = 1 ");
+			$rpta_proceso = 1;
+		}
+
+		$this->db->trans_complete();
+		return $rpta_proceso;
+	}
 }
 
 /* End of file recibo_model.php */

@@ -187,6 +187,10 @@ class Recibo extends CI_Controller {
 		$this->load->view('reportes/reporte_template_view', $data);
 
 	}
+	function cancelarTransferenciaCaja(){
+		$this->objRecibo->set_nRecId( $this->input->post('nRecId') );
+		echo $this->objRecibo->updCancelarTransferencia();
+	}
 }
 /* End of file recibo.php */
 /* Location: ./application/controllers/agua/recibo.php */

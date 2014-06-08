@@ -353,3 +353,15 @@ function obtenerCamposArray(name){
     return arr;
 
 }
+
+
+function msjCargando(){
+    var host = window.location.host;
+    $('#mensajecarga').html('<div style="display: table-cell;vertical-align: middle;position: relative;"><center><br/><p><img src="http://'+host+'/mpn/statics/images/cargando.gif"/><h2 style="color:black;">Espere un Momento...</h2></p></center></div>');
+    document.getElementById("mensajecarga").style.opacity="0.6";  
+    document.getElementById("mensajecarga").style.background="white";  
+    document.getElementById("mensajecarga").style.visibility="visible";
+}
+function cierraCargando(){
+    document.getElementById("mensajecarga").style.visibility="hidden";
+}
