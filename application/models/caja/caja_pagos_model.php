@@ -134,7 +134,7 @@ class Caja_pagos_model extends CI_Model {
 			'cCpaAno'  			=> $ano,
 			'nPerId'    		=> $this->nPerId,
 			'fCpaMonto' 		=> $this->fCpaMonto,
-			'cCpaEstadoCobro'	=> '0',
+			'cCpaEstadoCobro'	=> '1',
 			'cCpaMes'  			=> $this->cCpaMes,
 			'fCpaHoras'  		=> $this->fCpaHoras,
 			'cCpaSector'  		=> $this->cCpaSector,
@@ -148,7 +148,8 @@ class Caja_pagos_model extends CI_Model {
 		return $idCaja;
 	}
 
-	public function qryCajaPagos(){		
+	public function qryCajaAgua(){		
+
 		$query = $this->db->query("
 			select 
 			nCpaId as ID
@@ -157,17 +158,62 @@ class Caja_pagos_model extends CI_Model {
 			,cp.fCpaMonto as Monto
 			,ifnull(cp.cCpaMes,'-') as Mes 
 			,ifnull(cp.fCpaHoras,'-') as Horas 
-			,ifnull(cp.cCpaSector,'-') as Sector 
+			,ifnull(s.cSecNombre,'-') as Sector 
 			,ifnull(cp.cCpaPlanilla,'-') as Planilla
 			,ifnull(cp.cCpaFechaPlanilla,'-') as Fecha
-			,ifnull(cp.cCpaSerie,'-') as Serie
+			,case 
+			when cp.cCpaSerie is null then ifnull(cp.cCpaSerieNumero,'-')
+			else cp.cCpaSerie
+				end as Serie
 			from caja_pagos cp
 			inner join persona p on cp.nPerId = p.nPerId
 			inner join concepto c on cp.nConId = c.nConId
-			where cp.cCpaEstado = 1 and p.cPerEstado = 1 and c.cConEstado = 1
+			left join sector s  on cp.cCpaSector = s.nSecId
+			where cp.cCpaEstado = 1 and p.cPerEstado = 1 and c.cConEstado = 1 and cCpaEstadoCobro = 0
 			");
 		if ($query) {
 			return $query->result_array();
+		} else {
+			return false;
+		}
+	}
+
+	public function qryCajaPagos(){		
+
+		$query = $this->db->query("
+			select 
+			nCpaId as ID
+			,CONCAT(p.cPerNombres ,' ',p.cPerApellidoPaterno,' ', p.cPerApellidoMaterno ) as Poblador
+			,c.cConDescripcion as Descripción
+			,cp.fCpaMonto as Monto
+			,ifnull(cp.cCpaMes,'-') as Mes 
+			,ifnull(cp.fCpaHoras,'-') as Horas 
+			,ifnull(s.cSecNombre,'-') as Sector 
+			,ifnull(cp.cCpaPlanilla,'-') as Planilla
+			,ifnull(cp.cCpaFechaPlanilla,'-') as Fecha
+			,case 
+			when cp.cCpaSerie is null then ifnull(cp.cCpaSerieNumero,'-')
+			else cp.cCpaSerie
+				end as Serie
+			from caja_pagos cp
+			inner join persona p on cp.nPerId = p.nPerId
+			inner join concepto c on cp.nConId = c.nConId
+			left join sector s  on cp.cCpaSector = s.nSecId
+			where cp.cCpaEstado = 1 and p.cPerEstado = 1 and c.cConEstado = 1 and cCpaEstadoCobro = 1
+			");
+		if ($query) {
+			return $query->result_array();
+		} else {
+			return false;
+		}
+	}
+// select nConId,cConDescripcion,fConCosto,nMulIdTipoPago from concepto where cConEstado = 1 and nConId='".$nConId."' 
+	public function getCajaPagos($nCpaId){
+		$query = $this->db->query("
+			select nCpaId,nPerId,nConId,fCpaMonto from caja_pagos where cCpaEstado = 1 and nCpaId='".$nCpaId."' 
+			");
+		if ($query->num_rows() > 0) {
+			return $query->row_array();
 		} else {
 			return false;
 		}

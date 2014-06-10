@@ -13,7 +13,7 @@ class Caja_pagos extends CI_Controller {
 	}
 	public function index()
 	{
-		$data['main_content'] = 'caja/pagos/panel_view';
+		$data['main_content'] = 'caja/caja_pagos/panel_view';
 		$data['aplicacion'] = 'Caja';
 		$data['objeto'] = 'Pagos';
 		$data['concepto'] = $this->objConcepto->cboConcepto();
@@ -36,10 +36,33 @@ class Caja_pagos extends CI_Controller {
 			);
 		$tabla_data = $this->objCajaPagos->qryCajaPagos();
 		$funciones = array(
-			'initEvtOpcPopupId("edit","concepto/getTipoPago/","Editar Tipo de Pago",500,200,"func_close")',
+			'initEvtOpcPopupId("edit","caja_pagos/getCajaPagos/","Editar Tipo de Pago",500,200,"func_close")',
 			'initEvtDel("confirmarDeleteTipoPago")'
 			);
 		$nameTable = 'tabla-CajaPagos';
+		$pk = 'ID';
+		CrudGridMultipleJson($tabla_data,$nameTable,$pk,$opciones,$funciones);
+	}
+
+	function listaAgua(){
+		$opciones = array(
+			'Editar' => array(
+				'color'=>'blue'
+				,'icono'=>'edit'
+				,'tooltip'=>'info'
+				),
+			'Eliminar' => array(
+				'color'=>'red'
+				,'icono'=>'trash'
+				,'tooltip'=>'danger'
+				)
+			);
+		$tabla_data = $this->objCajaPagos->qryCajaAgua();
+		$funciones = array(
+			'initEvtOpcPopupId("edit","concepto/getTipoPago/","Editar el Pago",500,200,"func_close")',
+			'initEvtDel("confirmarDeleteTipoPago")'
+			);
+		$nameTable = 'tabla-Agua';
 		$pk = 'ID';
 		CrudGridMultipleJson($tabla_data,$nameTable,$pk,$opciones,$funciones);
 	}
@@ -94,43 +117,40 @@ class Caja_pagos extends CI_Controller {
 		}
 	}
 
-// 	<pre>Array
-// (
-//     [txt_ins_pag_nombre] => Pedro diego Castro Alvarez
-//     [hid_fnd_ins_pag_nombre] => 50
-//     [cbo_ins_pag_concepto] => 1
-//     [txt_ins_pag_monto] => 12
-//     [cbo_ins_pag_mes] => 
-//     [hour] => 
-//     [minute] => 
-//     [second] => 
-//     [txt_ins_pag_horas] => 
-//     [txt_ins_pag_sector] => 
-//     [hid_fnd_ins_pag_sector] => 
-//     [txt_ins_pag_fecha_planilla] => 
-//     [txt_ins_pag_planilla] => 
-//     [txt_ins_pag_serie] => 
-// )
-// </pre>
+	function getCosto(){       
+		$this->objConcepto->set_nConId($this->input->post('cbo_ins_pag_concepto'));
+		$fila = $this->objConcepto->getCosto();
+		if ($fila) {
+			echo $fila["fConCosto"];
+		} else {
+			echo "0";
+		}
 
+	}
 
-
-
-
-
-
-
-	function getConcepto($nConId) {
-		// echo $nPerId;
-		$fila = $this->objConcepto->getConcepto($nConId);
-        // print_p($fila);
+	function getCajaPagos($nCpaId) {
+		$fila = $this->objCajaPagos->getCajaPagos($nCpaId);
+        print_p($fila);
 		if ($fila) {
 			$filax["fila"] = $fila;
-			$this->load->view('caja/concepto/upd_concepto_view', $filax);
+			$this->load->view('caja/caja_pagos/upd_caja_pagos_view', $filax);
 		} else {
 			echo "Error";
 		}
 	}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	function updConcepto() {
 		$this->objConcepto->set_nConId($this->input->post('txt_upd_con_nConId'));

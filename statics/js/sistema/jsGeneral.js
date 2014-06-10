@@ -102,11 +102,11 @@ function initEvtDel(funcion){
         fila = $(this).parents('tr');
     // console.log("fila");
     // console.log(fila);
-        fn =""+funcion+"("+$(fila).data('codx')+")"; 
+    fn =""+funcion+"("+$(fila).data('codx')+")"; 
     // console.log("fn");
     // console.log(fn);
-        confirmar("Confirmar","¿Seguro que desea retirar el registro seleccionado?",fn);
-    });
+    confirmar("Confirmar","¿Seguro que desea retirar el registro seleccionado?",fn);
+});
 }
 
 $(function(){
@@ -241,16 +241,16 @@ function confirmar(title,msg,funcionsi,funcionno/*,params*/){
                         }
                     }catch(er){
                     //error
-                    }
                 }
-            },
-            close: function() {
-                $(this).dialog('destroy').remove();
-                $("#messageconfirma"+randomnumber).remove();
             }
+        },
+        close: function() {
+            $(this).dialog('destroy').remove();
+            $("#messageconfirma"+randomnumber).remove();
         }
-        );    
     }
+    );    
+}
 }
 function get_page(Url,div_name,parametro,tipo_mensaje){
     var Rdn=(Math.floor(Math.random()*11));  
@@ -265,7 +265,7 @@ function get_page(Url,div_name,parametro,tipo_mensaje){
         json:parametro    
     }, function(data){ 
         if(tipo_mensaje==undefined){
-           
+
         }else if(tipo_mensaje=="msjCargando"){
             $("#mensajecarga").hide();
         }
@@ -318,8 +318,10 @@ function limpiarForm(obj) {
             this.value = '';       
         else if (type == 'checkbox' || type == 'radio')
             this.checked = false;
-        else if (tag == 'select')
+        else if (tag == 'select'){
             this.selectedIndex = 0; //-1
+            $('.chosen-select').trigger("chosen:updated");
+        }
     });
 }
 
