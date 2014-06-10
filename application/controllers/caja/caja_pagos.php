@@ -13,7 +13,7 @@ class Caja_pagos extends CI_Controller {
 	}
 	public function index()
 	{
-		$data['main_content'] = 'caja/pagos/panel_view';
+		$data['main_content'] = 'caja/caja_pagos/panel_view';
 		$data['aplicacion'] = 'Caja';
 		$data['objeto'] = 'Pagos';
 		$data['concepto'] = $this->objConcepto->cboConcepto();
@@ -36,7 +36,7 @@ class Caja_pagos extends CI_Controller {
 			);
 		$tabla_data = $this->objCajaPagos->qryCajaPagos();
 		$funciones = array(
-			'initEvtOpcPopupId("edit","concepto/getTipoPago/","Editar Tipo de Pago",500,200,"func_close")',
+			'initEvtOpcPopupId("edit","caja_pagos/getCajaPagos/","Editar Tipo de Pago",500,200,"func_close")',
 			'initEvtDel("confirmarDeleteTipoPago")'
 			);
 		$nameTable = 'tabla-CajaPagos';
@@ -59,7 +59,7 @@ class Caja_pagos extends CI_Controller {
 			);
 		$tabla_data = $this->objCajaPagos->qryCajaAgua();
 		$funciones = array(
-			'initEvtOpcPopupId("edit","concepto/getTipoPago/","Editar Tipo de Pago",500,200,"func_close")',
+			'initEvtOpcPopupId("edit","concepto/getTipoPago/","Editar el Pago",500,200,"func_close")',
 			'initEvtDel("confirmarDeleteTipoPago")'
 			);
 		$nameTable = 'tabla-Agua';
@@ -128,22 +128,29 @@ class Caja_pagos extends CI_Controller {
 
 	}
 
-
-
-
-
-
-	function getConcepto($nConId) {
-		// echo $nPerId;
-		$fila = $this->objConcepto->getConcepto($nConId);
-        // print_p($fila);
+	function getCajaPagos($nCpaId) {
+		$fila = $this->objCajaPagos->getCajaPagos($nCpaId);
+        print_p($fila);
 		if ($fila) {
 			$filax["fila"] = $fila;
-			$this->load->view('caja/concepto/upd_concepto_view', $filax);
+			$this->load->view('caja/caja_pagos/upd_caja_pagos_view', $filax);
 		} else {
 			echo "Error";
 		}
 	}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	function updConcepto() {
 		$this->objConcepto->set_nConId($this->input->post('txt_upd_con_nConId'));

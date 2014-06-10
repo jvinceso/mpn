@@ -150,9 +150,9 @@ class Caja_pagos_model extends CI_Model {
 			,ifnull(cp.cCpaPlanilla,'-') as Planilla
 			,ifnull(cp.cCpaFechaPlanilla,'-') as Fecha
 			,case 
-				when cp.cCpaSerie is null then ifnull(cp.cCpaSerieNumero,'-')
-				else cp.cCpaSerie
-			end as Serie
+			when cp.cCpaSerie is null then ifnull(cp.cCpaSerieNumero,'-')
+			else cp.cCpaSerie
+				end as Serie
 			from caja_pagos cp
 			inner join persona p on cp.nPerId = p.nPerId
 			inner join concepto c on cp.nConId = c.nConId
@@ -180,9 +180,9 @@ class Caja_pagos_model extends CI_Model {
 			,ifnull(cp.cCpaPlanilla,'-') as Planilla
 			,ifnull(cp.cCpaFechaPlanilla,'-') as Fecha
 			,case 
-				when cp.cCpaSerie is null then ifnull(cp.cCpaSerieNumero,'-')
-				else cp.cCpaSerie
-			end as Serie
+			when cp.cCpaSerie is null then ifnull(cp.cCpaSerieNumero,'-')
+			else cp.cCpaSerie
+				end as Serie
 			from caja_pagos cp
 			inner join persona p on cp.nPerId = p.nPerId
 			inner join concepto c on cp.nConId = c.nConId
@@ -191,6 +191,17 @@ class Caja_pagos_model extends CI_Model {
 			");
 		if ($query) {
 			return $query->result_array();
+		} else {
+			return false;
+		}
+	}
+// select nConId,cConDescripcion,fConCosto,nMulIdTipoPago from concepto where cConEstado = 1 and nConId='".$nConId."' 
+	public function getCajaPagos($nCpaId){
+		$query = $this->db->query("
+			select nCpaId,nPerId,nConId,fCpaMonto from caja_pagos where cCpaEstado = 1 and nCpaId='".$nCpaId."' 
+			");
+		if ($query->num_rows() > 0) {
+			return $query->row_array();
 		} else {
 			return false;
 		}

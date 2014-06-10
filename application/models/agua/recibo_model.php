@@ -143,7 +143,20 @@ class Recibo_model extends CI_Model {
 		$anio = is_null( $anio ) ? date('Y') : $anio ;
 		// $this->db->trans_start();
 		$sql_recibo_qry = 'SELECT  		r.nRecId as "ID"
-		,f.nFevCuota as Cuota
+		,CASE f.nFevCuota
+				WHEN "1" THEN "Enero" 
+				WHEN "2" THEN "Febrero" 
+				WHEN "3" THEN "Marzo" 
+				WHEN "4" THEN "Abril" 
+				WHEN "5" THEN "Mayo" 
+				WHEN "6" THEN "Junio" 
+				WHEN "7" THEN "Julio" 
+				WHEN "8" THEN "Agosto" 
+				WHEN "9" THEN "Septiembre" 
+				WHEN "10" THEN "Octubre" 
+				WHEN "11" THEN "Noviembre" 
+				WHEN "12" THEN "Diciembre" 
+				END AS "Cuota"
 		,f.dFevFecha_vence AS "Vence"
 				,CASE r.cRecPagado
 				WHEN "P" THEN "Pendiente" 
