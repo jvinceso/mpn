@@ -56,6 +56,7 @@ class Recibo extends CI_Controller {
 
 	function efectuarPago(){
 		$nRecID = $this->input->post('nRecId');
+		$nPerid = $this->input->post('nPerid');
 		$rpt_proceso = "0";
 		$this->load->model('administrador/trabajador_model','objTrabajador');
 		$this->load->model('caja/caja_pagos_model','objCajaPagos');
@@ -63,29 +64,32 @@ class Recibo extends CI_Controller {
 		$nTmuId = $this->objTrabajador->ObtenerCodigoTrabajador( $this->session->userdata('IdPersona') );
 		// print_p( $nTmuId );
 		$this->objRecibo->set_nRecId( $nRecID );
-		$recibo_pagar = $this->objRecibo->getRecibo("PP");
-		/**
-		 * Data para Caja
-		 */
-		if( $recibo_pagar ){	
-			$this->objCajaPagos->set_nPerId( $recibo_pagar['nPerIdContribuyente'] );
-			$this->objCajaPagos->set_nTmuId( $nTmuId );//Concepto Agua
-			$this->objCajaPagos->set_nConId( CONCEPTO_AGUA );//Concepto Agua
-			$this->objCajaPagos->set_fCpaMonto( $recibo_pagar['Monto'] );
-			$this->objCajaPagos->set_cCpaAno( $recibo_pagar['Anio'] );
-			$this->objCajaPagos->set_cCpaMes( $recibo_pagar['Mes'] );
-			$this->objCajaPagos->set_cCpaSerieNumero( 'AGUA-'.$recibo_pagar['nRecId'] );
+		$this->objRecibo->set_nPerIdContribuyente( $nPerid );
+		if( $this->objRecibo->verificaPendientes() ){
+			$recibo_pagar = $this->objRecibo->getRecibo("PP");
+			/**
+			 * Data para Caja
+			 */
+			if( $recibo_pagar ){	
+				$this->objCajaPagos->set_nPerId( $recibo_pagar['nPerIdContribuyente'] );
+				$this->objCajaPagos->set_nTmuId( $nTmuId );//Concepto Agua
+				$this->objCajaPagos->set_nConId( CONCEPTO_AGUA );//Concepto Agua
+				$this->objCajaPagos->set_fCpaMonto( $recibo_pagar['Monto'] );
+				$this->objCajaPagos->set_cCpaAno( $recibo_pagar['Anio'] );
+				$this->objCajaPagos->set_cCpaMes( $recibo_pagar['Mes'] );
+				$this->objCajaPagos->set_cCpaSerieNumero( 'AGUA-'.$recibo_pagar['nRecId'] );
 
-			$this->objRecibo->updReciboCaja("T");
-			$idCaja = $this->objCajaPagos->ins_pago_recibo();
-			if ($idCaja) {
-				$rpt_proceso = "1";
-			} else {
-				$rpt_proceso = "0";
+				$this->objRecibo->updReciboCaja("T");// comentado solo para probar nuevo fix cancelar
+				$idCaja = $this->objCajaPagos->ins_pago_recibo();
+				if ($idCaja) {
+					$rpt_proceso = "1";
+				} else {
+					$rpt_proceso = "0";
+				}
+				// print_p( $idCaja  );
+			}else{
+				$rpt_proceso = "3";
 			}
-			// print_p( $idCaja  );
-		}else{
-			$rpt_proceso = "3";
 		}
 		echo $rpt_proceso;
 	}

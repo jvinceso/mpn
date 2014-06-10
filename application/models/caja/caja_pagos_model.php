@@ -87,6 +87,7 @@ class Caja_pagos_model extends CI_Model {
 	public function ins_pago_recibo(){
 		$idCaja = 0;
 		$this->db->trans_start();
+		$sql_cajaRecibo = "select  nCpaId from caja_pagos where cCpaSerieNumero = '".$this->cCpaSerieNumero."'";
 		$caja = array(
 			'nPerId'    => $this->nPerId,
 			'nTmuId'    => $this->nTmuId,
@@ -95,9 +96,20 @@ class Caja_pagos_model extends CI_Model {
 			'cCpaAno'   => $this->cCpaAno,
 			'cCpaMes'   => $this->cCpaMes,
 			'cCpaSerieNumero'   => $this->cCpaSerieNumero
-			);
-		$this->db->insert('caja_pagos', $caja);
-		$idCaja = $this->db->insert_id();
+		);
+		$rsCajaPago = $this->db->query( $sql_cajaRecibo );
+		if( $rsCajaPago->num_rows() == 0 ){
+			$this->db->insert('caja_pagos', $caja);
+			$idCaja = $this->db->insert_id();
+		}else{			
+			// print_p( $caja);
+			$caja['cCpaEstado'] = 1;
+			$caja['dCpaFechaRegistro'] = date('Y-m-d H:i:s');
+
+			$codCaja = $rsCajaPago->row()->nCpaId ;
+			$this->db->where( 'nCpaId', $codCaja );	
+			$idCaja = $this->db->update( 'caja_pagos', $caja );
+		}
 		$this->db->trans_complete();
 		return $idCaja;
 	}

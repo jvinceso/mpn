@@ -5,10 +5,17 @@ $(function(){
 		        evt.preventDefault();
 		        actualizarGrilla();
 		    }
-		});	
+	});
+	$("#btnFrmInsPagos").bind({
+	    click:function(evt){
+	        evt.preventDefault();
+	        procesaPagoMultiple();
+	    }
+	});
 });
 function pagarRecibo(fila){
 	var nRecId  = $(fila).find("td:eq(0)").text().trim();
+	var nPerid  = $("input[name=txt_hdn_nPerid]").val();
 	var fecha   = $(fila).find("td:eq(2)").text().trim();
 
 	var impresion = confirm("Usted Pagara el recibo de la siguiente fecha : "+fecha+" es conforme?");
@@ -18,18 +25,22 @@ function pagarRecibo(fila){
 		    type:'post',
 		    cache:false,
 		    data:{
-		    	nRecId:nRecId
+		    	nRecId:nRecId,
+		    	nPerid:nPerid
 		    },
 		    success:function(data){
 		    	console.log( data );
 				if (data == "1") {
-					mensaje("Se Realizo el cobro de forma exitosa...","e");
+					mensaje("Se Transfirio a Caja de forma exitosa...","e");
 					actualizarGrilla();
 				}if (data == "3") {
 					mensaje("El Recibo "+nRecId+" ya ha sido transferido a caja ó Pagado en caja","r");
-				}else{
-					mensaje("Por favor vuelva intentar...","a");
+				}if (data == "0") {
+					mensaje("Existen Recibos pendientes de Transferencia por favor asegurese revisarlo","a");
 				}
+				// else{
+					// mensaje("Por favor vuelva intentar...","a");
+				// }
 		    },
 		    error:function(er){
 		    	console.log(er.statusText);
@@ -82,6 +93,9 @@ function disableEliminar(){
 	    if (estado.toUpperCase() != "TRANSFERIDO") {
 	        //    var opcion = $(valor).find('a>.icon-ban-circle');
 	        $(valor).find('a>.icon-ban-circle').parent('a').addClass('disabled');
+	    }else{
+	        $(valor).find('a>.icon-retweet').parent('a').addClass('disabled');	    	
+	        $(valor).find('a>.icon-credit-card').parent('a').addClass('disabled');	    	
 	    }
 
 	});	
@@ -114,4 +128,7 @@ function EliminarTransferencia(fila){
 	});
 	
 	
+}
+function procesaPagoMultiple(){
+	set_popup('../agua/contribuyente/popupPagos/','Servicios',650,450,{'codx':nPdeId,'PerId':nPerId},'');
 }

@@ -525,7 +525,10 @@ AND ( '.$nSecId.' = 0 OR ( dc.nCalId = '.$nSecId.' ) )
 		$nRecId = 'AGUA-'.$this->nRecId;
 		$rpta_proceso = 0;
 		$this->db->trans_start();
-		$cantidad = $this->db->query("select nCpaId as cantidad from caja_pagos where cCpaSerieNumero = '".$nRecId."' and cCpaEstado = 1;")->num_rows();
+		$sql_cant = "select nCpaId as cantidad from caja_pagos where cCpaSerieNumero = '".$nRecId."' and cCpaEstado = 1;";
+		// print_p( $sql_cant );exit();
+		$rsCaja = $this->db->query( $sql_cant );
+		$cantidad = $rsCaja->num_rows();
 		if ( $cantidad != 0 ) {
 			$this->db->query("update recibo set cRecPagado = 'P' WHERE nRecId = ".$this->nRecId." ");
 			$this->db->query("update caja_pagos set cCpaEstado = 0 where cCpaSerieNumero = '".$nRecId."' and cCpaEstado = 1 ");
@@ -534,6 +537,20 @@ AND ( '.$nSecId.' = 0 OR ( dc.nCalId = '.$nSecId.' ) )
 
 		$this->db->trans_complete();
 		return $rpta_proceso;
+	}
+	/**
+	 * $rpta_verifica  1.- Ok Procede no hay pagos pendientes
+	 *                 0.- No Procede hay pagos pendientes
+	 */
+	public function verificaPendientes(){
+		$rpta_verifica = 0;
+		$sql_verifica = "select nRecId from recibo where nPerIdContribuyente = ".$this->nPerIdContribuyente." and nRecId < '".$this->nRecId."' and cRecPagado = 'P';";
+		$cantidad  = $this->db->query( $sql_verifica )->num_rows();
+		// print_p( $cantidad);exit();
+		if ( $cantidad == 0 ) {
+			$rpta_verifica = 1;
+		}
+		return $rpta_verifica;
 	}
 }
 

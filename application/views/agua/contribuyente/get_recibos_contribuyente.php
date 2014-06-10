@@ -72,6 +72,7 @@ if($recibos_contribuyente){
     $nameTable = 'tabla-direcccion-contribuyente';
     $pk = 'ID';
     CrudGridMultipleJson($recibos_contribuyente,$nameTable,$pk,$opciones,$funciones); 
+    echo '</div>';
 }else{
     ?>
     <div class="alert alert-warning">
@@ -83,6 +84,23 @@ if($recibos_contribuyente){
         <br>
     </div>
     <?php
+}
+switch ($opcion) {
+    case 'normal':
+    ?>
+    <div class="row">
+        <div class="col-sm-12">
+            <h4 class="header smaller lighter green">
+                <i class="icon-bullhorn"></i>
+                Opciones Generales
+            </h4>
+        <p>
+            <button id="btnFrmInsPagos" class="btn btn-danger">Pago Multiple</button>
+        </p>
+        </div>
+    </div>    
+    <?php    
+    break;
 }
 ?>
 </div>
