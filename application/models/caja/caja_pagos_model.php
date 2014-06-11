@@ -101,8 +101,7 @@ class Caja_pagos_model extends CI_Model {
 		if( $rsCajaPago->num_rows() == 0 ){
 			$this->db->insert('caja_pagos', $caja);
 			$idCaja = $this->db->insert_id();
-		}else{			
-			// print_p( $caja);
+		}else{
 			$caja['cCpaEstado'] = 1;
 			$caja['dCpaFechaRegistro'] = date('Y-m-d H:i:s');
 
