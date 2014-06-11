@@ -45,7 +45,7 @@
 			</ul>
 			<div class="tab-content">
 				<div id="pagosr" class="tab-pane in active">					
-					<?php $this->load->view('caja/pagos/ins_view'); ?>
+					<?php $this->load->view('caja/caja_pagos/ins_view'); ?>
 				</div>
 				<div id="pagosl" class="tab-pane">
 					<div class="table-header">Resultado de los Pagos</div>
