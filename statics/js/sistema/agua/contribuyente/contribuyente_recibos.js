@@ -130,5 +130,7 @@ function EliminarTransferencia(fila){
 	
 }
 function procesaPagoMultiple(){
-	set_popup('../agua/contribuyente/popupPagos/','Servicios',650,450,{'codx':nPdeId,'PerId':nPerId},'');
+	var nPdeId = 5;
+	var nPerId = 23;
+	set_popup('../agua/contribuyente/popupPagos/','Recibos por Periodo',650,450,{'codx':nPdeId,'PerId':nPerId},'');
 }

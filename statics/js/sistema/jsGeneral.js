@@ -185,10 +185,11 @@ function set_popup(url,title,ancho,alto,parametro,func_close){
     $("body").append("<div id='popupEdicion"+randomnumber+"' class='popedit' title='"+title+"' style='overflow: hidden'></div>");           
     $("#popupEdicion"+randomnumber).dialog({          
         autoOpen:false,      
-        position: 0, //0=TOP        
+        position: ['center',0], //0=TOP        
         width:ancho,
         Height:'auto',
         minHeight:alto,
+        draggable: false,
         resizable: false,
         modal:true ,
         open: function(event,ui){
