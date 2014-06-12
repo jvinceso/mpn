@@ -1,4 +1,4 @@
-<script type="text/javascript" src='<?php echo URL_JS; ?>sistema/caja/pagos/pagos_panel.js'></script>
+<script type="text/javascript" src='<?php echo URL_JS; ?>sistema/caja/caja_pagos/pagos_panel.js'></script>
 <div class="page-header">
 	<h1>
 		<?php echo $aplicacion; ?>
@@ -45,7 +45,7 @@
 			</ul>
 			<div class="tab-content">
 				<div id="pagosr" class="tab-pane in active">					
-					<?php $this->load->view('caja/pagos/ins_view'); ?>
+					<?php $this->load->view('caja/caja_pagos/ins_view'); ?>
 				</div>
 				<div id="pagosl" class="tab-pane">
 					<div class="table-header">Resultado de los Pagos</div>

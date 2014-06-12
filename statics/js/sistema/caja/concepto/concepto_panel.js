@@ -71,7 +71,7 @@ function confirmarDeleteTipoPago(nMulId){
 				mensaje("Se Eliminó correctamente el Tipo de Pago","e");
 				listarTipoPago();
                         // limpiarForm('#frm_ins_trabajador');
-            }
+                    }
                 },
                 error:function(){
                 	alert("error");
@@ -96,7 +96,7 @@ function confirmarDelete(nConId){
 				mensaje("Se Eliminó correctamente el Concepto","e");
 				listarConcepto();
                         // limpiarForm('#frm_ins_trabajador');
-            }
+                    }
                 },
                 error:function(){
                 	alert("error");

@@ -37,7 +37,7 @@ class Caja_pagos extends CI_Controller {
 		$tabla_data = $this->objCajaPagos->qryCajaPagos();
 		$funciones = array(
 			'initEvtOpcPopupId("edit","caja_pagos/getCajaPagos/","Editar Tipo de Pago",500,200,"func_close")',
-			'initEvtDel("confirmarDeleteTipoPago")'
+			'initEvtDel("confirmarDeletePago")'
 			);
 		$nameTable = 'tabla-CajaPagos';
 		$pk = 'ID';
@@ -47,20 +47,14 @@ class Caja_pagos extends CI_Controller {
 	function listaAgua(){
 		$opciones = array(
 			'Editar' => array(
-				'color'=>'blue'
-				,'icono'=>'edit'
-				,'tooltip'=>'info'
-				),
-			'Eliminar' => array(
-				'color'=>'red'
-				,'icono'=>'trash'
-				,'tooltip'=>'danger'
+				'color'=>'green'
+				,'icono'=>'credit-card'
+				,'tooltip'=>'success'
 				)
 			);
 		$tabla_data = $this->objCajaPagos->qryCajaAgua();
 		$funciones = array(
-			'initEvtOpcPopupId("edit","concepto/getTipoPago/","Editar el Pago",500,200,"func_close")',
-			'initEvtDel("confirmarDeleteTipoPago")'
+			'initEvtOpc("credit-card","pagarReciboAgua(fila)")'
 			);
 		$nameTable = 'tabla-Agua';
 		$pk = 'ID';
@@ -130,7 +124,7 @@ class Caja_pagos extends CI_Controller {
 
 	function getCajaPagos($nCpaId) {
 		$fila = $this->objCajaPagos->getCajaPagos($nCpaId);
-        print_p($fila);
+		print_p($fila);
 		if ($fila) {
 			$filax["fila"] = $fila;
 			$this->load->view('caja/caja_pagos/upd_caja_pagos_view', $filax);
@@ -139,32 +133,31 @@ class Caja_pagos extends CI_Controller {
 		}
 	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-	function updConcepto() {
-		$this->objConcepto->set_nConId($this->input->post('txt_upd_con_nConId'));
-		$this->objConcepto->set_cConDescripcion($this->input->post('txt_upd_con_desc'));
-		$this->objConcepto->set_fConCosto($this->input->post('txt_upd_con_costo'));
-		$this->objConcepto->set_nMulIdTipoPago($this->input->post('cbo_upd_con_tipopago'));
-		$result = $this->objConcepto->updConcepto();
-		// print_p($_POST);exit();
+	function pagarReciboAgua() {
+		$this->objCajaPagos->set_nCpaId($this->input->post('nCpaId'));
+		$recibo = $this->input->post('nRecId');
+		$abono = $this->input->post('abono');
+		$result = $this->objCajaPagos->pagarReciboAgua($recibo,$abono);
 		if ($result) {
 			echo "1";
 		} else {
 			echo "0";
 		}
 	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	function delTipoPago(){
 		$this->objMultitabla->set_nMulId( $this->input->post('nMulId') );

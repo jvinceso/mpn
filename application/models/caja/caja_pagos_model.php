@@ -96,7 +96,7 @@ class Caja_pagos_model extends CI_Model {
 			'cCpaAno'   => $this->cCpaAno,
 			'cCpaMes'   => $this->cCpaMes,
 			'cCpaSerieNumero'   => $this->cCpaSerieNumero
-		);
+			);
 		$rsCajaPago = $this->db->query( $sql_cajaRecibo );
 		if( $rsCajaPago->num_rows() == 0 ){
 			$this->db->insert('caja_pagos', $caja);
@@ -145,20 +145,18 @@ class Caja_pagos_model extends CI_Model {
 			,CONCAT(p.cPerNombres ,' ',p.cPerApellidoPaterno,' ', p.cPerApellidoMaterno ) as Poblador
 			,c.cConDescripcion as Descripción
 			,cp.fCpaMonto as Monto
-			,ifnull(cp.cCpaMes,'-') as Mes 
-			,ifnull(cp.fCpaHoras,'-') as Horas 
-			,ifnull(s.cSecNombre,'-') as Sector 
-			,ifnull(cp.cCpaPlanilla,'-') as Planilla
-			,ifnull(cp.cCpaFechaPlanilla,'-') as Fecha
+			,ifnull(cp.cCpaMes,'-') as Mes			
 			,case 
 			when cp.cCpaSerie is null then ifnull(cp.cCpaSerieNumero,'-')
 			else cp.cCpaSerie
 				end as Serie
+			,dCpaFechaRegistro as Transferencia
 			from caja_pagos cp
 			inner join persona p on cp.nPerId = p.nPerId
 			inner join concepto c on cp.nConId = c.nConId
 			left join sector s  on cp.cCpaSector = s.nSecId
 			where cp.cCpaEstado = 1 and p.cPerEstado = 1 and c.cConEstado = 1 and cCpaEstadoCobro = 0
+			order by dCpaFechaRegistro desc
 			");
 		if ($query) {
 			return $query->result_array();
@@ -196,7 +194,7 @@ class Caja_pagos_model extends CI_Model {
 			return false;
 		}
 	}
-// select nConId,cConDescripcion,fConCosto,nMulIdTipoPago from concepto where cConEstado = 1 and nConId='".$nConId."' 
+
 	public function getCajaPagos($nCpaId){
 		$query = $this->db->query("
 			select nCpaId,nPerId,nConId,fCpaMonto from caja_pagos where cCpaEstado = 1 and nCpaId='".$nCpaId."' 
@@ -206,6 +204,29 @@ class Caja_pagos_model extends CI_Model {
 		} else {
 			return false;
 		}
+	}
+
+	public function pagarReciboAgua($recibo,$abono){
+		$this->db->trans_start();
+		$data = array(
+			'cCpaEstadoCobro'  =>  1
+			);
+		$this->db->where('nCpaId', $this->nCpaId);
+		$this->db->update('caja_pagos', $data);	
+
+		$data = array(
+			 'fRecDeuda' 	 =>  0
+			,'fRecAbono'  	 =>  $abono
+			,'cRecPagado' 	 =>  'C'
+			,'dRecFechaPago' =>  date()
+			);
+		$this->db->where('nRecId', $recibo);
+		$this->db->update('recibo', $data);
+
+
+
+		$this->db->trans_complete();
+		return true;
 	}
 }
 ?>

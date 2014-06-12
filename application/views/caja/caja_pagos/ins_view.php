@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="<?php echo URL_CSS; ?>bootstrap-timepicker.css" />
 <link rel="stylesheet" href="<?php echo URL_CSS; ?>datepicker.css" />
-<script type="text/javascript" src='<?php echo URL_JS; ?>sistema/caja/pagos/pagos_ins.js'></script>
+<script type="text/javascript" src='<?php echo URL_JS; ?>sistema/caja/caja_pagos/pagos_ins.js'></script>
 <form id="frm_ins_pagos" name = "frm_ins_pagos" class="form-horizontal" role="form">
 	<div class="form-group">
 		<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> Nombre del Contribuyente </label>
