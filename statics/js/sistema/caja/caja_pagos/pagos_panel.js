@@ -15,7 +15,10 @@ $(function(){
 })
 
 function pagarReciboAgua(fila){
-	var mes =  $(fila).find("td:eq(4)").text().trim();
+	var mes    =  $(fila).find("td:eq(4)").text().trim();
+	var recibo =  $(fila).find("td:eq(5)").text().trim().split('-');
+	var abono  =  $(fila).find("td:eq(3)").text().trim();
+	// console.log(recibo[1])
 	var impresion = confirm("Usted Cobrará el recibo del siguiente mes : "+mes+" es conforme?");
 	if ( impresion ) {
 		$.ajax({
@@ -24,6 +27,8 @@ function pagarReciboAgua(fila){
 			cache:false,
 			data:{
 				nCpaId:$(fila).data('codx')
+				,nRecId:recibo[1]
+				,abono : abono
 			},
 			success:function(data){
 				switch (data) { 

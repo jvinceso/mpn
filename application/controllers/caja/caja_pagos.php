@@ -135,7 +135,9 @@ class Caja_pagos extends CI_Controller {
 
 	function pagarReciboAgua() {
 		$this->objCajaPagos->set_nCpaId($this->input->post('nCpaId'));
-		$result = $this->objCajaPagos->pagarReciboAgua();
+		$recibo = $this->input->post('nRecId');
+		$abono = $this->input->post('abono');
+		$result = $this->objCajaPagos->pagarReciboAgua($recibo,$abono);
 		if ($result) {
 			echo "1";
 		} else {

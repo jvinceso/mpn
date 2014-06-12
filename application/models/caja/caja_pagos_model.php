@@ -216,12 +216,26 @@ class Caja_pagos_model extends CI_Model {
 		}
 	}
 
-	public function pagarReciboAgua(){
+	public function pagarReciboAgua($recibo,$abono){
+		$this->db->trans_start();
 		$data = array(
 			'cCpaEstadoCobro'  =>  1
 			);
 		$this->db->where('nCpaId', $this->nCpaId);
-		$this->db->update('caja_pagos', $data); 
+		$this->db->update('caja_pagos', $data);	
+
+		$data = array(
+			 'fRecDeuda' 	 =>  0
+			,'fRecAbono'  	 =>  $abono
+			,'cRecPagado' 	 =>  'C'
+			,'dRecFechaPago' =>  date()
+			);
+		$this->db->where('nRecId', $recibo);
+		$this->db->update('recibo', $data);
+
+
+
+		$this->db->trans_complete();
 		return true;
 	}
 }
