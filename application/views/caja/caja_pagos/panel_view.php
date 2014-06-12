@@ -1,4 +1,4 @@
-<script type="text/javascript" src='<?php echo URL_JS; ?>sistema/caja/pagos/pagos_panel.js'></script>
+<script type="text/javascript" src='<?php echo URL_JS; ?>sistema/caja/caja_pagos/pagos_panel.js'></script>
 <div class="page-header">
 	<h1>
 		<?php echo $aplicacion; ?>

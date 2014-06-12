@@ -14,6 +14,37 @@ $(function(){
 	});
 })
 
+function pagarReciboAgua(fila){
+	var mes =  $(fila).find("td:eq(4)").text().trim();
+	var impresion = confirm("Usted Cobrará el recibo del siguiente mes : "+mes+" es conforme?");
+	if ( impresion ) {
+		$.ajax({
+			url:'caja_pagos/pagarReciboAgua',
+			type:'post',
+			cache:false,
+			data:{
+				nCpaId:$(fila).data('codx')
+			},
+			success:function(data){
+				switch (data) { 
+					case "0":
+					mensaje("Hubo un error al pagar el recibo de agua!","a");                   
+					break;
+					default:                        
+					mensaje("El recibo de agua se pago correctamente","e");
+					listaAgua();
+				}
+
+			},
+			error:function(er){
+				console.log(er.statusText);
+				alert("Houston, tenemos un problema... Creo que has roto algo...");
+			}
+		});
+	}else
+	mensaje("No se realizo el cobro del recibo","a");
+}
+
 function listaPagos(){
 	msgLoading('#tabla_pagos',"Obteniendo Datos de los Pagos!!!");
 	$.ajax({
@@ -46,23 +77,7 @@ function listaAgua(){
 	});	
 }
 
-function listarConcepto(){
-	msgLoading('#tabla_concepto',"Obteniendo Datos de los Conceptos sea paciente!!!");
-	$.ajax({
-		url:'concepto/listarConcepto',
-		type:'post',
-		cache:false,
-		success:function(data){
-			$("#tabla_concepto").html(data);
-		},
-		error:function(er){
-			console.log(er.statusText);
-			alert("Houston, tenemos un problema... Creo que has roto algo...");
-		}
-	});	
-}
-
-function confirmarDeleteTipoPago(nMulId){
+function confirmarDeletePago(nCpaId){
 	$.ajax({
 		type:"post",
 		url: 'concepto/delTipoPago',
@@ -78,36 +93,10 @@ function confirmarDeleteTipoPago(nMulId){
 				default:                        
 				mensaje("Se Eliminó correctamente el Tipo de Pago","e");
 				listarTipoPago();
-                        // limpiarForm('#frm_ins_trabajador');
-            }
-                },
-                error:function(){
-                	alert("error");
-                }
-            });
-}
-
-function confirmarDelete(nConId){
-	$.ajax({
-		type:"post",
-		url: 'concepto/delConcepto',
-		cache:false,
-		data:{
-			nConId : nConId
+			}
 		},
-		success:function(data){
-			switch (data) { 
-				case "0":
-				mensaje("Error al eliminar el Concepto!","a");                   
-				break;
-				default:                        
-				mensaje("Se Eliminó correctamente el Concepto","e");
-				listarConcepto();
-                        // limpiarForm('#frm_ins_trabajador');
-            }
-                },
-                error:function(){
-                	alert("error");
-                }
-            });
+		error:function(){
+			alert("error");
+		}
+	});
 }
