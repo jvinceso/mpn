@@ -227,6 +227,7 @@ class Caja_pagos_model extends CI_Model {
 
 		$this->db->trans_complete();
 		return true;
+// Addesd by jvinces
 	}
 }
 ?>
