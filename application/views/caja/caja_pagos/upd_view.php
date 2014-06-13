@@ -1,5 +1,5 @@
-<link rel="stylesheet" href="<?php echo URL_CSS; ?>bootstrap-timepicker.css" />
-<link rel="stylesheet" href="<?php echo URL_CSS; ?>datepicker.css" />
+<!-- <link rel="stylesheet" href="<?php echo URL_CSS; ?>bootstrap-timepicker.css" />
+<link rel="stylesheet" href="<?php echo URL_CSS; ?>datepicker.css" /> -->
 <script type="text/javascript" src='<?php echo URL_JS; ?>sistema/caja/pagos/pagos_ins.js'></script>
 <form id="frm_ins_pagos" name = "frm_ins_pagos" class="form-horizontal" role="form">
 	<div class="form-group">
@@ -110,5 +110,5 @@
 		</div>
 	</div>
 </form>
-<script src="<?php echo URL_JS; ?>date-time/bootstrap-timepicker.min.js"></script>
-<script src="<?php echo URL_JS; ?>date-time/bootstrap-datepicker.min.js"></script>
+<!-- // <script src="<?php echo URL_JS; ?>date-time/bootstrap-timepicker.min.js"></script> -->
+<!-- // <script src="<?php echo URL_JS; ?>date-time/bootstrap-datepicker.min.js"></script> -->

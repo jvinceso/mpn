@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="<?php echo URL_CSS; ?>bootstrap-timepicker.css" />
+<link rel="stylesheet" href="<?php echo URL_CSS; ?>datepicker.css" />
 <script type="text/javascript" src='<?php echo URL_JS; ?>sistema/caja/caja_pagos/pagos_panel.js'></script>
 <div class="page-header">
 	<h1>
@@ -20,12 +22,6 @@
 						Registrar
 					</a>
 				</li>
-<!-- 				<li>
-					<a id="lista_pagos" data-toggle="tab" href="#pagosl">
-						<i class="blue icon-list bigger-110"></i>
-						Listado
-					</a>
-				</li> -->
 				<li class="dropdown">
 					<a data-toggle="dropdown" class="dropdown-toggle" href="#">
 						<i class="blue icon-list bigger-110"></i>
@@ -61,3 +57,5 @@
 	</div>			
 
 </div>
+<script src="<?php echo URL_JS; ?>date-time/bootstrap-timepicker.min.js"></script>
+<script src="<?php echo URL_JS; ?>date-time/bootstrap-datepicker.min.js"></script>
