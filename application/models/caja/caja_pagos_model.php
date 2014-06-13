@@ -228,7 +228,7 @@ class Caja_pagos_model extends CI_Model {
 			 'fRecDeuda' 	 =>  0
 			,'fRecAbono'  	 =>  $abono
 			,'cRecPagado' 	 =>  'C'
-			,'dRecFechaPago' =>  date()
+			,'dRecFechaPago' =>  date("Y-m-d H:i:s")
 			);
 		$this->db->where('nRecId', $recibo);
 		$this->db->update('recibo', $data);

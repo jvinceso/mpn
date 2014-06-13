@@ -27,17 +27,17 @@ class Caja_pagos extends CI_Controller {
 				'color'=>'blue'
 				,'icono'=>'edit'
 				,'tooltip'=>'info'
-				),
-			'Eliminar' => array(
-				'color'=>'red'
-				,'icono'=>'trash'
-				,'tooltip'=>'danger'
 				)
+			// ,'Eliminar' => array(
+			// 	'color'=>'red'
+			// 	,'icono'=>'trash'
+			// 	,'tooltip'=>'danger'
+			// 	)
 			);
 		$tabla_data = $this->objCajaPagos->qryCajaPagos();
 		$funciones = array(
-			'initEvtOpcPopupId("edit","caja_pagos/getCajaPagos/","Editar Tipo de Pago",500,200,"func_close")',
-			'initEvtDel("confirmarDeletePago")'
+			'initEvtOpcPopupId("edit","caja_pagos/getCajaPagos/","Editar el Pago",500,200,"func_close")'
+			// ,'initEvtDel("confirmarDeletePago")'
 			);
 		$nameTable = 'tabla-CajaPagos';
 		$pk = 'ID';
@@ -124,10 +124,10 @@ class Caja_pagos extends CI_Controller {
 
 	function getCajaPagos($nCpaId) {
 		$fila = $this->objCajaPagos->getCajaPagos($nCpaId);
-		print_p($fila);
+		// print_p($fila);
 		if ($fila) {
 			$filax["fila"] = $fila;
-			$this->load->view('caja/caja_pagos/upd_caja_pagos_view', $filax);
+			$this->load->view('caja/caja_pagos/upd_view', $filax);
 		} else {
 			echo "Error";
 		}

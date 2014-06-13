@@ -1,8 +1,4 @@
 <script type="text/javascript" src='<?php echo URL_JS; ?>sistema/agua/sectoresyvias/sectoresyvias_ins.js'></script>
-<!-- // <script src="<?php echo URL_JS; ?>date-time/bootstrap-datepicker.min.js"></script> -->
-<!-- <link rel="stylesheet" href="<?php echo URL_CSS; ?>datepicker.css" /> -->
-<!-- <link rel="stylesheet" href="<?php echo URL_CSS; ?>chosen.css" /> -->
-
 <form id="frm_ins_via" name = "frm_ins_via" class="form-horizontal" role="form">
 	<div class="form-group">
 		<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nombre de la Vía</label>
@@ -26,5 +22,3 @@
 		</div>
 	</div>
 </form>
-<!-- // <script src="<?php echo URL_JS; ?>jquery.maskedinput.min.js"></script> -->
-<!-- // <script src="<?php echo URL_JS; ?>chosen.jquery.min.js"></script> -->
