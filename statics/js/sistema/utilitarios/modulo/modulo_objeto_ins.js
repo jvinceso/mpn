@@ -93,6 +93,6 @@ function listarOpcionesxAplicacion(){
 	        alert("Houston, tenemos un problema... Creo que has roto algo...");
 	    }
 	});
-	
-	
+
+
 }

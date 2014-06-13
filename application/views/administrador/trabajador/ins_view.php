@@ -1,7 +1,7 @@
 <script type="text/javascript" src='<?php echo URL_JS; ?>sistema/administrador/trabajador/trabajador_ins.js'></script>
 <script src="<?php echo URL_JS; ?>date-time/bootstrap-datepicker.min.js"></script>
 <link rel="stylesheet" href="<?php echo URL_CSS; ?>datepicker.css" />
-<link rel="stylesheet" href="<?php echo URL_CSS; ?>chosen.css" />
+<!-- <link rel="stylesheet" href="<?php echo URL_CSS; ?>chosen.css" /> -->
 
 <form id="frm_ins_trabajador" name = "frm_ins_trabajador" class="form-horizontal" role="form">
 	<h3 class="header smaller lighter blue">
@@ -51,7 +51,7 @@
 
 		<div class="col-sm-3">
 			<div class="input-group">
-				<input class="form-control date-picker" id="txt_ins_trab_nacimiento" name = "txt_ins_trab_nacimiento" type="text" data-date-format="dd-mm-yyyy" />
+				<input class="form-control date-picker" id="txt_ins_trab_nacimiento" name = "txt_ins_trab_nacimiento" type="text" data-date-format="yyyy-mm-dd" />
 				<span class="input-group-addon">
 					<i class="icon-calendar bigger-110"></i>
 				</span>

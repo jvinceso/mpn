@@ -6,7 +6,7 @@
 		private $nOdetId = '';
 		private $nObjId = '';
 		private $cOdetNombreArchivo = '';
-		private $nOdetTipo = '';
+		private $nOdetTipo = 1;
 		private $cOdetPlataforma = '';
 		private $cOdetEstado = '';
 		private $dOdetFechaRegistro = '';

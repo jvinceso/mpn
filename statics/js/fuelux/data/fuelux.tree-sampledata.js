@@ -101,7 +101,7 @@ $.ajax({
     cache:false,
     data:{},
     success:function(datax){
-    	// console.log( datax );
+    	console.log( datax );
     	var treeDataSource = new DataSourceTree({data: datax});
     	$('#tree1').ace_tree({
     				// dataSource: new DataSourceTree({ url: '[PATH TO SERVICE]' }),

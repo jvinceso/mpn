@@ -1,0 +1,1 @@
+<iframe id="fred" style="border:1px solid #666CCC" title="<?php echo $titulo ?>" src="<?php echo base_url().$ruta; ?>" frameborder="1" height="<?php echo ($alto) ? $alto :'500px'  ?>" width="<?php  echo ($ancho) ? $ancho :'100%' ?>"></iframe>

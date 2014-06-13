@@ -11,7 +11,18 @@
 .oculto{
     display: none;
 }
+.min450{
+    min-height:400px;
+    max-height: 850px;
+}
 
+/*Modulo*/
+.ancla_regresar span{
+    margin-left: 1000px;
+    margin-right: -50px;
+    z-index: 9999;
+    position: fixed;
+}
 /*Modulo*/
 #anc_back_modulo span{
     margin-left: 880px;
@@ -27,6 +38,9 @@
 }
 .w860{
     width: 950px;
+}
+.w360{
+    width: 360px;
 }
 .disnone{
     display:none;

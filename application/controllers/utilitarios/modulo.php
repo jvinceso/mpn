@@ -11,14 +11,14 @@ class Modulo extends CI_Controller {
 		$this->load->library('table');
 	}
 	public function pruebas(){
-		
+
 		$data = array(
 			array('name', 'Color', 'Size'),
 			array('Fred', 'Blue', 'Small'),
 			array('Mary', 'Red', 'Large'),
 			array('John', 'Green', 'Medium')
 		);
-		
+
 		echo $this->table->generate($data);
 	}
 	public function vistaGet($vista,$parametros = null) {
@@ -106,7 +106,7 @@ class Modulo extends CI_Controller {
 					'Eliminar' => array(
 						 'color'=>'red'
 						,'icono'=>'trash'
-						,'tooltip'=>'success'
+						,'tooltip'=>'danger'
 					),
 					'Configuracion' => array(
 						 'color'=>'blue'
@@ -162,7 +162,9 @@ class Modulo extends CI_Controller {
 		if ( $this->objObjeto->insObjeto() ) {
 			/*Objeto Detalle*/
 			$this->objObjetoDetalle->set_nObjId( $this->objObjeto->get_nObjId() );
+			$this->objObjetoDetalle->set_nOdetTipo( 1 );
 			$this->objObjetoDetalle->set_cOdetNombreArchivo( $this->input->post('txt_ins_obj_file') );			
+			$this->objObjetoDetalle->set_cOdetPlataforma( 'I' );			
 			$response = ( $this->objObjetoDetalle->insObjetoDetalle() ) ? 'succes_all' : 'err002';
 		}else{
 			$response = 'errObt';

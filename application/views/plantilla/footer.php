@@ -49,7 +49,7 @@
 		</div><!-- /.main-container -->		
 		<script src="<?php echo URL_JS; ?>jquery.dataTables.min.js"></script>
 		<script src="<?php echo URL_JS; ?>jquery.dataTables.bootstrap.js"></script>
-
+		<script src="<?php echo URL_JS; ?>chosen.jquery.min.js"></script>
 		<!-- // <script src="<?php echo URL_JS; ?>jquery.slimscroll.min.js"></script> -->
 		<!-- // <script src="<?php echo URL_JS; ?>jquery.easy-pie-chart.min.js"></script> -->
 		<!-- // <script src="<?php echo URL_JS; ?>jquery.sparkline.min.js"></script> -->
@@ -57,14 +57,14 @@
 		<!-- // <script src="<?php echo URL_JS; ?>flot/jquery.flot.pie.min.js"></script> -->
 		<!-- // <script src="<?php echo URL_JS; ?>flot/jquery.flot.resize.min.js"></script> -->
 		<!-- // <script src="<?php echo URL_JS; ?>ace-elements.min.js"></script> -->
-		 <script src="<?php echo URL_JS; ?>ace.min.js"></script>
+		 
 
 
           <script type="text/javascript">
             if("ontouchend" in document) document.write("<script src='<?php echo URL_JS; ?>jquery.mobile.custom.min.js'>"+"<"+"/script>");
           </script>
           <script src="<?php echo URL_JS; ?>bootstrap.min.js"></script>
-		
+		  <div id="mensajecarga" style="top:0px;left:0px;width:100%;height:100%;position:fixed;z-index:9999;display:table;visibility:hidden"></div> 
 	</body>
 <!-- Mirrored from 198.74.61.72/themes/preview/ace/index.html by HTTrack Website Copier/3.x [XR&CO'2013], Sun, 02 Mar 2014 23:30:58 GMT -->
 </html>

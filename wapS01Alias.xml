@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!DOCTYPE wml PUBLIC "-//WAPFORUM//DTD WML 1.1//EN" "http://www.wapforum.org/DTD/wml_1.1.xml">
+<wml>
+  <head>
+  	<meta forua="true" http-equiv="Cache-Control" content="no-cache"/>
+  </head>
+  <template>
+    <do type="accept" label="Menu">
+		<go href="/w/InicioRucWap.jsp" />	
+    </do>
+    <do type="options" label="Back">
+		<prev />	
+    </do>		
+  </template>
+  <card title="Resultado" id="frstcard">
+    <p>
+      <small><b>N&#xFA;mero Ruc. </b> 10463979729 - VINCES ORTIZ JOSE ALEXANDER <br/></small>
+      <small><b>Antiguo Ruc.</b><br/></small>
+	 			
+	    	<small>-</small>
+	 	<br/>
+    <small><b>Estado.</b>ACTIVO</small><br/>
+    
+      <small><strong>Agente Retenci&#xF3;n IGV.</strong>
+      		
+          <strong>NO</strong> -
+    	<br/>
+    </small>
+	  <small><b>Nombre Comercial.</b><br/>-                             </small><br/>
+      <small><b>Direcci&#xF3;n.</b><br/>MZA. W    LOTE. 41   URB. SAN ISIDRO (FRENTE A LA BASE DE TELETAXI) LA LIBERTAD TRUJILLO TRUJILLO</small><br/>
+      <small>Situaci&#xF3;n.<b> HABIDO</b></small><br/>
+      <small><b>Tel&#xE9;fono(s).</b><br/>-</small><br/>
+      <small><b>Dependencia.</b><br/> 0063 I.R.LA LIBERTAD-MEPECO</small><br/>
+	  <small><b>Tipo.</b><br/> PERSONA NATURAL SIN NEGOCIO</small><br/>
+	  
+	       
+           <small><b>DNI</b> : 46397972</small><br/>
+           <small><b>Fecha Nacimiento.</b> 09/07/1990</small><br/>
+         
+	  <!--
+      <small><b>Inicio Act.</b><br/>0063</small><br/>
+      <small><b>Act. Econ&#xF3;mica. </b> I.R.LA LIBERTAD-MEPECO</small><br/>
+	  -->
+    </p>
+  </card>
+</wml>

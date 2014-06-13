@@ -14,6 +14,7 @@
       <!-- fonts -->
       <link rel="stylesheet" href="<?php echo URL_CSS; ?>ace-fonts.css" />
       <link rel="stylesheet" href="<?php echo URL_CSS; ?>sistema/estilos.css" />
+      <link rel="stylesheet" href="<?php echo URL_CSS; ?>chosen.css" />
       <!-- ace styles -->
       <link rel="stylesheet" href="<?php echo URL_CSS; ?>ace.min.css" />
       <link rel="stylesheet" href="<?php echo URL_CSS; ?>ace-rtl.min.css" />
@@ -65,6 +66,7 @@
         <script src="<?php echo URL_JS; ?>jquery-ui-1.10.3.custom.min.js"></script>
         <script src='<?php echo URL_JS; ?>sistema/jsGeneral.js'></script> 
         <script src='<?php echo URL_JS; ?>sistema/jqueryvalidate.js'></script> 
+        <script src="<?php echo URL_JS; ?>ace.min.js"></script>
 
     <link rel="stylesheet" href="<?php echo URL_CSS; ?>jquery.jgrowl.css" />
     <script src='<?php echo URL_JS; ?>jquery.jgrowl_minimized.js'></script> 

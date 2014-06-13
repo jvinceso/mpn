@@ -1,20 +1,21 @@
 <?php 
-function CrudGridMultipleJson($sql, $idtable = null, $primary_key,$opciones = array(), $funciones = null ) {
+function CrudGridMultipleJson($sql, $idtable = null, $primary_key,$opciones = array(), $funciones = null,$disable_order = false ) {
 
+if( count($sql)>0 ){
 	$nroopc = count($opciones);	//Nro de Opciones
     $nroCamposSql = count($sql);	//Nro de Campos de la Consula SQL
     $nombre_Columnas = array_keys( $sql[0]);
-    $nroCamposSql = count( $nombre_Columnas );	//Cantidad de columnas a mostrar
+    $nroCamposSql = count( $nombre_Columnas );	//Cantidad de columnas a mostrar table table-stripped
     $idtable = ($idtable==null) ? 'tabla'.rand():$idtable;
     ?>
-    <table id="<?php print $idtable; ?>" class="table table-stripped">
+    <table id="<?php print $idtable; ?>" class="table table-striped table-bordered table-hover">
     	<thead>
     		<tr>
     			<?php
     				for ($i = 0; $i < $nroCamposSql; $i++) {
         				?>
         				<th class="style=text-transform:uppercase">
-        					<?php print utf8_encode($nombre_Columnas[$i]) ?>
+        					<?php print $nombre_Columnas[$i] ?>
         					</th>
         			<?php
     				}
@@ -36,17 +37,16 @@ function CrudGridMultipleJson($sql, $idtable = null, $primary_key,$opciones = ar
                     // exit();
 			    	// $json = json_encode($temp,JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE);
 			        ?>
-			        <tr data-codx="<?php print $fila[$primary_key] ?>" >
+			        <tr data-codx="<?php print (($primary_key)?$fila[$primary_key]:rand()) ?>" >
 			        <?php
 			        foreach ($fila as $key => $cell) {
-			        	$campo = utf8_encode($cell);
 			        	?>
 			        	<td>
 			        	<?php
-			        	if ($campo == null) {
+			        	if ($cell == null) {
 			        	    ?>&nbsp;<?php
 			        	} else {
-			        	    print $campo;
+			        	    print $cell;
 			        	}?>
 			        	</td>
 			        	<?php			        	
@@ -63,13 +63,17 @@ function CrudGridMultipleJson($sql, $idtable = null, $primary_key,$opciones = ar
 			        	$html_responsive_li = '';
 			        ?>
 			        	<td>
-			        		<div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
+			        		<!-- <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons"> -->
+			        		<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
 				        		<?php
 				        		foreach ($opciones as $clave_opcion => $opcion) {
 				        			?>
-				        			<a class="<?php print $opcion['color']; ?>" href="#">
+				        			<a class="btn btn-xs btn-<?php echo $opcion['tooltip']; ?>">											
+											<i id="<?php print rand(5,1000000); ?>" class="icon-<?php print $opcion['icono'] ?> bigger-130"></i>
+									</a>
+<!-- 				        			<a class="<?php print $opcion['color']; ?>" href="#">
 				        				<i id="<?php print rand(5,1000000); ?>" class="icon-<?php print $opcion['icono'] ?> bigger-130"></i>
-				        			</a>
+				        			</a> -->
 				        			<?php
 				        			$html_responsive_li .='
 				        			<li>
@@ -105,9 +109,13 @@ function CrudGridMultipleJson($sql, $idtable = null, $primary_key,$opciones = ar
     </table>
 		<?php
 		$js_tabla_open = '<script type="text/javascript">$(function($) {
-		var oTable1 = $("#'.$idtable.'").dataTable( { "aoColumns": [';
+		var oTable1 = $("#'.$idtable.'").dataTable({';
+		if ( $disable_order ) {
+			$js_tabla_open .='"bSort": false,';
+		}
+		$js_tabla_open .='"aoColumns": [';
 		if ($nroopc != NULL && $nroopc > 0) {
-			$js_campos = str_repeat('null,',$nroCamposSql).'{ "bSortable": false }';
+			$js_campos = str_repeat('null,',$nroCamposSql).'{ "bSortable": false  }';
 			// $js_campos .='{ "bSortable": false }';
 		}else{
 			$js_campos = substr(str_repeat('null,',$nroCamposSql), 0, -1);
@@ -119,6 +127,8 @@ function CrudGridMultipleJson($sql, $idtable = null, $primary_key,$opciones = ar
     }
 	});$(\'[data-rel="tooltip"]\').tooltip({placement: tooltip_placement});});</script>';
 		print $js_tabla_open.$js_campos.$js_tabla_close;
+	}else{
+		echo "<center>no hay datos</center>";
 	}
-
+}
 ?>

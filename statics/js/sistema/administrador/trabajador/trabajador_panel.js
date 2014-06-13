@@ -1,75 +1,67 @@
-		$(function($) {
-			// $("#tb_lista_trabajador").bind({
-			// 	click:function(evt){
-			// 		msgLoading('#tabla_modulos',"Espere por favor!!!");
-			// 		evt.preventDefault();
-			// 		$.ajax({
-			// 			url:'modulo/loadDataGrid',
-			// 			type:'post',
-			// 			cache:false,
-			//             // data:{},
-			//             success:function(data){
-			//             	$(".table-responsive").html(data);
-			//             },
-			//             error:function(er){
-			//             	console.log(er.statusText);
-			//             	alert("Houston, tenemos un problema... Creo que has roto algo...");
-			//             }
-			//         });
-
-
-			// 	}
-			// });
-
-			
-			// var oTable1 = $('#tabla_prueba table').dataTable( {
-			// 	"aoColumns": [null, null,null,null] 
-			// });
-
-			// var oTable1 = $('#sample-table-2').dataTable( {
-			// 	"aoColumns": [
-			// 	{ "bSortable": false },
-			// 	null, null,null, null, null,
-			// 	{ "bSortable": false }
-			// 	] } );
-
-
-			// $('table th input:checkbox').on('click' , function(){
-			// 	var that = this;
-			// 	$(this).closest('table').find('tr > td:first-child input:checkbox')
-			// 	.each(function(){
-			// 		this.checked = that.checked;
-			// 		$(this).closest('tr').toggleClass('selected');
-			// 	});
-
-			// });
-
-
-			// $('[data-rel="tooltip"]').tooltip({placement: tooltip_placement});
-			// function tooltip_placement(context, source) {
-			// 	var $source = $(source);
-			// 	var $parent = $source.closest('table')
-			// 	var off1 = $parent.offset();
-			// 	var w1 = $parent.width();
-
-			// 	var off2 = $source.offset();
-			// 	var w2 = $source.width();
-
-			// 	if( parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2) ) return 'right';
-			// 	return 'left';
-			// }
-		})
-
-
-		function confirmarDelete(fila){
-			console.log(fila);
-			alert("Gracias por confirmar el eliminar");
+$(function(){	
+	$("#lista_trabajador").bind({
+		click:function(evt){
+			evt.preventDefault();
+			listarTrabajador();
 		}
+	});	
+});
 
-		function confirmaOpcion(fila){
-			alert("Gracias por confirmar la opcion");
+function listarTrabajador(){
+	msgLoading('#tabla_trabajador',"Obteniendo Datos del Trabajador sea paciente!!!");
+	$.ajax({
+		url:'trabajador/listarTrabajador',
+		type:'post',
+		cache:false,
+		success:function(data){
+			$("#tabla_trabajador").html(data);
+		},
+		error:function(er){
+			console.log(er.statusText);
+			alert("Houston, tenemos un problema... Creo que has roto algo...");
 		}
-		function confirmarEdicion(fila){
-			mensaje(null,'e');
-			console.log(fila);
+	});	
+}
+function asignaDetalle(fila,option){
+	console.log(fila);
+	var url = "", title = "";
+	switch(option){
+		case 'dir':
+		title = 'Dirección';
+		url = 'contribuyente/get_agregar_direccion';
+		console.log(option);
+		break;
+		case 'docu':
+		console.log(option);
+		break;
+		case 'pago':
+		console.log(option);
+		break;
+		case 'tele':
+		console.log(option);
+		break;
+		case 'baja':
+		console.log(option);
+		break;		
+	}
+	set_popup(url,title,350,250,'','');
+	// alert("Il Mondo E Nostro");
+}
+
+function confirmarDelete(nPerId){
+	$.ajax({
+		type:"post",
+		url: 'contribuyente/delContribuyente',
+		cache:false,
+		data:{
+			nPerId : nPerId
+		},
+		success:function(data){
+			mensaje("Se Eliminó correctamente la Aplicacion","e");
+			listarContribuyentes();
+		},
+		error:function(){
+			alert("error");
 		}
+	});
+}

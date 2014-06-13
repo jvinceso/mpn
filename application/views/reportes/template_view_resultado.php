@@ -1,0 +1,1 @@
+<iframe id="fred" style="border:1px solid #666CCC" title="Reporte " src="<?php echo base_url();?>agua/recibo/reporte/<?php echo $codigo ?>" frameborder="1" height="500px" width="100%"></iframe>

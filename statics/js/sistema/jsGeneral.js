@@ -21,7 +21,24 @@ function initEvtOpc(clase_icono,funcion){
         })
     });    
 }
-// function initEvtUpd(){
+//esta funcion podria reemplazar a initEvtOpc solo envia como parametro el 'id' de la fila
+function initEvtSlider(clase_icono,url,objocultar,objmostrar,divmostrar,fnocultar,fnmostrar){
+    $(".ui-icon-"+clase_icono).each(function(){
+        $("#"+this.id).click(function(e){
+            e.preventDefault();
+            var fila =$(this).parents('tr');
+            //$.post("bandejaPendientes/EditarDiversos",{//get
+            $.post(url,{//get
+                Codigo:$(fila).data('codx')
+            }, function(data){                
+                MostrarOcultarCapas(objocultar,objmostrar,'','');
+                $("#"+divmostrar).html(data);
+            });
+        //; 
+    })
+    });
+}
+// hace lo mismo que initEvtOpcPopupId
 function initEvtUpdJson(url,title,alto,ancho,func_close){
     $(".icon-pencil").unbind('click');
     $('.icon-pencil').each(function(){
@@ -39,6 +56,17 @@ function initEvtUpdJson(url,title,alto,ancho,func_close){
         })
     });
 }
+//Inicializar Evento Con Opcion Popup Con Envio Id Como Parametro
+function initEvtOpcPopupId(clase_icono,url,title,alto,ancho,func_close){
+    $(".icon-"+clase_icono).unbind('click');
+    $(".icon-"+clase_icono).each(function(){
+        $("#"+this.id).click(function(e){
+            e.preventDefault();
+            var fila =$(this).parents('tr');
+            set_popup(url+$(fila).data('codx'),title,alto,ancho,'',func_close); 
+        })
+    });    
+}
 // function initEvPermisosJson(){
 //     $('.icon-user').each(function(){
 //         var fila;
@@ -51,33 +79,34 @@ function initEvtUpdJson(url,title,alto,ancho,func_close){
 //     });
 // }
 
-function initEvtUpd(url,title,alto,ancho,func_close){
-    $(".icon-pencil").unbind('click');
-    $('.icon-pencil').each(function(){
-        var fila;
-        $("#"+this.id).click(function(e){
-            e.preventDefault();
-            fila =$(this).parents('tr');
-            console.log(this);
-            console.log(fila);
-            console.log("Debug : initEvtUpd Loaded...");
-            set_popup(url+$(fila).data('codx'),title,alto,ancho,'',func_close);
-        })
-    });
-}
+// function initEvtUpd(url,title,alto,ancho,func_close){
+//     $(".icon-pencil").unbind('click');
+//     $('.icon-pencil').each(function(){
+//         var fila;
+//         $("#"+this.id).click(function(e){
+//             e.preventDefault();
+//             fila =$(this).parents('tr');
+//             console.log(this);
+//             console.log(fila);
+//             console.log("Debug : initEvtUpd Loaded...");
+//             set_popup(url+$(fila).data('codx'),title,alto,ancho,'',func_close);
+//         })
+//     });
+// }
+
 function initEvtDel(funcion){ 
     $(".icon-trash").unbind('click');
     $(".icon-trash").on("click",function(e){
         e.preventDefault();
         var fila,fn;
         fila = $(this).parents('tr');
-    console.log("fila");
-    console.log(fila);
-        fn =""+funcion+"("+$(fila).data('codx')+")"; 
-    console.log("fn");
-    console.log(fn);
-        confirmar("Confirmar","¿Seguro que desea retirar el registro seleccionado?",fn);
-    });
+    // console.log("fila");
+    // console.log(fila);
+    fn =""+funcion+"("+$(fila).data('codx')+")"; 
+    // console.log("fn");
+    // console.log(fn);
+    confirmar("Confirmar","¿Seguro que desea retirar el registro seleccionado?",fn);
+});
 }
 
 $(function(){
@@ -112,12 +141,12 @@ function HabilitarBoton(btn){
 }
 
 function MostrarOcultarCapas(ObjOcultar,ObjMostrar,fnOcultar,fnMostrar){
-    $(ObjOcultar).hide('slide',100,function(){
+    $("#"+ObjOcultar).hide('slide',100,function(){
         // $(".tooltip").removeClass("in");
         // $(".tooltip").addClass("out");        
         eval(fnOcultar);
     });
-    $(ObjMostrar).show('slide',1000,function(){
+    $("#"+ObjMostrar).show('slide',1000,function(){
         // $(".tooltip").removeClass("in");
         // $(".tooltip").addClass("out");
         eval(fnMostrar);
@@ -212,16 +241,16 @@ function confirmar(title,msg,funcionsi,funcionno/*,params*/){
                         }
                     }catch(er){
                     //error
-                    }
                 }
-            },
-            close: function() {
-                $(this).dialog('destroy').remove();
-                $("#messageconfirma"+randomnumber).remove();
             }
+        },
+        close: function() {
+            $(this).dialog('destroy').remove();
+            $("#messageconfirma"+randomnumber).remove();
         }
-        );    
     }
+    );    
+}
 }
 function get_page(Url,div_name,parametro,tipo_mensaje){
     var Rdn=(Math.floor(Math.random()*11));  
@@ -236,7 +265,7 @@ function get_page(Url,div_name,parametro,tipo_mensaje){
         json:parametro    
     }, function(data){ 
         if(tipo_mensaje==undefined){
-           
+
         }else if(tipo_mensaje=="msjCargando"){
             $("#mensajecarga").hide();
         }
@@ -289,7 +318,52 @@ function limpiarForm(obj) {
             this.value = '';       
         else if (type == 'checkbox' || type == 'radio')
             this.checked = false;
-        else if (tag == 'select')
+        else if (tag == 'select'){
             this.selectedIndex = 0; //-1
+            $('.chosen-select').trigger("chosen:updated");
+        }
     });
+}
+
+function creaAutocomplete(autocomplete){
+    $("#"+autocomplete["value"]+"").autocomplete({
+        source: autocomplete["url"],
+        minLength: 3,
+        select: function(event, ui){     
+            $("#"+autocomplete["id"]+"").val(ui.item.id);
+            if (autocomplete["funcion"] != undefined) eval (autocomplete["funcion"]);                  
+        }
+    }); 
+}
+
+function obtenerCamposArray(name){
+    var names = document.getElementsByName(name+"[]");
+    arr=[];
+    $.each(names,function(i,e){
+        var obj = new Object();
+        // obj.dataField = $(e).attr('data-field');
+        obj.nRecId = $(e).attr('data-nrecid');
+        obj.dRedFechaModificacion = $(e).attr('data-dRedFechaModificacion');
+        obj.cRedPrecio = $(e).val();
+        var id= $(e).prop("id") ; //obtiene id
+        var attr = id.split("_");//corta la cadena por caracter 
+        //obtengo la ultima posicion del array que es la que me interesa( IDAttr)
+        obj.nRedId = attr[attr.length-1];
+        arr[i]=obj;
+    });
+    
+    return arr;
+
+}
+
+
+function msjCargando(){
+    var host = window.location.host;
+    $('#mensajecarga').html('<div style="display: table-cell;vertical-align: middle;position: relative;"><center><br/><p><img src="http://'+host+'/mpn/statics/images/cargando.gif"/><h2 style="color:black;">Espere un Momento...</h2></p></center></div>');
+    document.getElementById("mensajecarga").style.opacity="0.6";  
+    document.getElementById("mensajecarga").style.background="white";  
+    document.getElementById("mensajecarga").style.visibility="visible";
+}
+function cierraCargando(){
+    document.getElementById("mensajecarga").style.visibility="hidden";
 }

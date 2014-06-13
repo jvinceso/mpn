@@ -36,9 +36,9 @@
 						$funcionSet .= "\t\t\t\$this->".$value2["CAMPO"]." = \$".$value2["CAMPO"].";\n";
 						$funcionSet .= "\t\t}\n";	
 
-						$funcionGet .= "\t\tfunction get_".$value2["CAMPO"]."(){\n";
-						$funcionGet .= "\t\t\treturn \$this->".$value2["CAMPO"].";\n";
-						$funcionGet .= "\t\t}\n";	
+						// $funcionGet .= "\t\tfunction get_".$value2["CAMPO"]."(){\n";
+						// $funcionGet .= "\t\t\treturn \$this->".$value2["CAMPO"].";\n";
+						// $funcionGet .= "\t\t}\n";	
 					}
 					$text.=$variables."\n";
 
@@ -50,7 +50,7 @@
 					$text .=$construct."\n";
 
 					$text .= $funcionSet."\n";
-					$text .= $funcionGet;
+					// $text .= $funcionGet;
 
 					$objeto = "\t\t//Obtener Objeto ".strtoupper($value["TABLA"])."\n";
 					$objeto .= "\t\tfunction get_Obj".ucfirst($value["TABLA"])."(\$CAMPO){\n";	

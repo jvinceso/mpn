@@ -1,0 +1,11 @@
+//$("#tabla-direcccion-contribuyente").
+var rows = document.getElementById("tabla-direcccion-contribuyente").getElementsByTagName("tbody")
+  [0].getElementsByTagName("tr");
+
+    // loops through each row
+    for (i = 0; i < rows.length; i++) {
+        cells = rows[i].getElementsByTagName('td');
+        if( cells[7].innerHTML ==0 ){
+            rows[i].className = "cobrar";
+        }        
+ }
