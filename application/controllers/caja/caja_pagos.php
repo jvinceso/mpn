@@ -36,7 +36,7 @@ class Caja_pagos extends CI_Controller {
 			);
 		$tabla_data = $this->objCajaPagos->qryCajaPagos();
 		$funciones = array(
-			'initEvtOpcPopupId("edit","caja_pagos/getCajaPagos/","Editar el Pago",500,200,"func_close")'
+			'initEvtOpcPopupId("edit","caja_pagos/getCajaPagos/","Editar el Pago",900,200,"func_close")'
 			// ,'initEvtDel("confirmarDeletePago")'
 			);
 		$nameTable = 'tabla-CajaPagos';
@@ -131,6 +131,13 @@ class Caja_pagos extends CI_Controller {
 		} else {
 			echo "Error";
 		}
+// 		Array
+// (
+//     [nCpaId] => 15
+//     [nPerId] => 41
+//     [nConId] => 7
+//     [fCpaMonto] => 10.00
+// )
 	}
 
 	function pagarReciboAgua() {

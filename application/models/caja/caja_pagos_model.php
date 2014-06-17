@@ -207,7 +207,9 @@ class Caja_pagos_model extends CI_Model {
 
 	public function getCajaPagos($nCpaId){
 		$query = $this->db->query("
-			select nCpaId,nPerId,nConId,fCpaMonto from caja_pagos where cCpaEstado = 1 and nCpaId='".$nCpaId."' 
+			select cp.nCpaId,cp.nPerId,cp.nConId,cp.fCpaMonto,CONCAT(p.cPerNombres ,' ',p.cPerApellidoPaterno,' ', p.cPerApellidoMaterno ) AS nombre 
+			from caja_pagos cp inner join persona p on cp.nPerId = p.nPerId
+ 			where cCpaEstado = 1 and nCpaId='".$nCpaId."' 
 			");
 		if ($query->num_rows() > 0) {
 			return $query->row_array();
