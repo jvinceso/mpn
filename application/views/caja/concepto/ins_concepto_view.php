@@ -42,4 +42,4 @@
 		</div>
 	</div>
 </form>
-<script src="<?php echo URL_JS; ?>chosen.jquery.min.js"></script>
+<!-- // <script src="<?php echo URL_JS; ?>chosen.jquery.min.js"></script> -->
