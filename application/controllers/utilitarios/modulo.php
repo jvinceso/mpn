@@ -108,16 +108,6 @@ class Modulo extends CI_Controller {
 						,'icono'=>'trash'
 						,'tooltip'=>'success'
 					),
-					'Detalle' => array(
-						 'color'=>'blue'
-						,'icono'=>'zoom-in'
-						,'tooltip'=>'info'
-					),
-					'Confirmar' => array(
-						 'color'=>'orange'
-						,'icono'=>'ok'
-						,'tooltip'=>'info'
-						),
 					'Configuracion' => array(
 						 'color'=>'blue'
 						,'icono'=>'cogs'
