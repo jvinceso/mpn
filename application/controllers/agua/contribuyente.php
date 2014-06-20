@@ -286,16 +286,14 @@ class Contribuyente extends CI_Controller {
 		$return_arr = $this->objPersona->qryfndContribuyente();
 		if ($return_arr) {
 			echo json_encode($return_arr) ;
-			// foreach ($data as $row) {
-			// 	$arrayServicio['label'] = htmlspecialchars($row['descripción']);
-			// 	$arrayServicio['id'] = $row['ID'];
-			// 	array_push($return_arr, $arrayServicio);
-			// }
 		}
 	}	
 	function eliminaServicioPredio(){		
 		$this->objServiciosContribuyente->set_nSecId( $this->input->post('nSecId') );
 		$this->objServiciosContribuyente->eliminaServicioContribuyente( );
+	}
+	function popupPagos(){
+		$this->load->view('agua/recibos/ins_pagoPeriodo_view');
 	}
 
 }

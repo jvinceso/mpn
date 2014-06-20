@@ -52,7 +52,7 @@ class Recibo_model extends CI_Model {
 		 * Se Obtiene lista de contribuyentes segun el año que se ah seleccionado
 		 * en base al servicio tipo y relación con la tabla costo
 		 */
-		$rsRecibos = $this->db->query("select nRecId from recibo where YEAR(dFecFechaRegistro) = '".$anio."' AND cRecEstado = 'P'")->result_array();
+		$rsRecibos = $this->db->query("select nRecId from recibo where YEAR(dFecFechaRegistro) = '".$anio."' AND cRecEstado = 1")->result_array();
 		if ( count( $rsRecibos ) == 0 ) {
 			$this->db->trans_start();
 			$rsContribuyentes = $this->db->query('select p.nPerId from persona p
@@ -100,7 +100,7 @@ class Recibo_model extends CI_Model {
 		$nPerIdTrabajador = $this->session->userdata('IdPersona');
 
 		$rsRecibos = $this->db->query("select nRecId from recibo r inner join fechas_vencimiento fv on fv.nFevId = r.nFevId
-			where fv.nFevAnio = '".$anio."' AND r.nPerIdContribuyente = ".$this->nPerIdContribuyente." and r.cRecEstado = 'P' ")->result_array();
+			where fv.nFevAnio = '".$anio."' AND r.nPerIdContribuyente = ".$this->nPerIdContribuyente." and r.cRecEstado = 1 ")->result_array();
 				
 		if ( count( $rsRecibos ) == 0 ) {
 			$this->db->trans_start();
@@ -252,7 +252,7 @@ public function updateRecibo(){
 			YEAR( fv.dFevFecha_vence ) as Anio,
 			r.dRecFechaPago, r.nFevId, r.nPerIdContribuyente FROM recibo r
 			INNER JOIN fechas_vencimiento fv ON fv.nFevId = r.nFevId
-			where r.nRecId = '. $this->nRecId .' AND r.cRecEstado = "P" AND r.cRecPagado = "P" ';
+			where r.nRecId = '. $this->nRecId .' AND r.cRecEstado = 1 AND r.cRecPagado = "P" ';
 			break;			
 			default: //Obtiene los recibos sin tener en cuenta los estados
 			$sql = '
@@ -520,7 +520,7 @@ AND ( '.$nSecId.' = 0 OR ( dc.nCalId = '.$nSecId.' ) )
 	{
 		$query = $this->db->query("
 			select nRecId from recibo
-			where nRecId = ".$nRecId." and cRecPagado = 'P' and cRecEstado = 'P';		
+			where nRecId = ".$nRecId." and cRecPagado = 'P' and cRecEstado = 1;		
 			");
 		if ($query->num_rows() > 0) {
 			return true;
@@ -543,7 +543,7 @@ AND ( '.$nSecId.' = 0 OR ( dc.nCalId = '.$nSecId.' ) )
 		$rsCaja = $this->db->query( $sql_cant );
 		$cantidad = $rsCaja->num_rows();
 		if ( $cantidad != 0 ) {
-			$this->db->query("update recibo set cRecPagado = 'P' WHERE nRecId = ".$this->nRecId." ");
+			$this->db->query("update recibo set cRecPagado = 1 WHERE nRecId = ".$this->nRecId." ");
 			$this->db->query("update caja_pagos set cCpaEstado = 0 where cCpaSerieNumero = '".$nRecId."' and cCpaEstado = 1 ");
 			$rpta_proceso = 1;
 		}
@@ -557,13 +557,31 @@ AND ( '.$nSecId.' = 0 OR ( dc.nCalId = '.$nSecId.' ) )
 	 */
 	public function verificaPendientes(){
 		$rpta_verifica = 0;
-		$sql_verifica = "select nRecId from recibo where nPerIdContribuyente = ".$this->nPerIdContribuyente." and nRecId < '".$this->nRecId."' and cRecPagado = 'P';";
+		$sql_verifica = "select nRecId from recibo where nPerIdContribuyente = ".$this->nPerIdContribuyente." and nRecId < '".$this->nRecId."' and cRecPagado = 1;";
 		$cantidad  = $this->db->query( $sql_verifica )->num_rows();
 		// print_p( $cantidad);exit();
 		if ( $cantidad == 0 ) {
 			$rpta_verifica = 1;
 		}
 		return $rpta_verifica;
+	}
+
+	public function pagosMasivos($anio){
+		$rpta_verifica = 0;
+		$this->db->trans_start();
+		$sql_recibos_pagar = "SELECT GROUP_CONCAT(r.nRecId) as codRecibo FROM recibo r 
+		inner join fechas_vencimiento fv on fv.nFevId = r.nFevId
+		where r.nPerIdContribuyente = '".$this->nPerIdContribuyente."' and r.cRecPagado = 'P' and r.cRecEstado = 1
+		and fv.nFevAnio = '".$anio."' and fv.cFevEstado = 1";
+		$rsRecibos  = $this->db->query( $sql_recibos_pagar );
+		if ( $rsRecibos->num_rows() ) {
+			$rpta_verifica = 1;
+			$in_nRecId = $rsRecibos->result_array()[0]['codRecibo'];
+			$this->db->query("UPDATE recibo SET cRecPagado = 'T',dRecFechaPago= now() WHERE nRecId IN ".$in_nRecId." ;");
+		}
+		$this->db->trans_complete();
+		return $rpta_verifica;
+
 	}
 }
 

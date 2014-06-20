@@ -195,6 +195,11 @@ class Recibo extends CI_Controller {
 		$this->objRecibo->set_nRecId( $this->input->post('nRecId') );
 		echo $this->objRecibo->updCancelarTransferencia();
 	}
+
+	function Pagomasivo(){
+		$this->objRecibo->set_nPerIdContribuyente( $this->input->post('nPerid') );
+		$this->objRecibo->pagosMasivos( $this->input->post('anio') );		
+	}
 }
 /* End of file recibo.php */
 /* Location: ./application/controllers/agua/recibo.php */
