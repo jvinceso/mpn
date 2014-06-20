@@ -131,12 +131,19 @@ class Caja_pagos extends CI_Controller {
 		} else {
 			echo "Error";
 		}
-// 		Array
+// Array
 // (
-//     [nCpaId] => 15
-//     [nPerId] => 41
-//     [nConId] => 7
-//     [fCpaMonto] => 10.00
+//     [nCpaId] => 11
+//     [nPerId] => 44
+//     [nConId] => 1
+//     [fCpaMonto] => 199.00
+//     [nombre] => Lanaya1 Templar1 Asassin1
+//     [cCpaMes] => 
+//     [fCpaHoras] => 
+//     [cCpaSector] => 
+//     [cCpaPlanilla] => 01
+//     [cCpaFechaPlanilla] => 2014-06-10
+//     [cCpaSerie] => 001
 // )
 	}
 
@@ -152,33 +159,9 @@ class Caja_pagos extends CI_Controller {
 		}
 	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	function delTipoPago(){
-		$this->objMultitabla->set_nMulId( $this->input->post('nMulId') );
-		if ($this->objMultitabla->delMultitabla()) {	
-			echo "1";
-		}else{
-			echo "0";
-		}
-	}
-
-	function cboTipoPagoUpd() {
-		$this->objMultitabla->set_nMulId( $this->input->post('txt_upd_con_nMulId') );
-		$this->objMultitabla->set_nMulIdPadre( '1' );
-		$result = $this->objMultitabla->cboTipoPagoUpd();
+	function cboConceptoPagoUpd() {
+		$this->objConcepto->set_nConId( $this->input->post('txt_upd_pag_concepto_nConId') );
+		$result = $this->objConcepto->cboConceptoPagoUpd();
 		echo $result;
 	}
 }

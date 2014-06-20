@@ -124,6 +124,19 @@ class Concepto_model extends CI_Model {
 		}
 	}
 
+	public function cboConceptoPagoUpd(){
+		$query = $this->db->query("select nConId as ID,cConDescripcion as descripcion from concepto where cConEstado = 1");
+		if ($query) {
+			$data   = $query->result_array();
+            // print_p($data);exit();
+			$combo  = creaCombo($data);
+			$result = form_dropdown("cbo_upd_pag_concepto", $combo,$this->get_nConId(), 'id="cbo_upd_pag_concepto" class="chosen-select" ');
+			return $result;
+		} else {
+			return false;
+		}
+	}
+
 	public function getCosto(){
 		$query = $this->db->query("select fConCosto from concepto where cConEstado = 1 and nConId='".$this->get_nConId()."' ");
 		if ($query->num_rows() > 0) {

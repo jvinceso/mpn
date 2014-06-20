@@ -207,9 +207,22 @@ class Caja_pagos_model extends CI_Model {
 
 	public function getCajaPagos($nCpaId){
 		$query = $this->db->query("
-			select cp.nCpaId,cp.nPerId,cp.nConId,cp.fCpaMonto,CONCAT(p.cPerNombres ,' ',p.cPerApellidoPaterno,' ', p.cPerApellidoMaterno ) AS nombre 
-			from caja_pagos cp inner join persona p on cp.nPerId = p.nPerId
- 			where cCpaEstado = 1 and nCpaId='".$nCpaId."' 
+			select cp.nCpaId,
+			cp.nPerId,
+			cp.nConId,
+			cp.fCpaMonto,
+			CONCAT(p.cPerNombres ,' ',p.cPerApellidoPaterno,' ', p.cPerApellidoMaterno ) AS nombre,
+			cp.cCpaMes,
+			cp.fCpaHoras,
+			cp.cCpaSector,
+			s.cSecNombre,
+			cp.cCpaPlanilla,
+			cp.cCpaFechaPlanilla,
+			cp.cCpaSerie
+			from caja_pagos cp 
+			inner join persona p on cp.nPerId = p.nPerId
+			left join sector s  on cp.cCpaSector = s.nSecId
+			where cCpaEstado = 1 and nCpaId='".$nCpaId."' 
 			");
 		if ($query->num_rows() > 0) {
 			return $query->row_array();
@@ -227,7 +240,7 @@ class Caja_pagos_model extends CI_Model {
 		$this->db->update('caja_pagos', $data);	
 
 		$data = array(
-			 'fRecDeuda' 	 =>  0
+			'fRecDeuda' 	 =>  0
 			,'fRecAbono'  	 =>  $abono
 			,'cRecPagado' 	 =>  'C'
 			,'dRecFechaPago' =>  date("Y-m-d H:i:s")
