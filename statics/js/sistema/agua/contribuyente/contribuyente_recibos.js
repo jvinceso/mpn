@@ -90,12 +90,17 @@ function disableEliminar(){
 	console.log("tablis");
 	$.each(tablita, function (indice, valor) {
 	    estado = $(valor).find('td:eq(3)').text().trim();
-	    if (estado.toUpperCase() != "TRANSFERIDO") {
+	    if (estado.toUpperCase() == "TRANSFERIDO") {
 	        //    var opcion = $(valor).find('a>.icon-ban-circle');
+	        $(valor).find('a>.icon-retweet').parent('a').addClass('disabled');	    	
+	        $(valor).find('a>.icon-credit-card').parent('a').addClass('disabled');	  	        
+	    }else if (estado.toUpperCase() == "PAGADO") {
 	        $(valor).find('a>.icon-ban-circle').parent('a').addClass('disabled');
-	    }else{
 	        $(valor).find('a>.icon-retweet').parent('a').addClass('disabled');	    	
 	        $(valor).find('a>.icon-credit-card').parent('a').addClass('disabled');	    	
+
+	    }else{//Estados para los transferidos
+	    	$(valor).find('a>.icon-ban-circle').parent('a').addClass('disabled');	        
 	    }
 
 	});	
@@ -145,6 +150,7 @@ function procesaPagoMultiple(){
 		    },
 		    success:function(data){
 		    	console.log( data );
+				actualizarGrilla();
 				if (data == "1") {
 					mensaje("Se Transfirio a Caja de forma exitosa...","e");
 					actualizarGrilla();

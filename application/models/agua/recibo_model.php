@@ -543,7 +543,7 @@ AND ( '.$nSecId.' = 0 OR ( dc.nCalId = '.$nSecId.' ) )
 		$rsCaja = $this->db->query( $sql_cant );
 		$cantidad = $rsCaja->num_rows();
 		if ( $cantidad != 0 ) {
-			$this->db->query("update recibo set cRecPagado = 1 WHERE nRecId = ".$this->nRecId." ");
+			$this->db->query("update recibo set cRecPagado = 'P' WHERE nRecId = ".$this->nRecId." ");
 			$this->db->query("update caja_pagos set cCpaEstado = 0 where cCpaSerieNumero = '".$nRecId."' and cCpaEstado = 1 ");
 			$rpta_proceso = 1;
 		}
@@ -557,7 +557,7 @@ AND ( '.$nSecId.' = 0 OR ( dc.nCalId = '.$nSecId.' ) )
 	 */
 	public function verificaPendientes(){
 		$rpta_verifica = 0;
-		$sql_verifica = "select nRecId from recibo where nPerIdContribuyente = ".$this->nPerIdContribuyente." and nRecId < '".$this->nRecId."' and cRecPagado = 1;";
+		$sql_verifica = "select nRecId from recibo where nPerIdContribuyente = ".$this->nPerIdContribuyente." and nRecId < '".$this->nRecId."' and cRecPagado = 'P';";
 		$cantidad  = $this->db->query( $sql_verifica )->num_rows();
 		// print_p( $cantidad);exit();
 		if ( $cantidad == 0 ) {
@@ -566,7 +566,7 @@ AND ( '.$nSecId.' = 0 OR ( dc.nCalId = '.$nSecId.' ) )
 		return $rpta_verifica;
 	}
 
-	public function pagosMasivos($anio){
+	public function pagosMasivos( $anio, $nTmuId ){
 		$rpta_verifica = 0;
 		$this->db->trans_start();
 		$sql_recibos_pagar = "SELECT GROUP_CONCAT(r.nRecId) as codRecibo FROM recibo r 
@@ -574,10 +574,47 @@ AND ( '.$nSecId.' = 0 OR ( dc.nCalId = '.$nSecId.' ) )
 		where r.nPerIdContribuyente = '".$this->nPerIdContribuyente."' and r.cRecPagado = 'P' and r.cRecEstado = 1
 		and fv.nFevAnio = '".$anio."' and fv.cFevEstado = 1";
 		$rsRecibos  = $this->db->query( $sql_recibos_pagar );
+
+		//OBTENEMOS LA LISTA DE RECIBOS PARA ACTUALIZAR ANTES DE ACTUALIZARLOS
+		$sql_recibos_caja = "SELECT r.nRecId,fv.nFevAnio, fv.nFevCuota,r.fRecDeuda FROM recibo r 
+		inner join fechas_vencimiento fv on fv.nFevId = r.nFevId
+		where r.nPerIdContribuyente = '".$this->nPerIdContribuyente."' and r.cRecPagado = 'P' and r.cRecEstado = 1
+		and fv.nFevAnio = '".$anio."' and fv.cFevEstado = 1";	
+		$rsReciboCaja  = $this->db->query( $sql_recibos_caja )->result();
+
 		if ( $rsRecibos->num_rows() ) {
-			$rpta_verifica = 1;
+			//Cambiamos Estados al Recibo
 			$in_nRecId = $rsRecibos->result_array()[0]['codRecibo'];
-			$this->db->query("UPDATE recibo SET cRecPagado = 'T',dRecFechaPago= now() WHERE nRecId IN ".$in_nRecId." ;");
+			$this->db->query("UPDATE recibo SET cRecPagado = 'T',dRecFechaPago= now() WHERE nRecId IN (".$in_nRecId." );");
+			//Creamos los registros en caja
+				// print_p($rsReciboCaja);exit();
+			foreach ($rsReciboCaja as $objCajaTmp) {
+				$cCpaSerieNumero = 'AGUA-'.$objCajaTmp->nRecId;
+				$sql_cajaRecibo = "select  nCpaId from caja_pagos where cCpaSerieNumero = '".$cCpaSerieNumero."'";
+				$caja = array(
+					'nPerId'    => $this->nPerIdContribuyente,
+					'nTmuId'    => $nTmuId,
+					'nConId'    => CONCEPTO_AGUA,
+					'fCpaMonto' => $objCajaTmp->fRecDeuda,
+					'cCpaAno'   => $objCajaTmp->nFevAnio,
+					'cCpaMes'   => devuelveMes($objCajaTmp->nFevCuota),
+					'cCpaSerieNumero'   => $cCpaSerieNumero
+				);
+				$rsCajaPago = $this->db->query( $sql_cajaRecibo );
+				if( $rsCajaPago->num_rows() == 0 ){
+					$this->db->insert('caja_pagos', $caja);
+					$idCaja = $this->db->insert_id();
+				}else{
+					$caja['cCpaEstado'] = 1;
+					$caja['dCpaFechaRegistro'] = date('Y-m-d H:i:s');
+
+					$codCaja = $rsCajaPago->row()->nCpaId ;
+					$this->db->where( 'nCpaId', $codCaja );	
+					$idCaja = $this->db->update( 'caja_pagos', $caja );
+				}
+			}
+			$rpta_verifica = 1;
+
 		}
 		$this->db->trans_complete();
 		return $rpta_verifica;

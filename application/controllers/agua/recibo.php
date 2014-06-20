@@ -9,7 +9,9 @@ class Recibo extends CI_Controller {
 		$this->load->model('agua/recibo_model','objRecibo');
 		$this->load->model('multitabla_model','objMultitabla');
 		$this->load->model('agua/sector_model','objSector');
-		//Do your magic here
+		//Necesarios para pagar recibos en caja
+		$this->load->model('administrador/trabajador_model','objTrabajador');
+		$this->load->model('caja/caja_pagos_model','objCajaPagos');
 	}
 	public function index()
 	{
@@ -58,8 +60,6 @@ class Recibo extends CI_Controller {
 		$nRecID = $this->input->post('nRecId');
 		$nPerid = $this->input->post('nPerid');
 		$rpt_proceso = "0";
-		$this->load->model('administrador/trabajador_model','objTrabajador');
-		$this->load->model('caja/caja_pagos_model','objCajaPagos');
 
 		$nTmuId = $this->objTrabajador->ObtenerCodigoTrabajador( $this->session->userdata('IdPersona') );
 		// print_p( $nTmuId );
@@ -198,7 +198,10 @@ class Recibo extends CI_Controller {
 
 	function Pagomasivo(){
 		$this->objRecibo->set_nPerIdContribuyente( $this->input->post('nPerid') );
-		$this->objRecibo->pagosMasivos( $this->input->post('anio') );		
+		$nTmuId = $this->objTrabajador->ObtenerCodigoTrabajador( $this->session->userdata('IdPersona') );
+		echo $this->objRecibo->pagosMasivos( $this->input->post('anio'), $nTmuId );		
+
+
 	}
 }
 /* End of file recibo.php */
