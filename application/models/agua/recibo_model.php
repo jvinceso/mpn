@@ -565,6 +565,24 @@ AND ( '.$nSecId.' = 0 OR ( dc.nCalId = '.$nSecId.' ) )
 		}
 		return $rpta_verifica;
 	}
+
+	public function pagosMasivos($anio){
+		$rpta_verifica = 0;
+		$this->db->trans_start();
+		$sql_recibos_pagar = "SELECT GROUP_CONCAT(r.nRecId) as codRecibo FROM recibo r 
+		inner join fechas_vencimiento fv on fv.nFevId = r.nFevId
+		where r.nPerIdContribuyente = '".$this->nPerIdContribuyente."' and r.cRecPagado = 'P' and r.cRecEstado = 1
+		and fv.nFevAnio = '".$anio."' and fv.cFevEstado = 1";
+		$rsRecibos  = $this->db->query( $sql_recibos_pagar );
+		if ( $rsRecibos->num_rows() ) {
+			$rpta_verifica = 1;
+			$in_nRecId = $rsRecibos->result_array()[0]['codRecibo'];
+			$this->db->query("UPDATE recibo SET cRecPagado = 'T',dRecFechaPago= now() WHERE nRecId IN ".$in_nRecId." ;");
+		}
+		$this->db->trans_complete();
+		return $rpta_verifica;
+
+	}
 }
 
 /* End of file recibo_model.php */

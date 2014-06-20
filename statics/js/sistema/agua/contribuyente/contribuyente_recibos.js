@@ -130,7 +130,40 @@ function EliminarTransferencia(fila){
 	
 }
 function procesaPagoMultiple(){
-	var nPdeId = 5;
-	var nPerId = 23;
-	set_popup('../agua/contribuyente/popupPagos/','Recibos por Periodo',650,450,{'codx':nPdeId,'PerId':nPerId},'');
+	var nPerid = $("input[name=txt_hdn_nPerid]").val();
+	var anio   = $("#cbo_anio_recibo option:selected").val();
+	// set_popup('../agua/contribuyente/popupPagos/','Recibos por Periodo',650,450,{'codx':nPdeId,'PerId':nPerId},'');
+	var respuesta = confirm("Los Recibos Se Cancelaran de Forma Masiva a Partir del Ultimo Pendiente de Pago");
+	if ( respuesta ) {
+		$.ajax({
+		    url:'recibo/Pagomasivo',
+		    type:'post',
+		    cache:false,
+		    data:{
+		    	anio   : anio,
+		    	nPerid : nPerid
+		    },
+		    success:function(data){
+		    	console.log( data );
+				if (data == "1") {
+					mensaje("Se Transfirio a Caja de forma exitosa...","e");
+					actualizarGrilla();
+				}if (data == "3") {
+					mensaje("El Recibo "+nRecId+" ya ha sido transferido a caja ó Pagado en caja","r");
+				}if (data == "0") {
+					mensaje("Existen Recibos pendientes de Transferencia por favor asegurese revisarlo","a");
+				}
+				// else{
+					// mensaje("Por favor vuelva intentar...","a");
+				// }
+		    },
+		    error:function(er){
+		    	console.log(er.statusText);
+		        alert("Houston, tenemos un problema... Creo que has roto algo...");
+		    }
+		});
+
+	}else{
+		mensaje("No se realizo el cobro del recibo","a");
+	}
 }
