@@ -3718,7 +3718,7 @@ foreach($this->arrayVariable as $name=>$value){
                
               $this->passAllArrayDatatoSubReport($PHPJasperXMLSubReport,$d,$current_y,$arrdata);
                
-               $PHPJasperXMLSubReport->transferDBtoArray('localhost','root','VINCES_900709','bdmpnintegrado','mysql');
+               $PHPJasperXMLSubReport->transferDBtoArray('192.168.1.45','root','VINCES_900709','bdmpnintegrado','mysql');
                $PHPJasperXMLSubReport->pdf=$this->pdf;
                $PHPJasperXMLSubReport->outpage();    //page output method I:standard output  D:Download file
   
